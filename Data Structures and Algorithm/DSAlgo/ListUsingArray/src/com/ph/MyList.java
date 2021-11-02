@@ -169,6 +169,27 @@ public class MyList {
 		}
 	}
 
+	public void searchItem(int item) throws EmptyArrayException {
+		if (!isEmpty()) {
+			boolean flag = false;
+			int i;
+			for (i = 0; i < noOfItem; i++) {
+				if (array[i] == item) {
+					flag = true;
+					break;
+				}
+			}
+			System.out.println();
+			if (flag == true) {
+				System.out.println(item + " is available at index " + i);
+			} else {
+				System.out.println(item + " is not available in the array");
+			}
+		} else {
+			throw new EmptyArrayException();
+		}
+	}
+
 	public void show() {
 		System.out.println("Priting all array elements");
 		for (int i = 0; i < noOfItem; i++) {

@@ -49,10 +49,12 @@ public class Main {
 			l1.deleteItemAtBeginning();
 			System.out.println("\nDeleted 1 item at beginning");
 			l1.show();
-			
+
 			l1.deleteItemAtSpecificPosition(9);
 			System.out.println("\nDeleted 1 item at position 9 or index 8.");
+			l1.show();
 
+			l1.searchItem(10);
 		} catch (SpaceFullException | EmptyArrayException e) {
 			System.out.println(e);
 		}
