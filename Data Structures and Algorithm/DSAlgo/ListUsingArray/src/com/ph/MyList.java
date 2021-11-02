@@ -212,12 +212,28 @@ public class MyList {
 		}
 	}
 
+	public void emptyEntireList() throws InterruptedException {
+		for (int i = 0; i < noOfItem; i++) {
+			array[i] = 0;
+		}
+		for (int j = 0; j <= 100; j++) {
+			System.out.print("\rClearing array elements " + j + "%");
+			Thread.sleep(20);
+		}
+		System.out.println("\nDone.\n");
+
+		noOfItem = 0;
+	}
+
 	public void show() {
 		System.out.println("Priting all array elements");
-		for (int i = 0; i < noOfItem; i++) {
-			System.out.println("Array[" + i + "] = " + array[i]);
+		if (!isEmpty()) {
+			for (int i = 0; i < noOfItem; i++) {
+				System.out.println("Array[" + i + "] = " + array[i]);
+			}
+		} else {
+			System.out.println("Array is Empty.");
 		}
-		// System.out.println(array[9]);
 	}
 
 }
