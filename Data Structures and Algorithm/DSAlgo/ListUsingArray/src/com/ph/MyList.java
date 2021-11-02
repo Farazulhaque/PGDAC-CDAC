@@ -124,27 +124,10 @@ public class MyList {
 		}
 	}
 
-	// public void deleteItemAtEnd() {
-	// array[noOfItem-1] = 0;
-	// }
-
-	// public void deleteItemAtEnd() throws SpaceFullException {
-	// if (isEmpty()) {
-	// int i, j;
-
-	// for (j = 0; j < noOfItem; j++) {
-	// if (array[j] == item)
-	// break;
-	// }
-
-	// for (i = j; i < noOfItem; i++)
-	// array[i] = array[i + 1];
-
-	// noOfItem--;
-
-	// } else
-	// throw new SpaceFullException();
-	// }
+	public void deleteItemAtEnd() {
+		array[noOfItem - 1] = 0;
+		noOfItem--;
+	}
 
 	public void deleteItemAtBeginning() throws EmptyArrayException {
 		if (!isEmpty()) {
@@ -179,12 +162,12 @@ public class MyList {
 					break;
 				}
 			}
-			System.out.println();
 			if (flag == true) {
 				System.out.println(item + " is available at index " + i);
 			} else {
 				System.out.println(item + " is not available in the array");
 			}
+			System.out.println();
 		} else {
 			throw new EmptyArrayException();
 		}
@@ -206,6 +189,7 @@ public class MyList {
 			} else {
 				System.out.println("Nothing at index " + position);
 			}
+			System.out.println();
 
 		} else {
 			throw new EmptyArrayException();

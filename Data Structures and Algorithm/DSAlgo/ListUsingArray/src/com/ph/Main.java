@@ -43,19 +43,23 @@ public class Main {
 			l1.insertItemAtSpecificPosition(400, 3);
 			System.out.println("\nInserted 1 item at specific position.");
 			l1.show();
-			// l1.deleteItemAtEnd();
-			// System.out.println("\nDeleted item at end");
-			// l1.show();
+			l1.deleteItemAtEnd();
+			System.out.println("\nDeleted item at end");
+			l1.show();
 			l1.deleteItemAtBeginning();
 			System.out.println("\nDeleted 1 item at beginning");
 			l1.show();
 
-			l1.deleteItemAtSpecificPosition(9);
-			System.out.println("\nDeleted 1 item at position 9 or index 8.");
+			l1.deleteItemAtSpecificPosition(8);
+			System.out.println("\nDeleted 1 item at position 8 or index 7.");
 			l1.show();
 
+			System.out.println("\nSearching item 10...");
 			l1.searchItem(10);
+
+			System.out.println("Searching item at position 2...");
 			l1.searchPositionOfItem(2);
+
 			l1.emptyEntireList();
 		} catch (SpaceFullException | EmptyArrayException | InterruptedException e) {
 			System.out.println(e);
