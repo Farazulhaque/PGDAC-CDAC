@@ -24,7 +24,7 @@ public class Main {
 			System.out.println("Inserted 6 item.");
 
 		} catch (SpaceFullException e) {
-			System.out.println(e); 
+			System.out.println(e);  
 		}
 
 	}
