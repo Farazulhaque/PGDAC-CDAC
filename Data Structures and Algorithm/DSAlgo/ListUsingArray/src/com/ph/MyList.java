@@ -106,6 +106,19 @@ public class MyList {
 		}
 	}
 
+	public void insertItemAtSpecificPosition(int item, int position) throws SpaceFullException {
+		if (isSpace()) {
+			for (int i = noOfItem; i > position; i--) {
+				array[i] = array[i - 1];
+			}
+			array[position] = item;
+			noOfItem++;
+
+		} else {
+			throw new SpaceFullException();
+		}
+	}
+
 	public void show() {
 		System.out.println("Priting all array elements");
 		for (int i = 0; i < noOfItem; i++) {

@@ -39,6 +39,9 @@ public class Main {
 			l1.insertItemAtEnd(60);
 			System.out.println("\nInserted 6 item at end.");
 			l1.show();
+			l1.insertItemAtSpecificPosition(400, 3);
+			System.out.println("\nInserted 1 item at specific position.");
+			l1.show();
 
 		} catch (SpaceFullException e) {
 			System.out.println(e);
