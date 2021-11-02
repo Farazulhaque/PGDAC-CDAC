@@ -1,5 +1,6 @@
 package com.ph;
 
+import com.ph.exception.EmptyArrayException;
 import com.ph.exception.SpaceFullException;
 
 public class MyList {
@@ -20,6 +21,10 @@ public class MyList {
 	// check is storage has space
 	public boolean isSpace() {
 		return (noOfItem < array.length) ? true : false;
+	}
+
+	public boolean isEmpty() {
+		return (noOfItem == 0) ? true : false;
 	}
 
 	public void insertItemAtEnd(int item) throws SpaceFullException {
@@ -119,11 +124,57 @@ public class MyList {
 		}
 	}
 
+	// public void deleteItemAtEnd() {
+	// array[noOfItem-1] = 0;
+	// }
+
+	// public void deleteItemAtEnd() throws SpaceFullException {
+	// if (isEmpty()) {
+	// int i, j;
+
+	// for (j = 0; j < noOfItem; j++) {
+	// if (array[j] == item)
+	// break;
+	// }
+
+	// for (i = j; i < noOfItem; i++)
+	// array[i] = array[i + 1];
+
+	// noOfItem--;
+
+	// } else
+	// throw new SpaceFullException();
+	// }
+
+	public void deleteItemAtBeginning() throws EmptyArrayException {
+		if (!isEmpty()) {
+			for (int i = 1; i < noOfItem; i++) {
+				array[i - 1] = array[i];
+			}
+			noOfItem--;
+		} else {
+			throw new EmptyArrayException();
+		}
+	}
+
+	public void deleteItemAtSpecificPosition(int position) throws EmptyArrayException {
+		if (!isEmpty()) {
+			for (int i = position - 1; i < noOfItem - 1; i++) {
+				array[i] = array[i + 1];
+			}
+			noOfItem--;
+
+		} else {
+			throw new EmptyArrayException();
+		}
+	}
+
 	public void show() {
 		System.out.println("Priting all array elements");
 		for (int i = 0; i < noOfItem; i++) {
 			System.out.println("Array[" + i + "] = " + array[i]);
 		}
+		// System.out.println(array[9]);
 	}
 
 }

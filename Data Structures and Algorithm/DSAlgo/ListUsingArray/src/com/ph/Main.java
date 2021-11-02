@@ -1,6 +1,7 @@
 package com.ph;
 
 import com.ph.exception.SpaceFullException;
+import com.ph.exception.EmptyArrayException;
 
 public class Main {
 
@@ -42,8 +43,17 @@ public class Main {
 			l1.insertItemAtSpecificPosition(400, 3);
 			System.out.println("\nInserted 1 item at specific position.");
 			l1.show();
+			// l1.deleteItemAtEnd();
+			// System.out.println("\nDeleted item at end");
+			// l1.show();
+			l1.deleteItemAtBeginning();
+			System.out.println("\nDeleted 1 item at beginning");
+			l1.show();
+			
+			l1.deleteItemAtSpecificPosition(9);
+			System.out.println("\nDeleted 1 item at position 9 or index 8.");
 
-		} catch (SpaceFullException e) {
+		} catch (SpaceFullException | EmptyArrayException e) {
 			System.out.println(e);
 		}
 		l1.show();
