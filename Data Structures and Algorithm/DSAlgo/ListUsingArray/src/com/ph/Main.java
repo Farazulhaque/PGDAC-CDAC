@@ -55,6 +55,7 @@ public class Main {
 			l1.show();
 
 			l1.searchItem(10);
+			l1.searchPositionOfItem(2);
 		} catch (SpaceFullException | EmptyArrayException e) {
 			System.out.println(e);
 		}

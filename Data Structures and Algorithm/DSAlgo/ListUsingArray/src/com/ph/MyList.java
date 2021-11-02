@@ -190,6 +190,28 @@ public class MyList {
 		}
 	}
 
+	public void searchPositionOfItem(int position) throws EmptyArrayException {
+		if (!isEmpty()) {
+			boolean flag = false;
+			int item = 0;
+			for (int i = 0; i < noOfItem; i++) {
+				if (i == position) {
+					item = array[position];
+					flag = true;
+					break;
+				}
+			}
+			if (flag == true) {
+				System.out.println(item + " is at position " + position);
+			} else {
+				System.out.println("Nothing at index " + position);
+			}
+
+		} else {
+			throw new EmptyArrayException();
+		}
+	}
+
 	public void show() {
 		System.out.println("Priting all array elements");
 		for (int i = 0; i < noOfItem; i++) {
