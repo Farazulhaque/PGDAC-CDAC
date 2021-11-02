@@ -6,6 +6,6 @@ public class SpaceFullException extends Exception {
 
 	@Override
 	public String toString() {
-		return "Space is Full";
+		return "Space is Full. \nExiting...\n";
 	}
 }
