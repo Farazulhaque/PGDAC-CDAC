@@ -124,9 +124,13 @@ public class MyList {
 		}
 	}
 
-	public void deleteItemAtEnd() {
-		array[noOfItem - 1] = 0;
-		noOfItem--;
+	public void deleteItemAtEnd() throws EmptyArrayException {
+		if (!isEmpty()) {
+			array[noOfItem - 1] = 0;
+			noOfItem--;
+		} else {
+			throw new EmptyArrayException();
+		}
 	}
 
 	public void deleteItemAtBeginning() throws EmptyArrayException {
