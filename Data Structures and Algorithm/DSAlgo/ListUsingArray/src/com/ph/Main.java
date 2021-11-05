@@ -1,8 +1,5 @@
 package com.ph;
 
-import com.ph.exception.SpaceFullException;
-import com.ph.exception.EmptyArrayException;
-
 public class Main {
 
 	public static void main(String[] args) {

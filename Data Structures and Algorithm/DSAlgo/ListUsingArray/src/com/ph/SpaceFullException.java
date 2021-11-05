@@ -1,4 +1,4 @@
-package com.ph.exception;
+package com.ph;
 
 //custom exception
 public class SpaceFullException extends Exception {

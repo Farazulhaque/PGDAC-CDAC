@@ -1,8 +1,5 @@
 package com.ph;
 
-import com.ph.exception.EmptyArrayException;
-import com.ph.exception.SpaceFullException;
-
 public class MyList {
 
 	private int[] array;

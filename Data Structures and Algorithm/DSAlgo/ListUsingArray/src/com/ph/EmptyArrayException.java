@@ -1,4 +1,4 @@
-package com.ph.exception;
+package com.ph;
 
 public class EmptyArrayException extends Exception {
     static final long serialVersionUID = 1100001L;
