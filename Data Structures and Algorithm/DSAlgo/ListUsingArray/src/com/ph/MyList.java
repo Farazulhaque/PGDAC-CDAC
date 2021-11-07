@@ -87,7 +87,7 @@ public class MyList {
 				// if matched
 				if (array[i] == beforeItem) {
 					// loop to shift all elements from last by 1 position
-					// j > i - 1 because we want to add element after element at ith position
+					// j > i - 1 because we want to add element before element at ith position
 					for (int j = noOfItem; j > i - 1; j--) {
 						array[j] = array[j - 1];
 					}
