@@ -59,6 +59,13 @@ public class Main {
 		System.out.println("Popped data = " + s.pop());
 		System.out.println("Over...");
 
+		DLL l2 = new DLL();
+		l2.append(10);
+		l2.append(20);
+		l2.append(30);
+		l2.append(40);
+
+		l2.show();
 	}
 
 }
