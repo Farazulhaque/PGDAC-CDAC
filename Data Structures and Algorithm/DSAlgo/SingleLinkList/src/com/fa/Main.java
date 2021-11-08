@@ -21,6 +21,7 @@ public class Main {
 		//// tr = tr.link --> advance tr to next node
 
 		SLL l1 = new SLL();
+		// System.out.println("-------------SINGLE LINKLIST---------------");
 		l1.append(100);
 		l1.append(200);
 		l1.append(300);
@@ -28,12 +29,30 @@ public class Main {
 		l1.addAtBegin(10);
 		l1.addAtBegin(5);
 		System.out.println("Single Linked List -->");
+		// l1.show();
+		// try {
+		// int dd = l1.deleteAtBegin();
+		// System.out.println("Deleted Data at begin: " + dd);
+		// } catch (EmptyLinkListException e) {
+		// System.out.println(e);
+		// }
+		l1.show();
+		System.out.println("-----");
+		try {
+			l1.insertItemBeforeAnotherItem(500, 200);
+		} catch (EmptyLinkListException e) {
+			System.out.println(e);
+		}
+		l1.show();
+		System.out.println("-----");
+		try {
+			l1.insertItemAfterAnotherItem(20, 10);
+		} catch (EmptyLinkListException e) {
+			System.out.println(e);
+		}
 		l1.show();
 
-		int dd = l1.deleteAtBegin();
-		System.out.println("Deleted Data at begin: " + dd);
-		l1.show();
-
+		System.out.println("-------------------STACK-------------------");
 		MyStack s = new MyStack();
 		s.push(100);
 		s.push(200);

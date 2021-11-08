@@ -33,11 +33,12 @@ public class SLL {
 		}
 	}
 
-	public int deleteAtBegin() {
+	public int deleteAtBegin() throws EmptyLinkListException {
 		// empty list condition
 		if (head == null) {
-			System.out.println("SLL is EMPTY");
-			return 0;
+			throw new EmptyLinkListException();
+			// System.out.println("SLL is EMPTY");
+			// return 0;
 		} else {
 			int data = head.data; // copy data of first node
 			Node temp = head;
@@ -45,6 +46,51 @@ public class SLL {
 			temp.link = null; // break reference --> deleted temp
 			temp = null; // Garbage collector automatically clean the memory
 			return data;
+		}
+	}
+
+	public void insertItemBeforeAnotherItem(int newData, int oldData) throws EmptyLinkListException {
+		// empty list condition
+		if (head == null) {
+			throw new EmptyLinkListException();
+			// System.out.println("SLL is EMPTY");
+			// return 0;
+		} else {
+			Node pr;
+			Node tr = head;
+			pr = null;
+			while (tr.data != oldData && tr != null) {
+				pr = tr;
+				tr = tr.link;
+			}
+			if (tr == null) {
+				// item not found
+			} else {
+				Node newNode = new Node(newData);
+				newNode.link = pr.link;
+				pr.link = newNode;
+			}
+		}
+	}
+
+	public void insertItemAfterAnotherItem(int newData, int oldData) throws EmptyLinkListException {
+		// empty list condition
+		if (head == null) {
+			throw new EmptyLinkListException();
+			// System.out.println("SLL is EMPTY");
+			// return 0;
+		} else {
+			Node tr = head;
+			while (tr.data != oldData && tr != null) {
+				tr = tr.link;
+			}
+			if (tr == null) {
+				// item not found
+			} else {
+				Node newNode = new Node(newData);
+				newNode.link = tr.link;
+				tr.link = newNode;
+			}
 		}
 	}
 
