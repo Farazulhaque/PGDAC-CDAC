@@ -29,7 +29,7 @@ class Draw {
         }
     }
 }
-
+ 
 public class Pattern {
     public static void main(String[] args) {
         // Create a new Scanner object
