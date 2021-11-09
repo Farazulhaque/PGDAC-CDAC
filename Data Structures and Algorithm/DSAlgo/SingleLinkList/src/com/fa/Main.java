@@ -59,12 +59,28 @@ public class Main {
 		System.out.println("Popped data = " + s.pop());
 		System.out.println("Over...");
 
+		System.out.println("-------------------QUEUE-------------------");
+		MyQueue q = new MyQueue();
+		q.enqueue(10);
+		q.enqueue(20);
+		q.enqueue(30);
+		// q.show();
+		// q.dequeue();
+		// q.dequeue();
+		q.dequeue();
+		System.out.println("Queue Front : " + q.front.data);
+		System.out.println("Queue Rear : " + q.rear.data);
+
+		System.out.println("-------------All methods of DLL------------");
 		DLL l2 = new DLL();
 		l2.append(10);
 		l2.append(20);
 		l2.append(30);
 		l2.append(40);
-
+		l2.addAtBegin(100);
+		l2.deleteAtBegin();
+		l2.insertItemAfterAnotherItem(40, 10);
+		l2.insertItemBeforeAnotherItem(400, 20);
 		l2.show();
 	}
 
