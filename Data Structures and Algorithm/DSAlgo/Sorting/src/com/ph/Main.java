@@ -16,12 +16,12 @@ public class Main {
 
 			System.out.println("\nPriting all array elements before sort");
 			l1.show();
-//			System.out.println("\nPriting all array elements after bubble sort");
-//			l1.bubbleSort();
-//			l1.show();
-//			System.out.println("\nPriting all array elements after selection sort");
-//			l1.selectionSort();
-//			l1.show();
+			// System.out.println("\nPriting all array elements after bubble sort");
+			// l1.bubbleSort();
+			// l1.show();
+			// System.out.println("\nPriting all array elements after selection sort");
+			// l1.selectionSort();
+			// l1.show();
 			System.out.println("\nPriting all array elements after quick sort");
 			l1.quickSort();
 
