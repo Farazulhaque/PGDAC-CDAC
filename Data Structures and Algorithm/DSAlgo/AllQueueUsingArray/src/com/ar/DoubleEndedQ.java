@@ -25,6 +25,8 @@ public class DoubleEndedQ {
         if (rear == array.length - 1) {
             throw new OverFlowException();
         } else {
+            front = 0;
+            // shift all items backward
             for (int i = rear; i >= front; i--) {
                 array[i + 1] = array[i];
             }
@@ -54,7 +56,6 @@ public class DoubleEndedQ {
             throw new UnderFlowException();
         } else {
             int item = array[rear]; // item at rear is copied
-
             rear--;
             if (rear == -1) // if q has only one item and that is being removed
                 front = -1;
