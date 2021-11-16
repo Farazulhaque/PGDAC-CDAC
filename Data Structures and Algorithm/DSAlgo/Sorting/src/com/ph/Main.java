@@ -26,9 +26,8 @@ public class Main {
 			l1.quickSort();
 
 			// l1.insertionSort();
-			System.out.println("\nPriting all array elements after merge sort");
-
-			l1.mergeSort();
+			// System.out.println("\nPriting all array elements after merge sort");
+			// l1.mergeSort();
 
 			l1.show();
 

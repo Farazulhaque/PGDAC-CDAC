@@ -63,66 +63,68 @@ public class MyList {
 	}
 
 	public void quickSort() {
-		// quickSortRecursion(0, array.length-1);
-		quickSortNonRecursion();
+		quickSortRecursion(0, array.length - 1);
+		// quickSortNonRecursion();
 	}
 
-	@SuppressWarnings("unused")
 	private void quickSortRecursion(int lb, int ub) {
-		int li, ri;
+		int start, end;
 		int pivot;
-		System.out.println("LB:" + lb + " UB:" + ub);
+		// System.out.println("LB:" + lb + " UB:" + ub);
 		if (lb < ub) {
-			System.out.println("Worked  LB:" + lb + " UB:" + ub);
-			for (pivot = array[lb], li = lb + 1, ri = ub; li <= ri;) {
-				while (li < array.length && pivot >= array[li])
-					li++;
-				while (pivot < array[ri])
-					ri--;
-				if (li < ri)
-					swap(li, ri);
+			// System.out.println("Worked LB:" + lb + " UB:" + ub);
+			for (pivot = array[lb], start = lb + 1, end = ub; start <= end;) {
+				while (start < array.length && array[start] <= pivot)
+					start++;
+				while (array[end] > pivot)
+					end--;
+				if (start < end)
+					swap(start, end);
 			}
-			swap(lb, ri);
-			quickSortRecursion(lb, ri - 1); // L11 =>> lb, ri-1; (Left)
-			quickSortRecursion(ri + 1, ub); // L12 =>> ri+1, ub; (Right)
+			swap(lb, end);
+			quickSortRecursion(lb, end - 1); // L11 =>> lb, end-1; (Left)
+			quickSortRecursion(end + 1, ub); // L12 =>> end+1, ub; (Right)
 
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void quickSortNonRecursion() {
-		int li, ri;
+		int start, end;
 		int pivot;
 		Stack s = new Stack();
 		s.push(new Bound(0, array.length - 1)); // BOUND INFO is Pushed into the STACK
 		while (!(s.isStackEmpty())) { // Stack is not Empty......
 			Bound b = s.pop();
-			for (pivot = array[b.lb], li = b.lb + 1, ri = b.ub; li <= ri;) {
-				while (li < array.length && pivot >= array[li])
-					li++;
-				while (pivot < array[ri])
-					ri--;
-				if (li < ri)
-					swap(li, ri);
+			for (pivot = array[b.lb], start = b.lb + 1, end = b.ub; start <= end;) {
+				while (start < array.length && pivot >= array[start])
+					start++;
+				while (pivot < array[end])
+					end--;
+				if (start < end)
+					swap(start, end);
 			}
-			swap(b.lb, ri);
+			swap(b.lb, end);
 			// now list will split.......
-			if (ri + 1 < b.ub) { // right part ==>> ri+1, ub
-				s.push(new Bound(ri + 1, b.ub));
+			if (end + 1 < b.ub) { // right part ==>> end+1, ub
+				s.push(new Bound(end + 1, b.ub));
 			}
-			if (b.lb < ri - 1) { // left part ==>> lb, ri-1
-				s.push(new Bound(b.lb, ri - 1));
+			if (b.lb < end - 1) { // left part ==>> lb, end-1
+				s.push(new Bound(b.lb, end - 1));
 			}
 		}
 	}
 
 	public void insertionSort() {
-		int j;
 		for (int i = 1; i < array.length; i++) { // i is indexing to UL
-			int pick = array[i];
-			for (j = i - 1; j >= 0 && pick < array[j]; j--) { // j is indexing to SL
+			int temp = array[i];
+			int j = i - 1;
+			// for (j = i - 1; j >= 0 && temp < array[j]; j--) { // j is indexing to SL
+			while (j >= 0 && array[j] > temp) {
 				array[j + 1] = array[j];
+				j--;
 			}
-			array[j + 1] = pick;
+			array[j + 1] = temp;
 		}
 	}
 
