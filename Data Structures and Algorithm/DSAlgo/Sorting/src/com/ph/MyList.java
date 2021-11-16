@@ -167,6 +167,32 @@ public class MyList {
 		}
 	}
 
+	private void makeMAXHeap(int noOfItem) {
+		int pi = noOfItem / 2 - 1; // set pi to the last parent-index reaching to
+		while (pi >= 0) {
+			// find the larger CH
+			int ci = pi * 2 + 1; // set to LC...............
+			if (ci + 1 < noOfItem && array[ci] < array[ci + 1])
+				ci++;
+
+			// set MAX-HEAP by comparing larger CH & parent...............
+			if (array[pi] < array[ci]) {
+				swap(pi, ci);
+			}
+			pi--;
+		}
+	}
+
+	public void heapSort() {
+		int noOfItem = array.length;
+		while (noOfItem > 1) {
+			makeMAXHeap(noOfItem);
+			show();
+			swap(0, noOfItem - 1);
+			noOfItem--;
+		}
+	}
+
 	public void show() {
 		if (!isEmpty()) {
 			for (int i = 0; i < noOfItem; i++) {
@@ -175,6 +201,7 @@ public class MyList {
 		} else {
 			System.out.println("Array is Empty.");
 		}
+		System.out.println();
 	}
 
 }
