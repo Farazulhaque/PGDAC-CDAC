@@ -19,8 +19,8 @@ public class Main {
 			l1.insertItemAtEnd(200);
 			System.out.println("\nPriting all array elements before sort");
 			l1.show();
-			System.out.println("\nPriting all array elements after bubble sort");
-			l1.bubbleSort();
+			// System.out.println("\nPriting all array elements after bubble sort");
+			// l1.bubbleSort();
 			// l1.show();
 			// System.out.println("\nPriting all array elements after selection sort");
 			// l1.selectionSort();
@@ -34,8 +34,8 @@ public class Main {
 			// System.out.println("\nPriting all array elements after merge sort");
 			// l1.mergeSort();
 
-			// System.out.println("\nPriting all array elements after heap sort");
-			// l1.heapSort();
+			System.out.println("\nPriting all array elements after heap sort");
+			l1.heapSort();
 
 			l1.show();
 
