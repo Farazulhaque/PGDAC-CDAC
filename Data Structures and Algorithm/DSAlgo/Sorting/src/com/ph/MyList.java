@@ -180,14 +180,19 @@ public class MyList {
 				swap(pi, ci);
 			}
 			pi--;
+			show();
 		}
+		System.out.println("-------------------------------");
 	}
 
 	public void heapSort() {
 		int noOfItem = array.length;
+		int i = 1;
 		while (noOfItem > 1) {
+			System.out.println("\nIteration No: " + i);
+			i++;
 			makeMAXHeap(noOfItem);
-			show();
+//			show();
 			swap(0, noOfItem - 1);
 			noOfItem--;
 		}
