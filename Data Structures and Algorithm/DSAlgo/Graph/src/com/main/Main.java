@@ -27,13 +27,23 @@ public class Main {
 
 		g1.showGraph();
 
-		g1.removeVertex(0);
-		
+		/*
+		 * System.out.println("DFS SPANNING TREE............."); AdjacencyMatrix st =
+		 * g1.depthFirstSearch(0); st.showGraph();
+		 */
+
+		/*
+		 * g1.removeVertex(0); g1.showGraph(); g1.removeVertex(0); g1.showGraph();
+		 * g1.removeVertex(0); g1.showGraph(); g1.removeVertex(0); g1.showGraph();
+		 * 
+		 * g1.addVertex("A"); g1.showGraph();
+		 */
+		boolean status = g1.iSCycleFormed();
+		if (status)
+			System.out.println("Cycle Formed");
+		else
+			System.out.println("No Cycle");
 		g1.showGraph();
-		
-//		System.out.println("DFS SPANNING TREE.............");
-//		AdjacencyMatrix st = g1.depthFirstSearch(0);
-//		st.showGraph();
 
 	}
 
