@@ -192,7 +192,7 @@ public class MyList {
 			System.out.println("\nIteration No: " + i);
 			i++;
 			makeMAXHeap(noOfItem);
-//			show();
+			// show();
 			swap(0, noOfItem - 1);
 			noOfItem--;
 		}
