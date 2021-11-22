@@ -35,20 +35,6 @@ public class BinarySearchTree {
 		}
 	}
 
-	private void inorder(Node r) {
-
-		if (r != null) {
-			inorder(r.lc);
-			System.out.print(r.data + " ");
-			inorder(r.rc);
-		}
-	}
-
-	public void show() {
-		System.out.println("\nBST => ");
-		inorder(root);
-	}
-
 	public void delete(int data) {
 		// (1)BST is empty
 		if (root == null) {
@@ -103,6 +89,100 @@ public class BinarySearchTree {
 			return;
 		}
 
+	}
+
+	// Left Child | Parent | Right Child
+	private void inorder(Node r) {
+		if (r != null) {
+			inorder(r.lc);
+			System.out.print(r.data + " ");
+			inorder(r.rc);
+		}
+	}
+
+	// Left Child | Right Child | Parent
+	private void postorder(Node r) {
+		if (r != null) {
+			postorder(r.lc);
+			postorder(r.rc);
+			System.out.print(r.data + " ");
+		}
+	}
+
+	// Parent | Left Child | Right Child
+	private void preorder(Node r) {
+		if (r != null) {
+			System.out.print(r.data + " ");
+			preorder(r.lc);
+			preorder(r.rc);
+		}
+	}
+
+	// Right Child | Parent | Left Child
+	private void reverseinorder(Node r) {
+		if (r != null) {
+			reverseinorder(r.rc);
+			System.out.print(r.data + " ");
+			reverseinorder(r.lc);
+		}
+	}
+
+	private void levelbylevelorder(Node r) {
+		// creating a empty queue
+		SimpleQ sq = new SimpleQ();
+
+		// adding the root node
+		sq.enqueue(r);
+
+		// sq.front != -1 is condition of empty queue
+		while (sq.front != -1) {
+			// removing the front node from the queue
+			Node tNode = sq.dequeue();
+
+			// print the value of the removed node
+			System.out.print(tNode.data + " ");
+
+			// if the left child is present, enqueue the left child
+			if (tNode.lc != null) {
+				sq.enqueue(tNode.lc);
+			}
+
+			// if the right child is present, enqueue the right child too
+			if (tNode.rc != null) {
+				sq.enqueue(tNode.rc);
+			}
+		}
+
+	}
+
+	public void showInorder() {
+		System.out.print("\nBST in In-Order Traversal   => ");
+		inorder(root);
+		System.out.print("\n-----------------------------------------------------");
+	}
+
+	public void showPreorder() {
+		System.out.print("\nBST in Pre-Order Traversal  => ");
+		preorder(root);
+		System.out.print("\n-----------------------------------------------------");
+	}
+
+	public void showPostorder() {
+		System.out.print("\nBST in Post-Order Traversal => ");
+		postorder(root);
+		System.out.print("\n-----------------------------------------------------");
+	}
+
+	public void showBSTinDecreasingOrder() {
+		System.out.print("\nBST in Decreasing Order     => ");
+		reverseinorder(root);
+		System.out.print("\n-----------------------------------------------------");
+	}
+
+	public void showBSTinLevelByLevelOrder() {
+		System.out.print("\nBST in Level By Level Order => ");
+		levelbylevelorder(root);
+		System.out.print("\n-----------------------------------------------------");
 	}
 
 }

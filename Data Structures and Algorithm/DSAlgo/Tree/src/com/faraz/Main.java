@@ -12,12 +12,16 @@ public class Main {
 		bst.insert(90);
 		bst.insert(200);
 		bst.insert(2);
-		bst.show();
+		bst.insert(80);
+		bst.insert(95);
+		bst.showInorder();
+		bst.showPostorder();
+		bst.showPreorder();
+		bst.showBSTinDecreasingOrder();
+		bst.showBSTinLevelByLevelOrder();
+		// bst.delete(5);
+		// bst.showInorder();
 
-		bst.delete(5);
-		bst.show();
-
-		System.out.println("\nTree ends...........");
 	}
 
 }
