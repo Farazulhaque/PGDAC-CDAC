@@ -2,7 +2,7 @@ package com.graph.matrix;
 
 import com.graph.disjoint.DisjointSet;
 import com.graph.disjoint.ItemNode;
-import com.graph.disjoint.SetNode;
+// import com.graph.disjoint.SetNode;
 import com.graph.stack.Stack;
 
 public class AdjacencyMatrix {
