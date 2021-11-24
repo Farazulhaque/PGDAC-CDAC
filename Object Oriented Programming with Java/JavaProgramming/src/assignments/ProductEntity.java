@@ -5,13 +5,14 @@ class Product {
     String productName;
     float productPrice;
 
-    public Product(int productId, String productName, float productPrice) {
-        this.productId = productId;
+    public Product(String productName, float productPrice) {
+        this.productId = (int) (Math.random() * (9999 - 1111 + 1) + 1111);
+        // To generate 4 digit random number
         this.productName = productName;
         this.productPrice = productPrice;
     }
 
-    public int getProductID() {
+    public int getProductId() {
         return productId;
     }
 
@@ -32,7 +33,7 @@ class Product {
 
 public class ProductEntity {
     public static void main(String[] args) {
-        Product p = new Product(1505, "Sugar", 50);
+        Product p = new Product("Sugar", 50);
         p.display();
     }
 }
