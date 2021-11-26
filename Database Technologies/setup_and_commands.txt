@@ -1,0 +1,88 @@
+
+CDB: Container Database
+PDB: Pluggable Database
+
+How to login to sql?
+Open command prompt and type ↵
+sqlplus sys/sys as sysdba
+
+To know with which database, sql is connected? 
+show con_name;
+
+To know which PDB is available? 
+show pdbs
+
+TO switch to the PDB:
+Make a copy of the file at the same place C:\app\dell\product\21c\homes\OraDB21Home1\network\admin\tnsnames.ora
+Open the original file in notepad
+Copy the path of XE from top of the file and paste it at the bottom
+Change the name of XE and also the SERVICE_NAME to the available PDB i.e., XEPDB1 
+Save the file
+Now run the Command Prompt as Administrator
+Execute the command "lsnrctl reload" to restart the listener
+Now connect with the PDB as in SQL PLUS ↵
+conn sys/sys@XEPDB1 as sysdba
+
+Commands:
+To clear the screen: clear screen 
+To know the username: show user
+To list the available DBA users: select username from dba_users;
+
+
+Creating 'hr' user:
+To create the user 'hr' having password hr: create user hr identified by hr;
+To connect to 'hr' account: conn hr/hr@xepdb1;
+To connect with 'sys': conn sys/sys@xepdb1 as sysdba;
+To give the permission of creating session to 'hr' (we can only grant permission from sys user): grant create session to hr;
+To connect with 'hr': conn hr/hr@xepdb1;
+
+
+How to create a table?
+create table test(id numeric(2),name varchar2(10));
+It will give below error because initially hr account doesn't have any permission:
+create table test(id numeric(2),name varchar2(10))
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+To give permission to hr account, login to sys and give permission
+conn sys/sys@xepdb1 as sysdba;
+
+Give permission of creating table to 'hr': grant create table to hr;
+To connect with 'hr': conn hr/hr@xepdb1;
+
+
+create table test(id numeric(2),name varchar2(10));
+Now the table 'test' will be created in the database of 'hr' user.
+
+insert into test values(1,'james');
+It will give the error again becuse now the user doesn't have space to store data:
+insert into test values(1,'james')
+            *
+ERROR at line 1:
+ORA-01950: no privileges on tablespace 'USERS'
+
+Connect with 'sys' to allocate tablespace to 'hr'.
+conn sys/sys@xepdb1 as sysdba
+
+Allocate tablespaces of 10mb on USERS tablespace to 'hr': alter user hr quota 10m on users;
+
+Connect with 'hr': conn hr/hr@xepdb1;
+
+
+insert into test values(1,'james');
+It will create a row in the 'test' table.
+
+Creating user with all the required permissions:
+create user hr identified by hr quota 10m on users;
+To create user 'hr' and allocate it 10mb tablespace on USERS tablespace.
+
+grant create session, create table to hr;
+To give the privilege of creating session and creating table to 'hr'.
+
+Creating table:
+create table test(id numeric(2),name varchar2(10));
+
+Inserting a row in the table:
+insert into test values(1,'james');
+
