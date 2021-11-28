@@ -1,0 +1,677 @@
+SQL> show con_name
+
+CON_NAME                                                                                                                                              
+------------------------------                                                                                                                        
+XEPDB1                                                                                                                                                
+SQL> show user
+USER is "SCOTT"
+SQL> set line 150
+SQL> select * from tab;
+
+TNAME                TABTYPE        CLUSTERID                                                                                                         
+-------------------- ------------- ----------                                                                                                         
+DEPT                 TABLE                                                                                                                            
+
+SQL> column tname format A20
+SQL> select * from tab;
+
+TNAME                TABTYPE        CLUSTERID                                                                                                         
+-------------------- ------------- ----------                                                                                                         
+DEPT                 TABLE                                                                                                                            
+
+SQL> drop table dept purge;
+
+Table dropped.
+
+SQL> show user
+USER is "SCOTT"
+SQL> create table students
+  2  (
+  3  rollno   number(3),
+  4  name     varchar2(15),
+  5  email    varchar2(25),
+  6  semfee   decimal(8,2),
+  7  gen      char(7),
+  8  courseid number(3)
+  9  );
+
+Table created.
+                                                                                                                                                     
+
+SQL> select * from tab;
+
+TNAME                TABTYPE        CLUSTERID                                                                                                         
+-------------------- ------------- ----------                                                                                                         
+STUDENTS             TABLE                                                                                                                            
+
+SQL> insert into students values(101, 'arisha', 'arishaaftab4@gmail.com', 34000, 'F', 1);
+
+1 row created.
+
+SQL> insert into students values(101, 'smith', 'smith@gmail.com', 34000, 'M', 1);
+
+1 row created.
+
+SQL> insert into students values(101, null, 'smith@gmail.com', 34000, 'M', 1);
+
+1 row created.
+
+SQL> insert into students values(103, null, 'smith@gmail.com', 34000, 'jail', 1);
+
+1 row created.
+
+SQL> select * from students;
+        ROLLNO NAME            EMAIL                         SEMFEE GEN       COURSEID                                                                    
+---------- --------------- ------------------------- ---------- ------- ----------                                                                    
+       101 arisha          arishaaftab4@gmail.com         34000 F                1                                                                    
+       101 smith           smith@gmail.com                34000 M                1                                                                    
+       101                 smith@gmail.com                34000 M                1                                                                    
+       103                 smith@gmail.com                34000 jail             1                                                                    
+
+SQL> drop table students purge;
+
+Table dropped.
+
+SQL> select * from students;
+select * from students
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select * from tab;
+
+no rows selected
+
+SQL> create table students
+  2  (
+  3  rollno   number(3),
+  4  name     varchar2(15),
+  5  email    varchar2(25),
+  6  semfee   decimal(8,2),
+  7  gen      char(7),
+  8  courseid number(3)
+  9  );
+
+Table created.
+
+SQL> drop table students purge;
+
+Table dropped.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table students
+  2  (
+  3  rollno   number(3) primary key,
+  4  name     varchar2(15),
+  5  email    varchar2(25),
+  6  semfee   decimal(8,2),
+  7  gen      char(7),
+  8  courseid number(3)
+  9* )
+SQL> /
+
+Table created.
+
+SQL> desc students
+ Name                                                                                Null?    Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ ROLLNO                                                                              NOT NULL NUMBER(3)
+ NAME                                                                                         VARCHAR2(15)
+ EMAIL                                                                                        VARCHAR2(25)
+ SEMFEE                                                                                       NUMBER(8,2)
+ GEN                                                                                          CHAR(7)
+ COURSEID                                                                                     NUMBER(3)
+
+SQL> insert into students values(101, 'james', 'james@gmail.com', 34000, 'M', 1);
+
+1 row created.
+
+SQL> select * from students;
+
+    ROLLNO NAME                 EMAIL                         SEMFEE GEN       COURSEID                                                               
+---------- -------------------- ------------------------- ---------- ------- ----------                                                               
+       101 james                james@gmail.com                34000 M                1                                                               
+
+SQL> insert into students values(101, 'james', 'james@gmail.com', 34000, 'M', 1);
+insert into students values(101, 'james', 'james@gmail.com', 34000, 'M', 1)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.SYS_C008220) violated 
+
+
+SQL> insert into students values(null, 'james', 'james@gmail.com', 34000, 'M', 1);
+insert into students values(null, 'james', 'james@gmail.com', 34000, 'M', 1)
+                            *
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("SCOTT"."STUDENTS"."ROLLNO") 
+
+
+SQL> drop table students purge;
+
+Table dropped.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table students
+  2  (
+  3  rollno   number(3) primary key,
+  4  name     varchar2(15) not null,
+  5  email    varchar2(25),
+  6  semfee   decimal(8,2),
+  7  gen      char(7),
+  8  courseid number(3)
+  9* )
+SQL> /
+
+Table created.
+
+SQL> insert into students values(101, 'james', 'james@gmail.com', 34000, 'M', 1);
+
+1 row created.
+
+SQL> select * from students;
+
+    ROLLNO NAME                 EMAIL                         SEMFEE GEN       COURSEID                                                               
+---------- -------------------- ------------------------- ---------- ------- ----------                                                               
+       101 james                james@gmail.com                34000 M                1                                                               
+
+SQL> insert into students values(101, 'smith', 'smith@gmail.com', 34000, 'M', 1);
+insert into students values(101, 'smith', 'smith@gmail.com', 34000, 'M', 1)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.SYS_C008222) violated 
+
+
+SQL> insert into students values(102, 'smith', 'smith@gmail.com', 34000, 'M', 1);
+
+1 row created.
+
+SQL> select * from students;
+    ROLLNO NAME                 EMAIL                         SEMFEE GEN       COURSEID                                                               
+---------- -------------------- ------------------------- ---------- ------- ----------                                                               
+       101 james                james@gmail.com                34000 M                1                                                               
+       102 smith                smith@gmail.com                34000 M                1                                                               
+
+SQL> insert into students values(103, 'james', 'james@gmail.com', 34000, 'M', 1);
+
+1 row created.
+
+SQL> drop table students purge;
+
+Table dropped.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table students
+  2  (
+  3  rollno   number(3) primary key,
+  4  name     varchar2(15) not null,
+  5  email    varchar2(25) unique,
+  6  semfee   decimal(8,2),
+  7  gen      char(7),
+  8  courseid number(3)
+  9* )
+SQL> /
+
+Table created.
+
+SQL> insert into students values(101, 'smith', 'smith@gmail.com', 34000, 'M', 1);
+
+1 row created.
+
+SQL> insert into students values(102, 'smith', 'smith@gmail.com', 34000, 'M', 1);
+insert into students values(102, 'smith', 'smith@gmail.com', 34000, 'M', 1)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.SYS_C008225) violated 
+
+
+SQL> insert into students values(102, 'james', 'james@gmail.com', 34000, 'M', 1);
+
+1 row created.
+
+SQL> insert into students values(103, 'james', 'james@gmail.com', 34000, 'M', 1);
+insert into students values(103, 'james', 'james@gmail.com', 34000, 'M', 1)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.SYS_C008225) violated 
+
+
+SQL> insert into students values(103, 'james', null, 34000, 'M', 1);
+
+1 row created.
+
+SQL> select * from students;
+    ROLLNO NAME                 EMAIL                     SEMFEE     GEN       COURSEID                                                               
+---------- -------------------- ------------------------- ---------- ------- ----------                                                               
+       101 smith                smith@gmail.com                34000 M                1                                                               
+       102 james                james@gmail.com                34000 M                1                                                               
+       103 james                                               34000 M                1                                                               
+
+SQL> drop table students purge;
+
+Table dropped.
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table students
+  2  (
+  3  rollno   number(3) primary key,
+  4  name     varchar2(15) not null,
+  5  email    varchar2(25) unique,
+  6  semfee   decimal(8,2),
+  7  gen      char(7) check(gen in('m','M','f','F')),
+  8  courseid number(3)
+  9* )
+SQL> /
+
+Table created.
+
+SQL> insert into students values(103, 'james', james@gmail.com, 34000, 'M', 1);
+insert into students values(103, 'james', james@gmail.com, 34000, 'M', 1)
+*
+ERROR at line 1:
+ORA-04054: database link GMAIL.COM does not exist 
+
+
+SQL> insert into students values(103, 'james', 'james@gmail.com', 34000, 'M', 1);
+
+1 row created.
+
+SQL> insert into students values(101, 'james', 'james1@gmail.com', 34000, 'Z', 1);
+insert into students values(101, 'james', 'james1@gmail.com', 34000, 'Z', 1)
+*
+ERROR at line 1:
+ORA-02290: check constraint (SCOTT.SYS_C008227) violated 
+
+
+SQL> insert into students values(101, 'james', 'james1@gmail.com', 34000, 'm', 1);
+
+1 row created.
+
+SQL> select * from students;
+
+    ROLLNO NAME                 EMAIL                         SEMFEE GEN       COURSEID                                                               
+---------- -------------------- ------------------------- ---------- ------- ----------                                                               
+       103 james                james@gmail.com                34000 M                1                                                               
+       101 james                james1@gmail.com               34000 m                1                                                               
+
+SQL> show user
+USER is "SCOTT"
+SQL> select constraint_name, constraint_type from user_constraints where table_name='STUDENTS';
+
+CONSTRAINT_NAME                                                                                                                  C                    
+-------------------------------------------------------------------------------------------------------------------------------- -                    
+SYS_C008226                                                                                                                      C                    
+SYS_C008227                                                                                                                      C                    
+SYS_C008228                                                                                                                      P                    
+SYS_C008229                                                                                                                      U                    
+
+SQL> column constraint_name format A20;
+SQL> /
+
+CONSTRAINT_NAME      C                                                                                                                                
+-------------------- -                                                                                                                                
+SYS_C008226          C                                                                                                                                
+SYS_C008227          C                                                                                                                                
+SYS_C008228          P                                                                                                                                
+SYS_C008229          U                                                                                                                                
+
+SQL> column constraint_type format A20;
+SQL> /
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                                                                  
+-------------------- --------------------                                                                                                             
+SYS_C008226          C                                                                                                                                
+SYS_C008227          C                                                                                                                                
+SYS_C008228          P                                                                                                                                
+SYS_C008229          U                                                                                                                                
+
+SQL> drop table students purge;
+
+Table dropped.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table students
+  2  (
+  3  rollno   number(3) constraint pk primary key,
+  4  name     varchar2(15) constraint ntnl not null,
+  5  email    varchar2(25) constraint unq unique,
+  6  semfee   decimal(8,2),
+  7  gen      char(7) constraint chekgen check(gen in('m','M','f','F')),
+  8  courseid number(3)
+  9* )
+SQL> /
+
+Table created.
+
+SQL> select constraint_name, constraint_type from user_constraints where table_name='STUDENTS';
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                                                                  
+-------------------- --------------------                                                                                                             
+NTNL                 C                                                                                                                                
+CHEKGEN              C                                                                                                                                
+PK                   P                                                                                                                                
+UNQ                  U                                                                                                                                
+
+SQL> drop table students purge;
+
+Table dropped.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table students
+  2  (
+  3  rollno   number(3),
+  4  name     varchar2(15) constraint stu_name_ntnl not null,
+  5  email    varchar2(25),
+  6  semfee   decimal(8,2),
+  7  gen      char(7),
+  8  courseid number(3),
+  9  constraint stu_rno_pk primary key(rollno),
+ 10  constraint stu_email_unq unique(email),
+ 11  constraint stu_gen_chk check(gen in ('M', 'F'))
+ 12* )
+SQL> /
+
+Table created.
+
+SQL> select constraint_name, constraint_type from user_constraints where table_name='STUDENTS';
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                                                                  
+-------------------- --------------------                                                                                                             
+STU_NAME_NTNL        C                                                                                                                                
+STU_GEN_CHK          C                                                                                                                                
+STU_RNO_PK           P                                                                                                                                
+STU_EMAIL_UNQ        U                                                                                                                                
+
+SQL> create table projemp(eid number(3), pid number(3), hrworked number(3));
+
+Table created.
+
+SQL> insert into projemp values(101, 1, 40);
+
+1 row created.
+
+SQL> insert into projemp values(101, 2, 30);
+
+1 row created.
+
+SQL> insert into projemp values(102, 1, 60);
+
+1 row created.
+
+SQL> insert into projemp values(102, 2, 30);
+
+1 row created.
+
+SQL> insert into projemp values(103, 1, 40);
+
+1 row created.
+
+SQL> select * from projemp;
+
+       EID        PID   HRWORKED                                                                                                                      
+---------- ---------- ----------                                                                                                                      
+       101          1         40                                                                                                                      
+       101          2         30                                                                                                                      
+       102          1         60                                                                                                                      
+       102          2         30                                                                                                                      
+       103          1         40                                                                                                                      
+
+SQL> drop table projemp purge;
+
+Table dropped.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table projemp(
+  2  eid number(3),
+  3  pid number(3),
+  4  hrworked number(3),
+  5  primary key(eid, pid)
+  6* )
+SQL> /
+
+Table created.
+
+SQL> select constraint_name, constraint_type from user_constraints where table_name='PROJEMP';
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                                                                  
+-------------------- --------------------                                                                                                             
+SYS_C008238          P                                                                                                                                
+
+SQL> insert into projemp values(101, 1, 40);
+
+1 row created.
+
+SQL> insert into projemp values(102, 1, 60);
+
+1 row created.
+
+SQL> insert into projemp values(101, 2, 30);
+
+1 row created.
+
+SQL> insert into projemp values(102, 1, 60);
+insert into projemp values(102, 1, 60)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.SYS_C008238) violated 
+
+
+SQL> create table customer(cid number(3), cname varchar2(10), email varchar2(15), dob date, gen char(1));
+
+Table created.
+
+SQL> select constraint_name, constraint_type from user_constraints where table_name='CUSTOMER';
+
+no rows selected
+
+SQL> alter table customer add primary key(cid);
+
+Table altered.
+
+SQL> select constraint_name, constraint_type from user_constraints where table_name='CUSTOMER';
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                                                                  
+-------------------- --------------------                                                                                                             
+SYS_C008239          P                                                                                                                                
+
+SQL> alter table customer add constraint unk unique(email);
+
+Table altered.
+
+SQL> select constraint_name, constraint_type from user_constraints where table_name='CUSTOMER';
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                                                                  
+-------------------- --------------------                                                                                                             
+SYS_C008239          P                                                                                                                                
+UNK                  U                                                                                                                                
+
+SQL> alter table customer add constraint ntnl not null(dob);
+alter table customer add constraint ntnl not null(dob)
+                                         *
+ERROR at line 1:
+ORA-00904: : invalid identifier 
+
+
+SQL> alter table customer modify dob date not null;
+
+Table altered.
+
+SQL> select constraint_name, constraint_type from user_constraints where table_name='CUSTOMER';
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                                                                  
+-------------------- --------------------                                                                                                             
+SYS_C008239          P                                                                                                                                
+UNK                  U                                                                                                                                
+SYS_C008241          C                                                                                                                                
+
+SQL> spool off
+SQL> alter table customer drop primary key;
+
+Table altered.
+
+SQL> select constraint_name, constraint_type from user_constraints where table_name='CUSTOMER';
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                                                                  
+-------------------- --------------------                                                                                                             
+UNK                  U                                                                                                                                
+SYS_C008241          C                                                                                                                                
+
+SQL> alter table customer drop constraint UNK;
+
+Table altered.
+
+SQL> select constraint_name, constraint_type from user_constraints where table_name='CUSTOMER';
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                                                                  
+-------------------- --------------------                                                                                                             
+SYS_C008241          C                                                                                                                                
+
+SQL> alter table customer drop constraint SYS_C008241;
+
+Table altered.
+
+SQL> select constraint_name, constraint_type from user_constraints where table_name='CUSTOMER';
+
+no rows selected
+
+SQL> desc students
+ Name                                                                                Null?    Type
+ ----------------------------------------------------------------------------------- -------- --------------------------------------------------------
+ ROLLNO                                                                              NOT NULL NUMBER(3)
+ NAME                                                                                NOT NULL VARCHAR2(15)
+ EMAIL                                                                                        VARCHAR2(25)
+ SEMFEE                                                                                       NUMBER(8,2)
+ GEN                                                                                          CHAR(7)
+ COURSEID                                                                                     NUMBER(3)
+
+SQL> select constraint_name, constraint_type from user_constraints where table_name='STUDENTS';
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                                                                  
+-------------------- --------------------                                                                                                             
+STU_NAME_NTNL        C                                                                                                                                
+STU_GEN_CHK          C                                                                                                                                
+STU_RNO_PK           P                                                                                                                                
+STU_EMAIL_UNQ        U                                                                                                                                
+
+SQL> select * from students
+  2  ;
+
+no rows selected
+
+SQL> insert into students values(101, 'James', 'james@gmail.com', 34000, 'M', 101);
+
+1 row created.
+
+SQL> insert into students values(101, 'James', 'james@gmail.com', 34000, 'M', 101);
+insert into students values(101, 'James', 'james@gmail.com', 34000, 'M', 101)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.STU_RNO_PK) violated 
+
+
+SQL> alter table students disable constraint STU_RNO_PK;
+
+Table altered.
+
+SQL> select * from students;
+
+    ROLLNO NAME                 EMAIL                         SEMFEE GEN       COURSEID                                                               
+---------- -------------------- ------------------------- ---------- ------- ----------                                                               
+       101 James                james@gmail.com                34000 M              101                                                               
+
+SQL> insert into students values(101, 'James', 'james1@gmail.com', 34000, 'M', 101);
+
+1 row created.
+
+SQL> select * from students;
+
+    ROLLNO NAME                 EMAIL                         SEMFEE GEN       COURSEID                                                               
+---------- -------------------- ------------------------- ---------- ------- ----------                                                               
+       101 James                james@gmail.com                34000 M              101                                                               
+       101 James                james1@gmail.com               34000 M              101                                                               
+
+SQL> select constraint_name, constraint_type from user_constraints where table_name='STUDENTS';
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                                                                  
+-------------------- --------------------                                                                                                             
+STU_NAME_NTNL        C                                                                                                                                
+STU_GEN_CHK          C                                                                                                                                
+STU_EMAIL_UNQ        U                                                                                                                                
+STU_RNO_PK           P                                                                                                                                
+
+SQL> alter table students enable constraint STU_RNO_PK;
+alter table students enable constraint STU_RNO_PK
+*
+ERROR at line 1:
+ORA-02437: cannot validate (SCOTT.STU_RNO_PK) - primary key violated 
+
+
+SQL> delete from students ;
+
+2 rows deleted.
+
+SQL> alter table students enable constraint STU_RNO_PK;
+
+Table altered.
+
+SQL> insert into students values(101, 'James', 'james@gmail.com', 34000, 'M', 101);
+
+1 row created.
+
+SQL> insert into students values(101, 'James', 'james1@gmail.com', 34000, 'M', 101);
+insert into students values(101, 'James', 'james1@gmail.com', 34000, 'M', 101)
+*
+ERROR at line 1:
+ORA-00001: unique constraint (SCOTT.STU_RNO_PK) violated 
+
+
+SQL> select constraint_name, column_name from user_cons_columns where table_name='STUDENTS';
+
+CONSTRAINT_NAME                                                                                                                                       
+--------------------                                                                                                                                  
+COLUMN_NAME                                                                                                                                           
+------------------------------------------------------------------------------------------------------------------------------------------------------
+STU_NAME_NTNL                                                                                                                                         
+NAME                                                                                                                                                  
+                                                                                                                                                      
+STU_GEN_CHK                                                                                                                                           
+GEN                                                                                                                                                   
+                                                                                                                                                      
+STU_RNO_PK                                                                                                                                            
+ROLLNO                                                                                                                                                
+                                                                                                                                                      
+
+CONSTRAINT_NAME                                                                                                                                       
+--------------------                                                                                                                                  
+COLUMN_NAME                                                                                                                                           
+------------------------------------------------------------------------------------------------------------------------------------------------------
+STU_EMAIL_UNQ                                                                                                                                         
+EMAIL                                                                                                                                                 
+                                                                                                                                                      
+
+SQL> column column_name format A30
+SQL> select constraint_name, column_name from user_cons_columns where table_name='STUDENTS';
+
+CONSTRAINT_NAME      COLUMN_NAME                                                                                                                      
+-------------------- ------------------------------                                                                                                   
+STU_NAME_NTNL        NAME                                                                                                                             
+STU_GEN_CHK          GEN                                                                                                                              
+STU_RNO_PK           ROLLNO                                                                                                                           
+STU_EMAIL_UNQ        EMAIL                                                                                                                            
+
+SQL> spool off
