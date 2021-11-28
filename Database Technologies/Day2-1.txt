@@ -1,0 +1,416 @@
+SQL> show con_name
+
+CON_NAME                                                                        
+------------------------------                                                  
+XEPDB1            
+SQL> create user scott identified by tiger quota 10m on users;
+
+User created.
+
+SQL> grant create session, create table to scott;
+
+Grant succeeded.
+
+SQL> conn scott/tiger@xepdb1
+Connected.
+SQL> show user
+USER is "SCOTT"
+SQL> select * from tab;
+
+no rows selected
+
+SQL> create table dept
+  2  (
+  3  deptno number(2),
+  4  dname varchar2(15),
+  5  loc varchar2(15)
+  6  );
+
+Table created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table dept
+  2  (
+  3  deptno number(2),
+  4  dname varchar2(15),
+  5  loc varchar2(15)
+  6* )
+SQL> /
+create table dept
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> show user;
+USER is "SCOTT"
+SQL> create table emp(
+  2  edi number(3),
+  3  name varchar2 (10),
+  4  salary decimal(8,2),
+  5  did num(3)
+  6  );
+did num(3)
+       *
+ERROR at line 5:
+ORA-00907: missing right parenthesis 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table emp(
+  2  eid number(3),
+  3  name varchar2 (10),
+  4  salary decimal(8,2),
+  5  did number(3)
+  6* )
+SQL> /
+
+Table created.
+
+SQL> spool off;
+SQL> select * from tab;
+
+TNAME                                                                           
+--------------------------------------------------------------------------------
+TABTYPE        CLUSTERID                                                        
+------------- ----------                                                        
+DEPT                                                                            
+TABLE                                                                           
+                                                                                
+EMP                                                                             
+TABLE                                                                           
+                                                                                
+
+SQL> set lines 170
+SQL> select * from tab;
+
+TNAME                                                                                                                            TABTYPE        CLUSTERID                 
+-------------------------------------------------------------------------------------------------------------------------------- ------------- ----------                 
+DEPT                                                                                                                             TABLE                                    
+EMP                                                                                                                              TABLE                                    
+
+SQL> set pages 100
+SQL> column tname format A20;
+SQL> select * from tab;
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                             
+-------------------- ------------- ----------                                                                                                                             
+DEPT                 TABLE                                                                                                                                                
+EMP                  TABLE                                                                                                                                                
+
+SQL> select * from tab;
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                             
+-------------------- ------------- ----------                                                                                                                             
+DEPT                 TABLE                                                                                                                                                
+EMP                  TABLE                                                                                                                                                
+
+SQL> desc emp
+ Name                                                                                            Null?    Type
+ ----------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------
+ EID                                                                                                      NUMBER(3)
+ NAME                                                                                                     VARCHAR2(10)
+ SALARY                                                                                                   NUMBER(8,2)
+ DID                                                                                                      NUMBER(3)
+
+
+SQL> column name format a20;
+SQL> /
+
+TNAME                TABTYPE        CLUSTERID                                                                                                                             
+-------------------- ------------- ----------                                                                                                                             
+DEPT                 TABLE                                                                                                                                                
+EMP                  TABLE                                                                                                                                                
+
+SQL> desc emp
+ Name                                                                                            Null?    Type
+ ----------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------
+ EID                                                                                                      NUMBER(3)
+ NAME                                                                                                     VARCHAR2(10)
+ SALARY                                                                                                   NUMBER(8,2)
+ DID                                                                                                      NUMBER(3)
+
+SQL> desc dept
+ Name                                                                                            Null?    Type
+ ----------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------
+ DEPTNO                                                                                                   NUMBER(2)
+ DNAME                                                                                                    VARCHAR2(15)
+ LOC                                                                                                      VARCHAR2(15)
+
+SQL> set lines 100
+SQL> desc dept
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ DEPTNO                                                         NUMBER(2)
+ DNAME                                                          VARCHAR2(15)
+ LOC                                                            VARCHAR2(15)
+
+SQL> desc emp
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ EID                                                            NUMBER(3)
+ NAME                                                           VARCHAR2(10)
+ SALARY                                                         NUMBER(8,2)
+ DID                                                            NUMBER(3)
+
+
+SQL> select * from tab;
+
+TNAME                TABTYPE        CLUSTERID                                                       
+-------------------- ------------- ----------                                                       
+DEPT                 TABLE                                                                          
+EMP                  TABLE                                                                          
+
+SQL> select * from cat;
+
+TABLE_NAME                                                                                          
+----------------------------------------------------------------------------------------------------
+TABLE_TYPE                                                                                          
+-----------                                                                                         
+DEPT                                                                                                
+TABLE                                                                                               
+                                                                                                    
+EMP                                                                                                 
+TABLE                                                                                               
+                                                                                                    
+
+SQL> set line 100
+SQL> select * from cat;
+
+TABLE_NAME                                                                                          
+----------------------------------------------------------------------------------------------------
+TABLE_TYPE                                                                                          
+-----------                                                                                         
+DEPT                                                                                                
+TABLE                                                                                               
+                                                                                                    
+EMP                                                                                                 
+TABLE                                                                                               
+                                                                                                    
+
+SQL> select * from user_catalog;
+
+TABLE_NAME                                                                                          
+----------------------------------------------------------------------------------------------------
+TABLE_TYPE                                                                                          
+-----------                                                                                         
+DEPT                                                                                                
+TABLE                                                                                               
+                                                                                                    
+EMP                                                                                                 
+TABLE                                                                                               
+                                                                                                    
+
+SQL> spool off
+SQL> select table_name from user_tables;
+
+TABLE_NAME                                                                                          
+----------------------------------------------------------------------------------------------------
+DEPT                                                                                                
+EMP                                                                                                 
+
+SQL> desc emp
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ EID                                                            NUMBER(3)
+ NAME                                                           VARCHAR2(10)
+ SALARY                                                         NUMBER(8,2)
+ DID                                                            NUMBER(3)
+
+SQL> show user
+USER is "SCOTT"
+SQL> alter table emp add email varchar2(15);
+
+Table altered.
+
+SQL> desc emp
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ EID                                                            NUMBER(3)
+ NAME                                                           VARCHAR2(10)
+ SALARY                                                         NUMBER(8,2)
+ DID                                                            NUMBER(3)
+ EMAIL                                                          VARCHAR2(15)
+
+SQL> alter table emp modify name varchar2(30);
+
+Table altered.
+
+SQL> desc emp
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ EID                                                            NUMBER(3)
+ NAME                                                           VARCHAR2(30)
+ SALARY                                                         NUMBER(8,2)
+ DID                                                            NUMBER(3)
+ EMAIL                                                          VARCHAR2(15)
+
+
+SQL> alter table emp rename column salary to sal;
+
+Table altered.
+
+SQL> desc emp
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ EID                                                            NUMBER(3)
+ NAME                                                           VARCHAR2(30)
+ SAL                                                            NUMBER(8,2)
+ DID                                                            NUMBER(3)
+ EMAIL                                                          VARCHAR2(15)
+
+SQL> alter table emp drop (email);
+
+Table altered.
+
+SQL> desc emp
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ EID                                                            NUMBER(3)
+ NAME                                                           VARCHAR2(30)
+ SAL                                                            NUMBER(8,2)
+ DID                                                            NUMBER(3)
+
+SQL> drop table emp;
+
+Table dropped.
+
+SQL> select * from tab;
+
+TNAME                TABTYPE        CLUSTERID                                                       
+-------------------- ------------- ----------                                                       
+DEPT                 TABLE                                                                          
+BIN$Yu/5GjxKSlCSjK1D TABLE                                                                          
+ROGIjA==$0                                                                                          
+                                                                                                    
+
+SQL> spool off;
+SQL> flashback table emp to before drop;
+
+Flashback complete.
+
+SQL> select * from tab;
+
+TNAME                TABTYPE        CLUSTERID                                                       
+-------------------- ------------- ----------                                                       
+DEPT                 TABLE                                                                          
+EMP                  TABLE                                                                          
+
+SQL> drop table emp purge;
+
+Table dropped.
+
+SQL> select * from tab;
+
+TNAME                TABTYPE        CLUSTERID                                                       
+-------------------- ------------- ----------                                                       
+DEPT                 TABLE                                                                          
+
+SQL> rename dept to departments;
+
+Table renamed.
+
+SQL> select * from tab;
+
+TNAME                TABTYPE        CLUSTERID                                                       
+-------------------- ------------- ----------                                                       
+DEPARTMENTS          TABLE                                                                          
+
+SQL> truncate table departments;
+
+Table truncated.
+
+SQL> rename departments to dept;
+
+Table renamed.
+
+SQL> select * from tab;
+
+TNAME                TABTYPE        CLUSTERID                                                       
+-------------------- ------------- ----------                                                       
+DEPT                 TABLE                                                                          
+
+SQL> desc dept;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ DEPTNO                                                         NUMBER(2)
+ DNAME                                                          VARCHAR2(15)
+ LOC                                                            VARCHAR2(15)
+
+SQL> alter table dept add cdate date;
+
+Table altered.
+
+SQL> desc dept;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ DEPTNO                                                         NUMBER(2)
+ DNAME                                                          VARCHAR2(15)
+ LOC                                                            VARCHAR2(15)
+ CDATE                                                          DATE
+
+SQL> alter table dept set unused (loc);
+
+Table altered.
+
+SQL> desc dept;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ DEPTNO                                                         NUMBER(2)
+ DNAME                                                          VARCHAR2(15)
+ CDATE                                                          DATE
+
+SQL> alter table dept drop unused columns;
+
+Table altered.
+
+SQL> desc dept;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ DEPTNO                                                         NUMBER(2)
+ DNAME                                                          VARCHAR2(15)
+ CDATE                                                          DATE
+
+SQL> comment on table dept is 'This is a department table';
+
+Comment created.
+
+SQL> comment on column dept.dname is 'This is a department name column';
+
+Comment created.
+
+SQL> select comments from user_tab_comments where table_name='DEPT';
+
+COMMENTS                                                                                            
+----------------------------------------------------------------------------------------------------
+This is a department table                                                                          
+
+SQL> desc user_tab_comments;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ TABLE_NAME                                            NOT NULL VARCHAR2(128)
+ TABLE_TYPE                                                     VARCHAR2(13)
+ COMMENTS                                                       VARCHAR2(4000)
+ ORIGIN_CON_ID                                                  NUMBER
+
+SQL> select column_name,comments from user_col_comments where table_name='DEPT';
+
+COLUMN_NAME                                                                                         
+----------------------------------------------------------------------------------------------------
+COMMENTS                                                                                            
+----------------------------------------------------------------------------------------------------
+DEPTNO                                                                                              
+                                                                                                    
+                                                                                                    
+DNAME                                                                                               
+This is a department name column                                                                    
+                                                                                                    
+CDATE                                                                                               
+                                                                                                    
+                                                                                                    
+
+SQL> spool off;
