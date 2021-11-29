@@ -1,0 +1,811 @@
+SQL> set lines 100
+
+SQL> select * from tab;
+
+TNAME                                                                                               
+----------------------------------------------------------------------------------------------------
+TABTYPE        CLUSTERID                                                                            
+------------- ----------                                                                            
+STUDENTS                                                                                            
+TABLE                                                                                               
+                                                                                                    
+PROJEMP                                                                                             
+TABLE                                                                                               
+                                                                                                    
+CUSTOMER                                                                                            
+TABLE                                                                                               
+                                                                                                    
+
+SQL> select tname from tab;
+
+TNAME                                                                                               
+----------------------------------------------------------------------------------------------------
+STUDENTS                                                                                            
+PROJEMP                                                                                             
+CUSTOMER                                                                                            
+
+SQL> drop table students;
+
+Table dropped.
+
+SQL> drop table projemp;
+
+Table dropped.
+
+SQL> drop table customer;
+
+Table dropped.
+
+SQL> select tname from tab;
+
+TNAME                                                                                               
+----------------------------------------------------------------------------------------------------
+BIN$9zAMTtzsQsq8VqwXdUX1mA==$0                                                                      
+BIN$nt4vTybaTa2Z7NJF/ZiIAw==$0                                                                      
+BIN$N6lnZyDlQHOsF1x3zO3JlQ==$0                                                                      
+
+SQL> purge recyclebin;
+
+Recyclebin purged.
+
+SQL> select tname from tab;
+
+no rows selected
+
+SQL> column tname format a20
+SQL> select tname from tab;
+
+no rows selected
+
+SQL> select * from tab;
+
+no rows selected
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table dept
+  2  (
+  3  did number(3) constraint deptpk primary key,
+  4  dname varchar2(10) not null,
+  5  loc varchar2(10) not null
+  6* )
+  7  /
+
+Table created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table emp
+  2  (
+  3  eid number(3) constraint emppk primary key,
+  4  name varchar2(10) not null,
+  5  sal decimal(8,2) not null,
+  6  did number(3)
+  7* )
+SQL> /
+
+Table created.
+
+SQL> select * from tab;
+
+TNAME                TABTYPE        CLUSTERID                                                       
+-------------------- ------------- ----------                                                       
+DEPT                 TABLE                                                                          
+EMP                  TABLE                                                                          
+
+SQL> desc dept;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ DID                                                   NOT NULL NUMBER(3)
+ DNAME                                                 NOT NULL VARCHAR2(10)
+ LOC                                                   NOT NULL VARCHAR2(10)
+
+SQL> column name format a20;
+
+
+SQL> set line 50               
+
+SQL> desc dept;
+ Name                    Null?    Type
+ ----------------------- -------- ----------------
+ DID                     NOT NULL NUMBER(3)
+ DNAME                   NOT NULL VARCHAR2(10)
+ LOC                     NOT NULL VARCHAR2(10)
+
+SQL> set line 50
+SQL> desc emp
+ Name                    Null?    Type
+ ----------------------- -------- ----------------
+ EID                     NOT NULL NUMBER(3)
+ NAME                    NOT NULL VARCHAR2(10)
+ SAL                     NOT NULL NUMBER(8,2)
+ DID                              NUMBER(3)
+
+SQL> insert into dept values(10, 'CSE', 'NOIDA');
+
+1 row created.
+
+SQL> insert into dept values(20, 'IT', 'DELHI');
+
+1 row created.
+
+SQL> insert into dept values(30, 'ECE', 'KOLKATA');
+
+1 row created.
+
+SQL> 
+SQL> SELECT * FROM DEPT;
+
+       DID DNAME      LOC                         
+---------- ---------- ----------                  
+        10 CSE        NOIDA                       
+        20 IT         DELHI                       
+        30 ECE        KOLKATA                     
+
+SQL> clear screen
+
+SQL> desc dept;
+ Name                    Null?    Type
+ ----------------------- -------- ----------------
+ DID                     NOT NULL NUMBER(3)
+ DNAME                   NOT NULL VARCHAR2(10)
+ LOC                     NOT NULL VARCHAR2(10)
+
+SQL> desc emp;
+ Name                    Null?    Type
+ ----------------------- -------- ----------------
+ EID                     NOT NULL NUMBER(3)
+ NAME                    NOT NULL VARCHAR2(10)
+ SAL                     NOT NULL NUMBER(8,2)
+ DID                              NUMBER(3)
+
+SQL> select * from dept;
+
+       DID DNAME      LOC                         
+---------- ---------- ----------                  
+        10 CSE        NOIDA                       
+        20 IT         DELHI                       
+        30 ECE        KOLKATA                     
+
+SQL> insert into emp values(101, 'James', 45000, 10);
+
+1 row created.
+
+SQL> insert into emp values(102, 'Smith', 40000, 20);
+
+1 row created.
+
+SQL> insert into emp values(103, 'Tina', 50000, 40);
+
+1 row created.
+
+SQL> set line 100
+SQL> select * from emp;
+
+       EID NAME                        SAL        DID                                               
+---------- -------------------- ---------- ----------                                               
+       101 James                     45000         10                                               
+       102 Smith                     40000         20                                               
+       103 Tina                      50000         40                                               
+
+SQL> select * from dept;
+
+       DID DNAME      LOC                                                                           
+---------- ---------- ----------                                                                    
+        10 CSE        NOIDA                                                                         
+        20 IT         DELHI                                                                         
+        30 ECE        KOLKATA                                                                       
+
+SQL> drop table emp;
+
+Table dropped.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table emp
+  2  (
+  3  eid number(3) primary key,
+  4  name varchar(2),
+  5  sal decimal(8,2),
+  6  did number(3) constraint frkey references dept(did)
+  7* )
+SQL> /
+
+Table created.
+
+SQL> select * from dept;
+
+       DID DNAME      LOC                                                                           
+---------- ---------- ----------                                                                    
+        10 CSE        NOIDA                                                                         
+        20 IT         DELHI                                                                         
+        30 ECE        KOLKATA                                                                       
+
+
+SQL> alter table emp modify name varchar2(20);
+
+Table altered.
+
+SQL> insert into emp values(101, 'James', 45000, 10);
+
+1 row created.
+
+SQL> insert into emp values(102, 'Smith', 40000, 20);
+
+1 row created.
+
+SQL> insert into emp values(103, 'Tina', 50000, 40);
+insert into emp values(103, 'Tina', 50000, 40)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOTT.FRKEY) violated - parent key not found 
+
+
+SQL> insert into dept values(40, 'EE', 'DEHRADUN');
+
+1 row created.
+
+SQL> select * from dept;
+
+       DID DNAME      LOC                                                                           
+---------- ---------- ----------                                                                    
+        10 CSE        NOIDA                                                                         
+        20 IT         DELHI                                                                         
+        30 ECE        KOLKATA                                                                       
+        40 EE         DEHRADUN                                                                      
+
+SQL> insert into emp values(103, 'Tina', 50000, 40);
+
+1 row created.
+
+SQL> SELECT * FROM EMP;
+
+       EID NAME                        SAL        DID                                               
+---------- -------------------- ---------- ----------                                               
+       101 James                     45000         10                                               
+       102 Smith                     40000         20                                               
+       103 Tina                      50000         40                                               
+
+SQL> COLUMN CONSTRAINT_NAME FORMAT A20
+SQL> COLUMN CONSTRAINT_TYPE FORMAT A20
+
+SQL> SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE FROM USER_CONSTRAINTS WHERE TABLE_NAME='EMP';
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                
+-------------------- --------------------                                                           
+FRKEY                R                                                                              
+SYS_C008252          P                                                                              
+
+SQL> SELECT * FROM DEPT;
+
+       DID DNAME      LOC                                                                           
+---------- ---------- ----------                                                                    
+        10 CSE        NOIDA                                                                         
+        20 IT         DELHI                                                                         
+        30 ECE        KOLKATA                                                                       
+        40 EE         DEHRADUN                                                                      
+
+SQL> SELECT * FROM EMP;
+
+       EID NAME                        SAL        DID                                               
+---------- -------------------- ---------- ----------                                               
+       101 James                     45000         10                                               
+       102 Smith                     40000         20                                               
+       103 Tina                      50000         40                                               
+
+SQL> DELETE FROM DEPT;
+DELETE FROM DEPT
+*
+ERROR at line 1:
+ORA-02292: integrity constraint (SCOTT.FRKEY) violated - child record found 
+
+
+SQL> DELETE FROM EMP;
+
+3 rows deleted.
+
+SQL> SELECT * FROM EMP;
+
+no rows selected
+
+SQL> SELECT * FROM DEPT;
+
+       DID DNAME      LOC                                                                           
+---------- ---------- ----------                                                                    
+        10 CSE        NOIDA                                                                         
+        20 IT         DELHI                                                                         
+        30 ECE        KOLKATA                                                                       
+        40 EE         DEHRADUN                                                                      
+
+SQL> DELETE FROM DEPT;
+
+4 rows deleted.
+
+
+SQL> ALTER TABLE EMP DROP CONSTRAINT FRKEY;
+
+Table altered.
+
+SQL> SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE FROM USER_CONSTRAINTS WHERE TABLE_NAME='EMP';
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                
+-------------------- --------------------                                                           
+SYS_C008252          P                                                                              
+
+SQL> alter table emp add constraint frkey foreign key(did) references dept(did) on delete cascade;
+
+Table altered.
+
+SQL> SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE FROM USER_CONSTRAINTS WHERE TABLE_NAME='EMP';
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                
+-------------------- --------------------                                                           
+FRKEY                R                                                                              
+SYS_C008252          P                                                                              
+
+SQL> SELECT * FROM DEPT;
+
+no rows selected
+
+SQL> SELECT * FROM EMP;
+
+no rows selected
+
+SQL> insert into dept values(10, 'cse', 'noida');
+
+1 row created.
+
+SQL> insert into dept values(20, 'it', 'delhi');
+
+1 row created.
+
+SQL> select * from dept;
+
+       DID DNAME      LOC                                                                           
+---------- ---------- ----------                                                                    
+        10 cse        noida                                                                         
+        20 it         delhi                                                                         
+
+
+SQL> insert into emp values(101, 'james', 56000, 10);
+
+1 row created.
+
+SQL> insert into emp values(102, 'neena', 56000, 10);
+
+1 row created.
+
+SQL> insert into emp values(103, 'blake', 5000, 20);
+
+1 row created.
+
+SQL> select  * from emp;
+
+       EID NAME                        SAL        DID                                               
+---------- -------------------- ---------- ----------                                               
+       101 james                     56000         10                                               
+       102 neena                     56000         10                                               
+       103 blake                      5000         20                                               
+
+SQL> select  * from dept;
+
+       DID DNAME      LOC                                                                           
+---------- ---------- ----------                                                                    
+        10 cse        noida                                                                         
+        20 it         delhi                                                                         
+
+SQL> delete from dept where did=10;
+
+1 row deleted.
+
+SQL> select  * from emp;
+
+       EID NAME                        SAL        DID                                               
+---------- -------------------- ---------- ----------                                               
+       103 blake                      5000         20                                               
+
+SQL> alter table emp drop constraint frkey;
+
+Table altered.
+
+SQL> SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE FROM USER_CONSTRAINTS WHERE TABLE_NAME='EMP';
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                
+-------------------- --------------------                                                           
+SYS_C008252          P                                                                              
+
+SQL> alter table emp add constraint frkey foreign key(did) references dept(did) on delete set null;
+
+Table altered.
+
+SQL> SELECT CONSTRAINT_NAME, CONSTRAINT_TYPE FROM USER_CONSTRAINTS WHERE TABLE_NAME='EMP';
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                
+-------------------- --------------------                                                           
+FRKEY                R                                                                              
+SYS_C008252          P                                                                              
+
+SQL> insert into emp values(101, 'james', 56000, 10);
+insert into emp values(101, 'james', 56000, 10)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOTT.FRKEY) violated - parent key not found 
+
+
+SQL> insert into dept values(10, 'cse', 'noida');
+
+1 row created.
+
+SQL> SELECT * FROM DEPT;
+
+       DID DNAME      LOC                                                                           
+---------- ---------- ----------                                                                    
+        20 it         delhi                                                                         
+        10 cse        noida                                                                         
+
+SQL> insert into emp values(101, 'james', 56000, 10);
+
+1 row created.
+
+SQL> insert into emp values(102, 'neena', 56000, 10);
+
+1 row created.
+
+SQL> select * from dept;
+
+       DID DNAME      LOC                                                                           
+---------- ---------- ----------                                                                    
+        20 it         delhi                                                                         
+        10 cse        noida                                                                         
+
+SQL> select  * from emp;
+
+       EID NAME                        SAL        DID                                               
+---------- -------------------- ---------- ----------                                               
+       101 james                     56000         10                                               
+       102 neena                     56000         10                                               
+       103 blake                      5000         20                                               
+
+SQL> DELETE FROM DEPT WHERE DID=10;
+
+1 row deleted.
+
+SQL> select  * from emp;
+
+       EID NAME                        SAL        DID                                               
+---------- -------------------- ---------- ----------                                               
+       101 james                     56000                                                          
+       102 neena                     56000                                                          
+       103 blake                      5000         20                                               
+
+SQL> select * from dept;
+
+       DID DNAME      LOC                                                                           
+---------- ---------- ----------                                                                    
+        20 it         delhi                                                                         
+
+SQL> create table empcopy as select  * from emp;
+
+Table created.
+
+SQL> select * from empcopy;
+
+       EID NAME                        SAL        DID                                               
+---------- -------------------- ---------- ----------                                               
+       101 james                     56000                                                          
+       102 neena                     56000                                                          
+       103 blake                      5000         20                                               
+
+
+SQL> create table empcopy2 as select  eid, name, sal from emp;
+
+Table created.
+
+SQL> select * from empcopy2;
+
+       EID NAME                        SAL                                                          
+---------- -------------------- ----------                                                          
+       101 james                     56000                                                          
+       102 neena                     56000                                                          
+       103 blake                      5000                                                          
+
+SQL> create table empcopy3(empid,ename,salary) as select  eid, name, sal from emp;
+
+Table created.
+
+SQL> select * from empcopy3;
+
+     EMPID ENAME                    SALARY                                                          
+---------- -------------------- ----------                                                          
+       101 james                     56000                                                          
+       102 neena                     56000                                                          
+       103 blake                      5000                                                          
+
+SQL> create table empcopy4 as select * from emp where 1!=1;
+
+Table created.
+
+SQL> select * from empcopy4;
+
+no rows selected
+
+SQL> desc empcopy4;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ EID                                                            NUMBER(3)
+ NAME                                                           VARCHAR2(20)
+ SAL                                                            NUMBER(8,2)
+ DID                                                            NUMBER(3)
+
+SQL> select * from tab;
+
+TNAME                TABTYPE        CLUSTERID                                                       
+-------------------- ------------- ----------                                                       
+DEPT                 TABLE                                                                          
+EMPCOPY              TABLE                                                                          
+BIN$IPcjFFVeSmSjHP+R TABLE                                                                          
+pMsX+w==$0                                                                                          
+                                                                                                    
+EMP                  TABLE                                                                          
+EMPCOPY2             TABLE                                                                          
+EMPCOPY3             TABLE                                                                          
+EMPCOPY4             TABLE                                                                          
+
+7 rows selected.
+
+SQL> @C:\Users\DELL\Desktop\script.sql
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+Table dropped.
+
+
+SQL> purge recyclebin;
+
+Recyclebin purged.
+
+SQL> select * from tab;
+
+no rows selected
+
+SQL> show user
+USER is "SCOTT"
+SQL> select * from tab;
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table product
+  2  (
+  3  pid number(3) primary key,
+  4  pname varchar2(20),
+  5  price decimal(6,2),
+  6  brand varchar2(20),
+  7  exp date
+  8* )
+SQL> /
+
+Table created.
+
+SQL> insert into product values(101, 'shirt', 1500, 'JP', null);
+
+1 row created.
+
+SQL> insert into product values(102, 'lays', 50, 'parle', '02-feb-2022');
+
+1 row created.
+
+SQL> select * from product;
+
+       PID PNAME                     PRICE BRAND                EXP                                 
+---------- -------------------- ---------- -------------------- ---------                           
+       101 shirt                      1500 JP                                                       
+       102 lays                         50 parle                02-FEB-22                           
+
+SQL> insert into product(pid,pname,brand) values(103, 'maaza', 'parle');
+
+1 row created.
+
+SQL> select * from product;
+
+       PID PNAME                     PRICE BRAND                EXP                                 
+---------- -------------------- ---------- -------------------- ---------                           
+       101 shirt                      1500 JP                                                       
+       102 lays                         50 parle                02-FEB-22                           
+       103 maaza                           parle                                                    
+
+SQL> insert into product(exp,brand,pid) values('12-jan-2023', 'tata', 104);
+
+1 row created.
+
+SQL> select * from product;
+
+       PID PNAME                     PRICE BRAND                EXP                                 
+---------- -------------------- ---------- -------------------- ---------                           
+       101 shirt                      1500 JP                                                       
+       102 lays                         50 parle                02-FEB-22                           
+       103 maaza                           parle                                                    
+       104                                 tata                 12-JAN-23                           
+
+SQL> update product set price=70, exp='06-mar-2023';
+
+4 rows updated.
+
+SQL> select * from product;
+
+       PID PNAME                     PRICE BRAND                EXP                                 
+---------- -------------------- ---------- -------------------- ---------                           
+       101 shirt                        70 JP                   06-MAR-23                           
+       102 lays                         70 parle                06-MAR-23                           
+       103 maaza                        70 parle                06-MAR-23                           
+       104                              70 tata                 06-MAR-23                           
+
+SQL> update product set price=60, exp='10-mar-2024' where pid=103;
+
+1 row updated.
+
+SQL> select * from product;
+
+       PID PNAME                     PRICE BRAND                EXP                                 
+---------- -------------------- ---------- -------------------- ---------                           
+       101 shirt                        70 JP                   06-MAR-23                           
+       102 lays                         70 parle                06-MAR-23                           
+       103 maaza                        60 parle                10-MAR-24                           
+       104                              70 tata                 06-MAR-23                           
+
+SQL> update product set pname='Salt' where pid=104;
+
+1 row updated.
+
+SQL> select * from product;
+
+       PID PNAME                     PRICE BRAND                EXP                                 
+---------- -------------------- ---------- -------------------- ---------                           
+       101 shirt                        70 JP                   06-MAR-23                           
+       102 lays                         70 parle                06-MAR-23                           
+       103 maaza                        60 parle                10-MAR-24                           
+       104 Salt                         70 tata                 06-MAR-23                           
+
+SQL> update product set price=20 where pid=104;
+
+1 row updated.
+
+SQL> select * from product;
+
+       PID PNAME                     PRICE BRAND                EXP                                 
+---------- -------------------- ---------- -------------------- ---------                           
+       101 shirt                        70 JP                   06-MAR-23                           
+       102 lays                         70 parle                06-MAR-23                           
+       103 maaza                        60 parle                10-MAR-24                           
+       104 Salt                         20 tata                 06-MAR-23                           
+
+SQL> update product set pname='Salt';
+
+4 rows updated.
+
+SQL> select * from product;
+
+       PID PNAME                     PRICE BRAND                EXP                                 
+---------- -------------------- ---------- -------------------- ---------                           
+       101 Salt                         70 JP                   06-MAR-23                           
+       102 Salt                         70 parle                06-MAR-23                           
+       103 Salt                         60 parle                10-MAR-24                           
+       104 Salt                         20 tata                 06-MAR-23                           
+
+SQL> delete from product where brand='parle';
+
+2 rows deleted.
+
+SQL> select * from product;
+
+       PID PNAME                     PRICE BRAND                EXP                                 
+---------- -------------------- ---------- -------------------- ---------                           
+       101 Salt                         70 JP                   06-MAR-23                           
+       104 Salt                         20 tata                 06-MAR-23                           
+
+
+
+
+SQL> update product set price=null where brand='tata';
+
+1 row updated.
+
+SQL> select * from product;
+
+       PID PNAME                     PRICE BRAND                EXP                                 
+---------- -------------------- ---------- -------------------- ---------                           
+       101 Salt                         70 JP                   06-MAR-23                           
+       104 Salt                            tata                 06-MAR-23                           
+
+SQL> create table t2(id number(3), name varchar2(20));
+
+Table created.
+
+SQL> insert into t2 select pid, pname from product;
+
+2 rows created.
+
+SQL> select * from t2;
+
+        ID NAME                                                                                     
+---------- --------------------                                                                     
+       101 Salt                                                                                     
+       104 Salt                                                                                     
+
+SQL> create table emp
+  2  (
+  3  eid number(4) primary key,
+  4  name varchar2(20),
+  5  hiredate date default sysdate,
+  6  salary decimal(8,2) default 10000
+  7  );
+
+Table created.
+
+SQL> insert into emp values(101, 'james',null, null);
+
+1 row created.
+
+SQL> select * from emp;
+
+       EID NAME                 HIREDATE      SALARY                                                
+---------- -------------------- --------- ----------                                                
+       101 james                                                                                    
+
+SQL> insert into emp(eid,name) values(102, 'neena');
+
+1 row created.
+
+SQL> select * from emp;
+
+       EID NAME                 HIREDATE      SALARY                                                
+---------- -------------------- --------- ----------                                                
+       101 james                                                                                    
+       102 neena                29-NOV-21      10000                                                
+
+SQL> insert into emp(eid, name, salary) values(103, 'king' ,15000);
+
+1 row created.
+
+SQL> select * from emp;
+
+       EID NAME                 HIREDATE      SALARY                                                
+---------- -------------------- --------- ----------                                                
+       101 james                                                                                    
+       102 neena                29-NOV-21      10000                                                
+       103 king                 29-NOV-21      15000                                                
+
+
+SQL> insert into emp values(104, 'paul',sysdate, null);
+
+1 row created.
+
+SQL> select * from emp;
+
+       EID NAME                 HIREDATE      SALARY                                                
+---------- -------------------- --------- ----------                                                
+       101 james                                                                                    
+       102 neena                29-NOV-21      10000                                                
+       103 king                 29-NOV-21      15000                                                
+       104 paul                 29-NOV-21                                                           
+
+SQL> spool off
