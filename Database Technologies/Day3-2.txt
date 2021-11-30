@@ -88,16 +88,7 @@ SQL> spool off;
 SQL> clear screen
 
 SQL> show user
-USER is "SCOTT"
-SQL> select * from tab;
-
-TNAME                                                                           
---------------------------------------------------------------------------------
-TABTYPE        CLUSTERID                                                        
-------------- ----------                                                        
-TEST                                                                            
-TABLE                                                                           
-                                                                                
+USER is "SCOTT"                                                                      
 
 SQL> column tname format A20
 SQL> select * from tab;
@@ -116,8 +107,7 @@ SQL> select * from test;
 ---------- ----------                                                           
          1 James                                                                
 
-SQL> insert into test values(2, 'Neena')
-  2  ;
+SQL> insert into test values(2, 'Neena');
 
 1 row created.
 
@@ -138,8 +128,7 @@ SQL> select * from test;
 ---------- ----------                                                           
          1 James                                                                
 
-SQL> insert into test values(2, 'Neena')
-  2  ;
+SQL> insert into test values(2, 'Neena');
 
 1 row created.
 
@@ -182,8 +171,7 @@ SQL> delete from test;
 
 6 rows deleted.
 
-SQL> commit
-  2  ;
+SQL> commit;
 
 Commit complete.
 
@@ -226,8 +214,7 @@ BIN$cEwJT19NRdue9SC0 TABLE
 XqLYdg==$0                                                                      
                                                                                 
 
-SQL> purge recyclebin
-  2  ;
+SQL> purge recyclebin;
 
 Recyclebin purged.
 
