@@ -2070,7 +2070,8 @@ Gie          Gietz
 
 SQL> select last_name
   2  from employees
-  3  where substr(last_name,1,1)='A'
+  3  
+   substr(last_name,1,1)='A'
   4  ;
 
 LAST_NAME                                                                                                                                                                                               
