@@ -1,0 +1,466 @@
+SQL> set lines 200
+SQL> select max(salary) from employees;
+
+MAX(SALARY)                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+      24000                                                                                                                                                                                             
+
+SQL> select max(salary) max, min(salary) min from employees;
+
+       MAX        MIN                                                                                                                                                                                   
+---------- ----------                                                                                                                                                                                   
+     24000       2100                                                                                                                                                                                   
+
+SQL> spool off;
+SQL> select max(salary) max, min(salary) min, avg(salary) avg, sum(salary) sum, count(employee_id) from employees;
+
+       MAX        MIN        AVG        SUM COUNT(EMPLOYEE_ID)                                                                                                                                          
+---------- ---------- ---------- ---------- ------------------                                                                                                                                          
+     24000       2100 6461.83178     691416                107                                                                                                                                          
+
+SQL> select max(salary) max, min(salary) min, avg(salary) avg, sum(salary) sum, count(employee_id) No_of_employees from employees;
+
+       MAX        MIN        AVG        SUM NO_OF_EMPLOYEES                                                                                                                                             
+---------- ---------- ---------- ---------- ---------------                                                                                                                                             
+     24000       2100 6461.83178     691416             107                                                                                                                                             
+
+SQL> create table test(id number(3));
+
+Table created.
+
+SQL> insert into test values(10);
+
+1 row created.
+
+SQL> insert into test values(null);
+
+1 row created.
+
+SQL> insert into test values(null);
+
+1 row created.
+
+SQL> insert into test values(20);
+
+1 row created.
+
+SQL> insert into test values(30);
+
+1 row created.
+
+SQL> select * from test;
+
+        ID                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+        10                                                                                                                                                                                              
+                                                                                                                                                                                                        
+                                                                                                                                                                                                        
+        20                                                                                                                                                                                              
+        30                                                                                                                                                                                              
+
+SQL> select count(id) from test;
+
+ COUNT(ID)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+         3                                                                                                                                                                                              
+
+SQL> select count(*) from test;
+
+  COUNT(*)                                                                                                                                                                                              
+----------                                                                                                                                                                                              
+         5                                                                                                                                                                                              
+
+SQL> drop test;
+drop test
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option 
+
+
+SQL> drop table test purge;
+
+Table dropped.
+
+SQL> select count(commission_pct) from employees;
+
+COUNT(COMMISSION_PCT)                                                                                                                                                                                   
+---------------------                                                                                                                                                                                   
+                   35                                                                                                                                                                                   
+
+SQL> select count(commission_pct), sum(commission_pct) from employees;
+
+COUNT(COMMISSION_PCT) SUM(COMMISSION_PCT)                                                                                                                                                               
+--------------------- -------------------                                                                                                                                                               
+                   35                 7.8                                                                                                                                                               
+
+SQL> select count(commission_pct), max(commission_pct) from employees;
+
+COUNT(COMMISSION_PCT) MAX(COMMISSION_PCT)                                                                                                                                                               
+--------------------- -------------------                                                                                                                                                               
+                   35                  .4                                                                                                                                                               
+
+SQL> select count(commission_pct), min(commission_pct) from employees;
+
+COUNT(COMMISSION_PCT) MIN(COMMISSION_PCT)                                                                                                                                                               
+--------------------- -------------------                                                                                                                                                               
+                   35                  .1                                                                                                                                                               
+
+SQL> select avg(commission_pct) from employees;
+
+AVG(COMMISSION_PCT)                                                                                                                                                                                     
+-------------------                                                                                                                                                                                     
+         .222857143                                                                                                                                                                                     
+
+SQL> select avg(nvl(commission_pct,0)) from employees;
+
+AVG(NVL(COMMISSION_PCT,0))                                                                                                                                                                              
+--------------------------                                                                                                                                                                              
+                .072897196                                                                                                                                                                              
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select department_id, sum(salary) from employees group by department_id order by department_id
+SQL> /
+
+DEPARTMENT_ID SUM(SALARY)                                                                                                                                                                               
+------------- -----------                                                                                                                                                                               
+           10        4400                                                                                                                                                                               
+           20       19000                                                                                                                                                                               
+           30       24900                                                                                                                                                                               
+           40        6500                                                                                                                                                                               
+           50      156400                                                                                                                                                                               
+           60       28800                                                                                                                                                                               
+           70       10000                                                                                                                                                                               
+           80      304500                                                                                                                                                                               
+           90       58000                                                                                                                                                                               
+          100       51608                                                                                                                                                                               
+          110       20308                                                                                                                                                                               
+                     7000                                                                                                                                                                               
+
+12 rows selected.
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select department_id, sum(salary) 
+  2  from employees 
+  3  group by department_id 
+  4  having sum(salary) > 100000
+  5* order by department_id
+SQL> /
+
+DEPARTMENT_ID SUM(SALARY)                                                                                                                                                                               
+------------- -----------                                                                                                                                                                               
+           50      156400                                                                                                                                                                               
+           80      304500                                                                                                                                                                               
+
+SQL> select avg(salary) from employees group by department_id;
+
+AVG(SALARY)                                                                                                                                                                                             
+-----------                                                                                                                                                                                             
+ 19333.3333                                                                                                                                                                                             
+       5760                                                                                                                                                                                             
+ 8601.33333                                                                                                                                                                                             
+       4150                                                                                                                                                                                             
+ 3475.55556                                                                                                                                                                                             
+ 8955.88235                                                                                                                                                                                             
+       7000                                                                                                                                                                                             
+       4400                                                                                                                                                                                             
+       9500                                                                                                                                                                                             
+       6500                                                                                                                                                                                             
+      10000                                                                                                                                                                                             
+      10154                                                                                                                                                                                             
+
+12 rows selected.
+
+SQL> select max(avg(salary)) from employees group by department_id;
+
+MAX(AVG(SALARY))                                                                                                                                                                                        
+----------------                                                                                                                                                                                        
+      19333.3333                                                                                                                                                                                        
+
+SQL> select min(max(avg(salary))) from employees group by department_id;
+select min(max(avg(salary))) from employees group by department_id
+               *
+ERROR at line 1:
+ORA-00935: group function is nested too deeply 
+
+
+SQL> select department_id, sum(salary)
+  2  from employees
+  3  group by rollup(department_id)
+  4  order by department_id;
+
+DEPARTMENT_ID SUM(SALARY)                                                                                                                                                                               
+------------- -----------                                                                                                                                                                               
+           10        4400                                                                                                                                                                               
+           20       19000                                                                                                                                                                               
+           30       24900                                                                                                                                                                               
+           40        6500                                                                                                                                                                               
+           50      156400                                                                                                                                                                               
+           60       28800                                                                                                                                                                               
+           70       10000                                                                                                                                                                               
+           80      304500                                                                                                                                                                               
+           90       58000                                                                                                                                                                               
+          100       51608                                                                                                                                                                               
+          110       20308                                                                                                                                                                               
+                     7000                                                                                                                                                                               
+                   691416                                                                                                                                                                               
+
+13 rows selected.
+
+SQL> select department_id, sum(salary)
+  2  from employees
+  3  group by cube(department_id)
+  4  order by department_id;
+
+DEPARTMENT_ID SUM(SALARY)                                                                                                                                                                               
+------------- -----------                                                                                                                                                                               
+           10        4400                                                                                                                                                                               
+           20       19000                                                                                                                                                                               
+           30       24900                                                                                                                                                                               
+           40        6500                                                                                                                                                                               
+           50      156400                                                                                                                                                                               
+           60       28800                                                                                                                                                                               
+           70       10000                                                                                                                                                                               
+           80      304500                                                                                                                                                                               
+           90       58000                                                                                                                                                                               
+          100       51608                                                                                                                                                                               
+          110       20308                                                                                                                                                                               
+                     7000                                                                                                                                                                               
+                   691416                                                                                                                                                                               
+
+13 rows selected.
+
+SQL> select department_id, sum(salary)
+  2  , job_id
+  3  from employees
+  4  group by rollup(department_id, job_id)
+  5  order by department_id;
+
+DEPARTMENT_ID SUM(SALARY) JOB_ID                                                                                                                                                                        
+------------- ----------- ----------                                                                                                                                                                    
+           10        4400 AD_ASST                                                                                                                                                                       
+           10        4400                                                                                                                                                                               
+           20       13000 MK_MAN                                                                                                                                                                        
+           20        6000 MK_REP                                                                                                                                                                        
+           20       19000                                                                                                                                                                               
+           30       13900 PU_CLERK                                                                                                                                                                      
+           30       11000 PU_MAN                                                                                                                                                                        
+           30       24900                                                                                                                                                                               
+           40        6500 HR_REP                                                                                                                                                                        
+           40        6500                                                                                                                                                                               
+           50       64300 SH_CLERK                                                                                                                                                                      
+           50       55700 ST_CLERK                                                                                                                                                                      
+           50       36400 ST_MAN                                                                                                                                                                        
+           50      156400                                                                                                                                                                               
+           60       28800 IT_PROG                                                                                                                                                                       
+           60       28800                                                                                                                                                                               
+           70       10000 PR_REP                                                                                                                                                                        
+           70       10000                                                                                                                                                                               
+           80       61000 SA_MAN                                                                                                                                                                        
+           80      243500 SA_REP                                                                                                                                                                        
+           80      304500                                                                                                                                                                               
+           90       24000 AD_PRES                                                                                                                                                                       
+           90       34000 AD_VP                                                                                                                                                                         
+           90       58000                                                                                                                                                                               
+          100       39600 FI_ACCOUNT                                                                                                                                                                    
+          100       12008 FI_MGR                                                                                                                                                                        
+          100       51608                                                                                                                                                                               
+          110        8300 AC_ACCOUNT                                                                                                                                                                    
+          110       12008 AC_MGR                                                                                                                                                                        
+          110       20308                                                                                                                                                                               
+                     7000 SA_REP                                                                                                                                                                        
+                     7000                                                                                                                                                                               
+                   691416                                                                                                                                                                               
+
+33 rows selected.
+
+SQL> select department_id, job_id, sum(salary)
+  2  group by rollup(department_id, job_id)
+  3  order by department_id;
+group by rollup(department_id, job_id)
+*
+ERROR at line 2:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select department_id, job_id, sum(salary)
+  2  from employees
+  3  group by rollup(department_id, job_id)
+  4  order by department_id;
+
+DEPARTMENT_ID JOB_ID     SUM(SALARY)                                                                                                                                                                    
+------------- ---------- -----------                                                                                                                                                                    
+           10 AD_ASST           4400                                                                                                                                                                    
+           10                   4400                                                                                                                                                                    
+           20 MK_MAN           13000                                                                                                                                                                    
+           20 MK_REP            6000                                                                                                                                                                    
+           20                  19000                                                                                                                                                                    
+           30 PU_CLERK         13900                                                                                                                                                                    
+           30 PU_MAN           11000                                                                                                                                                                    
+           30                  24900                                                                                                                                                                    
+           40 HR_REP            6500                                                                                                                                                                    
+           40                   6500                                                                                                                                                                    
+           50 SH_CLERK         64300                                                                                                                                                                    
+           50 ST_CLERK         55700                                                                                                                                                                    
+           50 ST_MAN           36400                                                                                                                                                                    
+           50                 156400                                                                                                                                                                    
+           60 IT_PROG          28800                                                                                                                                                                    
+           60                  28800                                                                                                                                                                    
+           70 PR_REP           10000                                                                                                                                                                    
+           70                  10000                                                                                                                                                                    
+           80 SA_MAN           61000                                                                                                                                                                    
+           80 SA_REP          243500                                                                                                                                                                    
+           80                 304500                                                                                                                                                                    
+           90 AD_PRES          24000                                                                                                                                                                    
+           90 AD_VP            34000                                                                                                                                                                    
+           90                  58000                                                                                                                                                                    
+          100 FI_ACCOUNT       39600                                                                                                                                                                    
+          100 FI_MGR           12008                                                                                                                                                                    
+          100                  51608                                                                                                                                                                    
+          110 AC_ACCOUNT        8300                                                                                                                                                                    
+          110 AC_MGR           12008                                                                                                                                                                    
+          110                  20308                                                                                                                                                                    
+              SA_REP            7000                                                                                                                                                                    
+                                7000                                                                                                                                                                    
+                              691416                                                                                                                                                                    
+
+33 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select department_id, job_id, sum(salary)
+  2  from employees
+  3  where departent_id is not null
+  4  group by rollup(department_id, job_id)
+  5* order by department_id
+SQL> /
+where departent_id is not null
+      *
+ERROR at line 3:
+ORA-00904: "DEPARTENT_ID": invalid identifier 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select department_id, job_id, sum(salary)
+  2  from employees
+  3  where department_id is not null
+  4  group by rollup(department_id, job_id)
+  5* order by department_id
+SQL> /
+
+DEPARTMENT_ID JOB_ID     SUM(SALARY)                                                                                                                                                                    
+------------- ---------- -----------                                                                                                                                                                    
+           10 AD_ASST           4400                                                                                                                                                                    
+           10                   4400                                                                                                                                                                    
+           20 MK_MAN           13000                                                                                                                                                                    
+           20 MK_REP            6000                                                                                                                                                                    
+           20                  19000                                                                                                                                                                    
+           30 PU_CLERK         13900                                                                                                                                                                    
+           30 PU_MAN           11000                                                                                                                                                                    
+           30                  24900                                                                                                                                                                    
+           40 HR_REP            6500                                                                                                                                                                    
+           40                   6500                                                                                                                                                                    
+           50 SH_CLERK         64300                                                                                                                                                                    
+           50 ST_CLERK         55700                                                                                                                                                                    
+           50 ST_MAN           36400                                                                                                                                                                    
+           50                 156400                                                                                                                                                                    
+           60 IT_PROG          28800                                                                                                                                                                    
+           60                  28800                                                                                                                                                                    
+           70 PR_REP           10000                                                                                                                                                                    
+           70                  10000                                                                                                                                                                    
+           80 SA_MAN           61000                                                                                                                                                                    
+           80 SA_REP          243500                                                                                                                                                                    
+           80                 304500                                                                                                                                                                    
+           90 AD_PRES          24000                                                                                                                                                                    
+           90 AD_VP            34000                                                                                                                                                                    
+           90                  58000                                                                                                                                                                    
+          100 FI_ACCOUNT       39600                                                                                                                                                                    
+          100 FI_MGR           12008                                                                                                                                                                    
+          100                  51608                                                                                                                                                                    
+          110 AC_ACCOUNT        8300                                                                                                                                                                    
+          110 AC_MGR           12008                                                                                                                                                                    
+          110                  20308                                                                                                                                                                    
+                              684416                                                                                                                                                                    
+
+31 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select department_id, job_id, sum(salary)
+  2  from employees
+  3  where department_id is not null
+  4  group by cube(department_id, job_id)
+  5* order by department_id
+SQL> /
+
+DEPARTMENT_ID JOB_ID     SUM(SALARY)                                                                                                                                                                    
+------------- ---------- -----------                                                                                                                                                                    
+           10 AD_ASST           4400                                                                                                                                                                    
+           10                   4400                                                                                                                                                                    
+           20 MK_MAN           13000                                                                                                                                                                    
+           20 MK_REP            6000                                                                                                                                                                    
+           20                  19000                                                                                                                                                                    
+           30 PU_CLERK         13900                                                                                                                                                                    
+           30 PU_MAN           11000                                                                                                                                                                    
+           30                  24900                                                                                                                                                                    
+           40 HR_REP            6500                                                                                                                                                                    
+           40                   6500                                                                                                                                                                    
+           50 SH_CLERK         64300                                                                                                                                                                    
+           50 ST_CLERK         55700                                                                                                                                                                    
+           50 ST_MAN           36400                                                                                                                                                                    
+           50                 156400                                                                                                                                                                    
+           60 IT_PROG          28800                                                                                                                                                                    
+           60                  28800                                                                                                                                                                    
+           70 PR_REP           10000                                                                                                                                                                    
+           70                  10000                                                                                                                                                                    
+           80 SA_MAN           61000                                                                                                                                                                    
+           80 SA_REP          243500                                                                                                                                                                    
+           80                 304500                                                                                                                                                                    
+           90 AD_PRES          24000                                                                                                                                                                    
+           90 AD_VP            34000                                                                                                                                                                    
+           90                  58000                                                                                                                                                                    
+          100 FI_ACCOUNT       39600                                                                                                                                                                    
+          100 FI_MGR           12008                                                                                                                                                                    
+          100                  51608                                                                                                                                                                    
+          110 AC_ACCOUNT        8300                                                                                                                                                                    
+          110 AC_MGR           12008                                                                                                                                                                    
+          110                  20308                                                                                                                                                                    
+              AC_ACCOUNT        8300                                                                                                                                                                    
+              AC_MGR           12008                                                                                                                                                                    
+              AD_ASST           4400                                                                                                                                                                    
+              AD_PRES          24000                                                                                                                                                                    
+              AD_VP            34000                                                                                                                                                                    
+              FI_ACCOUNT       39600                                                                                                                                                                    
+              FI_MGR           12008                                                                                                                                                                    
+              HR_REP            6500                                                                                                                                                                    
+              IT_PROG          28800                                                                                                                                                                    
+              MK_MAN           13000                                                                                                                                                                    
+              MK_REP            6000                                                                                                                                                                    
+              PR_REP           10000                                                                                                                                                                    
+              PU_CLERK         13900                                                                                                                                                                    
+              PU_MAN           11000                                                                                                                                                                    
+              SA_MAN           61000                                                                                                                                                                    
+              SA_REP          243500                                                                                                                                                                    
+              SH_CLERK         64300                                                                                                                                                                    
+              ST_CLERK         55700                                                                                                                                                                    
+              ST_MAN           36400                                                                                                                                                                    
+                              684416                                                                                                                                                                    
+
+50 rows selected.
+
+SQL> select sysdate from dual;
+
+SYSDATE                                                                                                                                                                                                 
+---------                                                                                                                                                                                               
+02-DEC-21                                                                                                                                                                                               
+
+SQL> spool off;
