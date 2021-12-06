@@ -34,3 +34,6 @@ Data Structures and Algorithm/DSAlgo/Tree/.classpath
 Data Structures and Algorithm/DSAlgo/Graph/.project
 Data Structures and Algorithm/DSAlgo/Graph/.settings/org.eclipse.jdt.core.prefs
 Data Structures and Algorithm/DSAlgo/Graph/.classpath
+Data Structures and Algorithm/DSAlgo/Test/.settings/org.eclipse.jdt.core.prefs
+.gitignore
+Data Structures and Algorithm/DSAlgo/Test/.project
