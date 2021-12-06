@@ -53,7 +53,7 @@ public class Main {
 			tm.showOriginalMatrix();
 			tm.showTransposedMatrix();
 		}
-
+		sc.close();
 	}
 
 }
