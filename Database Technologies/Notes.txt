@@ -1,0 +1,311 @@
+CDB: Container Database
+PDB: Pluggable Database
+
+How to login to sql?
+Open command prompt and type ↵
+sqlplus sys/sys as sysdba
+
+To know with which database, sql is connected? 
+show con_name;
+
+To know which PDB is available? 
+show pdbs
+
+TO switch to the PDB:
+Make a copy of the file at the same place C:\app\dell\product\21c\homes\OraDB21Home1\network\admin\tnsnames.ora
+Open the original file in notepad
+Copy the path of XE from top of the file and paste it at the bottom
+Change the name of XE and also the SERVICE_NAME to the available PDB i.e., XEPDB1 
+Save the file
+Now run the Command Prompt as Administrator
+Execute the command "lsnrctl reload" to restart the listener
+Now connect with the PDB as in SQL PLUS ↵
+conn sys/sys@XEPDB1 as sysdba
+
+Commands:
+To clear the screen: clear screen 
+To know the username: show user
+To list the available DBA users: select username from dba_users;
+
+
+Creating 'hr' user:
+To create the user 'hr' having password hr: create user hr identified by hr;
+To connect to 'hr' account: conn hr/hr@xepdb1;
+To connect with 'sys': conn sys/sys@xepdb1 as sysdba;
+To give the permission of creating session to 'hr' (we can only grant permission from sys user): grant create session to hr;
+To connect with 'hr': conn hr/hr@xepdb1;
+
+
+How to create a table?
+create table test(id numeric(2),name varchar2(10));
+It will give below error because initially hr account doesn't have any permission:
+create table test(id numeric(2),name varchar2(10))
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+To give permission to hr account, login to sys and give permission
+conn sys/sys@xepdb1 as sysdba;
+
+Give permission of creating table to 'hr': grant create table to hr;
+To connect with 'hr': conn hr/hr@xepdb1;
+
+
+create table test(id numeric(2),name varchar2(10));
+Now the table 'test' will be created in the database of 'hr' user.
+
+insert into test values(1,'james');
+It will give the error again becuse now the user doesn't have space to store data:
+insert into test values(1,'james')
+            *
+ERROR at line 1:
+ORA-01950: no privileges on tablespace 'USERS'
+
+Connect with 'sys' to allocate tablespace to 'hr'.
+conn sys/sys@xepdb1 as sysdba
+
+Allocate tablespaces of 10mb on USERS tablespace to 'hr': alter user hr quota 10m on users;
+
+Connect with 'hr': conn hr/hr@xepdb1;
+
+
+insert into test values(1,'james');
+It will create a row in the 'test' table.
+
+Creating user with all the required permissions:
+create user hr identified by hr quota 10m on users;
+To create user 'hr' and allocate it 10mb tablespace on USERS tablespace.
+
+grant create session, create table to hr;
+To give the privilege of creating session and creating table to 'hr'.
+
+Creating table:
+create table test(id numeric(2),name varchar2(10));
+
+Inserting a row in the table:
+insert into test values(1,'james');
+
+
+=======================================================================================================
+
+To show connection name -> show con_name
+
+To connect to another user ->   username/password@xepdb1 
+                                conn scott/tiger@xepdb1
+
+To show current user -> show user
+                        USER is "SCOTT"
+
+
+To get the list of tables created in the user ->    select * from tab;
+                                            OR      select * from cat;
+                                            OR      select * from user_catalog;
+
+
+To create a table ->    CREATE TABLE table_name (column_name DATATYPE);
+                        create table dept(deptno number(2), dname varchar2(15), loc varchar2(15));
+
+To open editor(notepad) with last query -> ed
+                        Wrote file afiedt.buf
+
+                        1  create table dept
+                        2  (
+                        3  deptno number(2),
+                        4  dname varchar2(15),
+                        5  loc varchar2(15)
+                        6* )
+
+And to run the previous query -> / use backslash
+
+To set the lines of command prompt(sql) -> set lines 170
+To set the pages of command prompt(sql) -> set pages 100
+To format table column ->   column column_name format a20;
+                            column tname format A20;
+
+To describe table ->    desc table_name
+                        desc emp
+
+To get only table names created in the user -> select table_name from user_tables;
+
+To add new row to already created table -> alter table emp add email varchar2(15);
+
+To modify a row of already created table -> alter table emp modify name varchar2(30);
+
+To rename column_name -> alter table emp rename column salary to sal;
+
+To remove/delete a column -> alter table emp drop (email);
+
+To remove all data of table -> drop table emp;
+                                Now table is in recyclebin
+
+To restore deleted table -> flashback table emp to before drop;
+                                                                         
+To permanently delete a table (shift+delete) -> drop table emp purge;
+
+To rename a table -> rename dept to departments;
+
+To hide a column from table -> alter table dept set unused (loc);
+
+To drop unused columns -> alter table dept drop unused columns;
+
+To add comment on the table -> comment on table dept is 'This is a department table';
+
+
+To add comment on table column -> comment on column dept.dname is 'This is a department name column';
+
+To show comments -> select comments from user_tab_comments where table_name='DEPT';
+
+To show comments on columns -> select column_name,comments from user_col_comments where table_name='DEPT';
+
+
+=======================================================================================================
+
+**************************CONSTRAINTS**************************
+
+To add primary key to a column -> primary key is used to uniquely identify each record in a table. It cannot be null or duplicate.
+                                1  create table students
+                                2  (
+                                3  rollno   number(3) primary key,
+                                4  name     varchar2(15),
+                                5  email    varchar2(25),
+                                6  semfee   decimal(8,2),
+                                7  gen      char(7),
+                                8  courseid number(3)
+                                9* )
+
+
+Error when inserting duplicate value -> unique constraint (SCOTT.SYS_C008220) violated 
+
+Error when inserting null in primary key column -> cannot insert NULL into ("SCOTT"."STUDENTS"."ROLLNO") 
+
+
+To create table with not null constraint -> not null is used when the field cannot become null in any case.
+                                            1  create table students
+                                            2  (
+                                            3  rollno   number(3) primary key,
+                                            4  name     varchar2(15) not null,
+                                            5  email    varchar2(25),
+                                            6  semfee   decimal(8,2),
+                                            7  gen      char(7),
+                                            8  courseid number(3)
+                                            9* )
+
+To create a table with unique constraint -> unique constraint can be null or must be unique
+                                            1  create table students
+                                            2  (
+                                            3  rollno   number(3) primary key,
+                                            4  name     varchar2(15) not null,
+                                            5  email    varchar2(25) unique,
+                                            6  semfee   decimal(8,2),
+                                            7  gen      char(7),
+                                            8  courseid number(3)
+                                            9* )
+Error when inserting duplicate value -> unique constraint (SCOTT.SYS_C008225) violated 
+
+
+To get only default. i.e gender can be male/female, m/f, M/F, we use check constraint
+                                            1  create table students
+                                            2  (
+                                            3  rollno   number(3) primary key,
+                                            4  name     varchar2(15) not null,
+                                            5  email    varchar2(25) unique,
+                                            6  semfee   decimal(8,2),
+                                            7  gen      char(7) check(gen in('m','M','f','F')),
+                                            8  courseid number(3)
+                                            9* )
+
+
+Error when inserting other than the required input -> check constraint (SCOTT.SYS_C008227) violated 
+
+
+To show all the constraints applie in a table -> select constraint_name, constraint_type from user_constraints where table_name='STUDENTS';
+
+                                                CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                                                                  
+                                                -------------------- --------------------                                                                                                             
+                                                SYS_C008226          C                                                                                                                                
+                                                SYS_C008227          C                                                                                                                                
+                                                SYS_C008228          P                                                                                                                                
+                                                SYS_C008229          U                                                                                                                                
+
+                                                Here,
+                                                C -> check or not null
+                                                P -> primary key
+                                                U -> unique
+
+To give constraint names -> 
+                            1  create table students
+                            2  (
+                            3  rollno   number(3) constraint pk primary key,
+                            4  name     varchar2(15) constraint ntnl not null,
+                            5  email    varchar2(25) constraint unq unique,
+                            6  semfee   decimal(8,2),
+                            7  gen      char(7) constraint chekgen check(gen in('m','M','f','F')),
+                            8  courseid number(3)
+                            9* )
+
+                            SQL> select constraint_name, constraint_type from user_constraints where table_name='STUDENTS';
+
+                            CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                                                                  
+                            -------------------- --------------------                                                                                                             
+                            NTNL                 C                                                                                                                                
+                            CHEKGEN              C                                                                                                                                
+                            PK                   P                                                                                                                                
+                            UNQ                  U                                                                                                                                
+
+
+To give constraints on a table level ->
+                                        1  create table students
+                                        2  (
+                                        3  rollno   number(3),
+                                        4  name     varchar2(15) constraint stu_name_ntnl not null,
+                                        5  email    varchar2(25),
+                                        6  semfee   decimal(8,2),
+                                        7  gen      char(7),
+                                        8  courseid number(3),
+                                        9  constraint stu_rno_pk primary key(rollno),
+                                        10  constraint stu_email_unq unique(email),
+                                        11  constraint stu_gen_chk check(gen in ('M', 'F'))
+                                        12* )
+
+                                        SQL> select constraint_name, constraint_type from user_constraints where table_name='STUDENTS';
+
+                                        CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                                                                  
+                                        -------------------- --------------------                                                                                                             
+                                        STU_NAME_NTNL        C                                                                                                                                
+                                        STU_GEN_CHK          C                                                                                                                                
+                                        STU_RNO_PK           P                                                                                                                                
+                                        STU_EMAIL_UNQ        U                                                                                                                                
+
+
+To add primary key by combining two columns ->
+                                        1  create table projemp(
+                                        2  eid number(3),
+                                        3  pid number(3),
+                                        4  hrworked number(3),
+                                        5  primary key(eid, pid)
+                                        6* )
+
+To add primary key after creating table -> alter table customer add primary key(cid);
+To add unique key constraint after creating table -> alter table customer add constraint unk unique(email);
+To add not null constraints after creating table -> alter table customer modify dob date not null;
+
+To remove primary key from table -> alter table customer drop primary key;
+
+select constraint_name, constraint_type from user_constraints where table_name='CUSTOMER';
+
+CONSTRAINT_NAME      CONSTRAINT_TYPE                                                                                                                  
+-------------------- --------------------                                                                                                             
+UNK                  U                                                                                                                                
+SYS_C008241          C                                                                                                                                
+
+To remove any constraint -> alter table table_name drop constraint constraint_name
+                            alter table customer drop constraint UNK;
+
+
+To disable constraint -> alter table students disable constraint STU_RNO_PK;
+
+To enable constraint -> alter table students enable constraint STU_RNO_PK;
+
+
+=======================================================================================================
+
