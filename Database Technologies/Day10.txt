@@ -1,0 +1,439 @@
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  num number(2):=1;
+  3  begin
+  4  loop
+  5  dbms_output.put_line(num);
+  6  num:=num+1;
+  7  exit when num > 10;
+  8  end loop;
+  9* end;
+SQL> /
+1                                                                               
+2                                                                               
+3                                                                               
+4                                                                               
+5                                                                               
+6                                                                               
+7                                                                               
+8                                                                               
+9                                                                               
+10                                                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  num number(2):=1;
+  3  begin
+  4  while num <= 10
+  5  loop
+  6  dbms_output.put_line(num);
+  7  num:=num+1;
+  8  end loop;
+  9* end;
+SQL> /
+1                                                                               
+2                                                                               
+3                                                                               
+4                                                                               
+5                                                                               
+6                                                                               
+7                                                                               
+8                                                                               
+9                                                                               
+10                                                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  num number(2):=1;
+  3  begin
+  4  for i in 1..10 
+  5  loop
+  6  dbms_output.put_line(i);
+  7  end loop;
+  8* end;
+SQL> /
+1                                                                               
+2                                                                               
+3                                                                               
+4                                                                               
+5                                                                               
+6                                                                               
+7                                                                               
+8                                                                               
+9                                                                               
+10                                                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  num number(2):=1;
+  3  begin
+  4  for i in reverse 1..10 
+  5  loop
+  6  dbms_output.put_line(i);
+  7  end loop;
+  8* end;
+SQL> /
+10                                                                              
+9                                                                               
+8                                                                               
+7                                                                               
+6                                                                               
+5                                                                               
+4                                                                               
+3                                                                               
+2                                                                               
+1                                                                               
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  begin
+  2  for i in reverse 1..10 
+  3  loop
+  4  dbms_output.put_line(i);
+  5  end loop;
+  6* end;
+SQL> /
+10                                                                              
+9                                                                               
+8                                                                               
+7                                                                               
+6                                                                               
+5                                                                               
+4                                                                               
+3                                                                               
+2                                                                               
+1                                                                               
+
+PL/SQL procedure successfully completed.
+SQL> ed
+Wrote file afiedt.buf
+
+  1  begin
+  2  for i in reverse 1..10 loop
+  3  	for k in 1..2*i-1 loop
+  4  	dbms_output.put('*');
+  5  	end loop;
+  6  dbms_output.put_line('');
+  7  end loop;
+  8* end;
+SQL> /
+*******************                                                             
+*****************                                                               
+***************                                                                 
+*************                                                                   
+***********                                                                     
+*********                                                                       
+*******                                                                         
+*****                                                                           
+***                                                                             
+*                                                                               
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  begin
+  2  for i in 1..10 loop
+  3  	for j in reverse 1..10 loop
+  4  	dbms_output.put(' ');
+  5  	end loop;
+  6  	for k in 1..2*i-1 loop
+  7  	dbms_output.put('*');
+  8  	end loop;
+  9  dbms_output.put_line('');
+ 10  end loop;
+ 11* end;
+SQL> /
+*                                                                               
+***                                                                             
+*****                                                                           
+*******                                                                         
+*********                                                                       
+***********                                                                     
+*************                                                                   
+***************                                                                 
+*****************                                                               
+*******************                                                             
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  begin
+  2  for i in 1..10 loop
+  3  	for j in reverse 1..10-i loop
+  4  	dbms_output.put('-');
+  5  	end loop;
+  6  	for k in 1..2*i-1 loop
+  7  	dbms_output.put('*');
+  8  	end loop;
+  9  dbms_output.put_line('');
+ 10  end loop;
+ 11* end;
+SQL> /
+---------*                                                                      
+--------***                                                                     
+-------*****                                                                    
+------*******                                                                   
+-----*********                                                                  
+----***********                                                                 
+---*************                                                                
+--***************                                                               
+-*****************                                                              
+*******************                                                             
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  DECLARE
+  2  v_grade CHAR(1) := UPPER('&p_grade');
+  3  v_appraisal VARCHAR2(20);
+  4  BEGIN
+  5  v_appraisal :=
+  6  CASE v_grade
+  7     WHEN 'A' THEN 'Excellent'
+  8     WHEN 'B' THEN 'Very Good'
+  9     WHEN 'C' THEN 'Good'
+ 10     ELSE 'No such grade'
+ 11  END;
+ 12  DBMS_OUTPUT.PUT_LINE ('Grade: '|| v_grade || ' Appraisal ' || v_appraisal);
+ 13* END;
+SQL> /
+Enter value for p_grade: A
+old   2: v_grade CHAR(1) := UPPER('&p_grade');
+new   2: v_grade CHAR(1) := UPPER('A');
+Grade: A Appraisal Excellent                                                    
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  emprec employees%rowtype;
+  3  begin
+  4  select * into emprec from employees 
+  5  where department_id=10;
+  6  dbms_output.put_line('Employee id : ' || emprec.employee_id || ' Employee Last Name : ' || ' Employee salary : ' || emprec.salary); 
+  7* end;
+SQL> /
+Employee id : 200 Employee Last Name :  Employee salary : 4400                  
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  emprec employees%rowtype;
+  3  begin
+  4  select * into emprec from employees 
+  5  where department_id=10;
+  6  dbms_output.put_line('Employee id : ' || emprec.employee_id || ' Employee Last Name : '|| emprec.last_name || ' Employee salary : ' || emprec.salary); 
+  7* end;
+SQL> /
+Employee id : 200 Employee Last Name : Whalen Employee salary : 4400            
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  cursor employeecur is select *  from employees where department_id=60;
+  3  emprec employees%rowtype;
+  4  begin
+  5  open employeecur;
+  6  loop
+  7  fetch employeecur into emprec;
+  8  exit when employeecur%notfound;
+  9  dbms_output.put_line(emprec.employee_id||' '||emprec.last_name||' '||emprec.salary);
+ 10  end loop;
+ 11  close employeecur;
+ 12* end;
+SQL> /
+103 Hunold 9000                                                                 
+104 Ernst 6000                                                                  
+105 Austin 4800                                                                 
+106 Pataballa 4800                                                              
+107 Lorentz 4200                                                                
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  cursor employeecur is select *  from employees where department_id=60;
+  3  emprec employees%rowtype;
+  4  begin
+  5  open employeecur;
+  6  loop
+  7  fetch employeecur into emprec;
+  8  exit when employeecur%notfound;
+  9  dbms_output.put_line(emprec.employee_id||' '||emprec.last_name||' '||emprec.salary || ' ' || emprec.department_id);
+ 10  end loop;
+ 11  close employeecur;
+ 12* end;
+SQL> /
+103 Hunold 9000 60                                                              
+104 Ernst 6000 60                                                               
+105 Austin 4800 60                                                              
+106 Pataballa 4800 60                                                           
+107 Lorentz 4200 60                                                             
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  cursor employeecur is select *  from employees where department_id=60;
+  3  emprec employees%rowtype;
+  4  begin
+  5  open employeecur;
+  6  fetch employeecur into emprec;
+  7  while employeecur%found loop
+  8  dbms_output.put_line(emprec.employee_id||' '||emprec.last_name||' '||emprec.salary || ' ' || emprec.department_id);
+  9  fetch employeecur into emprec;
+ 10  end loop;
+ 11  close employeecur;
+ 12* end;
+SQL> /
+103 Hunold 9000 60                                                              
+104 Ernst 6000 60                                                               
+105 Austin 4800 60                                                              
+106 Pataballa 4800 60                                                           
+107 Lorentz 4200 60                                                             
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  cursor employeecur is select *  from employees where salary>15000; 	 --cursor declaration
+  3  emprec employees%rowtype;
+  4  begin
+  5  open employeecur;
+  6  loop
+  7  fetch employeecur into emprec;
+  8  exit when employeecur%notfound;
+  9  dbms_output.put_line(emprec.employee_id || '   ' || emprec.last_name || ' ' || emprec.salary || ' Employee Id : ' || emprec.employee_id);
+ 10  end loop;
+ 11  close employeecur;
+ 12* end;
+SQL> /
+100   King 24000 Employee Id : 100                                              
+101   Kochhar 17000 Employee Id : 101                                           
+102   De Haan 17000 Employee Id : 102                                           
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  cursor employeecur is select *  from employees where salary>15000; 	 --cursor declaration
+  3  emprec employees%rowtype;
+  4  begin
+  5  open employeecur;
+  6  loop
+  7  fetch employeecur into emprec;
+  8  exit when employeecur%rowcount<3;
+  9  dbms_output.put_line(emprec.employee_id || '   ' || emprec.last_name || ' ' || emprec.salary || ' Employee Id : ' || emprec.employee_id);
+ 10  end loop;
+ 11  close employeecur;
+ 12* end;
+SQL> /
+100   King 24000 Employee Id : 100                                              
+101   Kochhar 17000 Employee Id : 101                                            
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  cursor cur(did number,jid varchar2) is 
+  3  select last_name,salary,job_id  
+  4  from employees 
+  5  where department_id=did and job_id=jid;
+  6  lname  employees.last_name%type;
+  7  sal    employees.salary%type;
+  8  job    employees.job_id%type;
+  9  begin
+ 10  open cur(60,'IT_PROG');
+ 11  fetch cur into lname,sal,job;
+ 12  while cur%found loop
+ 13  dbms_output.put_line(lname||' '||sal||' '||job);
+ 14  fetch cur into lname,sal,job;
+ 15  end loop;
+ 16  close cur;
+ 17  open cur(80,'SA_REP');
+ 18  fetch cur into lname,sal,job;
+ 19  while cur%found loop
+ 20  dbms_output.put_line(lname||' '||sal||' '||job);
+ 21  fetch cur into lname,sal,job;
+ 22  end loop;
+ 23  close cur;
+ 24* end;
+SQL> /
+Hunold 9000 IT_PROG                                                             
+Ernst 6000 IT_PROG                                                              
+Austin 4800 IT_PROG                                                             
+Pataballa 4800 IT_PROG                                                          
+Lorentz 4200 IT_PROG                                                            
+Tucker 10000 SA_REP                                                             
+Bernstein 9500 SA_REP                                                           
+Hall 9000 SA_REP                                                                
+Olsen 8000 SA_REP                                                               
+Cambrault 7500 SA_REP                                                           
+Tuvault 7000 SA_REP                                                             
+King 10000 SA_REP                                                               
+Sully 9500 SA_REP                                                               
+McEwen 9000 SA_REP                                                              
+Smith 8000 SA_REP                                                               
+Doran 7500 SA_REP                                                               
+Sewall 7000 SA_REP                                                              
+Vishney 10500 SA_REP                                                            
+Greene 9500 SA_REP                                                              
+Marvins 7200 SA_REP                                                             
+Lee 6800 SA_REP                                                                 
+Ande 6400 SA_REP                                                                
+Banda 6200 SA_REP                                                               
+Ozer 11500 SA_REP                                                               
+Bloom 10000 SA_REP                                                              
+Fox 9600 SA_REP                                                                 
+Smith 7400 SA_REP                                                               
+Bates 7300 SA_REP                                                               
+Kumar 6100 SA_REP                                                               
+Abel 11000 SA_REP                                                               
+Hutton 8800 SA_REP                                                              
+Taylor 8600 SA_REP                                                              
+Livingston 8400 SA_REP                                                          
+Johnson 6200 SA_REP                                                             
+
+PL/SQL procedure successfully completed.
+
+SQL> spool off
