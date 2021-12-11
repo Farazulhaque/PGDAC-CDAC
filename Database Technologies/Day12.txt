@@ -1,0 +1,1135 @@
+SQL> drop table dept;
+
+Table dropped.
+
+SQL> select * from empdummy;
+
+       EID NAME                      JID               SAL        DID           
+---------- ------------------------- ---------- ---------- ----------           
+       103 Hunold                    ST_MAN          15210         60           
+       104 Ernst                     IT_PROG         11700         60           
+       105 Austin                    ST_CLERK        12870         60           
+       106 Pataballa                 ST_CLERK        12870         60           
+       107 Lorentz                   ST_CLERK        12870         60           
+
+SQL> create procedure delemprec
+  2  begin
+  3  delete from empdummy;
+  4  commit;
+  5  end;
+  6  /
+
+Warning: Procedure created with compilation errors.
+
+SQL> show error
+Errors for PROCEDURE DELEMPREC:
+
+LINE/COL ERROR                                                                  
+-------- -----------------------------------------------------------------      
+2/1      PLS-00103: Encountered the symbol "BEGIN" when expecting one of        
+         the following:                                                         
+         ( ; is with default authid as cluster compress order using             
+         compiled wrapped external deterministic parallel_enable                
+         pipelined result_cache accessible sql_macro                            
+         The symbol "is" was substituted for "BEGIN" to continue.               
+                                                                                
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace procedure delemprec
+  2  is
+  3  begin
+  4  delete from empdummy;
+  5  commit;
+  6* end;
+SQL> /
+
+Procedure created.
+
+SQL> desc user_procedures;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ OBJECT_NAME                                        VARCHAR2(128)
+ PROCEDURE_NAME                                     VARCHAR2(128)
+ OBJECT_ID                                          NUMBER
+ SUBPROGRAM_ID                                      NUMBER
+ OVERLOAD                                           VARCHAR2(40)
+ OBJECT_TYPE                                        VARCHAR2(13)
+ AGGREGATE                                          VARCHAR2(3)
+ PIPELINED                                          VARCHAR2(3)
+ IMPLTYPEOWNER                                      VARCHAR2(128)
+ IMPLTYPENAME                                       VARCHAR2(128)
+ PARALLEL                                           VARCHAR2(3)
+ INTERFACE                                          VARCHAR2(3)
+ DETERMINISTIC                                      VARCHAR2(3)
+ AUTHID                                             VARCHAR2(12)
+ RESULT_CACHE                                       VARCHAR2(3)
+ ORIGIN_CON_ID                                      NUMBER
+ POLYMORPHIC                                        VARCHAR2(5)
+ SQL_MACRO                                          VARCHAR2(6)
+ BLOCKCHAIN                                         VARCHAR2(3)
+ BLOCKCHAIN_MANDATORY_VOTES                         VARCHAR2(4000)
+
+SQL> set lines 1000
+SQL> select * from user_procedures where procedure_name='DELEMPREC';
+
+no rows selected
+
+SQL> select * from user_procedures where OBJECT_name='DELEMPREC';
+
+OBJECT_NAME                                                                                                                      PROCEDURE_NAME                                                                                                                    OBJECT_ID SUBPROGRAM_ID OVERLOAD                                 OBJECT_TYPE   AGG PIP IMPLTYPEOWNER                                                                                                                    IMPLTYPENAME                                                                                                                     PAR INT DET AUTHID       RES ORIGIN_CON_ID POLYM SQL_MA BLO                                                                                                                                                                                                                                                                                                                                                 
+-------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------- ---------- ------------- ---------------------------------------- ------------- --- --- -------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------- --- --- --- ------------ --- ------------- ----- ------ ---                                                                                                                                                                                                                                                                                                                                                 
+BLOCKCHAIN_MANDATORY_VOTES                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+DELEMPREC                                                                                                                                                                                                                                                              77068             1                                          PROCEDURE     NO  NO                                                                                                                                                                                                                                                                    NO  NO  NO  DEFINER      NO              3 NULL  NULL   NO                                                                                                                                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+
+SQL> select object_name from user_procedures ;
+
+OBJECT_NAME                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+--------------------------------------------------------------------------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+DELEMPREC                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+
+SQL> select * from empdummy;
+
+       EID NAME                      JID               SAL        DID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+---------- ------------------------- ---------- ---------- ----------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+       103 Hunold                    ST_MAN          15210         60                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+       104 Ernst                     IT_PROG         11700         60                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+       105 Austin                    ST_CLERK        12870         60                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+       106 Pataballa                 ST_CLERK        12870         60                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+       107 Lorentz                   ST_CLERK        12870         60                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+
+SQL> exec delemprec;
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from empdummy;
+
+no rows selected
+
+SQL> edselect text from user_source where name='delemprec';
+SP2-0734: unknown command beginning "edselect t..." - rest of line ignored.
+SQL> select text from user_source where name='delemprec';
+
+no rows selected
+
+SQL> select text from user_source where name='DELEMPREC';
+
+TEXT                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+procedure delemprec                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+is                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+begin                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+delete from empdummy;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+commit;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+end;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+
+6 rows selected.
+
+SQL> DESC EMPDUMMY
+ Name                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ EID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        NUMBER(6)
+ NAME                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              NOT NULL VARCHAR2(25)
+ JID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               NOT NULL VARCHAR2(10)
+ SAL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        NUMBER(8,2)
+ DID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        NUMBER(4)
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  create procedure insrecord(eno number, ename varchar2, jobid varchar2, salary number, dno number)
+  2  is 
+  3  begin
+  4  insert into empdummy values(eno, ename, jobid, salary, dno);
+  5* end;
+SQL> /
+
+Procedure created.
+
+SQL> exec insrecord(101, 'james', 'st_cler', 34000, 10)
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from empdummy;
+
+       EID NAME                      JID               SAL        DID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+---------- ------------------------- ---------- ---------- ----------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+       101 james                     st_cler         34000         10                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+
+SQL> select * from user_procedures where procedure_name='INSREORD';
+
+no rows selected
+
+SQL> select * from user_procedures where procedure_name='INSRECORD';
+
+no rows selected
+
+SQL> select text from user_source where name='INSRECORD';
+
+TEXT                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+procedure insrecord(eno number, ename varchar2, jobid varchar2, salary number, dno number)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+is                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+begin                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+insert into empdummy values(eno, ename, jobid, salary, dno);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+end;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+
+SQL> ED
+Wrote file afiedt.buf
+
+  1  create or replace procedure insrecord(eno in number, ename in varchar2, jobid in varchar2, salary in number, dno in number)
+  2  is
+  3  begin
+  4  insert into empdummy values(eno, ename, jobid, salary, dno);
+  5* end;
+SQL> /
+
+Procedure created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace procedure insrecord(eno number,salary number)
+  2  is
+  3  begin
+  4  update empdummy set eno=eno where eno=101;
+  5* end;
+SQL> drop table empdummy;
+
+Table dropped.
+
+SQL> create table empdummy as select employee_id, last_name, salary, job_id, department from employees
+  2  /
+create table empdummy as select employee_id, last_name, salary, job_id, department from employees
+                                                                        *
+ERROR at line 1:
+ORA-00904: "DEPARTMENT": invalid identifier 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* create table empdummy(eid,name,sal,jid,did) as select employee_id,last_name,salary,job_id,department_id from employees;
+SQL> /
+create table empdummy(eid,name,sal,jid,did) as select employee_id,last_name,salary,job_id,department_id from employees;
+                                                                                                                      *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* create table empdummy(eid,name,sal,jid,did) as select employee_id,last_name,salary,job_id,department_id from employees;
+SQL> /
+create table empdummy(eid,name,sal,jid,did) as select employee_id,last_name,salary,job_id,department_id from employees;
+                                                                                                                      *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> /create table empdummy(eid,name,sal,jid,did) as select employee_id,last_name,salary,job_id,department_id from employees;
+SP2-0734: unknown command beginning "/create ta..." - rest of line ignored.
+SQL> create table empdummy(eid,name,sal,jid,did) as select employee_id,last_name,salary,job_id,department_id from employees;
+
+Table created.
+
+SQL> set pages 100
+SQL> set line 200
+SQL> ed
+Wrote file afiedt.buf
+
+  1* create table empdummy(eid,name,sal,jid,did) as select employee_id,last_name,salary,job_id,department_id from employees
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace procedure insrecord (eno number, ename varchar2, salary number, jid varchar2, dno number);
+  2  is 
+  3  begin
+  4  insert into empdummy(eno, ename, salary, jid);
+  5* end;
+SQL> /
+
+Warning: Procedure created with compilation errors.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace procedure insrecord (eno number, ename varchar2, salary number, jid varchar2, dno number);
+  2  is 
+  3  begin
+  4  insert into empdummy values(eno, ename, salary, jid);
+  5* end;
+SQL> /
+
+Warning: Procedure created with compilation errors.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace procedure insrecord (eno number, ename varchar2, salary number, jid varchar2, dno number);
+  2  is 
+  3  begin
+  4  insert into empdummy values(eno, ename, salary, jid, dno);
+  5* end;
+SQL> /
+
+Warning: Procedure created with compilation errors.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace procedure insrecord (eno number, ename varchar2, salary number, ejid varchar2, dno number);
+  2  is 
+  3  begin
+  4  insert into empdummy values(eno, ename, salary, ejid, dno);
+  5* end;
+SQL> /
+
+Warning: Procedure created with compilation errors.
+
+SQL> show errors
+Errors for PROCEDURE INSRECORD:
+
+LINE/COL ERROR                                                                                                                                                                                          
+-------- -----------------------------------------------------------------                                                                                                                              
+2/1      PLS-00103: Encountered the symbol "IS"                                                                                                                                                         
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace procedure insrecord(eno number, ename varchar2, salary number, ejid varchar2, dno number);
+  2  is 
+  3  begin
+  4  insert into empdummy values(eno, ename, salary, ejid, dno);
+  5* end;
+SQL> /
+
+Warning: Procedure created with compilation errors.
+
+SQL> show errors
+Errors for PROCEDURE INSRECORD:
+
+LINE/COL ERROR                                                                                                                                                                                          
+-------- -----------------------------------------------------------------                                                                                                                              
+2/1      PLS-00103: Encountered the symbol "IS"                                                                                                                                                         
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace procedure insrecord(eno number, ename varchar2, salary number, ejid varchar2, dno number);
+  2  is
+  3  begin
+  4  insert into empdummy values(eno, ename, salary, ejid, dno);
+  5* end;
+SQL> /
+
+Warning: Procedure created with compilation errors.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace procedure insrecord(eno number, ename varchar2, salary number, ejid varchar2, dno number);
+  2  is
+  3  begin
+  4  insert into empdummy values(eno, ename, salary, ejid, eno);
+  5* end;
+SQL> /
+
+Warning: Procedure created with compilation errors.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace procedure insrecord(eno number, ename varchar2, salary number, ejid varchar2, dno number);
+  2  is
+  3  begin
+  4  insert into empdummy values(eno, ename, salary, ejid, eno);
+  5* end;
+SQL> spool off;
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace procedure insrecord(eno number, ename varchar2, salary number, ejid varchar2, dno number)
+  2  is
+  3  begin
+  4  insert into empdummy values(eno, ename, salary, ejid, eno);
+  5* end;
+SQL> /
+
+Procedure created.
+
+SQL> exec insrecord(102, 'king', 77000, 'mgr', 10);
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from empdummy;
+
+       EID NAME                             SAL JID               DID                                                                                                                                   
+---------- ------------------------- ---------- ---------- ----------                                                                                                                                   
+       100 King                           24000 AD_PRES            90                                                                                                                                   
+       101 Kochhar                        17000 AD_VP              90                                                                                                                                   
+       102 De Haan                        17000 AD_VP              90                                                                                                                                   
+       103 Hunold                          9000 IT_PROG            60                                                                                                                                   
+       104 Ernst                           6000 IT_PROG            60                                                                                                                                   
+       105 Austin                          4800 IT_PROG            60                                                                                                                                   
+       106 Pataballa                       4800 IT_PROG            60                                                                                                                                   
+       107 Lorentz                         4200 IT_PROG            60                                                                                                                                   
+       108 Greenberg                      12008 FI_MGR            100                                                                                                                                   
+       109 Faviet                          9000 FI_ACCOUNT        100                                                                                                                                   
+       110 Chen                            8200 FI_ACCOUNT        100                                                                                                                                   
+       111 Sciarra                         7700 FI_ACCOUNT        100                                                                                                                                   
+       112 Urman                           7800 FI_ACCOUNT        100                                                                                                                                   
+       113 Popp                            6900 FI_ACCOUNT        100                                                                                                                                   
+       114 Raphaely                       11000 PU_MAN             30                                                                                                                                   
+       115 Khoo                            3100 PU_CLERK           30                                                                                                                                   
+       116 Baida                           2900 PU_CLERK           30                                                                                                                                   
+       117 Tobias                          2800 PU_CLERK           30                                                                                                                                   
+       118 Himuro                          2600 PU_CLERK           30                                                                                                                                   
+       119 Colmenares                      2500 PU_CLERK           30                                                                                                                                   
+       120 Weiss                           8000 ST_MAN             50                                                                                                                                   
+       121 Fripp                           8200 ST_MAN             50                                                                                                                                   
+       122 Kaufling                        7900 ST_MAN             50                                                                                                                                   
+       123 Vollman                         6500 ST_MAN             50                                                                                                                                   
+       124 Mourgos                         5800 ST_MAN             50                                                                                                                                   
+       125 Nayer                           3200 ST_CLERK           50                                                                                                                                   
+       126 Mikkilineni                     2700 ST_CLERK           50                                                                                                                                   
+       127 Landry                          2400 ST_CLERK           50                                                                                                                                   
+       128 Markle                          2200 ST_CLERK           50                                                                                                                                   
+       129 Bissot                          3300 ST_CLERK           50                                                                                                                                   
+       130 Atkinson                        2800 ST_CLERK           50                                                                                                                                   
+       131 Marlow                          2500 ST_CLERK           50                                                                                                                                   
+       132 Olson                           2100 ST_CLERK           50                                                                                                                                   
+       133 Mallin                          3300 ST_CLERK           50                                                                                                                                   
+       134 Rogers                          2900 ST_CLERK           50                                                                                                                                   
+       135 Gee                             2400 ST_CLERK           50                                                                                                                                   
+       136 Philtanker                      2200 ST_CLERK           50                                                                                                                                   
+       137 Ladwig                          3600 ST_CLERK           50                                                                                                                                   
+       138 Stiles                          3200 ST_CLERK           50                                                                                                                                   
+       139 Seo                             2700 ST_CLERK           50                                                                                                                                   
+       140 Patel                           2500 ST_CLERK           50                                                                                                                                   
+       141 Rajs                            3500 ST_CLERK           50                                                                                                                                   
+       142 Davies                          3100 ST_CLERK           50                                                                                                                                   
+       143 Matos                           2600 ST_CLERK           50                                                                                                                                   
+       144 Vargas                          2500 ST_CLERK           50                                                                                                                                   
+       145 Russell                        14000 SA_MAN             80                                                                                                                                   
+       146 Partners                       13500 SA_MAN             80                                                                                                                                   
+       147 Errazuriz                      12000 SA_MAN             80                                                                                                                                   
+       148 Cambrault                      11000 SA_MAN             80                                                                                                                                   
+       149 Zlotkey                        10500 SA_MAN             80                                                                                                                                   
+       150 Tucker                         10000 SA_REP             80                                                                                                                                   
+       151 Bernstein                       9500 SA_REP             80                                                                                                                                   
+       152 Hall                            9000 SA_REP             80                                                                                                                                   
+       153 Olsen                           8000 SA_REP             80                                                                                                                                   
+       154 Cambrault                       7500 SA_REP             80                                                                                                                                   
+       155 Tuvault                         7000 SA_REP             80                                                                                                                                   
+       156 King                           10000 SA_REP             80                                                                                                                                   
+       157 Sully                           9500 SA_REP             80                                                                                                                                   
+       158 McEwen                          9000 SA_REP             80                                                                                                                                   
+       159 Smith                           8000 SA_REP             80                                                                                                                                   
+       160 Doran                           7500 SA_REP             80                                                                                                                                   
+       161 Sewall                          7000 SA_REP             80                                                                                                                                   
+       162 Vishney                        10500 SA_REP             80                                                                                                                                   
+       163 Greene                          9500 SA_REP             80                                                                                                                                   
+       164 Marvins                         7200 SA_REP             80                                                                                                                                   
+       165 Lee                             6800 SA_REP             80                                                                                                                                   
+       166 Ande                            6400 SA_REP             80                                                                                                                                   
+       167 Banda                           6200 SA_REP             80                                                                                                                                   
+       168 Ozer                           11500 SA_REP             80                                                                                                                                   
+       169 Bloom                          10000 SA_REP             80                                                                                                                                   
+       170 Fox                             9600 SA_REP             80                                                                                                                                   
+       171 Smith                           7400 SA_REP             80                                                                                                                                   
+       172 Bates                           7300 SA_REP             80                                                                                                                                   
+       173 Kumar                           6100 SA_REP             80                                                                                                                                   
+       174 Abel                           11000 SA_REP             80                                                                                                                                   
+       175 Hutton                          8800 SA_REP             80                                                                                                                                   
+       176 Taylor                          8600 SA_REP             80                                                                                                                                   
+       177 Livingston                      8400 SA_REP             80                                                                                                                                   
+       178 Grant                           7000 SA_REP                                                                                                                                                  
+       179 Johnson                         6200 SA_REP             80                                                                                                                                   
+       180 Taylor                          3200 SH_CLERK           50                                                                                                                                   
+       181 Fleaur                          3100 SH_CLERK           50                                                                                                                                   
+       182 Sullivan                        2500 SH_CLERK           50                                                                                                                                   
+       183 Geoni                           2800 SH_CLERK           50                                                                                                                                   
+       184 Sarchand                        4200 SH_CLERK           50                                                                                                                                   
+       185 Bull                            4100 SH_CLERK           50                                                                                                                                   
+       186 Dellinger                       3400 SH_CLERK           50                                                                                                                                   
+       187 Cabrio                          3000 SH_CLERK           50                                                                                                                                   
+       188 Chung                           3800 SH_CLERK           50                                                                                                                                   
+       189 Dilly                           3600 SH_CLERK           50                                                                                                                                   
+       190 Gates                           2900 SH_CLERK           50                                                                                                                                   
+       191 Perkins                         2500 SH_CLERK           50                                                                                                                                   
+       192 Bell                            4000 SH_CLERK           50                                                                                                                                   
+       193 Everett                         3900 SH_CLERK           50                                                                                                                                   
+       194 McCain                          3200 SH_CLERK           50                                                                                                                                   
+       195 Jones                           2800 SH_CLERK           50                                                                                                                                   
+       196 Walsh                           3100 SH_CLERK           50                                                                                                                                   
+
+       EID NAME                             SAL JID               DID                                                                                                                                   
+---------- ------------------------- ---------- ---------- ----------                                                                                                                                   
+       197 Feeney                          3000 SH_CLERK           50                                                                                                                                   
+       198 OConnell                        2600 SH_CLERK           50                                                                                                                                   
+       199 Grant                           2600 SH_CLERK           50                                                                                                                                   
+       200 Whalen                          4400 AD_ASST            10                                                                                                                                   
+       201 Hartstein                      13000 MK_MAN             20                                                                                                                                   
+       202 Fay                             6000 MK_REP             20                                                                                                                                   
+       203 Mavris                          6500 HR_REP             40                                                                                                                                   
+       204 Baer                           10000 PR_REP             70                                                                                                                                   
+       205 Higgins                        12008 AC_MGR            110                                                                                                                                   
+       206 Gietz                           8300 AC_ACCOUNT        110                                                                                                                                   
+       102 king                           77000 mgr               102                                                                                                                                   
+
+108 rows selected.
+
+SQL> drop from empdummy;
+drop from empdummy
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option 
+
+
+SQL> drop table from empdummy;
+drop table from empdummy
+           *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create procedure getdetails(eno in number, ename out varchar2, salary out number, dno out number)
+  2  is
+  3  begin
+  4  select name, sal, did, into ename, salary, dno
+  5  from empdummy
+  6  where eid=eno;
+  7* end getdetails;
+SQL> /
+
+Warning: Procedure created with compilation errors.
+
+SQL> show error
+Errors for PROCEDURE GETDETAILS:
+
+LINE/COL ERROR                                                                                                                                                                                          
+-------- -----------------------------------------------------------------                                                                                                                              
+4/1      PL/SQL: SQL Statement ignored                                                                                                                                                                  
+4/24     PL/SQL: ORA-00936: missing expression                                                                                                                                                          
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create procedure getdetails(eno in number,ename out varchar2,salary out number,dno out number)
+  2  is 
+  3  begin
+  4  select name,sal,did into ename,salary,dno
+  5  from empdummy;
+  6  where eid=eno;
+  7* end getdetails;
+SQL> /
+create procedure getdetails(eno in number,ename out varchar2,salary out number,dno out number)
+                 *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace procedure getdetails(eno in number,ename out varchar2,salary out number,dno out number)
+  2  is 
+  3  begin
+  4  select name,sal,did into ename,salary,dno
+  5  from empdummy;
+  6  where eid=eno;
+  7* end getdetails;
+SQL> /
+
+Warning: Procedure created with compilation errors.
+
+SQL> show error
+Errors for PROCEDURE GETDETAILS:
+
+LINE/COL ERROR                                                                                                                                                                                          
+-------- -----------------------------------------------------------------                                                                                                                              
+6/1      PLS-00103: Encountered the symbol "WHERE" when expecting one of                                                                                                                                
+         the following:                                                                                                                                                                                 
+         ( begin case declare end exception exit for goto if loop mod                                                                                                                                   
+         null pragma raise return select update while with                                                                                                                                              
+         <an identifier> <a double-quoted delimited-identifier>                                                                                                                                         
+         <a bind variable> << continue close current delete fetch lock                                                                                                                                  
+         insert open rollback savepoint set sql execute commit forall                                                                                                                                   
+         merge standard pipe purge json_object                                                                                                                                                          
+                                                                                                                                                                                                        
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace procedure getdetails(eno in number,ename out varchar2,salary out number,dno out number)
+  2  is 
+  3  begin
+  4  select name,sal,did into ename,salary,dno
+  5  from empdummy
+  6  where eid=eno;
+  7* end getdetails;
+SQL> /
+
+Procedure created.
+
+SQL> variable enaame varchar2(20);
+SQL> variable salary number;
+SQL> variable dno number;
+SQL> exec insrecord(102, 'king', 77000, 'mgr', 10);
+
+PL/SQL procedure successfully completed.
+
+SQL> exec insrecord(101, 'neena', 70000, 'dir', 10);
+
+PL/SQL procedure successfully completed.
+
+SQL> exec insrecord(102, 'smith', 38000, 'itprog', 20);
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from empdummmy;
+select * from empdummmy
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> select * from empdummy;
+
+       EID NAME                             SAL JID               DID                                                                                                                                   
+---------- ------------------------- ---------- ---------- ----------                                                                                                                                   
+       100 King                           24000 AD_PRES            90                                                                                                                                   
+       101 Kochhar                        17000 AD_VP              90                                                                                                                                   
+       102 De Haan                        17000 AD_VP              90                                                                                                                                   
+       103 Hunold                          9000 IT_PROG            60                                                                                                                                   
+       104 Ernst                           6000 IT_PROG            60                                                                                                                                   
+       105 Austin                          4800 IT_PROG            60                                                                                                                                   
+       106 Pataballa                       4800 IT_PROG            60                                                                                                                                   
+       107 Lorentz                         4200 IT_PROG            60                                                                                                                                   
+       108 Greenberg                      12008 FI_MGR            100                                                                                                                                   
+       109 Faviet                          9000 FI_ACCOUNT        100                                                                                                                                   
+       110 Chen                            8200 FI_ACCOUNT        100                                                                                                                                   
+       111 Sciarra                         7700 FI_ACCOUNT        100                                                                                                                                   
+       112 Urman                           7800 FI_ACCOUNT        100                                                                                                                                   
+       113 Popp                            6900 FI_ACCOUNT        100                                                                                                                                   
+       114 Raphaely                       11000 PU_MAN             30                                                                                                                                   
+       115 Khoo                            3100 PU_CLERK           30                                                                                                                                   
+       116 Baida                           2900 PU_CLERK           30                                                                                                                                   
+       117 Tobias                          2800 PU_CLERK           30                                                                                                                                   
+       118 Himuro                          2600 PU_CLERK           30                                                                                                                                   
+       119 Colmenares                      2500 PU_CLERK           30                                                                                                                                   
+       120 Weiss                           8000 ST_MAN             50                                                                                                                                   
+       121 Fripp                           8200 ST_MAN             50                                                                                                                                   
+       122 Kaufling                        7900 ST_MAN             50                                                                                                                                   
+       123 Vollman                         6500 ST_MAN             50                                                                                                                                   
+       124 Mourgos                         5800 ST_MAN             50                                                                                                                                   
+       125 Nayer                           3200 ST_CLERK           50                                                                                                                                   
+       126 Mikkilineni                     2700 ST_CLERK           50                                                                                                                                   
+       127 Landry                          2400 ST_CLERK           50                                                                                                                                   
+       128 Markle                          2200 ST_CLERK           50                                                                                                                                   
+       129 Bissot                          3300 ST_CLERK           50                                                                                                                                   
+       130 Atkinson                        2800 ST_CLERK           50                                                                                                                                   
+       131 Marlow                          2500 ST_CLERK           50                                                                                                                                   
+       132 Olson                           2100 ST_CLERK           50                                                                                                                                   
+       133 Mallin                          3300 ST_CLERK           50                                                                                                                                   
+       134 Rogers                          2900 ST_CLERK           50                                                                                                                                   
+       135 Gee                             2400 ST_CLERK           50                                                                                                                                   
+       136 Philtanker                      2200 ST_CLERK           50                                                                                                                                   
+       137 Ladwig                          3600 ST_CLERK           50                                                                                                                                   
+       138 Stiles                          3200 ST_CLERK           50                                                                                                                                   
+       139 Seo                             2700 ST_CLERK           50                                                                                                                                   
+       140 Patel                           2500 ST_CLERK           50                                                                                                                                   
+       141 Rajs                            3500 ST_CLERK           50                                                                                                                                   
+       142 Davies                          3100 ST_CLERK           50                                                                                                                                   
+       143 Matos                           2600 ST_CLERK           50                                                                                                                                   
+       144 Vargas                          2500 ST_CLERK           50                                                                                                                                   
+       145 Russell                        14000 SA_MAN             80                                                                                                                                   
+       146 Partners                       13500 SA_MAN             80                                                                                                                                   
+       147 Errazuriz                      12000 SA_MAN             80                                                                                                                                   
+       148 Cambrault                      11000 SA_MAN             80                                                                                                                                   
+       149 Zlotkey                        10500 SA_MAN             80                                                                                                                                   
+       150 Tucker                         10000 SA_REP             80                                                                                                                                   
+       151 Bernstein                       9500 SA_REP             80                                                                                                                                   
+       152 Hall                            9000 SA_REP             80                                                                                                                                   
+       153 Olsen                           8000 SA_REP             80                                                                                                                                   
+       154 Cambrault                       7500 SA_REP             80                                                                                                                                   
+       155 Tuvault                         7000 SA_REP             80                                                                                                                                   
+       156 King                           10000 SA_REP             80                                                                                                                                   
+       157 Sully                           9500 SA_REP             80                                                                                                                                   
+       158 McEwen                          9000 SA_REP             80                                                                                                                                   
+       159 Smith                           8000 SA_REP             80                                                                                                                                   
+       160 Doran                           7500 SA_REP             80                                                                                                                                   
+       161 Sewall                          7000 SA_REP             80                                                                                                                                   
+       162 Vishney                        10500 SA_REP             80                                                                                                                                   
+       163 Greene                          9500 SA_REP             80                                                                                                                                   
+       164 Marvins                         7200 SA_REP             80                                                                                                                                   
+       165 Lee                             6800 SA_REP             80                                                                                                                                   
+       166 Ande                            6400 SA_REP             80                                                                                                                                   
+       167 Banda                           6200 SA_REP             80                                                                                                                                   
+       168 Ozer                           11500 SA_REP             80                                                                                                                                   
+       169 Bloom                          10000 SA_REP             80                                                                                                                                   
+       170 Fox                             9600 SA_REP             80                                                                                                                                   
+       171 Smith                           7400 SA_REP             80                                                                                                                                   
+       172 Bates                           7300 SA_REP             80                                                                                                                                   
+       173 Kumar                           6100 SA_REP             80                                                                                                                                   
+       174 Abel                           11000 SA_REP             80                                                                                                                                   
+       175 Hutton                          8800 SA_REP             80                                                                                                                                   
+       176 Taylor                          8600 SA_REP             80                                                                                                                                   
+       177 Livingston                      8400 SA_REP             80                                                                                                                                   
+       178 Grant                           7000 SA_REP                                                                                                                                                  
+       179 Johnson                         6200 SA_REP             80                                                                                                                                   
+       180 Taylor                          3200 SH_CLERK           50                                                                                                                                   
+       181 Fleaur                          3100 SH_CLERK           50                                                                                                                                   
+       182 Sullivan                        2500 SH_CLERK           50                                                                                                                                   
+       183 Geoni                           2800 SH_CLERK           50                                                                                                                                   
+       184 Sarchand                        4200 SH_CLERK           50                                                                                                                                   
+       185 Bull                            4100 SH_CLERK           50                                                                                                                                   
+       186 Dellinger                       3400 SH_CLERK           50                                                                                                                                   
+       187 Cabrio                          3000 SH_CLERK           50                                                                                                                                   
+       188 Chung                           3800 SH_CLERK           50                                                                                                                                   
+       189 Dilly                           3600 SH_CLERK           50                                                                                                                                   
+       190 Gates                           2900 SH_CLERK           50                                                                                                                                   
+       191 Perkins                         2500 SH_CLERK           50                                                                                                                                   
+       192 Bell                            4000 SH_CLERK           50                                                                                                                                   
+       193 Everett                         3900 SH_CLERK           50                                                                                                                                   
+       194 McCain                          3200 SH_CLERK           50                                                                                                                                   
+       195 Jones                           2800 SH_CLERK           50                                                                                                                                   
+       196 Walsh                           3100 SH_CLERK           50                                                                                                                                   
+
+       EID NAME                             SAL JID               DID                                                                                                                                   
+---------- ------------------------- ---------- ---------- ----------                                                                                                                                   
+       197 Feeney                          3000 SH_CLERK           50                                                                                                                                   
+       198 OConnell                        2600 SH_CLERK           50                                                                                                                                   
+       199 Grant                           2600 SH_CLERK           50                                                                                                                                   
+       200 Whalen                          4400 AD_ASST            10                                                                                                                                   
+       201 Hartstein                      13000 MK_MAN             20                                                                                                                                   
+       202 Fay                             6000 MK_REP             20                                                                                                                                   
+       203 Mavris                          6500 HR_REP             40                                                                                                                                   
+       204 Baer                           10000 PR_REP             70                                                                                                                                   
+       205 Higgins                        12008 AC_MGR            110                                                                                                                                   
+       206 Gietz                           8300 AC_ACCOUNT        110                                                                                                                                   
+       102 king                           77000 mgr               102                                                                                                                                   
+       102 king                           77000 mgr               102                                                                                                                                   
+       101 neena                          70000 dir               101                                                                                                                                   
+       102 smith                          38000 itprog            102                                                                                                                                   
+
+111 rows selected.
+
+SQL> exec getdetails(102)
+BEGIN getdetails(102); END;
+
+      *
+ERROR at line 1:
+ORA-06550: line 1, column 7: 
+PLS-00306: wrong number or types of arguments in call to 'GETDETAILS' 
+ORA-06550: line 1, column 7: 
+PL/SQL: Statement ignored 
+
+
+SQL> exec getdetails(102,:ename,:salary,:dno)
+SP2-0552: Bind variable "ENAME" not declared.
+SQL> spool off
+SQL> create * from empdummy;
+create * from empdummy
+       *
+ERROR at line 1:
+ORA-00901: invalid CREATE command 
+
+
+SQL> select * from empdummy;
+
+       EID NAME                             SAL JID               DID           
+---------- ------------------------- ---------- ---------- ----------           
+       100 King                           24000 AD_PRES            90           
+       101 Kochhar                        17000 AD_VP              90           
+       102 De Haan                        17000 AD_VP              90           
+       103 Hunold                          9000 IT_PROG            60           
+       104 Ernst                           6000 IT_PROG            60           
+       105 Austin                          4800 IT_PROG            60           
+       106 Pataballa                       4800 IT_PROG            60           
+       107 Lorentz                         4200 IT_PROG            60           
+       108 Greenberg                      12008 FI_MGR            100           
+       109 Faviet                          9000 FI_ACCOUNT        100           
+       110 Chen                            8200 FI_ACCOUNT        100           
+
+       EID NAME                             SAL JID               DID           
+---------- ------------------------- ---------- ---------- ----------           
+       111 Sciarra                         7700 FI_ACCOUNT        100           
+       112 Urman                           7800 FI_ACCOUNT        100           
+       113 Popp                            6900 FI_ACCOUNT        100           
+       114 Raphaely                       11000 PU_MAN             30           
+       115 Khoo                            3100 PU_CLERK           30           
+       116 Baida                           2900 PU_CLERK           30           
+       117 Tobias                          2800 PU_CLERK           30           
+       118 Himuro                          2600 PU_CLERK           30           
+       119 Colmenares                      2500 PU_CLERK           30           
+       120 Weiss                           8000 ST_MAN             50           
+       121 Fripp                           8200 ST_MAN             50           
+
+       EID NAME                             SAL JID               DID           
+---------- ------------------------- ---------- ---------- ----------           
+       122 Kaufling                        7900 ST_MAN             50           
+       123 Vollman                         6500 ST_MAN             50           
+       124 Mourgos                         5800 ST_MAN             50           
+       125 Nayer                           3200 ST_CLERK           50           
+       126 Mikkilineni                     2700 ST_CLERK           50           
+       127 Landry                          2400 ST_CLERK           50           
+       128 Markle                          2200 ST_CLERK           50           
+       129 Bissot                          3300 ST_CLERK           50           
+       130 Atkinson                        2800 ST_CLERK           50           
+       131 Marlow                          2500 ST_CLERK           50           
+       132 Olson                           2100 ST_CLERK           50           
+
+       EID NAME                             SAL JID               DID           
+---------- ------------------------- ---------- ---------- ----------           
+       133 Mallin                          3300 ST_CLERK           50           
+       134 Rogers                          2900 ST_CLERK           50           
+       135 Gee                             2400 ST_CLERK           50           
+       136 Philtanker                      2200 ST_CLERK           50           
+       137 Ladwig                          3600 ST_CLERK           50           
+       138 Stiles                          3200 ST_CLERK           50           
+       139 Seo                             2700 ST_CLERK           50           
+       140 Patel                           2500 ST_CLERK           50           
+       141 Rajs                            3500 ST_CLERK           50           
+       142 Davies                          3100 ST_CLERK           50           
+       143 Matos                           2600 ST_CLERK           50           
+
+       EID NAME                             SAL JID               DID           
+---------- ------------------------- ---------- ---------- ----------           
+       144 Vargas                          2500 ST_CLERK           50           
+       145 Russell                        14000 SA_MAN             80           
+       146 Partners                       13500 SA_MAN             80           
+       147 Errazuriz                      12000 SA_MAN             80           
+       148 Cambrault                      11000 SA_MAN             80           
+       149 Zlotkey                        10500 SA_MAN             80           
+       150 Tucker                         10000 SA_REP             80           
+       151 Bernstein                       9500 SA_REP             80           
+       152 Hall                            9000 SA_REP             80           
+       153 Olsen                           8000 SA_REP             80           
+       154 Cambrault                       7500 SA_REP             80           
+
+       EID NAME                             SAL JID               DID           
+---------- ------------------------- ---------- ---------- ----------           
+       155 Tuvault                         7000 SA_REP             80           
+       156 King                           10000 SA_REP             80           
+       157 Sully                           9500 SA_REP             80           
+       158 McEwen                          9000 SA_REP             80           
+       159 Smith                           8000 SA_REP             80           
+       160 Doran                           7500 SA_REP             80           
+       161 Sewall                          7000 SA_REP             80           
+       162 Vishney                        10500 SA_REP             80           
+       163 Greene                          9500 SA_REP             80           
+       164 Marvins                         7200 SA_REP             80           
+       165 Lee                             6800 SA_REP             80           
+
+       EID NAME                             SAL JID               DID           
+---------- ------------------------- ---------- ---------- ----------           
+       166 Ande                            6400 SA_REP             80           
+       167 Banda                           6200 SA_REP             80           
+       168 Ozer                           11500 SA_REP             80           
+       169 Bloom                          10000 SA_REP             80           
+       170 Fox                             9600 SA_REP             80           
+       171 Smith                           7400 SA_REP             80           
+       172 Bates                           7300 SA_REP             80           
+       173 Kumar                           6100 SA_REP             80           
+       174 Abel                           11000 SA_REP             80           
+       175 Hutton                          8800 SA_REP             80           
+       176 Taylor                          8600 SA_REP             80           
+
+       EID NAME                             SAL JID               DID           
+---------- ------------------------- ---------- ---------- ----------           
+       177 Livingston                      8400 SA_REP             80           
+       178 Grant                           7000 SA_REP                          
+       179 Johnson                         6200 SA_REP             80           
+       180 Taylor                          3200 SH_CLERK           50           
+       181 Fleaur                          3100 SH_CLERK           50           
+       182 Sullivan                        2500 SH_CLERK           50           
+       183 Geoni                           2800 SH_CLERK           50           
+       184 Sarchand                        4200 SH_CLERK           50           
+       185 Bull                            4100 SH_CLERK           50           
+       186 Dellinger                       3400 SH_CLERK           50           
+       187 Cabrio                          3000 SH_CLERK           50           
+
+       EID NAME                             SAL JID               DID           
+---------- ------------------------- ---------- ---------- ----------           
+       188 Chung                           3800 SH_CLERK           50           
+       189 Dilly                           3600 SH_CLERK           50           
+       190 Gates                           2900 SH_CLERK           50           
+       191 Perkins                         2500 SH_CLERK           50           
+       192 Bell                            4000 SH_CLERK           50           
+       193 Everett                         3900 SH_CLERK           50           
+       194 McCain                          3200 SH_CLERK           50           
+       195 Jones                           2800 SH_CLERK           50           
+       196 Walsh                           3100 SH_CLERK           50           
+       197 Feeney                          3000 SH_CLERK           50           
+       198 OConnell                        2600 SH_CLERK           50           
+
+       EID NAME                             SAL JID               DID           
+---------- ------------------------- ---------- ---------- ----------           
+       199 Grant                           2600 SH_CLERK           50           
+       200 Whalen                          4400 AD_ASST            10           
+       201 Hartstein                      13000 MK_MAN             20           
+       202 Fay                             6000 MK_REP             20           
+       203 Mavris                          6500 HR_REP             40           
+       204 Baer                           10000 PR_REP             70           
+       205 Higgins                        12008 AC_MGR            110           
+       206 Gietz                           8300 AC_ACCOUNT        110           
+       102 king                           77000 mgr               102           
+
+108 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace procedure incdeptsal(dno number)
+  2  is
+  3  cursor insal is select eid,name from empdummy where did=dno;
+  4  begin
+  5  for rec in insal loop
+  6  incsal(rec.eid);
+  7  end loop;
+  8* end;
+SQL> /
+
+Warning: Procedure created with compilation errors.
+
+SQL> show error
+Errors for PROCEDURE INCDEPTSAL:
+
+LINE/COL ERROR                                                                  
+-------- -----------------------------------------------------------------      
+6/1      PL/SQL: Statement ignored                                              
+6/1      PLS-00201: identifier 'INCSAL' must be declared                        
+SQL> create table empdummy2 as select * from employees;
+
+Table created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create procedure delemps
+  2  is
+  3  begin
+  4  delete from empdummy2;
+  5  if sql%notfound then
+  6  raise_application_error(-20001,'no data in table to delete');
+  7  end if;
+  8* end;
+SQL> /
+
+Procedure created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace function getsal(eno number)
+  2  return number
+  3  is
+  4  salary empdummy.sal%type:=0;
+  5  begin
+  6  select sal into salary from empdummy where eid=eno;
+  7  return salary;
+  8* end;
+SQL> /
+
+Function created.
+
+SQL> select getsal(eid) from empdummy;
+ERROR:
+ORA-01422: exact fetch returns more than requested number of rows 
+ORA-06512: at "HR.GETSAL", line 6 
+
+
+
+no rows selected
+
+SQL> select getsal(eid) from empdummy
+  2  ;
+ERROR:
+ORA-01422: exact fetch returns more than requested number of rows 
+ORA-06512: at "HR.GETSAL", line 6 
+
+
+
+no rows selected
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create function curformat(cur number)
+  2  return varchar2
+  3  is 
+  4  begin
+  5  return cur|| '$';
+  6* end;
+SQL> /
+
+Function created.
+
+SQL> select curformat(sal) from empdummy;
+
+CURFORMAT(SAL)                                                                  
+--------------------------------------------------------------------------------
+24000$                                                                          
+17000$                                                                          
+17000$                                                                          
+9000$                                                                           
+6000$                                                                           
+4800$                                                                           
+4800$                                                                           
+4200$                                                                           
+12008$                                                                          
+9000$                                                                           
+8200$                                                                           
+
+CURFORMAT(SAL)                                                                  
+--------------------------------------------------------------------------------
+7700$                                                                           
+7800$                                                                           
+6900$                                                                           
+11000$                                                                          
+3100$                                                                           
+2900$                                                                           
+2800$                                                                           
+2600$                                                                           
+2500$                                                                           
+8000$                                                                           
+8200$                                                                           
+
+CURFORMAT(SAL)                                                                  
+--------------------------------------------------------------------------------
+7900$                                                                           
+6500$                                                                           
+5800$                                                                           
+3200$                                                                           
+2700$                                                                           
+2400$                                                                           
+2200$                                                                           
+3300$                                                                           
+2800$                                                                           
+2500$                                                                           
+2100$                                                                           
+
+CURFORMAT(SAL)                                                                  
+--------------------------------------------------------------------------------
+3300$                                                                           
+2900$                                                                           
+2400$                                                                           
+2200$                                                                           
+3600$                                                                           
+3200$                                                                           
+2700$                                                                           
+2500$                                                                           
+3500$                                                                           
+3100$                                                                           
+2600$                                                                           
+
+CURFORMAT(SAL)                                                                  
+--------------------------------------------------------------------------------
+2500$                                                                           
+14000$                                                                          
+13500$                                                                          
+12000$                                                                          
+11000$                                                                          
+10500$                                                                          
+10000$                                                                          
+9500$                                                                           
+9000$                                                                           
+8000$                                                                           
+7500$                                                                           
+
+CURFORMAT(SAL)                                                                  
+--------------------------------------------------------------------------------
+7000$                                                                           
+10000$                                                                          
+9500$                                                                           
+9000$                                                                           
+8000$                                                                           
+7500$                                                                           
+7000$                                                                           
+10500$                                                                          
+9500$                                                                           
+7200$                                                                           
+6800$                                                                           
+
+CURFORMAT(SAL)                                                                  
+--------------------------------------------------------------------------------
+6400$                                                                           
+6200$                                                                           
+11500$                                                                          
+10000$                                                                          
+9600$                                                                           
+7400$                                                                           
+7300$                                                                           
+6100$                                                                           
+11000$                                                                          
+8800$                                                                           
+8600$                                                                           
+
+CURFORMAT(SAL)                                                                  
+--------------------------------------------------------------------------------
+8400$                                                                           
+7000$                                                                           
+6200$                                                                           
+3200$                                                                           
+3100$                                                                           
+2500$                                                                           
+2800$                                                                           
+4200$                                                                           
+4100$                                                                           
+3400$                                                                           
+3000$                                                                           
+
+CURFORMAT(SAL)                                                                  
+--------------------------------------------------------------------------------
+3800$                                                                           
+3600$                                                                           
+2900$                                                                           
+2500$                                                                           
+4000$                                                                           
+3900$                                                                           
+3200$                                                                           
+2800$                                                                           
+3100$                                                                           
+3000$                                                                           
+2600$                                                                           
+
+CURFORMAT(SAL)                                                                  
+--------------------------------------------------------------------------------
+2600$                                                                           
+4400$                                                                           
+13000$                                                                          
+6000$                                                                           
+6500$                                                                           
+10000$                                                                          
+12008$                                                                          
+8300$                                                                           
+77000$                                                                          
+
+108 rows selected.
+
+SQL> select curformat(12000) from dual;
+
+CURFORMAT(12000)                                                                
+--------------------------------------------------------------------------------
+12000$                                                                          
+
+SQL> variable res varchar2(10)
+SQL> begin :res:=curformat(12000)
+  2  ;
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+SQL> print res;
+
+RES                                                                             
+--------------------------------                                                
+12000$                                                                          
+
+SQL> spool off;
