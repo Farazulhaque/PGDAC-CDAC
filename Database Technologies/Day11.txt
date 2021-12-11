@@ -1,0 +1,1332 @@
+SQL> set lines 200
+SQL> select * from tab;
+
+TNAME                                                                                                                            TABTYPE        CLUSTERID                                               
+-------------------------------------------------------------------------------------------------------------------------------- ------------- ----------                                               
+SALGRADE                                                                                                                         TABLE                                                                  
+DEPT80VIEW                                                                                                                       VIEW                                                                   
+DEPT60VIEW                                                                                                                       VIEW                                                                   
+ASALVIEW                                                                                                                         VIEW                                                                   
+ASALVIEW2                                                                                                                        VIEW                                                                   
+DUMMYEMP2                                                                                                                        TABLE                                                                  
+DDUMMY                                                                                                                           TABLE                                                                  
+EDUMMY                                                                                                                           TABLE                                                                  
+SALREPORS                                                                                                                        VIEW                                                                   
+TESTVIEW                                                                                                                         VIEW                                                                   
+TEST                                                                                                                             TABLE                                                                  
+
+TNAME                                                                                                                            TABTYPE        CLUSTERID                                               
+-------------------------------------------------------------------------------------------------------------------------------- ------------- ----------                                               
+D60                                                                                                                              VIEW                                                                   
+REGIONS                                                                                                                          TABLE                                                                  
+COUNTRIES                                                                                                                        TABLE                                                                  
+LOCATIONS                                                                                                                        TABLE                                                                  
+DEPARTMENTS                                                                                                                      TABLE                                                                  
+JOBS                                                                                                                             TABLE                                                                  
+EMPLOYEES                                                                                                                        TABLE                                                                  
+JOB_HISTORY                                                                                                                      TABLE                                                                  
+EMP_DETAILS_VIEW                                                                                                                 VIEW                                                                   
+FEMALEEMP                                                                                                                        TABLE                                                                  
+MALEEMP                                                                                                                          TABLE                                                                  
+
+TNAME                                                                                                                            TABTYPE        CLUSTERID                                               
+-------------------------------------------------------------------------------------------------------------------------------- ------------- ----------                                               
+LOGIN                                                                                                                            TABLE                                                                  
+DUMMYEMP                                                                                                                         TABLE                                                                  
+ONLYNAME                                                                                                                         VIEW                                                                   
+DEPT                                                                                                                             TABLE                                                                  
+EMPDUMMY                                                                                                                         TABLE                                                                  
+BIN$wezyIAGLQxmfTqbHOOUoCQ==$0                                                                                                   TABLE                                                                  
+
+28 rows selected.
+
+SQL> set pages 100
+SQL> /
+
+TNAME                                                                                                                            TABTYPE        CLUSTERID                                               
+-------------------------------------------------------------------------------------------------------------------------------- ------------- ----------                                               
+SALGRADE                                                                                                                         TABLE                                                                  
+DEPT80VIEW                                                                                                                       VIEW                                                                   
+DEPT60VIEW                                                                                                                       VIEW                                                                   
+ASALVIEW                                                                                                                         VIEW                                                                   
+ASALVIEW2                                                                                                                        VIEW                                                                   
+DUMMYEMP2                                                                                                                        TABLE                                                                  
+DDUMMY                                                                                                                           TABLE                                                                  
+EDUMMY                                                                                                                           TABLE                                                                  
+SALREPORS                                                                                                                        VIEW                                                                   
+TESTVIEW                                                                                                                         VIEW                                                                   
+TEST                                                                                                                             TABLE                                                                  
+D60                                                                                                                              VIEW                                                                   
+REGIONS                                                                                                                          TABLE                                                                  
+COUNTRIES                                                                                                                        TABLE                                                                  
+LOCATIONS                                                                                                                        TABLE                                                                  
+DEPARTMENTS                                                                                                                      TABLE                                                                  
+JOBS                                                                                                                             TABLE                                                                  
+EMPLOYEES                                                                                                                        TABLE                                                                  
+JOB_HISTORY                                                                                                                      TABLE                                                                  
+EMP_DETAILS_VIEW                                                                                                                 VIEW                                                                   
+FEMALEEMP                                                                                                                        TABLE                                                                  
+MALEEMP                                                                                                                          TABLE                                                                  
+LOGIN                                                                                                                            TABLE                                                                  
+DUMMYEMP                                                                                                                         TABLE                                                                  
+ONLYNAME                                                                                                                         VIEW                                                                   
+DEPT                                                                                                                             TABLE                                                                  
+EMPDUMMY                                                                                                                         TABLE                                                                  
+BIN$wezyIAGLQxmfTqbHOOUoCQ==$0                                                                                                   TABLE                                                                  
+
+28 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  begin
+  2  for row in select last_name from employees loop
+  3  dbms_output.put_line(row.last_name);
+  4  end loop;
+  5* end;
+SQL> /
+for row in select last_name from employees loop
+           *
+ERROR at line 2:
+ORA-06550: line 2, column 12: 
+PLS-00103: Encountered the symbol "SELECT" when expecting one of the following: 
+( - + case mod new not null <an identifier> 
+<a double-quoted delimited-identifier> <a bind variable> 
+reverse continue avg count current exists max min prior sql 
+stddev sum values variance execute forall merge 
+<a SQL statement> standard time timestamp interval date 
+PAIRS_ REPEAT_ 
+<a string literal with character set specification> 
+<a number> <a single-quoted SQL string> pipe 
+<an alternatively-quoted s 
+ORA-06550: line 3, column 1: 
+PLS-00103: Encountered the symbol "DBMS_OUTPUT" when expecting one of the following: 
+) , for group having intersect minus order start union where 
+connect 
+The symbol "having" was substituted for "DBMS_OUTPUT" to continue. 
+ORA-06550: line 3, column 36: 
+PLS-00103: Encountered the symbol ";" when expecting one of the following: 
+. ( ) * % & = - + < / > at for in is mod remainder not rem 
+<an exponent (**)> <> or != or ~= >= <= <> and or like like2 
+like4 likec between group having intersect minus order start 
+union where connect || multiset member submultiset 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  begin
+  2  for row in (select last_name from employees) loop
+  3  dbms_output.put_line(row.last_name);
+  4  end loop;
+  5* end;
+SQL> /
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on
+SQL> /
+King                                                                                                                                                                                                    
+Kochhar                                                                                                                                                                                                 
+De Haan                                                                                                                                                                                                 
+Hunold                                                                                                                                                                                                  
+Ernst                                                                                                                                                                                                   
+Austin                                                                                                                                                                                                  
+Pataballa                                                                                                                                                                                               
+Lorentz                                                                                                                                                                                                 
+Greenberg                                                                                                                                                                                               
+Faviet                                                                                                                                                                                                  
+Chen                                                                                                                                                                                                    
+Sciarra                                                                                                                                                                                                 
+Urman                                                                                                                                                                                                   
+Popp                                                                                                                                                                                                    
+Raphaely                                                                                                                                                                                                
+Khoo                                                                                                                                                                                                    
+Baida                                                                                                                                                                                                   
+Tobias                                                                                                                                                                                                  
+Himuro                                                                                                                                                                                                  
+Colmenares                                                                                                                                                                                              
+Weiss                                                                                                                                                                                                   
+Fripp                                                                                                                                                                                                   
+Kaufling                                                                                                                                                                                                
+Vollman                                                                                                                                                                                                 
+Mourgos                                                                                                                                                                                                 
+Nayer                                                                                                                                                                                                   
+Mikkilineni                                                                                                                                                                                             
+Landry                                                                                                                                                                                                  
+Markle                                                                                                                                                                                                  
+Bissot                                                                                                                                                                                                  
+Atkinson                                                                                                                                                                                                
+Marlow                                                                                                                                                                                                  
+Olson                                                                                                                                                                                                   
+Mallin                                                                                                                                                                                                  
+Rogers                                                                                                                                                                                                  
+Gee                                                                                                                                                                                                     
+Philtanker                                                                                                                                                                                              
+Ladwig                                                                                                                                                                                                  
+Stiles                                                                                                                                                                                                  
+Seo                                                                                                                                                                                                     
+Patel                                                                                                                                                                                                   
+Rajs                                                                                                                                                                                                    
+Davies                                                                                                                                                                                                  
+Matos                                                                                                                                                                                                   
+Vargas                                                                                                                                                                                                  
+Russell                                                                                                                                                                                                 
+Partners                                                                                                                                                                                                
+Errazuriz                                                                                                                                                                                               
+Cambrault                                                                                                                                                                                               
+Zlotkey                                                                                                                                                                                                 
+Tucker                                                                                                                                                                                                  
+Bernstein                                                                                                                                                                                               
+Hall                                                                                                                                                                                                    
+Olsen                                                                                                                                                                                                   
+Cambrault                                                                                                                                                                                               
+Tuvault                                                                                                                                                                                                 
+King                                                                                                                                                                                                    
+Sully                                                                                                                                                                                                   
+McEwen                                                                                                                                                                                                  
+Smith                                                                                                                                                                                                   
+Doran                                                                                                                                                                                                   
+Sewall                                                                                                                                                                                                  
+Vishney                                                                                                                                                                                                 
+Greene                                                                                                                                                                                                  
+Marvins                                                                                                                                                                                                 
+Lee                                                                                                                                                                                                     
+Ande                                                                                                                                                                                                    
+Banda                                                                                                                                                                                                   
+Ozer                                                                                                                                                                                                    
+Bloom                                                                                                                                                                                                   
+Fox                                                                                                                                                                                                     
+Smith                                                                                                                                                                                                   
+Bates                                                                                                                                                                                                   
+Kumar                                                                                                                                                                                                   
+Abel                                                                                                                                                                                                    
+Hutton                                                                                                                                                                                                  
+Taylor                                                                                                                                                                                                  
+Livingston                                                                                                                                                                                              
+Grant                                                                                                                                                                                                   
+Johnson                                                                                                                                                                                                 
+Taylor                                                                                                                                                                                                  
+Fleaur                                                                                                                                                                                                  
+Sullivan                                                                                                                                                                                                
+Geoni                                                                                                                                                                                                   
+Sarchand                                                                                                                                                                                                
+Bull                                                                                                                                                                                                    
+Dellinger                                                                                                                                                                                               
+Cabrio                                                                                                                                                                                                  
+Chung                                                                                                                                                                                                   
+Dilly                                                                                                                                                                                                   
+Gates                                                                                                                                                                                                   
+Perkins                                                                                                                                                                                                 
+Bell                                                                                                                                                                                                    
+Everett                                                                                                                                                                                                 
+McCain                                                                                                                                                                                                  
+Jones                                                                                                                                                                                                   
+Walsh                                                                                                                                                                                                   
+Feeney                                                                                                                                                                                                  
+OConnell                                                                                                                                                                                                
+Grant                                                                                                                                                                                                   
+Whalen                                                                                                                                                                                                  
+Hartstein                                                                                                                                                                                               
+Fay                                                                                                                                                                                                     
+Mavris                                                                                                                                                                                                  
+Baer                                                                                                                                                                                                    
+Higgins                                                                                                                                                                                                 
+Gietz                                                                                                                                                                                                   
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  begin
+  2  for row in (select last_name,salary from employees) loop
+  3  dbms_output.put_line('last name:'||row.last_name||' salary'||row.salary);
+  4  end loop;
+  5* end;
+SQL> /
+last name:King salary24000                                                                                                                                                                              
+last name:Kochhar salary17000                                                                                                                                                                           
+last name:De Haan salary17000                                                                                                                                                                           
+last name:Hunold salary9000                                                                                                                                                                             
+last name:Ernst salary6000                                                                                                                                                                              
+last name:Austin salary4800                                                                                                                                                                             
+last name:Pataballa salary4800                                                                                                                                                                          
+last name:Lorentz salary4200                                                                                                                                                                            
+last name:Greenberg salary12008                                                                                                                                                                         
+last name:Faviet salary9000                                                                                                                                                                             
+last name:Chen salary8200                                                                                                                                                                               
+last name:Sciarra salary7700                                                                                                                                                                            
+last name:Urman salary7800                                                                                                                                                                              
+last name:Popp salary6900                                                                                                                                                                               
+last name:Raphaely salary11000                                                                                                                                                                          
+last name:Khoo salary3100                                                                                                                                                                               
+last name:Baida salary2900                                                                                                                                                                              
+last name:Tobias salary2800                                                                                                                                                                             
+last name:Himuro salary2600                                                                                                                                                                             
+last name:Colmenares salary2500                                                                                                                                                                         
+last name:Weiss salary8000                                                                                                                                                                              
+last name:Fripp salary8200                                                                                                                                                                              
+last name:Kaufling salary7900                                                                                                                                                                           
+last name:Vollman salary6500                                                                                                                                                                            
+last name:Mourgos salary5800                                                                                                                                                                            
+last name:Nayer salary3200                                                                                                                                                                              
+last name:Mikkilineni salary2700                                                                                                                                                                        
+last name:Landry salary2400                                                                                                                                                                             
+last name:Markle salary2200                                                                                                                                                                             
+last name:Bissot salary3300                                                                                                                                                                             
+last name:Atkinson salary2800                                                                                                                                                                           
+last name:Marlow salary2500                                                                                                                                                                             
+last name:Olson salary2100                                                                                                                                                                              
+last name:Mallin salary3300                                                                                                                                                                             
+last name:Rogers salary2900                                                                                                                                                                             
+last name:Gee salary2400                                                                                                                                                                                
+last name:Philtanker salary2200                                                                                                                                                                         
+last name:Ladwig salary3600                                                                                                                                                                             
+last name:Stiles salary3200                                                                                                                                                                             
+last name:Seo salary2700                                                                                                                                                                                
+last name:Patel salary2500                                                                                                                                                                              
+last name:Rajs salary3500                                                                                                                                                                               
+last name:Davies salary3100                                                                                                                                                                             
+last name:Matos salary2600                                                                                                                                                                              
+last name:Vargas salary2500                                                                                                                                                                             
+last name:Russell salary14000                                                                                                                                                                           
+last name:Partners salary13500                                                                                                                                                                          
+last name:Errazuriz salary12000                                                                                                                                                                         
+last name:Cambrault salary11000                                                                                                                                                                         
+last name:Zlotkey salary10500                                                                                                                                                                           
+last name:Tucker salary10000                                                                                                                                                                            
+last name:Bernstein salary9500                                                                                                                                                                          
+last name:Hall salary9000                                                                                                                                                                               
+last name:Olsen salary8000                                                                                                                                                                              
+last name:Cambrault salary7500                                                                                                                                                                          
+last name:Tuvault salary7000                                                                                                                                                                            
+last name:King salary10000                                                                                                                                                                              
+last name:Sully salary9500                                                                                                                                                                              
+last name:McEwen salary9000                                                                                                                                                                             
+last name:Smith salary8000                                                                                                                                                                              
+last name:Doran salary7500                                                                                                                                                                              
+last name:Sewall salary7000                                                                                                                                                                             
+last name:Vishney salary10500                                                                                                                                                                           
+last name:Greene salary9500                                                                                                                                                                             
+last name:Marvins salary7200                                                                                                                                                                            
+last name:Lee salary6800                                                                                                                                                                                
+last name:Ande salary6400                                                                                                                                                                               
+last name:Banda salary6200                                                                                                                                                                              
+last name:Ozer salary11500                                                                                                                                                                              
+last name:Bloom salary10000                                                                                                                                                                             
+last name:Fox salary9600                                                                                                                                                                                
+last name:Smith salary7400                                                                                                                                                                              
+last name:Bates salary7300                                                                                                                                                                              
+last name:Kumar salary6100                                                                                                                                                                              
+last name:Abel salary11000                                                                                                                                                                              
+last name:Hutton salary8800                                                                                                                                                                             
+last name:Taylor salary8600                                                                                                                                                                             
+last name:Livingston salary8400                                                                                                                                                                         
+last name:Grant salary7000                                                                                                                                                                              
+last name:Johnson salary6200                                                                                                                                                                            
+last name:Taylor salary3200                                                                                                                                                                             
+last name:Fleaur salary3100                                                                                                                                                                             
+last name:Sullivan salary2500                                                                                                                                                                           
+last name:Geoni salary2800                                                                                                                                                                              
+last name:Sarchand salary4200                                                                                                                                                                           
+last name:Bull salary4100                                                                                                                                                                               
+last name:Dellinger salary3400                                                                                                                                                                          
+last name:Cabrio salary3000                                                                                                                                                                             
+last name:Chung salary3800                                                                                                                                                                              
+last name:Dilly salary3600                                                                                                                                                                              
+last name:Gates salary2900                                                                                                                                                                              
+last name:Perkins salary2500                                                                                                                                                                            
+last name:Bell salary4000                                                                                                                                                                               
+last name:Everett salary3900                                                                                                                                                                            
+last name:McCain salary3200                                                                                                                                                                             
+last name:Jones salary2800                                                                                                                                                                              
+last name:Walsh salary3100                                                                                                                                                                              
+last name:Feeney salary3000                                                                                                                                                                             
+last name:OConnell salary2600                                                                                                                                                                           
+last name:Grant salary2600                                                                                                                                                                              
+last name:Whalen salary4400                                                                                                                                                                             
+last name:Hartstein salary13000                                                                                                                                                                         
+last name:Fay salary6000                                                                                                                                                                                
+last name:Mavris salary6500                                                                                                                                                                             
+last name:Baer salary10000                                                                                                                                                                              
+last name:Higgins salary12008                                                                                                                                                                           
+last name:Gietz salary8300                                                                                                                                                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  begin
+  2  for row in (select last_name,salary from employees) loop
+  3  dbms_output.put_line('last name:'||row.last_name||' salary'||row.salary);
+  4  end loop;
+  5* end;
+SQL> clear sceen
+SP2-0158: unknown CLEAR option "sceen"
+SQL> clear screen
+
+SQL> drop table test;
+
+Table dropped.
+
+SQL> create table empdet(id number(3),name varchar2(20),did number(3));
+
+Table created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  begin
+  2  update empdet set did=100 where id=101;
+  3  dbms_output.put_line(sql%rowcount);
+  4* end;
+  5  /
+0                                                                                                                                                                                                       
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  begin
+  2  update empdet set did=100 where id=101;
+  3  if sql%notfound then
+  4  insert into empdet values(100,'james',101);
+  5  end if;
+  6* end;
+  7  /
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from empdet;
+
+        ID NAME                        DID                                                                                                                                                              
+---------- -------------------- ----------                                                                                                                                                              
+       100 james                       101                                                                                                                                                              
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from empdet
+SQL> ed
+Wrote file afiedt.buf
+
+  1  begin
+  2  update empdet set did=50 where id=100;
+  3  if sql%notfound then
+  4  insert into empdet values(100,'james',101);
+  5  end if;
+  6* end;
+SQL> /
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from empdet;
+
+        ID NAME                        DID                                                                                                                                                              
+---------- -------------------- ----------                                                                                                                                                              
+       100 james                        50                                                                                                                                                              
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from empdet
+SQL> drop table empdet;
+
+Table dropped.
+
+SQL> create table empdet(id number(3),name varchar2(20),sal decimal(8,2));
+
+Table created.
+
+SQL> insert into empdet(101,'james',2000);
+insert into empdet(101,'james',2000)
+                   *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword 
+
+
+SQL> insert into empdet values(101,'james',2000);
+
+1 row created.
+
+SQL> insert into empdet values(102,'smith',1000);
+
+1 row created.
+
+SQL> insert into empdet values(103,'neena',700);
+
+1 row created.
+
+SQL> insert into empdet values(104,'king',3000);
+
+1 row created.
+
+SQL> select * from empdet;
+
+        ID NAME                        SAL                                                                                                                                                              
+---------- -------------------- ----------                                                                                                                                                              
+       101 james                      2000                                                                                                                                                              
+       102 smith                      1000                                                                                                                                                              
+       103 neena                       700                                                                                                                                                              
+       104 king                       3000                                                                                                                                                              
+
+SQL> create table status(stat varchar2(200));
+
+Table created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  begin
+  2  delete from empdet where sal<5000;
+  3  if sql%rowcount>3 then
+  4  insert into status values('most of the emp ean less than 5000');
+  5  end if;
+  6* end;
+SQL> /
+
+PL/SQL procedure successfully completed.
+
+SQL> select * deom empdet;
+select * deom empdet
+         *
+ERROR at line 1:
+ORA-00923: FROM keyword not found where expected 
+
+
+SQL> select * from empdet;
+
+no rows selected
+
+SQL> select * from status;
+
+STAT                                                                                                                                                                                                    
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+most of the emp ean less than 5000                                                                                                                                                                      
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from status
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare 
+  2  num1 number(4):=10;
+  3  num2 number(4):=2;
+  4  res number(4);
+  5  begin
+  6  res:=num1/num2;
+  7  dbms_output.put_line('output is:'||res);
+  8  exception
+  9  when zero_divide then
+ 10  dbms_output.put_line('zero division error');
+ 11  when others then
+ 12  dbms_output.put_line('some other exception')
+ 13* end;
+SQL> /
+end;
+*
+ERROR at line 13:
+ORA-06550: line 13, column 1: 
+PLS-00103: Encountered the symbol "END" when expecting one of the following: 
+:= . ( % ; 
+The symbol ";" was substituted for "END" to continue. 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare 
+  2  num1 number(4):=10;
+  3  num2 number(4):=2;
+  4  res number(4);
+  5  begin
+  6  res:=num1/num2;
+  7  dbms_output.put_line('output is:'||res);
+  8  exception
+  9  when zero_divide then
+ 10  dbms_output.put_line('zero division error');
+ 11  when others then
+ 12  dbms_output.put_line('some other exception');
+ 13* end;
+SQL> /
+output is:5                                                                                                                                                                                             
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare 
+  2  num1 number(4):=10;
+  3  num2 number(4):=0;
+  4  res number(4);
+  5  begin
+  6  res:=num1/num2;
+  7  dbms_output.put_line('output is:'||res);
+  8  exception
+  9  when zero_divide then
+ 10  dbms_output.put_line('zero division error');
+ 11  when others then
+ 12  dbms_output.put_line('some other exception');
+ 13* end;
+SQL> /
+zero division error                                                                                                                                                                                     
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare 
+  2  num1 number(4):=10;
+  3  num2 number(4):=0;
+  4  res number(4);
+  5  begin
+  6  res:=num1/num2;
+  7* end;
+SQL> /
+declare 
+*
+ERROR at line 1:
+ORA-01476: divisor is equal to zero 
+ORA-06512: at line 6 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare 
+  2  num1 number(4):=10;
+  3  num2 number(4):=0;
+  4  res number(4);
+  5  begin
+  6  res:=num1/num2;
+  7  dbms_output.put_line('output is:'||res);
+  8  exception
+  9  when zero_divide then
+ 10  dbms_output.put_line('zero division error');
+ 11  when others then
+ 12  dbms_output.put_line('some other exception');
+ 13* end;
+SQL> /
+zero division error                                                                                                                                                                                     
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare 
+  2  num1 number(4):=10;
+  3  num2 number(4):=0;
+  4  res number(4);
+  5  begin
+  6  res:=num1/num2;
+  7  dbms_output.put_line('output is:'||res);
+  8  exception
+  9  when zero_divide then
+ 10  dbms_output.put_line('zero division error');
+ 11  when others then
+ 12  dbms_output.put_line('some other exception');
+ 13* end;
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare 
+  2  num1 number(4):=10;
+  3  num2 number(4):=5;
+  4  res number(4);
+  5  name employees.last_name%type;
+  6  begin
+  7  res:=num1/num2;
+  8  dbms_output.put_line('output is:'||res);
+  9  select last_name into name from employees;
+ 10  exception
+ 11  when zero_divide then
+ 12  dbms_output.put_line('zero division error');
+ 13  when others then
+ 14  dbms_output.put_line('some other exception');
+ 15* end;
+SQL> /
+output is:2                                                                                                                                                                                             
+some other exception                                                                                                                                                                                    
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare 
+  2  num1 number(4):=10;
+  3  num2 number(4):=5;
+  4  res number(4);
+  5  name employees.last_name%type;
+  6  begin
+  7  res:=num1/num2;
+  8  dbms_output.put_line('output is:'||res);
+  9  select last_name into name from employees;
+ 10  exception
+ 11  when zero_divide then
+ 12  dbms_output.put_line('zero division error');
+ 13* end;
+SQL> /
+output is:2                                                                                                                                                                                             
+declare 
+*
+ERROR at line 1:
+ORA-01422: exact fetch returns more than requested number of rows 
+ORA-06512: at line 9 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare 
+  2  num1 number(4):=10;
+  3  num2 number(4):=5;
+  4  res number(4);
+  5  name employees.last_name%type;
+  6  begin
+  7  res:=num1/num2;
+  8  dbms_output.put_line('output is:'||res);
+  9  select last_name into name from employees;
+ 10  exception
+ 11  when too_many_rows then
+ 12  dbms_output.put_line('zero division error');
+ 13* end;
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare 
+  2  num1 number(4):=10;
+  3  num2 number(4):=5;
+  4  res number(4);
+  5  name employees.last_name%type;
+  6  begin
+  7  res:=num1/num2;
+  8  dbms_output.put_line('output is:'||res);
+  9  select last_name into name from employees;
+ 10  exception
+ 11  when too_many_rows then
+ 12  dbms_output.put_line('use cursor instead');
+ 13* end;
+SQL> /
+output is:2                                                                                                                                                                                             
+use cursor instead                                                                                                                                                                                      
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare 
+  2  num1 number(4):=10;
+  3  num2 number(4):=0;
+  4  res number(4);
+  5  name employees.last_name%type;
+  6  begin
+  7  res:=num1/num2;
+  8  dbms_output.put_line('output is:'||res);
+  9  select last_name into name from employees;
+ 10  exception
+ 11  when too_many_rows then
+ 12  dbms_output.put_line('use cursor instead');
+ 13* end;
+SQL> /
+declare 
+*
+ERROR at line 1:
+ORA-01476: divisor is equal to zero 
+ORA-06512: at line 7 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare 
+  2  num1 number(4):=10;
+  3  num2 number(4):=0;
+  4  res number(4);
+  5  name employees.last_name%type;
+  6  begin
+  7  res:=num1/num2;
+  8  dbms_output.put_line('output is:'||res);
+  9  select last_name into name from employees;
+ 10  exception
+ 11  when zero_divide then
+ 12  dbms_output.put_line('zero divide error');
+ 13  when too_many_rows then
+ 14  dbms_output.put_line('use cursor ');
+ 15  when others then
+ 16  dbms_output.put_line('some other exception raised');
+ 17* end;
+SQL> /
+zero divide error                                                                                                                                                                                       
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare 
+  2  num1 number(4):=10;
+  3  num2 number(4):=1;
+  4  res number(4);
+  5  name employees.last_name%type;
+  6  begin
+  7  res:=num1/num2;
+  8  dbms_output.put_line('output is:'||res);
+  9  select last_name into name from employees;
+ 10  exception
+ 11  when zero_divide then
+ 12  dbms_output.put_line('zero divide error');
+ 13  when too_many_rows then
+ 14  dbms_output.put_line('use cursor ');
+ 15  when others then
+ 16  dbms_output.put_line('some other exception raised');
+ 17* end;
+SQL> /
+output is:10                                                                                                                                                                                            
+use cursor                                                                                                                                                                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare 
+  2  num1 number(4):=10;
+  3  num2 number(4):=1;
+  4  res number(4);
+  5  name employees.last_name%type;
+  6  begin
+  7  res:=num1/num2;
+  8  dbms_output.put_line('output is:'||res);
+  9  select last_name into name from employees;
+ 10  exception
+ 11  when zero_divide then
+ 12  dbms_output.put_line('zero divide error');
+ 13  when too_many_rows then
+ 14  dbms_output.put_line('use cursor ');
+ 15  when others then
+ 16  dbms_output.put_line('some other exception raised');
+ 17* end;
+ 18  
+ 19  /
+output is:10                                                                                                                                                                                            
+use cursor                                                                                                                                                                                              
+
+PL/SQL procedure successfully completed.
+
+SQL> drop tables emp;
+drop tables emp
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option 
+
+
+SQL> drop table emp;
+drop table emp
+           *
+ERROR at line 1:
+ORA-00942: table or view does not exist 
+
+
+SQL> drop table dept;
+
+Table dropped.
+
+SQL> create table dept(did number(3) primary key,dname varchar2(10),loc varchar2(10));
+
+Table created.
+
+SQL> create table emp(eid number(3) primary key,ename varchar2(10),did number(3) refrences dept(did) );
+create table emp(eid number(3) primary key,ename varchar2(10),did number(3) refrences dept(did) )
+                                                                            *
+ERROR at line 1:
+ORA-00907: missing right parenthesis 
+
+
+SQL> create table emp(eid number(3) primary key,ename varchar2(10),did number(3) references dept(did) );
+
+Table created.
+
+SQL> insert into emp values(101,'james',10);
+insert into emp values(101,'james',10)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (HR.SYS_C008635) violated - parent key not found 
+
+
+SQL> insert into dept values(10,'cse','noida');
+
+1 row created.
+
+SQL> insert into dept values(20,'it','delhi');
+
+1 row created.
+
+SQL> select * from dept;
+
+       DID DNAME      LOC                                                                                                                                                                               
+---------- ---------- ----------                                                                                                                                                                        
+        10 cse        noida                                                                                                                                                                             
+        20 it         delhi                                                                                                                                                                             
+
+SQL> insert into emp values(101,'james',10);
+
+1 row created.
+
+SQL> insert into emp values(102,'neena',10);
+
+1 row created.
+
+SQL> insert into emp values(103,'blake',20);
+
+1 row created.
+
+SQL> select * from dept;
+
+       DID DNAME      LOC                                                                                                                                                                               
+---------- ---------- ----------                                                                                                                                                                        
+        10 cse        noida                                                                                                                                                                             
+        20 it         delhi                                                                                                                                                                             
+
+SQL> select * from emp;;
+select * from emp;
+                 *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select * from dept;
+
+       DID DNAME      LOC                                                                                                                                                                               
+---------- ---------- ----------                                                                                                                                                                        
+        10 cse        noida                                                                                                                                                                             
+        20 it         delhi                                                                                                                                                                             
+
+SQL> select * from emp;
+
+       EID ENAME             DID                                                                                                                                                                        
+---------- ---------- ----------                                                                                                                                                                        
+       101 james              10                                                                                                                                                                        
+       102 neena              10                                                                                                                                                                        
+       103 blake              20                                                                                                                                                                        
+
+SQL> delete * from dept;
+delete * from dept
+       *
+ERROR at line 1:
+ORA-00903: invalid table name 
+
+
+SQL> delete  from dept;
+delete  from dept
+*
+ERROR at line 1:
+ORA-02292: integrity constraint (HR.SYS_C008635) violated - child record found 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  begin
+  2  delete from dept;
+  3* end;
+SQL> /
+begin
+*
+ERROR at line 1:
+ORA-02292: integrity constraint (HR.SYS_C008635) violated - child record found 
+ORA-06512: at line 2 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  Employee_Remaning  exception;
+  3  pragma exception_init(Employee_Remaning,-2292); 
+  4  begin
+  5  delete from dept;
+  6  exception 
+  7  when Employee_Remaning then
+  8  dbms_output.put_line('related employees are in emp table');
+  9* end;
+SQL> /
+related employees are in emp table                                                                                                                                                                      
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  Employee_Remaning  exception;
+  3  pragma exception_init(Employee_Remaning,-2292); 
+  4  Dept_Not_Avail exception;
+  5  pragma exception_init(Dept_Not_Avail,-2291); 
+  6  begin
+  7  delete from dept where did=30;
+  8  insert into emp values(105,'paul',30);
+  9  exception 
+ 10  when Employee_Remaning then
+ 11  dbms_output.put_line('related employees are in emp table');
+ 12  when Dept_Not_Avail then
+ 13  dbms_output.put_line('no such department');
+ 14* end;
+ 15  ed
+ 16  /
+ed
+*
+ERROR at line 15:
+ORA-06550: line 15, column 1: 
+PLS-00103: Encountered the symbol "ED" The symbol "ED" was ignored. 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  Employee_Remaning  exception;
+  3  pragma exception_init(Employee_Remaning,-2292); 
+  4  Dept_Not_Avail exception;
+  5  pragma exception_init(Dept_Not_Avail,-2291); 
+  6  begin
+  7  delete from dept where did=30;
+  8  insert into emp values(105,'paul',30);
+  9  exception 
+ 10  when Employee_Remaning then
+ 11  dbms_output.put_line('related employees are in emp table');
+ 12  when Dept_Not_Avail then
+ 13  dbms_output.put_line('no such department');
+ 14  end;
+ 15* ed
+SQL> select * from dept;
+
+       DID DNAME      LOC                                                                                                                                                                               
+---------- ---------- ----------                                                                                                                                                                        
+        10 cse        noida                                                                                                                                                                             
+        20 it         delhi                                                                                                                                                                             
+
+SQL> select * from emp;
+
+       EID ENAME             DID                                                                                                                                                                        
+---------- ---------- ----------                                                                                                                                                                        
+       101 james              10                                                                                                                                                                        
+       102 neena              10                                                                                                                                                                        
+       103 blake              20                                                                                                                                                                        
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  Employee_Remaning  exception;
+  3  pragma exception_init(Employee_Remaning,-2292); 
+  4  Dept_Not_Avail exception;
+  5  pragma exception_init(Dept_Not_Avail,-2291); 
+  6  begin
+  7  delete from dept where did=30;
+  8  insert into emp values(105,'paul',30);
+  9  exception 
+ 10  when Employee_Remaning then
+ 11  dbms_output.put_line('related employees are in emp table');
+ 12  when Dept_Not_Avail then
+ 13  dbms_output.put_line('no such department');
+ 14* end;
+ 15  /
+no such department                                                                                                                                                                                      
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  Employee_Remaning  exception;
+  3  pragma exception_init(Employee_Remaning,-2292); 
+  4  Dept_Not_Avail exception;
+  5  pragma exception_init(Dept_Not_Avail,-2291); 
+  6  begin
+  7  delete from dept where did=30;
+  8  insert into emp values(105,'paul',30);
+  9  exception 
+ 10  when Employee_Remaning then
+ 11  dbms_output.put_line('related employees are in emp table');
+ 12  when Dept_Not_Avail then
+ 13  dbms_output.put_line('no such department');
+ 14* end;
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  Employee_Remaning  exception;
+  3  pragma exception_init(Employee_Remaning,-2292); 
+  4  Dept_Not_Avail exception;
+  5  pragma exception_init(Dept_Not_Avail,-2291); 
+  6  begin
+  7  delete from dept where did=30;
+  8  insert into emp values(105,'paul',30);
+  9  exception 
+ 10  when Employee_Remaning then
+ 11  dbms_output.put_line('related employees are in emp table');
+ 12  when Dept_Not_Avail then
+ 13  dbms_output.put_line('no such department');
+ 14* end;
+SQL> create table errorDetails(number(6),msg varchar2(100));
+create table errorDetails(number(6),msg varchar2(100))
+                          *
+ERROR at line 1:
+ORA-00904: : invalid identifier 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* create table errorDetails(number(6),msg varchar2(100))
+SQL> ed
+Wrote file afiedt.buf
+
+  1* create table errorDetails(errnum number(6),msg varchar2(100))
+SQL> /
+
+Table created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  errno number(6);
+  3  msg varchar2(100);
+  4  begin
+  5  delete  from dept;
+  6  exception
+  7  when others then
+  8  errno:=sqlcode;
+  9  msg:=sqlerrm;
+ 10  insert into errorDetails values(errno,msg);
+ 11* end;
+SQL> /
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from errordetails;
+
+    ERRNUM MSG                                                                                                                                                                                          
+---------- ----------------------------------------------------------------------------------------------------                                                                                         
+     -2292 ORA-02292: integrity constraint (HR.SYS_C008635) violated - child record found                                                                                                               
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from errordetails
+SQL> 
+SQL> 
+SQL> desc dept;
+ Name                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------- -------- ----------------------------------------------------------------------------
+ DID                                                                                                               NOT NULL NUMBER(3)
+ DNAME                                                                                                                      VARCHAR2(10)
+ LOC                                                                                                                        VARCHAR2(10)
+
+SQL> select * from dept;
+
+       DID DNAME      LOC                                                                                                                                                                               
+---------- ---------- ----------                                                                                                                                                                        
+        10 cse        noida                                                                                                                                                                             
+        20 it         delhi                                                                                                                                                                             
+
+SQL> update dept set dname='ee' where did=30;
+
+0 rows updated.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  No_Such_Department exception
+  3  update dept set dname='ee' where did=30
+  4  if sql%notfound then
+  5  raise No_Such_Department;
+  6  exception
+  7  when No_Such_Department then
+  8  dbms_output.put_line('Dept is not in company')
+  9* end;
+SQL> /
+update dept set dname='ee' where did=30
+*
+ERROR at line 3:
+ORA-06550: line 3, column 1: 
+PLS-00103: Encountered the symbol "UPDATE" when expecting one of the following: 
+; 
+ORA-06550: line 4, column 1: 
+PLS-00103: Encountered the symbol "IF" when expecting one of the following: 
+* & - + ; / at mod remainder rem return returning 
+<an exponent (**)> and or || multiset 
+ORA-06550: line 6, column 1: 
+PLS-00103: Encountered the symbol "EXCEPTION" when expecting one of the following: 
+( begin case declare else elsif end exit for goto if loop mod 
+null pragma raise return select update while with 
+<an identifier> <a double-quoted delimited-identifier> 
+<a bind variable> << continue close current delete fetch lock 
+insert open rollback savepoint set sql execute commit forall 
+merge standard pipe purge json_object 
+ORA-06550: line 9, column 1: 
+PLS-00103: Encountered the symbol "END" when expecting one of the following: 
+:= . ( % ; 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  No_Such_Department exception
+  3  begin
+  4  update dept set dname='ee' where did=30
+  5  if sql%notfound then
+  6  raise No_Such_Department;
+  7  exception
+  8  when No_Such_Department then
+  9  dbms_output.put_line('Dept is not in company')
+ 10* end;
+SQL> /
+begin
+*
+ERROR at line 3:
+ORA-06550: line 3, column 1: 
+PLS-00103: Encountered the symbol "BEGIN" when expecting one of the following: 
+; 
+The symbol ";" was substituted for "BEGIN" to continue. 
+ORA-06550: line 5, column 1: 
+PLS-00103: Encountered the symbol "IF" when expecting one of the following: 
+* & - + ; / at mod remainder rem return returning 
+<an exponent (**)> and or || multiset 
+The symbol ";" was substituted for "IF" to continue. 
+ORA-06550: line 7, column 1: 
+PLS-00103: Encountered the symbol "EXCEPTION" when expecting one of the following: 
+( begin case declare else elsif end exit for goto if loop mod 
+null pragma raise return select update while with 
+<an identifier> <a double-quoted delimited-identifier> 
+<a bind variable> << continue close current delete fetch lock 
+insert open rollback savepoint set sql execute commit forall 
+merge standard pipe purge json_object 
+ORA-06550: line 10, column 1: 
+PLS-00103: Encountered the symbol "END" when expecting one of the following: 
+:= . ( % ; 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  No_Such_Department exception;
+  3  begin
+  4  update dept set dname='ee' where did=30;
+  5  if sql%notfound then
+  6  raise No_Such_Department;
+  7  exception
+  8  when No_Such_Department then
+  9  dbms_output.put_line('Dept is not in company');
+ 10* end;
+SQL> /
+exception
+*
+ERROR at line 7:
+ORA-06550: line 7, column 1: 
+PLS-00103: Encountered the symbol "EXCEPTION" when expecting one of the following: 
+( begin case declare else elsif end exit for goto if loop mod 
+null pragma raise return select update while with 
+<an identifier> <a double-quoted delimited-identifier> 
+<a bind variable> << continue close current delete fetch lock 
+insert open rollback savepoint set sql execute commit forall 
+merge standard pipe purge json_object 
+ORA-06550: line 10, column 4: 
+PLS-00103: Encountered the symbol "end-of-file" when expecting one of the following: 
+end not pragma final instantiable persistable order 
+overriding static member constructor map 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  No_Such_Department exception;
+  3  begin
+  4  update dept set dname='ee' where did=30;
+  5  if sql%notfound then
+  6  raise No_Such_Department;
+  7  end if;
+  8  exception
+  9  when No_Such_Department then
+ 10  dbms_output.put_line('Dept is not in company');
+ 11* end;
+SQL> /
+Dept is not in company                                                                                                                                                                                  
+
+PL/SQL procedure successfully completed.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  No_Such_Department exception;
+  3  pragma exception_init(No_Such_Department,-20001);
+  4  begin
+  5  update dept set dname='ee' where did=30;
+  6  if sql%notfound then
+  7  raise No_Such_Department;
+  8  end if;
+  9* end;
+SQL> /
+declare
+*
+ERROR at line 1:
+ORA-20001:  
+ORA-06512: at line 7 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  No_Such_Department exception;
+  3  begin
+  4  update dept set dname='ee' where did=30;
+  5  if sql%notfound then
+  6  raise No_Such_Department;
+  7  end if;
+  8* end;
+SQL> /
+declare
+*
+ERROR at line 1:
+ORA-06510: PL/SQL: unhandled user-defined exception 
+ORA-06512: at line 6 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  declare
+  2  No_Such_Department exception;
+  3  begin
+  4  update dept set dname='ee' where did=30;
+  5  if sql%notfound then
+  6  raise No_Such_Department;
+  7  end if;
+  8* end;
+SQL> /
+declare
+*
+ERROR at line 1:
+ORA-06510: PL/SQL: unhandled user-defined exception 
+ORA-06512: at line 6 
+
+
+SQL> spool off;
