@@ -1,0 +1,1155 @@
+SQL> show user
+USER is "SYS"
+SQL> conn hr/hr@xepdb1
+Connected.
+SQL> show user
+USER is "HR"
+SQL> desc empdummy;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(6)
+ NAME                                      NOT NULL VARCHAR2(25)
+ SAL                                                NUMBER(8,2)
+ JID                                       NOT NULL VARCHAR2(10)
+ DID                                                NUMBER(4)
+
+SQL> drop table empdummy;
+
+Table dropped.
+
+SQL> create table empdummy(eid, name, sal, jid, did) as select employee_id, last_name, salary, job_id, department_id from employees where 1!=1;
+
+Table created.
+
+SQL> select * from empdummy;
+
+no rows selected
+
+SQL> desc empdummy;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EID                                                NUMBER(6)
+ NAME                                      NOT NULL VARCHAR2(25)
+ SAL                                                NUMBER(8,2)
+ JID                                       NOT NULL VARCHAR2(10)
+ DID                                                NUMBER(4)
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create trigger validateentry
+  2  before insert
+  3  on empdummy
+  4  begin
+  5  if(to_char(sysdate, 'hh24:mi') not between '09:00' and '18:00')  then
+  6  raise_application_error(-20001, 'Entry allowed only during office hours');
+  7  end if;
+  8* end;
+  9  /
+on empdummy
+   *
+ERROR at line 3:
+ORA-01031: insufficient privileges 
+
+
+SQL> conn sys/sys@xepdb1 as sysdba
+Connected.
+SQL> grant create trigger to hr;
+
+Grant succeeded.
+
+SQL> conn hr/hr@xepdb1
+Connected.
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create trigger validateentry
+  2  before insert
+  3  on empdummy
+  4  begin
+  5  if(to_char(sysdate, 'hh24:mi') not between '09:00' and '18:00')  then
+  6  raise_application_error(-20001, 'Entry allowed only during office hours');
+  7  end if;
+  8* end;
+SQL> /
+
+Trigger created.
+
+SQL> spool off;
+SQL> insert into empdummy values(101, 'james', 35000, 'st_clerk', 10);
+
+1 row created.
+
+SQL> insert into empdummy values(102, 'king', 40000, 'st_clerk', 20);
+
+1 row created.
+
+SQL> select * from empdummy;
+
+       EID NAME                             SAL JID               DID           
+---------- ------------------------- ---------- ---------- ----------           
+       101 james                          35000 st_clerk           10           
+       102 king                           40000 st_clerk           20           
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace trigger validateentry
+  2  before insert
+  3  on empdummy
+  4  begin
+  5  if(to_char(sysdate, 'hh24:mi') not between '09:00' and '13:00')  then
+  6  raise_application_error(-20001, 'Entry allowed only during office hours');
+  7  end if;
+  8* end;
+SQL> /
+
+Trigger created.
+
+SQL> insert into empdummy values(102, 'neena', 60000, 'st_clerk', 10);
+insert into empdummy values(102, 'neena', 60000, 'st_clerk', 10)
+            *
+ERROR at line 1:
+ORA-20001: Entry allowed only during office hours 
+ORA-06512: at "HR.VALIDATEENTRY", line 3 
+ORA-04088: error during execution of trigger 'HR.VALIDATEENTRY' 
+
+
+SQL> select * from empdummy
+  2  ;
+
+       EID NAME                             SAL JID               DID           
+---------- ------------------------- ---------- ---------- ----------           
+       101 james                          35000 st_clerk           10           
+       102 king                           40000 st_clerk           20           
+
+SQL> update empdummy set sal=50000 where eid=101;
+
+1 row updated.
+
+SQL> select * from empdummy;
+
+       EID NAME                             SAL JID               DID           
+---------- ------------------------- ---------- ---------- ----------           
+       101 james                          50000 st_clerk           10           
+       102 king                           40000 st_clerk           20           
+
+SQL> alter trigger validateentry disable;
+
+Trigger altered.
+
+SQL> insert into empdummy values(103, 'neena', 60000, 'st_clerk', 10);
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace trigger validateentry
+  2  before insert or update or delete
+  3  on empdummy
+  4  begin
+  5  if(to_char(sysdate, 'hh24:mi') not between '09:00' and '13:00')  then
+  6  	if inserting then
+  7  		raise_application_error(-20001, 'Entry allowed only during office hours');
+  8  	elsif deleting then
+  9  		raise_application_error(-20002, 'Deleting record allowed only during office hours');
+ 10  	elsif updating('sal') then
+ 11  		raise_application_error(-20003, 'Updation of salary allowed only during office hours');
+ 12  	else
+ 13  		raise_application_error(-20004, 'Updation allowed only during office hours');
+ 14  end if;
+ 15* end;
+ 16  /
+
+Warning: Trigger created with compilation errors.
+
+SQL> show errors
+Errors for TRIGGER VALIDATEENTRY:
+
+LINE/COL ERROR                                                                  
+-------- -----------------------------------------------------------------      
+12/4     PLS-00103: Encountered the symbol ";" when expecting one of the        
+         following:                                                             
+         if                                                                     
+                                                                                
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace trigger validateentry
+  2  before insert or update or delete
+  3  on empdummy
+  4  begin
+  5  if(to_char(sysdate, 'hh24:mi') not between '09:00' and '13:00')  then
+  6  	if inserting then
+  7  		raise_application_error(-20001, 'Entry allowed only during office hours');
+  8  	elsif deleting then
+  9  		raise_application_error(-20002, 'Deleting record allowed only during office hours');
+ 10  	elsif updating('sal') then
+ 11  		raise_application_error(-20003, 'Updation of salary allowed only during office hours');
+ 12  	else
+ 13  		raise_application_error(-20004, 'Updation allowed only during office hours');
+ 14  	end if;
+ 15  end if;
+ 16* end;
+SQL> /
+
+Trigger created.
+
+SQL> insert into empdummy values(103, 'neena', 60000, 'st_clerk', 10);
+insert into empdummy values(103, 'neena', 60000, 'st_clerk', 10)
+            *
+ERROR at line 1:
+ORA-20001: Entry allowed only during office hours 
+ORA-06512: at "HR.VALIDATEENTRY", line 4 
+ORA-04088: error during execution of trigger 'HR.VALIDATEENTRY' 
+
+
+SQL> update empdummy set sal=50000 where eid=101;
+update empdummy set sal=50000 where eid=101
+       *
+ERROR at line 1:
+ORA-20003: Updation of salary allowed only during office hours 
+ORA-06512: at "HR.VALIDATEENTRY", line 8 
+ORA-04088: error during execution of trigger 'HR.VALIDATEENTRY' 
+
+
+SQL> delete from empdummy;
+delete from empdummy
+            *
+ERROR at line 1:
+ORA-20002: Deleting record allowed only during office hours 
+ORA-06512: at "HR.VALIDATEENTRY", line 6 
+ORA-04088: error during execution of trigger 'HR.VALIDATEENTRY' 
+
+
+SQL> alter trigger validateentry disable;
+
+Trigger altered.
+
+SQL> spool off;
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create trigger invalidsalary
+  2  before insert or update of sal
+  3  on empdummy
+  4  for each row
+  5  begin
+  6  if(:new.jid in ('mgr', 'dir') and :new.sal<50000) then 
+  7  raise_application_error(-20001,'salary of director and manager can not be less then 50000');
+  8  end if;
+  9* end;
+SQL> /
+
+Trigger created.
+
+SQL> insert into empdummy values(104, 'paul', 45000, 'mgr', 10);
+insert into empdummy values(104, 'paul', 45000, 'mgr', 10)
+            *
+ERROR at line 1:
+ORA-20001: salary of director and manager can not be less then 50000 
+ORA-06512: at "HR.INVALIDSALARY", line 3 
+ORA-04088: error during execution of trigger 'HR.INVALIDSALARY' 
+
+
+SQL> insert into empdummy values(104, 'paul', 50000, 'mgr', 10);
+
+1 row created.
+
+SQL> update empdummy set sal=45000 where eid=104;
+update empdummy set sal=45000 where eid=104
+       *
+ERROR at line 1:
+ORA-20001: salary of director and manager can not be less then 50000 
+ORA-06512: at "HR.INVALIDSALARY", line 3 
+ORA-04088: error during execution of trigger 'HR.INVALIDSALARY' 
+
+
+SQL> insert into empdummy values(106, 'lex', 3400, 'dir', 10);
+insert into empdummy values(106, 'lex', 3400, 'dir', 10)
+            *
+ERROR at line 1:
+ORA-20001: salary of director and manager can not be less then 50000 
+ORA-06512: at "HR.INVALIDSALARY", line 3 
+ORA-04088: error during execution of trigger 'HR.INVALIDSALARY' 
+
+
+SQL> insert into empdummy values(106, 'lex', 64000, 'dir', 10);
+
+1 row created.
+
+SQL> spool off;
+SQL> create table bkpempdummy(username varchar2(10), moddate date, eid number(6), name varchar2(15), sal, jid, did)
+  2  ;
+create table bkpempdummy(username varchar2(10), moddate date, eid number(6), name varchar2(15), sal, jid, did)
+                                                                                                *
+ERROR at line 1:
+ORA-02263: need to specify the datatype for this column 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table bkpempdummy(
+  2  username varchar2(10), 
+  3  moddate date, 
+  4  eid number(6), 
+  5  name varchar2(15), 
+  6  sal number(8,2), 
+  7  jid varchar2(10), 
+  8* did number(6));
+  9  /
+did number(6));
+              *
+ERROR at line 8:
+ORA-00922: missing or invalid option 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table bkpempdummy(
+  2  username varchar2(10), 
+  3  moddate date, 
+  4  eid number(6), 
+  5  name varchar2(15), 
+  6  sal number(8,2), 
+  7  jid varchar2(10), 
+  8* did number(6))
+SQL> /
+
+Table created.
+
+SQL> select sysdate from dual;
+
+SYSDATE                                                                                             
+---------                                                                                           
+15-DEC-21                                                                                           
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace trigger bkptrigger
+  2  after delete
+  3  on empdummy
+  4  for each row
+  5  begin
+  6  insert into bkpempdummy values(user, sysdate, :old.eid, :old.name, :old.sal, :old.jid, :old.did);
+  7  commit;
+  8* end;
+SQL> /
+
+Trigger created.
+
+SQL> select * from empdummy;
+
+       EID NAME                             SAL JID               DID                               
+---------- ------------------------- ---------- ---------- ----------                               
+       101 james                          50000 st_clerk           10                               
+       102 king                           40000 st_clerk           20                               
+       103 neena                          60000 st_clerk           10                               
+
+SQL> delete from empdummy where eid = 103;
+delete from empdummy where eid = 103
+            *
+ERROR at line 1:
+ORA-04092: cannot COMMIT in a trigger 
+ORA-06512: at "HR.BKPTRIGGER", line 3 
+ORA-04088: error during execution of trigger 'HR.BKPTRIGGER' 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace trigger bkptrigger
+  2  after delete
+  3  on empdummy
+  4  for each row
+  5  begin
+  6  insert into bkpempdummy values(user, sysdate, :old.eid, :old.name, :old.sal, :old.jid, :old.did);
+  7* end
+SQL> /
+
+Warning: Trigger created with compilation errors.
+
+SQL> show error
+Errors for TRIGGER BKPTRIGGER:
+
+LINE/COL ERROR                                                                                      
+-------- -----------------------------------------------------------------                          
+3/3      PLS-00103: Encountered the symbol "end-of-file" when expecting                             
+         one of the following:                                                                      
+         ; <an identifier> <a double-quoted delimited-identifier>                                   
+         The symbol ";" was substituted for "end-of-file" to continue.                              
+                                                                                                    
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace trigger bkptrigger
+  2  after delete
+  3  on empdummy
+  4  for each row
+  5  begin
+  6  insert into bkpempdummy values(user, sysdate, :old.eid, :old.name, :old.sal, :old.jid, :old.did);
+  7* end;
+SQL> /
+
+Trigger created.
+
+SQL> select * from empdummy;
+
+       EID NAME                             SAL JID               DID                               
+---------- ------------------------- ---------- ---------- ----------                               
+       101 james                          50000 st_clerk           10                               
+       102 king                           40000 st_clerk           20                               
+       103 neena                          60000 st_clerk           10                               
+
+SQL> delete from empdummy where eid = 103;
+
+1 row deleted.
+
+SQL> select * from empdummy;
+
+       EID NAME                             SAL JID               DID                               
+---------- ------------------------- ---------- ---------- ----------                               
+       101 james                          50000 st_clerk           10                               
+       102 king                           40000 st_clerk           20                               
+
+SQL> select * from bkpempdummy;
+
+USERNAME   MODDATE          EID NAME                   SAL JID               DID                    
+---------- --------- ---------- --------------- ---------- ---------- ----------                    
+HR         15-DEC-21        103 neena                60000 st_clerk           10                    
+
+SQL> select to_char(mod_date, 'HH:mi:ss') from bkpempdummy;
+select to_char(mod_date, 'HH:mi:ss') from bkpempdummy
+               *
+ERROR at line 1:
+ORA-00904: "MOD_DATE": invalid identifier 
+
+
+SQL> select to_char(moddate, 'HH:mi:ss') from bkpempdummy;
+
+TO_CHAR(                                                                                            
+--------                                                                                            
+07:32:04                                                                                            
+
+SQL> spool off;
+SQL> grant delete on empdummy to scott;
+
+Grant succeeded.
+
+SQL> conn scott/tiger@xepdb1;
+Connected.
+SQL> delete from hr.empdummy;
+
+2 rows deleted.
+
+SQL> conn hr/hr@xepdb1;
+Connected.
+SQL> select * from bkpempdummy;
+
+USERNAME   MODDATE          EID NAME                   SAL JID               DID                    
+---------- --------- ---------- --------------- ---------- ---------- ----------                    
+HR         15-DEC-21        103 neena                60000 st_clerk           10                    
+SCOTT      15-DEC-21        101 james                50000 st_clerk           10                    
+SCOTT      15-DEC-21        102 king                 40000 st_clerk           20                    
+
+SQL> select * from empdummy;
+
+no rows selected
+
+SQL> select user, to_char(moddate, 'HH:mi:ss') from bkpempdummy;
+
+USER                                                                                                
+----------------------------------------------------------------------------------------------------
+TO_CHAR(                                                                                            
+--------                                                                                            
+HR                                                                                                  
+07:32:04                                                                                            
+                                                                                                    
+HR                                                                                                  
+07:36:03                                                                                            
+                                                                                                    
+HR                                                                                                  
+07:36:03                                                                                            
+                                                                                                    
+
+SQL> set line 1000
+SQL> select user, to_char(moddate, 'HH:mi:ss') from bkpempdummy;
+
+USER                                                                                                                             TO_CHAR(                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+-------------------------------------------------------------------------------------------------------------------------------- --------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+HR                                                                                                                               07:32:04                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+HR                                                                                                                               07:36:03                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+HR                                                                                                                               07:36:03                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+
+SQL> select current_timestamp from dual;
+
+CURRENT_TIMESTAMP                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+---------------------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+15-DEC-21 07.38.09.038000 PM +05:30                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+
+SQL> select current_timestamp from dual;
+
+CURRENT_TIMESTAMP                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+---------------------------------------------------------------------------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+15-DEC-21 07.38.14.622000 PM +05:30                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create trigger validsal
+  2  before update of salary
+  3  on empdummy
+  4  for each row
+  5  begin
+  6  if(:new.sal < :old.sal) then
+  7  raise_application_error(-20001, 'can''t decrease salary');
+  8  end if;
+  9* end;
+SQL> /
+before update of salary
+                 *
+ERROR at line 2:
+ORA-00904: "SALARY": invalid identifier 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create trigger validsal
+  2  before update of sal
+  3  on empdummy
+  4  for each row
+  5  begin
+  6  if(:new.sal < :old.sal) then
+  7  raise_application_error(-20001, 'can''t decrease salary');
+  8  end if;
+  9* end;
+SQL> /
+
+Trigger created.
+
+SQL> insert into empdummy values(101, 'james', 45000, 'it_prog', 10);
+
+1 row created.
+
+SQL> update empdummy set sal=5000 where eid=101;
+update empdummy set sal=5000 where eid=101
+       *
+ERROR at line 1:
+ORA-20001: can't decrease salary 
+ORA-06512: at "HR.VALIDSAL", line 3 
+ORA-04088: error during execution of trigger 'HR.VALIDSAL' 
+
+
+SQL> update empdummy set sal=50000 where eid=101;
+
+1 row updated.
+
+SQL> select * from empdummy;
+
+       EID NAME                             SAL JID               DID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+---------- ------------------------- ---------- ---------- ----------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+       101 james                          50000 it_prog            10                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+
+SQL> spool off;
+SQL> 
+SQL> spool off;
+SQL> clear screen
+
+SQL> create table new_emps as
+  2  select employee_id, last_name, salary, department_id, email, job_id, hire_date from employees;
+
+Table created.
+
+SQL> desc new_emps;
+ Name                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ EMPLOYEE_ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                NUMBER(6)
+ LAST_NAME                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         NOT NULL VARCHAR2(25)
+ SALARY                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     NUMBER(8,2)
+ DEPARTMENT_ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              NUMBER(4)
+ EMAIL                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             NOT NULL VARCHAR2(25)
+ JOB_ID                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            NOT NULL VARCHAR2(10)
+ HIRE_DATE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         NOT NULL DATE
+
+SQL> set line 100
+SQL> desc new_emps;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ EMPLOYEE_ID                                                    NUMBER(6)
+ LAST_NAME                                             NOT NULL VARCHAR2(25)
+ SALARY                                                         NUMBER(8,2)
+ DEPARTMENT_ID                                                  NUMBER(4)
+ EMAIL                                                 NOT NULL VARCHAR2(25)
+ JOB_ID                                                NOT NULL VARCHAR2(10)
+ HIRE_DATE                                             NOT NULL DATE
+
+SQL> create table new_depts as
+  2  select d.department_id, d.department_name, location_id, sum(salary) as tot_dept_sal
+  3  from employees e departments d
+  4  where e.department_id=d.department_id
+  5  group by d.department_id, d.department_name, location_id
+  6  ;
+from employees e departments d
+                 *
+ERROR at line 3:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create table new_depts as
+  2  select d.department_id, d.department_name, location_id, sum(salary) as tot_dept_sal
+  3  from employees e, departments d
+  4  where e.department_id=d.department_id
+  5* group by d.department_id, d.department_name, location_id
+  6  /
+
+Table created.
+
+SQL> set lines 200
+SQL> set pages 100
+SQL> select * from new_depts;
+
+DEPARTMENT_ID DEPARTMENT_NAME                LOCATION_ID TOT_DEPT_SAL                                                                                                                                   
+------------- ------------------------------ ----------- ------------                                                                                                                                   
+           10 Administration                        1700         4400                                                                                                                                   
+           20 Marketing                             1800        19000                                                                                                                                   
+           30 Purchasing                            1700        24900                                                                                                                                   
+           40 Human Resources                       2400         6500                                                                                                                                   
+           50 Shipping                              1500       156400                                                                                                                                   
+           60 IT                                    1400        28800                                                                                                                                   
+           70 Public Relations                      2700        10000                                                                                                                                   
+           80 Sales                                 2500       304500                                                                                                                                   
+           90 Executive                             1700        58000                                                                                                                                   
+          100 Finance                               1700        51608                                                                                                                                   
+          110 Accounting                            1700        20308                                                                                                                                   
+
+11 rows selected.
+
+SQL> select * from new_emps;
+
+EMPLOYEE_ID LAST_NAME                     SALARY DEPARTMENT_ID EMAIL                     JOB_ID     HIRE_DATE                                                                                           
+----------- ------------------------- ---------- ------------- ------------------------- ---------- ---------                                                                                           
+        100 King                           24000            90 SKING                     AD_PRES    17-JUN-03                                                                                           
+        101 Kochhar                        17000            90 NKOCHHAR                  AD_VP      21-SEP-05                                                                                           
+        102 De Haan                        17000            90 LDEHAAN                   AD_VP      13-JAN-01                                                                                           
+        103 Hunold                          9000            60 AHUNOLD                   IT_PROG    03-JAN-06                                                                                           
+        104 Ernst                           6000            60 BERNST                    IT_PROG    21-MAY-07                                                                                           
+        105 Austin                          4800            60 DAUSTIN                   IT_PROG    25-JUN-05                                                                                           
+        106 Pataballa                       4800            60 VPATABAL                  IT_PROG    05-FEB-06                                                                                           
+        107 Lorentz                         4200            60 DLORENTZ                  IT_PROG    07-FEB-07                                                                                           
+        108 Greenberg                      12008           100 NGREENBE                  FI_MGR     17-AUG-02                                                                                           
+        109 Faviet                          9000           100 DFAVIET                   FI_ACCOUNT 16-AUG-02                                                                                           
+        110 Chen                            8200           100 JCHEN                     FI_ACCOUNT 28-SEP-05                                                                                           
+        111 Sciarra                         7700           100 ISCIARRA                  FI_ACCOUNT 30-SEP-05                                                                                           
+        112 Urman                           7800           100 JMURMAN                   FI_ACCOUNT 07-MAR-06                                                                                           
+        113 Popp                            6900           100 LPOPP                     FI_ACCOUNT 07-DEC-07                                                                                           
+        114 Raphaely                       11000            30 DRAPHEAL                  PU_MAN     07-DEC-02                                                                                           
+        115 Khoo                            3100            30 AKHOO                     PU_CLERK   18-MAY-03                                                                                           
+        116 Baida                           2900            30 SBAIDA                    PU_CLERK   24-DEC-05                                                                                           
+        117 Tobias                          2800            30 STOBIAS                   PU_CLERK   24-JUL-05                                                                                           
+        118 Himuro                          2600            30 GHIMURO                   PU_CLERK   15-NOV-06                                                                                           
+        119 Colmenares                      2500            30 KCOLMENA                  PU_CLERK   10-AUG-07                                                                                           
+        120 Weiss                           8000            50 MWEISS                    ST_MAN     18-JUL-04                                                                                           
+        121 Fripp                           8200            50 AFRIPP                    ST_MAN     10-APR-05                                                                                           
+        122 Kaufling                        7900            50 PKAUFLIN                  ST_MAN     01-MAY-03                                                                                           
+        123 Vollman                         6500            50 SVOLLMAN                  ST_MAN     10-OCT-05                                                                                           
+        124 Mourgos                         5800            50 KMOURGOS                  ST_MAN     16-NOV-07                                                                                           
+        125 Nayer                           3200            50 JNAYER                    ST_CLERK   16-JUL-05                                                                                           
+        126 Mikkilineni                     2700            50 IMIKKILI                  ST_CLERK   28-SEP-06                                                                                           
+        127 Landry                          2400            50 JLANDRY                   ST_CLERK   14-JAN-07                                                                                           
+        128 Markle                          2200            50 SMARKLE                   ST_CLERK   08-MAR-08                                                                                           
+        129 Bissot                          3300            50 LBISSOT                   ST_CLERK   20-AUG-05                                                                                           
+        130 Atkinson                        2800            50 MATKINSO                  ST_CLERK   30-OCT-05                                                                                           
+        131 Marlow                          2500            50 JAMRLOW                   ST_CLERK   16-FEB-05                                                                                           
+        132 Olson                           2100            50 TJOLSON                   ST_CLERK   10-APR-07                                                                                           
+        133 Mallin                          3300            50 JMALLIN                   ST_CLERK   14-JUN-04                                                                                           
+        134 Rogers                          2900            50 MROGERS                   ST_CLERK   26-AUG-06                                                                                           
+        135 Gee                             2400            50 KGEE                      ST_CLERK   12-DEC-07                                                                                           
+        136 Philtanker                      2200            50 HPHILTAN                  ST_CLERK   06-FEB-08                                                                                           
+        137 Ladwig                          3600            50 RLADWIG                   ST_CLERK   14-JUL-03                                                                                           
+        138 Stiles                          3200            50 SSTILES                   ST_CLERK   26-OCT-05                                                                                           
+        139 Seo                             2700            50 JSEO                      ST_CLERK   12-FEB-06                                                                                           
+        140 Patel                           2500            50 JPATEL                    ST_CLERK   06-APR-06                                                                                           
+        141 Rajs                            3500            50 TRAJS                     ST_CLERK   17-OCT-03                                                                                           
+        142 Davies                          3100            50 CDAVIES                   ST_CLERK   29-JAN-05                                                                                           
+        143 Matos                           2600            50 RMATOS                    ST_CLERK   15-MAR-06                                                                                           
+        144 Vargas                          2500            50 PVARGAS                   ST_CLERK   09-JUL-06                                                                                           
+        145 Russell                        14000            80 JRUSSEL                   SA_MAN     01-OCT-04                                                                                           
+        146 Partners                       13500            80 KPARTNER                  SA_MAN     05-JAN-05                                                                                           
+        147 Errazuriz                      12000            80 AERRAZUR                  SA_MAN     10-MAR-05                                                                                           
+        148 Cambrault                      11000            80 GCAMBRAU                  SA_MAN     15-OCT-07                                                                                           
+        149 Zlotkey                        10500            80 EZLOTKEY                  SA_MAN     29-JAN-08                                                                                           
+        150 Tucker                         10000            80 PTUCKER                   SA_REP     30-JAN-05                                                                                           
+        151 Bernstein                       9500            80 DBERNSTE                  SA_REP     24-MAR-05                                                                                           
+        152 Hall                            9000            80 PHALL                     SA_REP     20-AUG-05                                                                                           
+        153 Olsen                           8000            80 COLSEN                    SA_REP     30-MAR-06                                                                                           
+        154 Cambrault                       7500            80 NCAMBRAU                  SA_REP     09-DEC-06                                                                                           
+        155 Tuvault                         7000            80 OTUVAULT                  SA_REP     23-NOV-07                                                                                           
+        156 King                           10000            80 JKING                     SA_REP     30-JAN-04                                                                                           
+        157 Sully                           9500            80 PSULLY                    SA_REP     04-MAR-04                                                                                           
+        158 McEwen                          9000            80 AMCEWEN                   SA_REP     01-AUG-04                                                                                           
+        159 Smith                           8000            80 LSMITH                    SA_REP     10-MAR-05                                                                                           
+        160 Doran                           7500            80 LDORAN                    SA_REP     15-DEC-05                                                                                           
+        161 Sewall                          7000            80 SSEWALL                   SA_REP     03-NOV-06                                                                                           
+        162 Vishney                        10500            80 CVISHNEY                  SA_REP     11-NOV-05                                                                                           
+        163 Greene                          9500            80 DGREENE                   SA_REP     19-MAR-07                                                                                           
+        164 Marvins                         7200            80 MMARVINS                  SA_REP     24-JAN-08                                                                                           
+        165 Lee                             6800            80 DLEE                      SA_REP     23-FEB-08                                                                                           
+        166 Ande                            6400            80 SANDE                     SA_REP     24-MAR-08                                                                                           
+        167 Banda                           6200            80 ABANDA                    SA_REP     21-APR-08                                                                                           
+        168 Ozer                           11500            80 LOZER                     SA_REP     11-MAR-05                                                                                           
+        169 Bloom                          10000            80 HBLOOM                    SA_REP     23-MAR-06                                                                                           
+        170 Fox                             9600            80 TFOX                      SA_REP     24-JAN-06                                                                                           
+        171 Smith                           7400            80 WSMITH                    SA_REP     23-FEB-07                                                                                           
+        172 Bates                           7300            80 EBATES                    SA_REP     24-MAR-07                                                                                           
+        173 Kumar                           6100            80 SKUMAR                    SA_REP     21-APR-08                                                                                           
+        174 Abel                           11000            80 EABEL                     SA_REP     11-MAY-04                                                                                           
+        175 Hutton                          8800            80 AHUTTON                   SA_REP     19-MAR-05                                                                                           
+        176 Taylor                          8600            80 JTAYLOR                   SA_REP     24-MAR-06                                                                                           
+        177 Livingston                      8400            80 JLIVINGS                  SA_REP     23-APR-06                                                                                           
+        178 Grant                           7000               KGRANT                    SA_REP     24-MAY-07                                                                                           
+        179 Johnson                         6200            80 CJOHNSON                  SA_REP     04-JAN-08                                                                                           
+        180 Taylor                          3200            50 WTAYLOR                   SH_CLERK   24-JAN-06                                                                                           
+        181 Fleaur                          3100            50 JFLEAUR                   SH_CLERK   23-FEB-06                                                                                           
+        182 Sullivan                        2500            50 MSULLIVA                  SH_CLERK   21-JUN-07                                                                                           
+        183 Geoni                           2800            50 GGEONI                    SH_CLERK   03-FEB-08                                                                                           
+        184 Sarchand                        4200            50 NSARCHAN                  SH_CLERK   27-JAN-04                                                                                           
+        185 Bull                            4100            50 ABULL                     SH_CLERK   20-FEB-05                                                                                           
+        186 Dellinger                       3400            50 JDELLING                  SH_CLERK   24-JUN-06                                                                                           
+        187 Cabrio                          3000            50 ACABRIO                   SH_CLERK   07-FEB-07                                                                                           
+        188 Chung                           3800            50 KCHUNG                    SH_CLERK   14-JUN-05                                                                                           
+        189 Dilly                           3600            50 JDILLY                    SH_CLERK   13-AUG-05                                                                                           
+        190 Gates                           2900            50 TGATES                    SH_CLERK   11-JUL-06                                                                                           
+        191 Perkins                         2500            50 RPERKINS                  SH_CLERK   19-DEC-07                                                                                           
+        192 Bell                            4000            50 SBELL                     SH_CLERK   04-FEB-04                                                                                           
+        193 Everett                         3900            50 BEVERETT                  SH_CLERK   03-MAR-05                                                                                           
+        194 McCain                          3200            50 SMCCAIN                   SH_CLERK   01-JUL-06                                                                                           
+        195 Jones                           2800            50 VJONES                    SH_CLERK   17-MAR-07                                                                                           
+        196 Walsh                           3100            50 AWALSH                    SH_CLERK   24-APR-06                                                                                           
+
+EMPLOYEE_ID LAST_NAME                     SALARY DEPARTMENT_ID EMAIL                     JOB_ID     HIRE_DATE                                                                                           
+----------- ------------------------- ---------- ------------- ------------------------- ---------- ---------                                                                                           
+        197 Feeney                          3000            50 KFEENEY                   SH_CLERK   23-MAY-06                                                                                           
+        198 OConnell                        2600            50 DOCONNEL                  SH_CLERK   21-JUN-07                                                                                           
+        199 Grant                           2600            50 DGRANT                    SH_CLERK   13-JAN-08                                                                                           
+        200 Whalen                          4400            10 JWHALEN                   AD_ASST    17-SEP-03                                                                                           
+        201 Hartstein                      13000            20 MHARTSTE                  MK_MAN     17-FEB-04                                                                                           
+        202 Fay                             6000            20 PFAY                      MK_REP     17-AUG-05                                                                                           
+        203 Mavris                          6500            40 SMAVRIS                   HR_REP     07-JUN-02                                                                                           
+        204 Baer                           10000            70 HBAER                     PR_REP     07-JUN-02                                                                                           
+        205 Higgins                        12008           110 SHIGGINS                  AC_MGR     07-JUN-02                                                                                           
+        206 Gietz                           8300           110 WGIETZ                    AC_ACCOUNT 07-JUN-02                                                                                           
+
+107 rows selected.
+
+SQL> create view emp_details as
+  2  select e.employee_id, e.last_name, e.salary, e.department_id, e.email, e.job_id, d.department_name, d.location_id
+  3  from  employees e, departments d
+  4  where e.department_id=d.department_id;
+
+View created.
+
+SQL> select * from emp_details;
+
+EMPLOYEE_ID LAST_NAME                     SALARY DEPARTMENT_ID EMAIL                     JOB_ID     DEPARTMENT_NAME                LOCATION_ID                                                          
+----------- ------------------------- ---------- ------------- ------------------------- ---------- ------------------------------ -----------                                                          
+        200 Whalen                          4400            10 JWHALEN                   AD_ASST    Administration                        1700                                                          
+        201 Hartstein                      13000            20 MHARTSTE                  MK_MAN     Marketing                             1800                                                          
+        202 Fay                             6000            20 PFAY                      MK_REP     Marketing                             1800                                                          
+        114 Raphaely                       11000            30 DRAPHEAL                  PU_MAN     Purchasing                            1700                                                          
+        115 Khoo                            3100            30 AKHOO                     PU_CLERK   Purchasing                            1700                                                          
+        116 Baida                           2900            30 SBAIDA                    PU_CLERK   Purchasing                            1700                                                          
+        117 Tobias                          2800            30 STOBIAS                   PU_CLERK   Purchasing                            1700                                                          
+        118 Himuro                          2600            30 GHIMURO                   PU_CLERK   Purchasing                            1700                                                          
+        119 Colmenares                      2500            30 KCOLMENA                  PU_CLERK   Purchasing                            1700                                                          
+        203 Mavris                          6500            40 SMAVRIS                   HR_REP     Human Resources                       2400                                                          
+        120 Weiss                           8000            50 MWEISS                    ST_MAN     Shipping                              1500                                                          
+        121 Fripp                           8200            50 AFRIPP                    ST_MAN     Shipping                              1500                                                          
+        122 Kaufling                        7900            50 PKAUFLIN                  ST_MAN     Shipping                              1500                                                          
+        123 Vollman                         6500            50 SVOLLMAN                  ST_MAN     Shipping                              1500                                                          
+        124 Mourgos                         5800            50 KMOURGOS                  ST_MAN     Shipping                              1500                                                          
+        125 Nayer                           3200            50 JNAYER                    ST_CLERK   Shipping                              1500                                                          
+        126 Mikkilineni                     2700            50 IMIKKILI                  ST_CLERK   Shipping                              1500                                                          
+        127 Landry                          2400            50 JLANDRY                   ST_CLERK   Shipping                              1500                                                          
+        128 Markle                          2200            50 SMARKLE                   ST_CLERK   Shipping                              1500                                                          
+        129 Bissot                          3300            50 LBISSOT                   ST_CLERK   Shipping                              1500                                                          
+        130 Atkinson                        2800            50 MATKINSO                  ST_CLERK   Shipping                              1500                                                          
+        131 Marlow                          2500            50 JAMRLOW                   ST_CLERK   Shipping                              1500                                                          
+        132 Olson                           2100            50 TJOLSON                   ST_CLERK   Shipping                              1500                                                          
+        133 Mallin                          3300            50 JMALLIN                   ST_CLERK   Shipping                              1500                                                          
+        134 Rogers                          2900            50 MROGERS                   ST_CLERK   Shipping                              1500                                                          
+        135 Gee                             2400            50 KGEE                      ST_CLERK   Shipping                              1500                                                          
+        136 Philtanker                      2200            50 HPHILTAN                  ST_CLERK   Shipping                              1500                                                          
+        137 Ladwig                          3600            50 RLADWIG                   ST_CLERK   Shipping                              1500                                                          
+        138 Stiles                          3200            50 SSTILES                   ST_CLERK   Shipping                              1500                                                          
+        139 Seo                             2700            50 JSEO                      ST_CLERK   Shipping                              1500                                                          
+        140 Patel                           2500            50 JPATEL                    ST_CLERK   Shipping                              1500                                                          
+        141 Rajs                            3500            50 TRAJS                     ST_CLERK   Shipping                              1500                                                          
+        142 Davies                          3100            50 CDAVIES                   ST_CLERK   Shipping                              1500                                                          
+        143 Matos                           2600            50 RMATOS                    ST_CLERK   Shipping                              1500                                                          
+        144 Vargas                          2500            50 PVARGAS                   ST_CLERK   Shipping                              1500                                                          
+        180 Taylor                          3200            50 WTAYLOR                   SH_CLERK   Shipping                              1500                                                          
+        181 Fleaur                          3100            50 JFLEAUR                   SH_CLERK   Shipping                              1500                                                          
+        182 Sullivan                        2500            50 MSULLIVA                  SH_CLERK   Shipping                              1500                                                          
+        183 Geoni                           2800            50 GGEONI                    SH_CLERK   Shipping                              1500                                                          
+        184 Sarchand                        4200            50 NSARCHAN                  SH_CLERK   Shipping                              1500                                                          
+        185 Bull                            4100            50 ABULL                     SH_CLERK   Shipping                              1500                                                          
+        186 Dellinger                       3400            50 JDELLING                  SH_CLERK   Shipping                              1500                                                          
+        187 Cabrio                          3000            50 ACABRIO                   SH_CLERK   Shipping                              1500                                                          
+        188 Chung                           3800            50 KCHUNG                    SH_CLERK   Shipping                              1500                                                          
+        189 Dilly                           3600            50 JDILLY                    SH_CLERK   Shipping                              1500                                                          
+        190 Gates                           2900            50 TGATES                    SH_CLERK   Shipping                              1500                                                          
+        191 Perkins                         2500            50 RPERKINS                  SH_CLERK   Shipping                              1500                                                          
+        192 Bell                            4000            50 SBELL                     SH_CLERK   Shipping                              1500                                                          
+        193 Everett                         3900            50 BEVERETT                  SH_CLERK   Shipping                              1500                                                          
+        194 McCain                          3200            50 SMCCAIN                   SH_CLERK   Shipping                              1500                                                          
+        195 Jones                           2800            50 VJONES                    SH_CLERK   Shipping                              1500                                                          
+        196 Walsh                           3100            50 AWALSH                    SH_CLERK   Shipping                              1500                                                          
+        197 Feeney                          3000            50 KFEENEY                   SH_CLERK   Shipping                              1500                                                          
+        198 OConnell                        2600            50 DOCONNEL                  SH_CLERK   Shipping                              1500                                                          
+        199 Grant                           2600            50 DGRANT                    SH_CLERK   Shipping                              1500                                                          
+        103 Hunold                          9000            60 AHUNOLD                   IT_PROG    IT                                    1400                                                          
+        104 Ernst                           6000            60 BERNST                    IT_PROG    IT                                    1400                                                          
+        105 Austin                          4800            60 DAUSTIN                   IT_PROG    IT                                    1400                                                          
+        106 Pataballa                       4800            60 VPATABAL                  IT_PROG    IT                                    1400                                                          
+        107 Lorentz                         4200            60 DLORENTZ                  IT_PROG    IT                                    1400                                                          
+        204 Baer                           10000            70 HBAER                     PR_REP     Public Relations                      2700                                                          
+        145 Russell                        14000            80 JRUSSEL                   SA_MAN     Sales                                 2500                                                          
+        146 Partners                       13500            80 KPARTNER                  SA_MAN     Sales                                 2500                                                          
+        147 Errazuriz                      12000            80 AERRAZUR                  SA_MAN     Sales                                 2500                                                          
+        148 Cambrault                      11000            80 GCAMBRAU                  SA_MAN     Sales                                 2500                                                          
+        149 Zlotkey                        10500            80 EZLOTKEY                  SA_MAN     Sales                                 2500                                                          
+        150 Tucker                         10000            80 PTUCKER                   SA_REP     Sales                                 2500                                                          
+        151 Bernstein                       9500            80 DBERNSTE                  SA_REP     Sales                                 2500                                                          
+        152 Hall                            9000            80 PHALL                     SA_REP     Sales                                 2500                                                          
+        153 Olsen                           8000            80 COLSEN                    SA_REP     Sales                                 2500                                                          
+        154 Cambrault                       7500            80 NCAMBRAU                  SA_REP     Sales                                 2500                                                          
+        155 Tuvault                         7000            80 OTUVAULT                  SA_REP     Sales                                 2500                                                          
+        156 King                           10000            80 JKING                     SA_REP     Sales                                 2500                                                          
+        157 Sully                           9500            80 PSULLY                    SA_REP     Sales                                 2500                                                          
+        158 McEwen                          9000            80 AMCEWEN                   SA_REP     Sales                                 2500                                                          
+        159 Smith                           8000            80 LSMITH                    SA_REP     Sales                                 2500                                                          
+        160 Doran                           7500            80 LDORAN                    SA_REP     Sales                                 2500                                                          
+        161 Sewall                          7000            80 SSEWALL                   SA_REP     Sales                                 2500                                                          
+        162 Vishney                        10500            80 CVISHNEY                  SA_REP     Sales                                 2500                                                          
+        163 Greene                          9500            80 DGREENE                   SA_REP     Sales                                 2500                                                          
+        164 Marvins                         7200            80 MMARVINS                  SA_REP     Sales                                 2500                                                          
+        165 Lee                             6800            80 DLEE                      SA_REP     Sales                                 2500                                                          
+        166 Ande                            6400            80 SANDE                     SA_REP     Sales                                 2500                                                          
+        167 Banda                           6200            80 ABANDA                    SA_REP     Sales                                 2500                                                          
+        168 Ozer                           11500            80 LOZER                     SA_REP     Sales                                 2500                                                          
+        169 Bloom                          10000            80 HBLOOM                    SA_REP     Sales                                 2500                                                          
+        170 Fox                             9600            80 TFOX                      SA_REP     Sales                                 2500                                                          
+        171 Smith                           7400            80 WSMITH                    SA_REP     Sales                                 2500                                                          
+        172 Bates                           7300            80 EBATES                    SA_REP     Sales                                 2500                                                          
+        173 Kumar                           6100            80 SKUMAR                    SA_REP     Sales                                 2500                                                          
+        174 Abel                           11000            80 EABEL                     SA_REP     Sales                                 2500                                                          
+        175 Hutton                          8800            80 AHUTTON                   SA_REP     Sales                                 2500                                                          
+        176 Taylor                          8600            80 JTAYLOR                   SA_REP     Sales                                 2500                                                          
+        177 Livingston                      8400            80 JLIVINGS                  SA_REP     Sales                                 2500                                                          
+        179 Johnson                         6200            80 CJOHNSON                  SA_REP     Sales                                 2500                                                          
+        100 King                           24000            90 SKING                     AD_PRES    Executive                             1700                                                          
+        101 Kochhar                        17000            90 NKOCHHAR                  AD_VP      Executive                             1700                                                          
+
+EMPLOYEE_ID LAST_NAME                     SALARY DEPARTMENT_ID EMAIL                     JOB_ID     DEPARTMENT_NAME                LOCATION_ID                                                          
+----------- ------------------------- ---------- ------------- ------------------------- ---------- ------------------------------ -----------                                                          
+        102 De Haan                        17000            90 LDEHAAN                   AD_VP      Executive                             1700                                                          
+        108 Greenberg                      12008           100 NGREENBE                  FI_MGR     Finance                               1700                                                          
+        109 Faviet                          9000           100 DFAVIET                   FI_ACCOUNT Finance                               1700                                                          
+        110 Chen                            8200           100 JCHEN                     FI_ACCOUNT Finance                               1700                                                          
+        111 Sciarra                         7700           100 ISCIARRA                  FI_ACCOUNT Finance                               1700                                                          
+        112 Urman                           7800           100 JMURMAN                   FI_ACCOUNT Finance                               1700                                                          
+        113 Popp                            6900           100 LPOPP                     FI_ACCOUNT Finance                               1700                                                          
+        205 Higgins                        12008           110 SHIGGINS                  AC_MGR     Accounting                            1700                                                          
+        206 Gietz                           8300           110 WGIETZ                    AC_ACCOUNT Accounting                            1700                                                          
+
+106 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from emp_details
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace view emp_details as
+  2  select e.employee_id, e.last_name, e.salary, e.department_id, e.email, e.job_id, d.department_name, d.location_id
+  3  from  new_emps e, new_depts d
+  4* where e.department_id=d.department_id;
+SQL> /
+where e.department_id=d.department_id;
+                                     *
+ERROR at line 4:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  create or replace view emp_details as
+  2  select e.employee_id, e.last_name, e.salary, e.department_id, e.email, e.job_id, d.department_name, d.location_id
+  3  from  new_emps e, new_depts d
+  4* where e.department_id=d.department_id
+SQL> /
+
+View created.
+
+SQL> select * from new_emps;
+
+EMPLOYEE_ID LAST_NAME                     SALARY DEPARTMENT_ID EMAIL                     JOB_ID     HIRE_DATE                                                                                           
+----------- ------------------------- ---------- ------------- ------------------------- ---------- ---------                                                                                           
+        100 King                           24000            90 SKING                     AD_PRES    17-JUN-03                                                                                           
+        101 Kochhar                        17000            90 NKOCHHAR                  AD_VP      21-SEP-05                                                                                           
+        102 De Haan                        17000            90 LDEHAAN                   AD_VP      13-JAN-01                                                                                           
+        103 Hunold                          9000            60 AHUNOLD                   IT_PROG    03-JAN-06                                                                                           
+        104 Ernst                           6000            60 BERNST                    IT_PROG    21-MAY-07                                                                                           
+        105 Austin                          4800            60 DAUSTIN                   IT_PROG    25-JUN-05                                                                                           
+        106 Pataballa                       4800            60 VPATABAL                  IT_PROG    05-FEB-06                                                                                           
+        107 Lorentz                         4200            60 DLORENTZ                  IT_PROG    07-FEB-07                                                                                           
+        108 Greenberg                      12008           100 NGREENBE                  FI_MGR     17-AUG-02                                                                                           
+        109 Faviet                          9000           100 DFAVIET                   FI_ACCOUNT 16-AUG-02                                                                                           
+        110 Chen                            8200           100 JCHEN                     FI_ACCOUNT 28-SEP-05                                                                                           
+        111 Sciarra                         7700           100 ISCIARRA                  FI_ACCOUNT 30-SEP-05                                                                                           
+        112 Urman                           7800           100 JMURMAN                   FI_ACCOUNT 07-MAR-06                                                                                           
+        113 Popp                            6900           100 LPOPP                     FI_ACCOUNT 07-DEC-07                                                                                           
+        114 Raphaely                       11000            30 DRAPHEAL                  PU_MAN     07-DEC-02                                                                                           
+        115 Khoo                            3100            30 AKHOO                     PU_CLERK   18-MAY-03                                                                                           
+        116 Baida                           2900            30 SBAIDA                    PU_CLERK   24-DEC-05                                                                                           
+        117 Tobias                          2800            30 STOBIAS                   PU_CLERK   24-JUL-05                                                                                           
+        118 Himuro                          2600            30 GHIMURO                   PU_CLERK   15-NOV-06                                                                                           
+        119 Colmenares                      2500            30 KCOLMENA                  PU_CLERK   10-AUG-07                                                                                           
+        120 Weiss                           8000            50 MWEISS                    ST_MAN     18-JUL-04                                                                                           
+        121 Fripp                           8200            50 AFRIPP                    ST_MAN     10-APR-05                                                                                           
+        122 Kaufling                        7900            50 PKAUFLIN                  ST_MAN     01-MAY-03                                                                                           
+        123 Vollman                         6500            50 SVOLLMAN                  ST_MAN     10-OCT-05                                                                                           
+        124 Mourgos                         5800            50 KMOURGOS                  ST_MAN     16-NOV-07                                                                                           
+        125 Nayer                           3200            50 JNAYER                    ST_CLERK   16-JUL-05                                                                                           
+        126 Mikkilineni                     2700            50 IMIKKILI                  ST_CLERK   28-SEP-06                                                                                           
+        127 Landry                          2400            50 JLANDRY                   ST_CLERK   14-JAN-07                                                                                           
+        128 Markle                          2200            50 SMARKLE                   ST_CLERK   08-MAR-08                                                                                           
+        129 Bissot                          3300            50 LBISSOT                   ST_CLERK   20-AUG-05                                                                                           
+        130 Atkinson                        2800            50 MATKINSO                  ST_CLERK   30-OCT-05                                                                                           
+        131 Marlow                          2500            50 JAMRLOW                   ST_CLERK   16-FEB-05                                                                                           
+        132 Olson                           2100            50 TJOLSON                   ST_CLERK   10-APR-07                                                                                           
+        133 Mallin                          3300            50 JMALLIN                   ST_CLERK   14-JUN-04                                                                                           
+        134 Rogers                          2900            50 MROGERS                   ST_CLERK   26-AUG-06                                                                                           
+        135 Gee                             2400            50 KGEE                      ST_CLERK   12-DEC-07                                                                                           
+        136 Philtanker                      2200            50 HPHILTAN                  ST_CLERK   06-FEB-08                                                                                           
+        137 Ladwig                          3600            50 RLADWIG                   ST_CLERK   14-JUL-03                                                                                           
+        138 Stiles                          3200            50 SSTILES                   ST_CLERK   26-OCT-05                                                                                           
+        139 Seo                             2700            50 JSEO                      ST_CLERK   12-FEB-06                                                                                           
+        140 Patel                           2500            50 JPATEL                    ST_CLERK   06-APR-06                                                                                           
+        141 Rajs                            3500            50 TRAJS                     ST_CLERK   17-OCT-03                                                                                           
+        142 Davies                          3100            50 CDAVIES                   ST_CLERK   29-JAN-05                                                                                           
+        143 Matos                           2600            50 RMATOS                    ST_CLERK   15-MAR-06                                                                                           
+        144 Vargas                          2500            50 PVARGAS                   ST_CLERK   09-JUL-06                                                                                           
+        145 Russell                        14000            80 JRUSSEL                   SA_MAN     01-OCT-04                                                                                           
+        146 Partners                       13500            80 KPARTNER                  SA_MAN     05-JAN-05                                                                                           
+        147 Errazuriz                      12000            80 AERRAZUR                  SA_MAN     10-MAR-05                                                                                           
+        148 Cambrault                      11000            80 GCAMBRAU                  SA_MAN     15-OCT-07                                                                                           
+        149 Zlotkey                        10500            80 EZLOTKEY                  SA_MAN     29-JAN-08                                                                                           
+        150 Tucker                         10000            80 PTUCKER                   SA_REP     30-JAN-05                                                                                           
+        151 Bernstein                       9500            80 DBERNSTE                  SA_REP     24-MAR-05                                                                                           
+        152 Hall                            9000            80 PHALL                     SA_REP     20-AUG-05                                                                                           
+        153 Olsen                           8000            80 COLSEN                    SA_REP     30-MAR-06                                                                                           
+        154 Cambrault                       7500            80 NCAMBRAU                  SA_REP     09-DEC-06                                                                                           
+        155 Tuvault                         7000            80 OTUVAULT                  SA_REP     23-NOV-07                                                                                           
+        156 King                           10000            80 JKING                     SA_REP     30-JAN-04                                                                                           
+        157 Sully                           9500            80 PSULLY                    SA_REP     04-MAR-04                                                                                           
+        158 McEwen                          9000            80 AMCEWEN                   SA_REP     01-AUG-04                                                                                           
+        159 Smith                           8000            80 LSMITH                    SA_REP     10-MAR-05                                                                                           
+        160 Doran                           7500            80 LDORAN                    SA_REP     15-DEC-05                                                                                           
+        161 Sewall                          7000            80 SSEWALL                   SA_REP     03-NOV-06                                                                                           
+        162 Vishney                        10500            80 CVISHNEY                  SA_REP     11-NOV-05                                                                                           
+        163 Greene                          9500            80 DGREENE                   SA_REP     19-MAR-07                                                                                           
+        164 Marvins                         7200            80 MMARVINS                  SA_REP     24-JAN-08                                                                                           
+        165 Lee                             6800            80 DLEE                      SA_REP     23-FEB-08                                                                                           
+        166 Ande                            6400            80 SANDE                     SA_REP     24-MAR-08                                                                                           
+        167 Banda                           6200            80 ABANDA                    SA_REP     21-APR-08                                                                                           
+        168 Ozer                           11500            80 LOZER                     SA_REP     11-MAR-05                                                                                           
+        169 Bloom                          10000            80 HBLOOM                    SA_REP     23-MAR-06                                                                                           
+        170 Fox                             9600            80 TFOX                      SA_REP     24-JAN-06                                                                                           
+        171 Smith                           7400            80 WSMITH                    SA_REP     23-FEB-07                                                                                           
+        172 Bates                           7300            80 EBATES                    SA_REP     24-MAR-07                                                                                           
+        173 Kumar                           6100            80 SKUMAR                    SA_REP     21-APR-08                                                                                           
+        174 Abel                           11000            80 EABEL                     SA_REP     11-MAY-04                                                                                           
+        175 Hutton                          8800            80 AHUTTON                   SA_REP     19-MAR-05                                                                                           
+        176 Taylor                          8600            80 JTAYLOR                   SA_REP     24-MAR-06                                                                                           
+        177 Livingston                      8400            80 JLIVINGS                  SA_REP     23-APR-06                                                                                           
+        178 Grant                           7000               KGRANT                    SA_REP     24-MAY-07                                                                                           
+        179 Johnson                         6200            80 CJOHNSON                  SA_REP     04-JAN-08                                                                                           
+        180 Taylor                          3200            50 WTAYLOR                   SH_CLERK   24-JAN-06                                                                                           
+        181 Fleaur                          3100            50 JFLEAUR                   SH_CLERK   23-FEB-06                                                                                           
+        182 Sullivan                        2500            50 MSULLIVA                  SH_CLERK   21-JUN-07                                                                                           
+        183 Geoni                           2800            50 GGEONI                    SH_CLERK   03-FEB-08                                                                                           
+        184 Sarchand                        4200            50 NSARCHAN                  SH_CLERK   27-JAN-04                                                                                           
+        185 Bull                            4100            50 ABULL                     SH_CLERK   20-FEB-05                                                                                           
+        186 Dellinger                       3400            50 JDELLING                  SH_CLERK   24-JUN-06                                                                                           
+        187 Cabrio                          3000            50 ACABRIO                   SH_CLERK   07-FEB-07                                                                                           
+        188 Chung                           3800            50 KCHUNG                    SH_CLERK   14-JUN-05                                                                                           
+        189 Dilly                           3600            50 JDILLY                    SH_CLERK   13-AUG-05                                                                                           
+        190 Gates                           2900            50 TGATES                    SH_CLERK   11-JUL-06                                                                                           
+        191 Perkins                         2500            50 RPERKINS                  SH_CLERK   19-DEC-07                                                                                           
+        192 Bell                            4000            50 SBELL                     SH_CLERK   04-FEB-04                                                                                           
+        193 Everett                         3900            50 BEVERETT                  SH_CLERK   03-MAR-05                                                                                           
+        194 McCain                          3200            50 SMCCAIN                   SH_CLERK   01-JUL-06                                                                                           
+        195 Jones                           2800            50 VJONES                    SH_CLERK   17-MAR-07                                                                                           
+        196 Walsh                           3100            50 AWALSH                    SH_CLERK   24-APR-06                                                                                           
+
+EMPLOYEE_ID LAST_NAME                     SALARY DEPARTMENT_ID EMAIL                     JOB_ID     HIRE_DATE                                                                                           
+----------- ------------------------- ---------- ------------- ------------------------- ---------- ---------                                                                                           
+        197 Feeney                          3000            50 KFEENEY                   SH_CLERK   23-MAY-06                                                                                           
+        198 OConnell                        2600            50 DOCONNEL                  SH_CLERK   21-JUN-07                                                                                           
+        199 Grant                           2600            50 DGRANT                    SH_CLERK   13-JAN-08                                                                                           
+        200 Whalen                          4400            10 JWHALEN                   AD_ASST    17-SEP-03                                                                                           
+        201 Hartstein                      13000            20 MHARTSTE                  MK_MAN     17-FEB-04                                                                                           
+        202 Fay                             6000            20 PFAY                      MK_REP     17-AUG-05                                                                                           
+        203 Mavris                          6500            40 SMAVRIS                   HR_REP     07-JUN-02                                                                                           
+        204 Baer                           10000            70 HBAER                     PR_REP     07-JUN-02                                                                                           
+        205 Higgins                        12008           110 SHIGGINS                  AC_MGR     07-JUN-02                                                                                           
+        206 Gietz                           8300           110 WGIETZ                    AC_ACCOUNT 07-JUN-02                                                                                           
+
+107 rows selected.
+
+SQL> select * from new_depts;
+
+DEPARTMENT_ID DEPARTMENT_NAME                LOCATION_ID TOT_DEPT_SAL                                                                                                                                   
+------------- ------------------------------ ----------- ------------                                                                                                                                   
+           10 Administration                        1700         4400                                                                                                                                   
+           20 Marketing                             1800        19000                                                                                                                                   
+           30 Purchasing                            1700        24900                                                                                                                                   
+           40 Human Resources                       2400         6500                                                                                                                                   
+           50 Shipping                              1500       156400                                                                                                                                   
+           60 IT                                    1400        28800                                                                                                                                   
+           70 Public Relations                      2700        10000                                                                                                                                   
+           80 Sales                                 2500       304500                                                                                                                                   
+           90 Executive                             1700        58000                                                                                                                                   
+          100 Finance                               1700        51608                                                                                                                                   
+          110 Accounting                            1700        20308                                                                                                                                   
+
+11 rows selected.
+
+SQL> select * from emp_details;
+
+EMPLOYEE_ID LAST_NAME                     SALARY DEPARTMENT_ID EMAIL                     JOB_ID     DEPARTMENT_NAME                LOCATION_ID                                                          
+----------- ------------------------- ---------- ------------- ------------------------- ---------- ------------------------------ -----------                                                          
+        100 King                           24000            90 SKING                     AD_PRES    Executive                             1700                                                          
+        101 Kochhar                        17000            90 NKOCHHAR                  AD_VP      Executive                             1700                                                          
+        102 De Haan                        17000            90 LDEHAAN                   AD_VP      Executive                             1700                                                          
+        103 Hunold                          9000            60 AHUNOLD                   IT_PROG    IT                                    1400                                                          
+        104 Ernst                           6000            60 BERNST                    IT_PROG    IT                                    1400                                                          
+        105 Austin                          4800            60 DAUSTIN                   IT_PROG    IT                                    1400                                                          
+        106 Pataballa                       4800            60 VPATABAL                  IT_PROG    IT                                    1400                                                          
+        107 Lorentz                         4200            60 DLORENTZ                  IT_PROG    IT                                    1400                                                          
+        108 Greenberg                      12008           100 NGREENBE                  FI_MGR     Finance                               1700                                                          
+        109 Faviet                          9000           100 DFAVIET                   FI_ACCOUNT Finance                               1700                                                          
+        110 Chen                            8200           100 JCHEN                     FI_ACCOUNT Finance                               1700                                                          
+        111 Sciarra                         7700           100 ISCIARRA                  FI_ACCOUNT Finance                               1700                                                          
+        112 Urman                           7800           100 JMURMAN                   FI_ACCOUNT Finance                               1700                                                          
+        113 Popp                            6900           100 LPOPP                     FI_ACCOUNT Finance                               1700                                                          
+        114 Raphaely                       11000            30 DRAPHEAL                  PU_MAN     Purchasing                            1700                                                          
+        115 Khoo                            3100            30 AKHOO                     PU_CLERK   Purchasing                            1700                                                          
+        116 Baida                           2900            30 SBAIDA                    PU_CLERK   Purchasing                            1700                                                          
+        117 Tobias                          2800            30 STOBIAS                   PU_CLERK   Purchasing                            1700                                                          
+        118 Himuro                          2600            30 GHIMURO                   PU_CLERK   Purchasing                            1700                                                          
+        119 Colmenares                      2500            30 KCOLMENA                  PU_CLERK   Purchasing                            1700                                                          
+        120 Weiss                           8000            50 MWEISS                    ST_MAN     Shipping                              1500                                                          
+        121 Fripp                           8200            50 AFRIPP                    ST_MAN     Shipping                              1500                                                          
+        122 Kaufling                        7900            50 PKAUFLIN                  ST_MAN     Shipping                              1500                                                          
+        123 Vollman                         6500            50 SVOLLMAN                  ST_MAN     Shipping                              1500                                                          
+        124 Mourgos                         5800            50 KMOURGOS                  ST_MAN     Shipping                              1500                                                          
+        125 Nayer                           3200            50 JNAYER                    ST_CLERK   Shipping                              1500                                                          
+        126 Mikkilineni                     2700            50 IMIKKILI                  ST_CLERK   Shipping                              1500                                                          
+        127 Landry                          2400            50 JLANDRY                   ST_CLERK   Shipping                              1500                                                          
+        128 Markle                          2200            50 SMARKLE                   ST_CLERK   Shipping                              1500                                                          
+        129 Bissot                          3300            50 LBISSOT                   ST_CLERK   Shipping                              1500                                                          
+        130 Atkinson                        2800            50 MATKINSO                  ST_CLERK   Shipping                              1500                                                          
+        131 Marlow                          2500            50 JAMRLOW                   ST_CLERK   Shipping                              1500                                                          
+        132 Olson                           2100            50 TJOLSON                   ST_CLERK   Shipping                              1500                                                          
+        133 Mallin                          3300            50 JMALLIN                   ST_CLERK   Shipping                              1500                                                          
+        134 Rogers                          2900            50 MROGERS                   ST_CLERK   Shipping                              1500                                                          
+        135 Gee                             2400            50 KGEE                      ST_CLERK   Shipping                              1500                                                          
+        136 Philtanker                      2200            50 HPHILTAN                  ST_CLERK   Shipping                              1500                                                          
+        137 Ladwig                          3600            50 RLADWIG                   ST_CLERK   Shipping                              1500                                                          
+        138 Stiles                          3200            50 SSTILES                   ST_CLERK   Shipping                              1500                                                          
+        139 Seo                             2700            50 JSEO                      ST_CLERK   Shipping                              1500                                                          
+        140 Patel                           2500            50 JPATEL                    ST_CLERK   Shipping                              1500                                                          
+        141 Rajs                            3500            50 TRAJS                     ST_CLERK   Shipping                              1500                                                          
+        142 Davies                          3100            50 CDAVIES                   ST_CLERK   Shipping                              1500                                                          
+        143 Matos                           2600            50 RMATOS                    ST_CLERK   Shipping                              1500                                                          
+        144 Vargas                          2500            50 PVARGAS                   ST_CLERK   Shipping                              1500                                                          
+        145 Russell                        14000            80 JRUSSEL                   SA_MAN     Sales                                 2500                                                          
+        146 Partners                       13500            80 KPARTNER                  SA_MAN     Sales                                 2500                                                          
+        147 Errazuriz                      12000            80 AERRAZUR                  SA_MAN     Sales                                 2500                                                          
+        148 Cambrault                      11000            80 GCAMBRAU                  SA_MAN     Sales                                 2500                                                          
+        149 Zlotkey                        10500            80 EZLOTKEY                  SA_MAN     Sales                                 2500                                                          
+        150 Tucker                         10000            80 PTUCKER                   SA_REP     Sales                                 2500                                                          
+        151 Bernstein                       9500            80 DBERNSTE                  SA_REP     Sales                                 2500                                                          
+        152 Hall                            9000            80 PHALL                     SA_REP     Sales                                 2500                                                          
+        153 Olsen                           8000            80 COLSEN                    SA_REP     Sales                                 2500                                                          
+        154 Cambrault                       7500            80 NCAMBRAU                  SA_REP     Sales                                 2500                                                          
+        155 Tuvault                         7000            80 OTUVAULT                  SA_REP     Sales                                 2500                                                          
+        156 King                           10000            80 JKING                     SA_REP     Sales                                 2500                                                          
+        157 Sully                           9500            80 PSULLY                    SA_REP     Sales                                 2500                                                          
+        158 McEwen                          9000            80 AMCEWEN                   SA_REP     Sales                                 2500                                                          
+        159 Smith                           8000            80 LSMITH                    SA_REP     Sales                                 2500                                                          
+        160 Doran                           7500            80 LDORAN                    SA_REP     Sales                                 2500                                                          
+        161 Sewall                          7000            80 SSEWALL                   SA_REP     Sales                                 2500                                                          
+        162 Vishney                        10500            80 CVISHNEY                  SA_REP     Sales                                 2500                                                          
+        163 Greene                          9500            80 DGREENE                   SA_REP     Sales                                 2500                                                          
+        164 Marvins                         7200            80 MMARVINS                  SA_REP     Sales                                 2500                                                          
+        165 Lee                             6800            80 DLEE                      SA_REP     Sales                                 2500                                                          
+        166 Ande                            6400            80 SANDE                     SA_REP     Sales                                 2500                                                          
+        167 Banda                           6200            80 ABANDA                    SA_REP     Sales                                 2500                                                          
+        168 Ozer                           11500            80 LOZER                     SA_REP     Sales                                 2500                                                          
+        169 Bloom                          10000            80 HBLOOM                    SA_REP     Sales                                 2500                                                          
+        170 Fox                             9600            80 TFOX                      SA_REP     Sales                                 2500                                                          
+        171 Smith                           7400            80 WSMITH                    SA_REP     Sales                                 2500                                                          
+        172 Bates                           7300            80 EBATES                    SA_REP     Sales                                 2500                                                          
+        173 Kumar                           6100            80 SKUMAR                    SA_REP     Sales                                 2500                                                          
+        174 Abel                           11000            80 EABEL                     SA_REP     Sales                                 2500                                                          
+        175 Hutton                          8800            80 AHUTTON                   SA_REP     Sales                                 2500                                                          
+        176 Taylor                          8600            80 JTAYLOR                   SA_REP     Sales                                 2500                                                          
+        177 Livingston                      8400            80 JLIVINGS                  SA_REP     Sales                                 2500                                                          
+        179 Johnson                         6200            80 CJOHNSON                  SA_REP     Sales                                 2500                                                          
+        180 Taylor                          3200            50 WTAYLOR                   SH_CLERK   Shipping                              1500                                                          
+        181 Fleaur                          3100            50 JFLEAUR                   SH_CLERK   Shipping                              1500                                                          
+        182 Sullivan                        2500            50 MSULLIVA                  SH_CLERK   Shipping                              1500                                                          
+        183 Geoni                           2800            50 GGEONI                    SH_CLERK   Shipping                              1500                                                          
+        184 Sarchand                        4200            50 NSARCHAN                  SH_CLERK   Shipping                              1500                                                          
+        185 Bull                            4100            50 ABULL                     SH_CLERK   Shipping                              1500                                                          
+        186 Dellinger                       3400            50 JDELLING                  SH_CLERK   Shipping                              1500                                                          
+        187 Cabrio                          3000            50 ACABRIO                   SH_CLERK   Shipping                              1500                                                          
+        188 Chung                           3800            50 KCHUNG                    SH_CLERK   Shipping                              1500                                                          
+        189 Dilly                           3600            50 JDILLY                    SH_CLERK   Shipping                              1500                                                          
+        190 Gates                           2900            50 TGATES                    SH_CLERK   Shipping                              1500                                                          
+        191 Perkins                         2500            50 RPERKINS                  SH_CLERK   Shipping                              1500                                                          
+        192 Bell                            4000            50 SBELL                     SH_CLERK   Shipping                              1500                                                          
+        193 Everett                         3900            50 BEVERETT                  SH_CLERK   Shipping                              1500                                                          
+        194 McCain                          3200            50 SMCCAIN                   SH_CLERK   Shipping                              1500                                                          
+        195 Jones                           2800            50 VJONES                    SH_CLERK   Shipping                              1500                                                          
+        196 Walsh                           3100            50 AWALSH                    SH_CLERK   Shipping                              1500                                                          
+        197 Feeney                          3000            50 KFEENEY                   SH_CLERK   Shipping                              1500                                                          
+
+EMPLOYEE_ID LAST_NAME                     SALARY DEPARTMENT_ID EMAIL                     JOB_ID     DEPARTMENT_NAME                LOCATION_ID                                                          
+----------- ------------------------- ---------- ------------- ------------------------- ---------- ------------------------------ -----------                                                          
+        198 OConnell                        2600            50 DOCONNEL                  SH_CLERK   Shipping                              1500                                                          
+        199 Grant                           2600            50 DGRANT                    SH_CLERK   Shipping                              1500                                                          
+        200 Whalen                          4400            10 JWHALEN                   AD_ASST    Administration                        1700                                                          
+        201 Hartstein                      13000            20 MHARTSTE                  MK_MAN     Marketing                             1800                                                          
+        202 Fay                             6000            20 PFAY                      MK_REP     Marketing                             1800                                                          
+        203 Mavris                          6500            40 SMAVRIS                   HR_REP     Human Resources                       2400                                                          
+        204 Baer                           10000            70 HBAER                     PR_REP     Public Relations                      2700                                                          
+        205 Higgins                        12008           110 SHIGGINS                  AC_MGR     Accounting                            1700                                                          
+        206 Gietz                           8300           110 WGIETZ                    AC_ACCOUNT Accounting                            1700                                                          
+
+106 rows selected.
+
+SQL> spool off;
