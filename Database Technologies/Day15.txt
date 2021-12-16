@@ -1,0 +1,236 @@
+Open command prompt and type mongod
+Open another command prompt and type mongo
+
+show dbs -> show databases
+
+use flights -> switch to flight database
+
+db.dropDatabase() -> to delete database
+
+db.flightData.insertOne() to insert record
+
+db.flightData.findOne() -> to get first record
+
+db.flightData.find() -> to get all record
+
+db.flightData.deleteOne({"departureAirport":"Kolkata"}) -> delete only one record 
+
+db.flightData.deleteMany({"aircraft":"Spice Jet"}) -> delete all occurences of that record
+
+db.flightData.find().pretty() -> to beautify display of data
+
+db.flightData.updateOne({distance:1000}, {$set:{price:4500}}) -> update/replace only first row having distance = 1000
+
+=======================================================================================================
+Microsoft Windows [Version 10.0.19044.1387]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\DELL>mongo
+MongoDB shell version v5.0.5
+connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
+Implicit session: session { "id" : UUID("3a402190-b8c4-47b9-b49f-571dda3fbcb7") }
+MongoDB server version: 5.0.5
+================
+Warning: the "mongo" shell has been superseded by "mongosh",
+which delivers improved usability and compatibility.The "mongo" shell has been deprecated and will be removed in
+an upcoming release.
+For installation instructions, see
+https://docs.mongodb.com/mongodb-shell/install/
+================
+Welcome to the MongoDB shell.
+For interactive help, type "help".
+For more comprehensive documentation, see
+        https://docs.mongodb.com/
+Questions? Try the MongoDB Developer Community Forums
+        https://community.mongodb.com
+---
+The server generated these startup warnings when booting:
+        2021-12-16T15:44:42.295+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+---
+---
+        Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+        metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+        The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+        and anyone you share the URL with. MongoDB may use this information to make product
+        improvements and to suggest MongoDB products and deployment options to you.
+
+        To enable free monitoring, run the following command: db.enableFreeMonitoring()
+        To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+---
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use flights
+switched to db flights
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> db.flightData.insertOne({departureAirport:"Delhi", arrivalAirport:"Dehradun", aircraft:"Spice Jet", distance: 250, interContinental:false})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("61bb1d758056c637769ced8f")
+}
+> use flights
+switched to db flights
+> db.flightData.findOne()
+{
+        "_id" : ObjectId("61bb29058056c637769ced92"),
+        "departuereAirport" : "Kolkata",
+        "arrivalAirport" : "Delhi",
+        "aircraft" : "Air India",
+        "distance" : 1000,
+        "interContinental" : false,
+        "price" : 5000
+}
+
+> use shop
+switched to db shop
+> db.product.insertOne({name:"Shirt", price:1000, brand:"JP"})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("61bb70f6ed4c86320df9e2d5")
+}
+> db.product.insertOne({pid:101, name:"Lays", price:1000})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("61bb7119ed4c86320df9e2d6")
+}
+> db.product.insertOne({name:"PC", price:1000, config:{cpu:"intel i7", ram:"8gb", gcard:"nvidea"}})
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("61bb7167ed4c86320df9e2d7")
+}
+> db.product.find().pretty()
+{
+        "_id" : ObjectId("61bb70f6ed4c86320df9e2d5"),
+        "name" : "Shirt",
+        "price" : 1000,
+        "brand" : "JP"
+}
+{
+        "_id" : ObjectId("61bb7119ed4c86320df9e2d6"),
+        "pid" : 101,
+        "name" : "Lays",
+        "price" : 1000
+}
+{
+        "_id" : ObjectId("61bb7167ed4c86320df9e2d7"),
+        "name" : "PC",
+        "price" : 1000,
+        "config" : {
+                "cpu" : "intel i7",
+                "ram" : "8gb",
+                "gcard" : "nvidea"
+        }
+}
+> show dbs
+admin    0.000GB
+config   0.000GB
+flights  0.000GB
+local    0.000GB
+shop     0.000GB
+> use flights
+switched to db flights
+
+> db.flightData.insertOne({
+...     "departuereAirport":"Delhi",
+...     "arrivalAirport":"Dehradun",
+...     "aircraft":"Spice Jet",
+...     "distance":250,
+...     "interContinental":false
+... })
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("61bb27c88056c637769ced90")
+}
+> db.flightData.insertOne({
+...     "departuereAirport": "Kolkata",
+...     "arrivalAirport": "Delhi",
+...     "aircraft": "Air India",
+...     "distance": 1000,
+...     "interContinental": false
+... }
+... )
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("61bb28cf8056c637769ced91")
+}
+> db.flightData.insertOne({"departuereAirport": "Kolkata",     "arrivalAirport": "Delhi",     "aircraft": "Air India",     "distance": 1000,     "interContinental": false })
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("61bb29058056c637769ced92")
+}
+> db.flightData.insertOne({
+...     "departuereAirport": "Patna",
+...     "arrivalAirport": "Mumbai",
+...     "aircraft": "Spice Jet",
+...     "distance": 2000,
+...     "interContinental": true
+... })
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("61bb29178056c637769ced93")
+}
+> db.flightData.find()
+{ "_id" : ObjectId("61bb1d758056c637769ced8f"), "departureAirport" : "Delhi", "arrivalAirport" : "Dehradun", "aircraft" : "Spice Jet", "distance" : 250, "interContinental" : false }
+{ "_id" : ObjectId("61bb27c88056c637769ced90"), "departuereAirport" : "Delhi", "arrivalAirport" : "Dehradun", "aircraft" : "Spice Jet", "distance" : 250, "interContinental" : false }
+{ "_id" : ObjectId("61bb28cf8056c637769ced91"), "departuereAirport" : "Kolkata", "arrivalAirport" : "Delhi", "aircraft" : "Air India", "distance" : 1000, "interContinental" : false }
+{ "_id" : ObjectId("61bb29058056c637769ced92"), "departuereAirport" : "Kolkata", "arrivalAirport" : "Delhi", "aircraft" : "Air India", "distance" : 1000, "interContinental" : false }
+{ "_id" : ObjectId("61bb29178056c637769ced93"), "departuereAirport" : "Patna", "arrivalAirport" : "Mumbai", "aircraft" : "Spice Jet", "distance" : 2000, "interContinental" : true }
+> db.flightData.deleteOne({"departureAirport":"Kolkata"})
+{ "acknowledged" : true, "deletedCount" : 0 }
+> db.flightData.find()
+{ "_id" : ObjectId("61bb1d758056c637769ced8f"), "departureAirport" : "Delhi", "arrivalAirport" : "Dehradun", "aircraft" : "Spice Jet", "distance" : 250, "interContinental" : false }
+{ "_id" : ObjectId("61bb27c88056c637769ced90"), "departuereAirport" : "Delhi", "arrivalAirport" : "Dehradun", "aircraft" : "Spice Jet", "distance" : 250, "interContinental" : false }
+{ "_id" : ObjectId("61bb28cf8056c637769ced91"), "departuereAirport" : "Kolkata", "arrivalAirport" : "Delhi", "aircraft" : "Air India", "distance" : 1000, "interContinental" : false }
+{ "_id" : ObjectId("61bb29058056c637769ced92"), "departuereAirport" : "Kolkata", "arrivalAirport" : "Delhi", "aircraft" : "Air India", "distance" : 1000, "interContinental" : false }
+{ "_id" : ObjectId("61bb29178056c637769ced93"), "departuereAirport" : "Patna", "arrivalAirport" : "Mumbai", "aircraft" : "Spice Jet", "distance" : 2000, "interContinental" : true }
+> db.flightData.deleteOne({"departuereAirport":"Kolkata"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+> db.flightData.find()
+{ "_id" : ObjectId("61bb1d758056c637769ced8f"), "departureAirport" : "Delhi", "arrivalAirport" : "Dehradun", "aircraft" : "Spice Jet", "distance" : 250, "interContinental" : false }
+{ "_id" : ObjectId("61bb27c88056c637769ced90"), "departuereAirport" : "Delhi", "arrivalAirport" : "Dehradun", "aircraft" : "Spice Jet", "distance" : 250, "interContinental" : false }
+{ "_id" : ObjectId("61bb29058056c637769ced92"), "departuereAirport" : "Kolkata", "arrivalAirport" : "Delhi", "aircraft" : "Air India", "distance" : 1000, "interContinental" : false }
+{ "_id" : ObjectId("61bb29178056c637769ced93"), "departuereAirport" : "Patna", "arrivalAirport" : "Mumbai", "aircraft" : "Spice Jet", "distance" : 2000, "interContinental" : true }
+> db.flightData.deleteMany({"aircraft":"Spice Jet"})
+{ "acknowledged" : true, "deletedCount" : 3 }
+> db.flightData.find()
+{ "_id" : ObjectId("61bb29058056c637769ced92"), "departuereAirport" : "Kolkata", "arrivalAirport" : "Delhi", "aircraft" : "Air India", "distance" : 1000, "interContinental" : false }
+> db.flightData.find().pretty()
+{
+        "_id" : ObjectId("61bb29058056c637769ced92"),
+        "departuereAirport" : "Kolkata",
+        "arrivalAirport" : "Delhi",
+        "aircraft" : "Air India",
+        "distance" : 1000,
+        "interContinental" : false
+}
+> db.flightData.updateOne({distance:1000}, {$set:{price:4500}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.flightData.find().pretty()
+{
+        "_id" : ObjectId("61bb29058056c637769ced92"),
+        "departuereAirport" : "Kolkata",
+        "arrivalAirport" : "Delhi",
+        "aircraft" : "Air India",
+        "distance" : 1000,
+        "interContinental" : false,
+        "price" : 4500
+}
+> db.flightData.updateOne({distance:1000}, {$set:{price:5000}})
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+> db.flightData.find().pretty()
+{
+        "_id" : ObjectId("61bb29058056c637769ced92"),
+        "departuereAirport" : "Kolkata",
+        "arrivalAirport" : "Delhi",
+        "aircraft" : "Air India",
+        "distance" : 1000,
+        "interContinental" : false,
+        "price" : 5000
+}
+> ^C
+bye

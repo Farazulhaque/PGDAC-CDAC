@@ -1,0 +1,28 @@
+{
+    "departuereAirport":"Delhi",
+    "arrivalAirport":"Dehradun",
+    "aircraft":"Spice Jet",
+    "distance":250,
+    "interContinental":false
+}
+{
+    "departuereAirport": "Kolkata",
+    "arrivalAirport": "Delhi",
+    "aircraft": "Air India",
+    "distance": 1000,
+    "interContinental": false
+}
+{
+    "departuereAirport": "Kolkata",
+    "arrivalAirport": "Delhi",
+    "aircraft": "Air India",
+    "distance": 1000,
+    "interContinental": false
+}
+{
+    "departuereAirport": "Patna",
+    "arrivalAirport": "Mumbai",
+    "aircraft": "Spice Jet",
+    "distance": 2000,
+    "interContinental": true
+}
