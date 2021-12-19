@@ -980,4 +980,3 @@ VALIDATEENTRY                                                                   
 BKPTRIGGER                                                                                                                       AFTER EACH ROW                                                         
 VALIDSAL                                                                                                                         BEFORE EACH ROW                                                        
 
-SQL> spool off;
