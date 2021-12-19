@@ -22,6 +22,7 @@ db.flightData.find().pretty() -> to beautify display of data
 db.flightData.updateOne({distance:1000}, {$set:{price:4500}}) -> update/replace only first row having distance = 1000
 
 =======================================================================================================
+
 Microsoft Windows [Version 10.0.19044.1387]
 (c) Microsoft Corporation. All rights reserved.
 
