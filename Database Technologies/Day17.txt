@@ -98,6 +98,7 @@ then index works on key1, key1-key2, key1-key2-key3
 else not worked
 
 ============================================================================================
+
 > db.movies.find({$or:[{"rating.average":{$lt:5}},{"rating.average":{$gt:9.3}}]}).count()
 4
 > db.movies.find({$and:[{"rating.average":{$lt:5}},{"rating.average":{$gt:9.3}}]}).count()
