@@ -1,4 +1,4 @@
-// 3.Write a code to check the given string is palindrome or not. (abba)
+// 3. Write a code to check the given string is palindrome or not. (abba)
 function check_palindrome(str) {
     var newstr = str.split('');
     newstr = newstr.reverse();
