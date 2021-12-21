@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<title>JS Objects</title>
 	<script type="text/javascript">
 		//Here creating a object
 		var std = {
-			name:"Siddhant", // name is the key/member/property
-			branch :"CS",
-			marks:100
+			name: "Siddhant", // name is the key/member/property
+			branch: "CS",
+			marks: 100
 		}
 
 		//Can we print object on page directly
@@ -18,12 +19,12 @@
 		document.write("<hr>");
 
 		//Access property of object
-		document.write( "Name: " + std.name+"<br>")
-		document.write( "Branch: " + std.branch+"<br>")
+		document.write("Name: " + std.name + "<br>")
+		document.write("Branch: " + std.branch + "<br>")
 		//Accessing property using subscript operator
 		document.write("<hr>");
-		document.write( "Name: " + std["name"]+"<br>")
-		document.write( "Branch: " + std["branch"]+"<br>")
+		document.write("Name: " + std["name"] + "<br>")
+		document.write("Branch: " + std["branch"] + "<br>")
 
 
 		//Add new property to object
@@ -37,39 +38,48 @@
 
 		//Nested Object
 		var std = {
-			name:"Siddhant", // name is the key/member/property
-			branch :"CS",
-			marks:100,
-			contact :{
-				email:"sid0308v@gmmail.com",
-				phone:"832782498"
+			name: "Siddhant", // name is the key/member/property
+			branch: "CS",
+			marks: 100,
+			contact: {
+				email: "sid0308v@gmmail.com",
+				phone: "832782498"
 			},
-			hobbies : ["reading","playing"]
-		}		
+			hobbies: ["reading", "playing"]
+		}
 
 		console.log(std);
 		document.write("<hr>")
 		//Access nested object element
-		document.write("Contact email:  "+ std.contact.email + "<br>") // {email : ,phone: }
-		document.write("Hobbes : "+ std.hobbies[0] + "<br>")
+		document.write("Contact email:  " + std.contact.email + "<br>") // {email : ,phone: }
+		document.write("Hobbes : " + std.hobbies[0] + "<br>")
 
 		//__________________________________________________
 		//Array of object
 		document.write("<hr>")
-		var std_lst = [
-		{name:"sid",branch : "CS"}, // 0
-		{name:"anubhav",branch : "EC"}, // 1
-		{name:"rajat",branch : "CS"}, //2
+		var std_lst = [{
+				name: "sid",
+				branch: "CS"
+			}, // 0
+			{
+				name: "anubhav",
+				branch: "EC"
+			}, // 1
+			{
+				name: "rajat",
+				branch: "CS"
+			}, //2
 		]
 
 		console.log(std_lst)
-		for (var i = 0 ; i < std_lst.length ; i++){
-			document.write("Name: "+ std_lst[i].name + "  Branch : "+std_lst[i].branch + "<br>")
+		for (var i = 0; i < std_lst.length; i++) {
+			document.write("Name: " + std_lst[i].name + "  Branch : " + std_lst[i].branch + "<br>")
 		}
-
 	</script>
 </head>
+
 <body>
 
 </body>
+
 </html>

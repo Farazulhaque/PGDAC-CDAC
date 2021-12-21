@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<title>Arrays</title>
 	<script type="text/javascript">
-		var arr = [12,2,3,"sid",10.3,false]
-			//     0  1 2   3    4     5 
-		
+		var arr = [12, 2, 3, "sid", 10.3, false]
+		//     0  1 2   3    4     5 
+
 		//Accessing array element
-		document.write("0 Index: "+arr[0]+"<br>");
-		document.write("3 Index: "+arr[3]+"<br>");
+		document.write("0 Index: " + arr[0] + "<br>");
+		document.write("3 Index: " + arr[3] + "<br>");
 
 		//Create string of array element
-		document.write("String by toString : "+ arr.toString()+"<br>")
-		document.write("String by join : "+ arr.join("-")+"<br>")
+		document.write("String by toString : " + arr.toString() + "<br>")
+		document.write("String by join : " + arr.join("-") + "<br>")
 
 		//Check element present  in the array
-		if(arr.includes("sid")){
+		if (arr.includes("sid")) {
 			document.write("sid is present<br>");
-		}else{
+		} else {
 			document.write("sid is not present<br>");
 		}
 
@@ -26,31 +27,28 @@
 		//Insert elemnent in the array
 		arr.push("Anubhav");
 		arr.push(30);
-		document.write("String by toString : "+ arr.toString()+"<br>")
+		document.write("String by toString : " + arr.toString() + "<br>")
 
 		//Removing element from the end of array
 		arr.pop();
-		document.write("String by toString : "+ arr.toString()+"<br>")
+		document.write("String by toString : " + arr.toString() + "<br>")
 
 		//Remove element from the begining of array
 		arr.shift()
-		document.write("String by toString : "+ arr.toString()+"<br>")
+		document.write("String by toString : " + arr.toString() + "<br>")
 
 		//Remove from index
-		arr.splice(2,2)
-		document.write("String by toString : "+ arr.toString()+"<br>")
+		arr.splice(2, 2)
+		document.write("String by toString : " + arr.toString() + "<br>")
 
 		//Insert at the begining of arrrrray
 		arr.unshift("Neha")
-		document.write("String by toString : "+ arr.toString()+"<br>")	
-
-
-
-
-
+		document.write("String by toString : " + arr.toString() + "<br>")
 	</script>
 </head>
+
 <body>
 
 </body>
+
 </html>
