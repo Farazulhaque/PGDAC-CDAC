@@ -1,4 +1,4 @@
-// 5.Write a code to take string input from user and remove duplicate words.
+// 4. Write a code to take string input from user and remove duplicate words.
 function remove_duplicates(str) {
     var originalArr = str.split(" ");
     var uniqueArr = [];
