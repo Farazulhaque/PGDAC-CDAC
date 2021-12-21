@@ -1,4 +1,4 @@
-// 1.Write code to create fruit shop page.
+// 1. Write code to create fruit shop page.
 // ->Add fruits(Fields: id,name,rate)
 // ->Display fruits in table
 
