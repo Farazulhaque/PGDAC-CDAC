@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Student List Array Func</title>
+	<script type="text/javascript">
+			var student_lst = []; //empty array
+
+			function add_student(){
+				for (var i = 0 ;i < 3 ; i++){
+					student_lst.push(prompt("Enter name"))
+				}
+			}
+
+			function display(){
+				var str = "<ol>"
+				for(var i = 0; i < student_lst.length ; i++){
+					str = str + "<li>"+student_lst[i]+"</li>"
+				}
+				str += "</ol>"
+				/* <ol>
+					<li>Anubhav</li>
+					<li>Rajat</li>
+					</ol>
+
+				*/
+				document.write(str);
+			}
+
+			add_student();
+			display();
+			
+
+	</script>
+</head>
+<body>
+</body>
+</html>

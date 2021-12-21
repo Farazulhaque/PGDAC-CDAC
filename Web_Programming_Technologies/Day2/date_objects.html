@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Date JS</title>
+	<script type="text/javascript">
+		
+		//Current date and time
+		var d = new Date() // creating date object
+		document.write(d + "<br>");
+		document.write(d.toLocaleString() + "<br>");
+		document.write(d.toISOString() + "<br>");
+		if(d.getHours() > 12){
+			document.write("Good Afternoon")
+		}
+		document.write("<hr>")
+		//Create date object for user defined 
+		//new Date(milliseconds)
+		//var sd = Date(year,month,day,hours,minutes,seconds,milliseconds);
+		var sd = new Date("2022","0","1")
+		document.write(sd + "<br>")
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Add Comma Seperated Numbers</title>
+	<script type="text/javascript">
+		var nums = prompt("Enter numbers"); // prompt returns the string 2,3,4,5
+		var num_arr = nums.split(",") //['2','3','4','5']
+		var sum = 0;
+		for (var i = 0; i < num_arr.length; i++){
+			sum = sum + parseInt(num_arr[i])
+		}
+
+		document.write(sum);
+	</script>
+</head>
+<body>
+
+</body>
+</html>

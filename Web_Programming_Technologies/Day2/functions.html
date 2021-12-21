@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Functions</title>
+
+	<script type="text/javascript">
+			
+		/*function func_name(arguments){
+			//statements
+		}
+		*/
+		// ->No need to define function before calling
+
+		function greet(){
+			document.write('<h1 style="color:red">Hi Sid</h1>');
+		}
+		greet();
+
+		//functions with arguments
+		function print_table(num,range){ //here no need to use var when recieving data
+			for(var i = 1;i <= range; i++){
+				document.write( num*i +"<br>");
+			}
+		}
+
+		var num = prompt("Enter number to print table")
+		var range = prompt("Enter range")
+		print_table(num,range) // here we are passing argument to the function
+		//------------------------------------------------------------
+		//Function with return value
+		function add_comma_seperated_nums(string){
+			var num_array = string.split(",");
+			var sum = 0
+			for(var i = 0 ; i < num_array.length; i++){
+				sum += parseInt(num_array[i])
+			}
+			console.log(sum)
+			return sum; // this function returning sum variable value
+		}
+		
+
+		var nums = prompt("Enter comma seperated numbers :")//3,4,5
+		var s = add_comma_seperated_nums(nums) // calling function and storing value in s //variable
+		document.write("<hr>")
+		document.write("Sum is :" + s + "<br>")
+
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Array of objects</title>
+	<script type="text/javascript">
+		var student_lst = [] //empty array
+
+		function add_student() {
+			for(var i=0 ;  i < 3 ;i++){
+				var n = prompt("Enter name");
+				var branch = prompt("Enter branch");
+				var obj = {
+					name:n,
+					branch:branch
+				}
+				student_lst.push(obj)
+			}
+		}
+
+		add_student();
+		console.log(student_lst);
+		function display(){
+			var str = "<table border = 1>"
+			for( var i = 0 ; i < student_lst.length; i++ ){
+				str += "<tr><td>"+ student_lst[i].name+"</td><td>"+student_lst[i].branch+"</td></tr>"
+				}
+			str = str + "</table>"
+			document.write(str);
+			/*{name:"sid",branch:ce}//0
+			{name:"anu",branch:ec}//1
+			
+			<table border=1>
+				<tr><td>sid</td><td>ce</td></tr>
+				<tr><td>anu</td><td>ec</td></tr>
+		    </table>
+			*/
+		}
+		display()
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>
