@@ -1,0 +1,58 @@
+body {
+    margin: 2% 20%;
+    font-size: 28px;
+    font-family: Calibri, 'Trebuchet MS', sans-serif;
+    box-sizing: border-box;
+}
+
+#header {
+    height: 100px;
+    background-color: yellow;
+    color: black;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 100px;
+}
+
+#side-bar {
+    height: 400px;
+    background-color: #ff540c;
+    width: 25%;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 15%;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+#content {
+    box-sizing: border-box;
+    height: 400px;
+    background-color: #e0f4bc;
+    width: 72%;
+    border-radius: 10px;
+    text-align: left;
+    padding: 1%;
+    float: right;
+}
+
+.post {
+    height: 80px;
+    width: 80%;
+    margin: auto;
+    background-color: #c0f4ec;
+    text-align: center;
+    line-height: 80px;
+    margin-top: 20px;
+    margin-bottom: 0;
+    padding: 0;
+    border-radius: 10px;
+}
+
+#footer {
+    height: 50px;
+    background-color: pink;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 50px;
+}
