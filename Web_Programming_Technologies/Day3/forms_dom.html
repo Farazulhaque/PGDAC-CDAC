@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms Dom</title>
+    <script>
+        var emps = []
+
+        function reset_err() {
+            document.getElementById("name_err").innerText = ""
+        }
+
+        function validate_name() {
+            var name = document.getElementById("name").value;
+            if (name.length < 5) {
+                document.getElementById("name_err").innerText = "Name must have more than 5 chars"
+                return false
+            }
+            return name
+        }
+
+        function store() {
+            var name = validate_name()
+            var email = document.getElementById("email").value;
+            if (name && email) {
+                emps.push({
+                    name: name,
+                    email: email
+                })
+            }
+            display();
+            return false // Return false here beacause we ddont have server right now to submit data
+        }
+
+        function display() {
+            var str = "<table border=1>";
+            str += "<tr><th>Name</th><th>Email</th></tr>"
+
+            for (var i = 0; i < emps.length; i++) {
+                str += "<tr><td>" + emps[i].name + "</td><td>" + emps[i].email + "</td></tr>"
+            }
+
+            str += "</table>"
+            document.getElementById("data").innerHTML = str;
+        }
+    </script>
+</head>
+
+<body>
+    <form onsubmit="return store()">
+
+        <input type="text" name="name" id="name" placeholder="Enter Name" onblur="validate_name()" oninput="reset_err()"
+            required>
+        <span id="name_err" style="color:red"></span><br>
+
+        <input type="email" name="email" id="email" placeholder="Enter email" required><br>
+        <button>Submit </button>
+
+    </form>
+
+    <div id="data"></div>
+</body>
+
+</html>

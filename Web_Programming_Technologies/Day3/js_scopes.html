@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Scopes</title>
+    <script>
+        var x = 10; //global scope
+        let y = 20; //global scope
+
+        function data() { //creates a block scope
+            document.write("Inside function x = " + x + "<br>");
+            document.write("Inside function y = " + y + "<br>");
+            var a = 100; // cannot be accessed outside function block
+            let b = 200; // cannot be accessed outside function block
+            if (true) {
+                document.write("Inside function nested block a = " + a + "<br>");
+                document.write("Inside function nested block b = " + b + "<br>");
+                var m = 500; //var varaibles can be accessed outside block scope
+                let n = 400; // let varaibles cannot be accessed outside block scope
+                const s = 600; // const varaibles cannot be accessed outside block scope
+            }
+            document.write("Inside function after block m = " + m + "<br>");
+            //document.write("Inside function after block n = "+ n + "<br>");
+            //document.write("Inside function after block s = "+ s + "<br>");
+
+        }
+        data()
+        document.write("<hr>");
+        //document.write("Outside function a = "+ a + "<br>"); // cannot access variable declared with var
+        //document.write("Outside function b = "+ b + "<br>"); // cannot access variable declared with let
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
