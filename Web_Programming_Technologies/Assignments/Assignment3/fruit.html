@@ -1,0 +1,33 @@
+<!-- 3. Write a code to accept name of fruit from user and show in ordered list -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Print Fruits</title>
+</head>
+
+<body>
+    <br>
+    <label for="fruitname">Enter Fruit Name: </label>
+    <input type="text" id="fruitname">
+    <br><br>
+    <button onclick="add_fruit()">Add</button>
+    <div id="result"></div>
+    <script>
+        fruits = []
+
+        function add_fruit() {
+            var fruit_name = document.getElementById("fruitname").value;
+            fruits.push(fruit_name);
+            var str = "<ol>"
+            for (var i = 0; i < fruits.length; i++)
+                str += "<li>" + fruits[i] + "</li>";
+            str += "</ol>"
+            document.getElementById("result").innerHTML = str;
+        }
+    </script>
+</body>
+
+</html>
