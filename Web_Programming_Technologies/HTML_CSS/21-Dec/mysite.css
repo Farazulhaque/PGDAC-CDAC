@@ -1,0 +1,210 @@
+        /*  CSS Selectiors  */
+
+        /*Universal selector*/
+        /*
+        *{
+            background-color:cyan;
+         }*/
+
+        /*Type selector*/
+        body {
+            background-image: url('../images/2.gif');
+            /* background-image: url('../images/back2.jpg');*/
+            /* background-repeat: no-repeat;
+           background-position: center; */
+            opacity: 1;
+        }
+
+        div {
+
+            background-color: yellow;
+            font-size: 20px;
+            color: white;
+            font-family: 'Times New Roman', 'Times serif';
+            border: 15px solid green;
+            /*
+            border-style: solid;
+            border-color: green;
+            */
+            padding-top: 20px;
+            height: 120px;
+            width: 50%;
+            margin: auto;
+            margin-top: 5px;
+            /*border-radius:10px;*/
+            /*border-radius:10px 40px;*/
+            /*border-radius:10px 40px 60px;*/
+            border-radius: 10px 40px 60px 80px;
+            /* border-radius:50%;*/
+
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p {
+
+            color: darkblue;
+            text-transform: capitalize;
+
+        }
+
+        /* ID selector */
+        #div1 {
+            background-color: red;
+
+        }
+
+        /* class selector */
+
+        .div2 {
+            background-color: green;
+            border-color: red;
+        }
+
+        .div3 {
+            text-transform: capitalize;
+            border-color: yellow;
+        }
+
+        /*selectors for menu*/
+        ul {
+            background-color: black;
+            list-style: none;
+            border-radius: 10px;
+            height: 40px;
+
+        }
+
+        /*child selector*/
+        ul>li {
+            /* display:none;*/
+            /* display: inline;*/
+            display: inline-block;
+            width: 16%;
+            /*background-color: blueviolet;*/
+            padding-top: .7%;
+
+        }
+
+        /*descendant selector*/
+        ul a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        ul a:hover {
+            text-transform: uppercase;
+            color: red;
+        }
+
+
+        /*General Sibling Selector*/
+        h3~p,
+        h4 {
+            color: yellow;
+        }
+
+        h3~h4 {
+            color: red;
+        }
+
+        /*Adjcent Sibling Selector*/
+        h3+p {
+            color: red;
+        }
+
+        h4+p {
+            color: red;
+        }
+
+        .p1 {
+
+            font-size: 30px;
+        }
+
+        .p2 {
+
+            font-size: 30pt;
+        }
+
+        .p3 {
+
+            font-size: 2em;
+        }
+
+        .text-shadow {
+            text-shadow: 5px 5px 2px lightgreen;
+            text-align: center;
+            text-transform: uppercase;
+            color: green;
+        }
+
+        p {
+
+            border: 15px solid green;
+        }
+
+        .box-shadow {
+
+            width: 100%;
+            height: 100px;
+            background-color: red;
+            box-shadow: 10px 10px 5px black;
+            padding-left: 10px;
+            margin-top: 10px;
+            box-sizing: border-box;
+            overflow: auto;
+            resize: both;
+
+        }
+
+        /*table formatting*/
+        .table {
+            width: 70%;
+            margin: auto;
+            border: 2px solid lightskyblue;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        td {
+            border: 2px solid lightslategray;
+            text-align: left;
+
+
+        }
+
+        .table tr:nth-child(even) {
+            background-color: lime;
+            color: maroon;
+        }
+
+        .table tr:nth-child(odd) {
+            background-color: purple;
+            color: white;
+        }
+
+        .table tr:first-child {
+            background-color: black;
+            color: white;
+        }
+
+        .table tr:last-child {
+            background-color: yellow;
+            color: green;
+        }
+
+        .table tr:hover {
+            background-color: pink;
+            font-weight: bold;
+        }
+
+        .td {
+
+            width: 5%;
+        }

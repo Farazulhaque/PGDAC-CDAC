@@ -1,0 +1,90 @@
+<html>
+
+<head>
+    <style>
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            color: red;
+            text-transform: uppercase;
+        }
+
+        hr {
+            background-color: green;
+            height: 4px;
+        }
+
+        .container {
+            /*the element is positioned realtive toi its normal position */
+            position: relative;
+            text-align: center;
+            color: black;
+            background-color: cyan;
+            top: 10px;
+
+        }
+
+        .img {
+            width: 100%;
+            height: 100%;
+            /*width: 15%;
+                height: 15%;*/
+            /* opacity: .7;*/
+            /*the element is positioned reative to the browser windows/certiport*/
+            /* position: fixed;*/
+            top: 0px;
+            left: 0px;
+        }
+
+        .bottom-left {
+            /*the element is postioned relative to its first positioned ancestor element  */
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: red;
+        }
+
+        .top-left {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: green;
+        }
+
+        .top-right {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+        }
+
+        .bottom-right {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: green;
+        }
+
+        .centered {
+            position: absolute;
+            bottom: 50%;
+            right: 45%;
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h2> Text over Image</h2>
+    <hr>
+    <div class="container">
+        <img class="img" src="./images/3.gif" />
+        <div class="bottom-left">Bottom Left Content goes here</div>
+        <div class="top-left">Top Left Content goes here</div>
+        <div class="top-right">Top Right Content goes here</div>
+        <div class="bottom-right">Bottom Right Content goes here</div>
+        <div class="centered">Centered Content goes here</div> -->
+    </div>
+</body>
+
+</html>

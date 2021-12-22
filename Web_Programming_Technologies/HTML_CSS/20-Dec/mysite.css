@@ -1,0 +1,49 @@
+        /*  CSS Selectiors  */
+
+        /*Universal selector*/
+        /*
+        *{
+            background-color:cyan;
+         }*/
+
+        /*Type selector*/
+        body {
+            background-image: url('../images/back2.jpg');
+        }
+
+        div {
+
+            background-color: yellow;
+            font-size: 20px;
+            color: white;
+            font-family: 'Times New Roman', 'Times serif';
+            border: 15px solid green;
+            /*
+            border-style: solid;
+            border-color: green;
+            */
+            padding-top: 20px;
+            height: 120px;
+            width: 50%;
+            margin: auto;
+            margin-top: 5px;
+            /*border-radius:10px;*/
+            /*border-radius:10px 40px;*/
+            /*border-radius:10px 40px 60px;*/
+            border-radius: 10px 40px 60px 80px;
+            /* border-radius:50%;*/
+
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p {
+
+            color: darkblue;
+            text-transform: capitalize;
+
+        }
