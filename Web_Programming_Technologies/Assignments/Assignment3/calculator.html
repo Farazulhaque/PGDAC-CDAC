@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <script>
+        function add() {
+            var n1 = parseInt(document.getElementById("num1").value);
+            var n2 = parseInt(document.getElementById("num2").value);
+            document.getElementById("result").innerHTML += n1 + " + " + n2 + " = " + (n1 + n2) + "<br>";
+        }
+
+        function sub() {
+            var n1 = parseInt(document.getElementById("num1").value);
+            var n2 = parseInt(document.getElementById("num2").value);
+            document.getElementById("result").innerHTML += n1 + " - " + n2 + " = " + (n1 - n2) + "<br>";
+        }
+
+        function mul() {
+            var n1 = parseInt(document.getElementById("num1").value);
+            var n2 = parseInt(document.getElementById("num2").value);
+            document.getElementById("result").innerHTML += n1 + " x " + n2 + " = " + (n1 * n2) + "<br>";
+        }
+
+        function div() {
+            var n1 = parseInt(document.getElementById("num1").value);
+            var n2 = parseInt(document.getElementById("num2").value);
+            document.getElementById("result").innerHTML += n1 + " / " + n2 + " = " + (n1 / n2) + "<br>";
+        }
+
+        function mod() {
+            var n1 = parseInt(document.getElementById("num1").value);
+            var n2 = parseInt(document.getElementById("num2").value);
+            document.getElementById("result").innerHTML += n1 + " % " + n2 + " = " + (n1 % n2) + "<br>";
+        }
+    </script>
+</head>
+<style>
+    label {
+        width: 200px;
+        float: left;
+    }
+
+    input {
+        width: 100px;
+        float: left;
+    }
+</style>
+
+<body>
+    <br>
+    <label for="num1">Enter First number: </label>
+    <input type="text" id="num1">
+    <br><br>
+    <label for="num2">Enter Second number: </label>
+    <input type="text" id="num2">
+    <br><br>
+    <button onclick="add()">Add</button>
+    <button onclick="sub()">Subtract</button>
+    <button onclick="mul()">Multiply</button>
+    <button onclick="div()">Divide</button>
+    <button onclick="mod()">Modulous</button>
+    <p id="result"></p>
+</body>
+
+</html>
