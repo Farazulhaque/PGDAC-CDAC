@@ -1,0 +1,101 @@
+<!-- 
+4. Create a webpage to store employee details in array of objects  and display in table
+(Details: ID,Name,salary,phone)
+Take all input from user
+Implement Validation on all input tags
+->All fields are required
+->Phone number must be of 10 digit
+->name must have at least 3 characters
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Details</title>
+    <script>
+        var emps = []
+
+        function reset_name_err() {
+            document.getElementById("name_err").innerText = "";
+        }
+
+        function reset_phone_err() {
+            document.getElementById("phone_err").innerText = "";
+        }
+
+        function validate_name() {
+            var name = document.getElementById("name").value;
+            if (name.length < 3) {
+                document.getElementById("name_err").innerText = "Name must have at least 3 characters";
+                return false;
+            }
+            return name;
+        }
+
+        function validate_phone() {
+            var phone = document.getElementById("phone").value;
+            if (phone.length < 10) {
+                document.getElementById("phone_err").innerText = "Phone number must be of 10 digit";
+                return false;
+            }
+            return phone;
+        }
+
+        function store() {
+            var id = document.getElementById("id").value;
+            var salary = document.getElementById("sal").value;
+            var name = validate_name();
+            var phone = validate_phone();
+
+            if (name && phone) {
+                emps.push({
+                    id: id,
+                    name: name,
+                    salary: salary,
+                    phone: phone
+                })
+            }
+            display();
+            return false;
+        }
+
+        function display() {
+            var str = "<table border=1>";
+            str += "<tr><th>ID</th><th>Name</th><th>Salary</th><th>Phone</th></tr>";
+
+            for (var i = 0; i < emps.length; i++) {
+                str += "<tr><td>" + emps[i].id + "</td><td>" + emps[i].name + "</td><td>" + emps[i].salary +
+                    "</td><td>" + emps[i].phone + "</td></tr>";
+            }
+
+            str += "</table>"
+            document.getElementById("data").innerHTML = str;
+        }
+    </script>
+</head>
+
+<body>
+    <form onsubmit="return store()">
+        <input type="text" name="id" id="id" placeholder="Enter ID" required>
+        <br>
+        <input type="text" name="name" id="name" placeholder="Enter Name" onblur="validate_name()"
+            oninput="reset_name_err()" required>
+        <span id="name_err" style="color:red"></span>
+        <br>
+        <input type="text" name="sal" id="sal" placeholder="Enter Salary" required>
+        <br>
+        <input type="text" name="phone" id="phone" placeholder="Enter Phone" onblur="validate_phone()"
+            oninput="reset_phone_err()" required>
+        <span id="phone_err" style="color:red"></span>
+        <br>
+
+        <input type="submit" value="Submit">
+
+    </form>
+
+    <div id="data"></div>
+</body>
+
+</html>
