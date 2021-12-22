@@ -1,0 +1,43 @@
+<!-- 2. Write code to print table (Take Number and range from user)
+If user inputs 2 and range 20 then print table of 2 till 20 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Print Table</title>
+    <script>
+        function print_table() {
+            var num = parseInt(document.getElementById("num").value);
+            var range = parseInt(document.getElementById("range").value);
+            for (var i = 1; i <= range; i++)
+                document.getElementById("result").innerHTML += num + " x " + i + " = " + (num * i) + "<br>";
+        }
+    </script>
+</head>
+<style>
+    label {
+        width: 200px;
+        float: left;
+    }
+
+    input {
+        width: 100px;
+        float: left;
+    }
+</style>
+
+<body>
+    <br>
+    <label for="num">Enter number: </label>
+    <input type="text" id="num">
+    <br><br>
+    <label for="range">Enter range: </label>
+    <input type="text" id="range">
+    <br><br>
+    <button onclick="print_table()">Add</button>
+    <p id="result"></p>
+</body>
+
+</html>
