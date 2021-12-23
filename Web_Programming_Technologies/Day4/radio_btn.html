@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Btn</title>
+    <script>
+        function show_alert() {
+            var gender_dom_arr = document.getElementsByClassName("gender"); // returns array of DOM
+            //console.log(gender_dom_arr)
+            if (gender_dom_arr[0].checked) {
+                alert("Gender: " + gender_dom_arr[0].value)
+            }
+            if (gender_dom_arr[1].checked) {
+                alert("Gender: " + gender_dom_arr[1].value)
+            }
+            if (gender_dom_arr[2].checked) {
+                alert("Gender: " + gender_dom_arr[2].value)
+            }
+        }
+    </script>
+</head>
+
+<body>
+    Gender<input type="radio" name="gender" class="gender" value="male">Male
+    <input type="radio" name="gender" class="gender" value="female">Female
+    <input type="radio" name="gender" class="gender" value="others">Others
+    <button onclick="show_alert()">Show alert</button>
+</body>
+
+</html>

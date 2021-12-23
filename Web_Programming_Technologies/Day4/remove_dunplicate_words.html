@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var sentance = "I am Siddhant I am teaching JS"
+        var arr = sentance.split(" ")
+        document.write(arr);
+        document.write("<br>")
+        // for(var i = 0 ;i< arr.length;i++){
+        //     for(var j = i+1 ; j < arr.length ; j++){
+        //         if (arr[i] == arr [j]){
+        //             arr.splice(j,1)
+        //         }
+        //     }
+        // }
+        for (var i = 0; i < arr.length; i++) {
+            if (arr.indexOf(arr[i]) != arr.lastIndexOf(arr[i])) {
+                arr.splice(arr.lastIndexOf(arr[i]), 1)
+            }
+        }
+
+        document.write(arr);
+        document.write("<br>")
+        document.write(arr.join(" "))
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

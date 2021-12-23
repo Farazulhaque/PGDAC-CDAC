@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="emps_script.js" defer></script>
+
+</head>
+
+<body>
+    <form onsubmit="return save_data()">
+        <input type="text" name="id" id="id" placeholder="Enter id"><br>
+        <input type="text" name="name" id="name" placeholder="Enter name"><br>
+        <input type="email" name="email" id="email" placeholder="Enter email"><br>
+        Gender :
+        <input type="radio" name="gender" class="gender" value="male">Male
+        <input type="radio" name="gender" class="gender" value="female">Female
+        <input type="radio" name="gender" class="gender" value="others">Others
+        <br>
+        Dept:
+        <select id="dept">
+            <option value="development">Development</option>
+            <option value="testing">Testing</option>
+            <option value="admin">Admin</option>
+        </select>
+        <br>
+        <button> Submit</button>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>JS Functions</title>
+	<script type="text/javascript">
+		function greet() { //Normal function with name
+			document.write("Hi Sid!");
+		}
+
+		greet(); //calling normal function
+
+		//here assigning a anonymous function to a variable
+		var anon_func = function () { // this is anonymous function because its without name
+			document.write("This is anon function");
+		}
+
+		var add = function (a, b) {
+			return a + b;
+		}
+
+		anon_func(); //calling anonymous function
+		add(2, 3);
+		//var x = add;
+		//x(2,3)
+
+		// var func = function(a,b){
+		// 	document.write("Hi This is anon function")
+		// }
+		// func(2,4)
+
+		//Arrow key functions
+		var func = (a, b) => {
+			document.write("Hi This is anon function")
+		}
+		func(2, 4)
+
+		var add = (a, b) => a + b
+		add(2, 4)
+
+		var get_tax = salary => salary * 0.10
+		get_tax(4000)
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>

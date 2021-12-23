@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function change_color() {
+            document.getElementById("block").style.backgroundColor = "red";
+        }
+
+        function insideBlock() {
+            document.getElementById("block").style.backgroundColor = "green";
+            document.getElementById("data").innerText = "Inside block"
+        }
+
+        function outsideBlock() {
+            document.getElementById("block").style.backgroundColor = "blue";
+            document.getElementById("data").innerText = "Outside block"
+        }
+    </script>
+</head>
+
+<body>
+    <div id="block" style="height: 100px;width: 200px;" onmouseenter="insideBlock()" onmouseleave="outsideBlock()">
+        <p id="data">This is data</p>
+    </div>
+    <button onclick="change_color()">Change </button>
+    <script>
+        document.getElementById("block").style.border = "1px"
+        document.getElementById("block").style.borderColor = "black"
+        document.getElementById("block").style.borderStyle = "solid"
+    </script>
+</body>
+
+</html>
