@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Functions</title>
+    <script>
+        function run_query() {
+            // alert("hello");
+            var str = document.getElementById("string").value;
+            var substr = document.getElementById("substr").value;
+            var replacestr = document.getElementById("replacestr").value;
+
+            var choice = document.getElementsByClassName("functions");
+            if (choice[0].checked) {
+                if (str.includes(substr)) {
+                    document.getElementById("result").innerHTML = "True";
+                } else {
+                    document.getElementById("result").innerHTML = "False";
+                }
+            } else if (choice[1].checked) {
+                document.getElementById("result").innerHTML = str.toUpperCase();
+            } else if (choice[2].checked) {
+                document.getElementById("result").innerHTML = str.toLowerCase();
+            } else if (choice[3].checked) {
+                document.getElementById("result").innerHTML = str.trim();;
+            } else if (choice[4].checked) {
+                document.getElementById("result").innerHTML = str.concat(substr);
+            } else if (choice[5].checked) {
+                document.getElementById("result").innerHTML = str.replace(substr, replacestr);
+            } else {
+                document.getElementById("result").innerHTML = "Please select at least 1 radio button";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <label for="string">Enter String: </label>
+    <input type="text" name="string" id="string"><br><br>
+    <label for="substr">Enter Sub String: </label>
+    <input type="text" name="substr" id="substr"><br><br>
+    <label for="replacestr">Replace with String: </label>
+    <input type="text" name="replacestr" id="replacestr">
+    <br><br>
+    <input type="radio" name="functions" class="functions" value="search">Search substring in main String
+    <input type="radio" name="functions" class="functions" value="upper">To Upper Case
+    <input type="radio" name="functions" class="functions" value="lower">To Lower Case
+    <input type="radio" name="functions" class="functions" value="trimspaces">Trim spaces
+    <input type="radio" name="functions" class="functions" value="concatenate">Concatenate
+    <input type="radio" name="functions" class="functions" value="replace">replace
+    <br><br>
+    <button onclick="run_query()">Submit Query</button>
+
+    <p id="result"></p>
+
+</body>
+
+</html>
