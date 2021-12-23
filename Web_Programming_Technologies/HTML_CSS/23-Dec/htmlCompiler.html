@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .left {
+            height: 200px;
+            float: left;
+            /* border: 2px solid grey; */
+
+        }
+
+        .right {
+            width: 48%;
+            height: 200px;
+            float: right;
+            border: 2px solid green;
+        }
+
+        input[type="button"] {
+            width: 100px;
+        }
+    </style>
+    <script>
+        function run() {
+            var str = document.getElementById("str").value;
+            document.getElementById("output").innerHTML = str;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="left">
+            <textarea name="str" id="str" cols="82" rows="13"></textarea>
+        </div>
+        <div class="right">
+            <p id="output"></p>
+        </div>
+        <input type="button" value="Run" onclick="run()">
+
+    </div>
+</body>
+
+</html>
