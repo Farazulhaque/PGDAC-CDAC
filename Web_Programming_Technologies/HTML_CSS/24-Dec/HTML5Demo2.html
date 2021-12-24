@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <script type="text/javascript">
+        var interval = 0;
+
+        function updateProgress() {
+
+            var pvalue = document.getElementById("p1").value + 1;
+            document.getElementById("p1").value = pvalue;
+            // alert(document.getElementById("p1").value);
+            document.getElementById("msg").innerText = pvalue + "%";
+            if (pvalue == 100) {
+                clearInterval(interval);
+                window.location = "https://www.google.co.in/";
+            }
+        }
+
+        window.onload = function () {
+            interval = setInterval("updateProgress()", 100);
+        }
+    </script>
+
+</head>
+
+<body>
+    <noscript>
+        <h2 style="color: red;">Java script is disabled on your machine browser,enable it</h2>
+    </noscript>
+    <h2 style="text-align: center;">Working with HTML5 tags</h2>
+    <hr style="background-color: red;height:3px;">
+    <h3>Meter Tag</h3>
+    <meter min="0" max="10" value="5"></meter><br>
+    <meter min="0" max="10" value="4"></meter><br>
+    <meter min="0" max="10" value="7"></meter><br>
+    <meter min="0" max="10" value="10"></meter><br>
+    <h3>Progress tag</h3>
+    <progress value="0" max="100" id="p1"></progress>
+    <span id="msg"></span>
+    <button type="button" onclick="updateProgress()">Update Progress</button>
+    <h3>this is heading using <mark>h3 tag</mark></h3>
+
+
+</body>
+
+</html>

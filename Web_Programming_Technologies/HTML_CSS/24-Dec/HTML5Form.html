@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2 style="text-align: center;color: green;">HTML5 new input type elements</h2>
+    <hr style="background-color: red;height: 3px;" />
+    <pre>
+    <form>
+        <input type="search" id="txtSearch">
+        <input type="email" id="ttxtEmail" placeholder="Enter Email">
+        <input type="url" id="txtUrl">
+        <input type="tel" id="txtTel" pattern="\d{3}-\d{3}"
+               oninvalid="setCustomValidity('Enter valid pincode as 000-000 format')"
+               oninput="setCustomValidity('')"
+               placeholder="Enter Pincode 000-000" >  <!--800-014 -->
+        <input type="datetime" id="txtDateTime" >
+        <input type="date" id="txtDate" value="2021-12-24" min="2021-12-11" max="2022-12-01">
+        <input type="month" id="txtMonth">
+        <input type="week" id="txtWeek">
+        <input type="time" id="txtTime">
+        <input type="datetime-local" id="txtDateTimeLocal">
+        <input type="number" id="txtNumber">
+        <input type="range" id="txtRange">
+        <input type="color" id="txtColor">        
+        <button>Submit</button>
+    </form>
+    </pre>
+</body>
+
+</html>
