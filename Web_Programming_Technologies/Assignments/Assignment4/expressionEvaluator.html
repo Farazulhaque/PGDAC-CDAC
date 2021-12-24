@@ -1,0 +1,25 @@
+<!-- Write a calculator code and take expression from input box and a calculate button
+expression example: 2+4 -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Expression Evaluator</title>
+    <script>
+        function calculate() {
+            var exp = document.getElementById("exp").value;
+            var output = eval(exp);
+            document.getElementById("result").innerHTML = exp + " = " + output;
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" name="exp" id="exp" placeholder="Enter Expression here..."> &nbsp;
+    <input type="button" value="Calculate" onclick="calculate()">
+    <p id="result"></p>
+</body>
+
+</html>
