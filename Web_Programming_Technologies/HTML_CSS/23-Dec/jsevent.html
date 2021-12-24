@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Event Demo</title>
+    <script type="text/javascript">
+        function validateInput() {
+
+            var name = document.getElementById("txtName").value;
+            if (name.length == 0) {
+                alert("Name can't be Blank!!!!");
+                return false;
+            }
+
+        }
+
+        function validateName() {
+            //var name= document.getElementById("txtName").value;
+            if (document.getElementById("txtName").value.length < 8) {
+                //alert("Name must of minimum of 8 characters");
+
+                document.getElementById("txtName").style.border = "3px solid red";
+                document.getElementById("txtName").focus();
+            } else {
+                document.getElementById("txtName").style.border = "1px solid black";
+            }
+        }
+
+        function showHide() {
+
+            // alert(document.getElementById("cbox").checked);
+            if (document.getElementById("cbox").checked) {
+                document.getElementById("txtPwd").type = "text";
+                document.getElementById("msg").innerText = "Hide";
+            } else {
+                document.getElementById("txtPwd").type = "password";
+                document.getElementById("msg").innerText = "Show";
+            }
+        }
+
+        function getName(data) {
+            document.getElementById("name").innerText = data.toUpperCase();
+            document.getElementById("txtName").value = data.toUpperCase();
+        }
+    </script>
+
+</head>
+
+<body>
+    <!-- <form  method="get" onsubmit="return validateInput()"> -->
+    <form>
+        <pre>
+        <!-- admin -->
+        <input type="text" name="txtName" id="txtName" onkeyup="getName(this.value)"  onblur="validateName()"  placeholder="Enter fullname Here"><span id="name"></span>
+
+        <input type="text" required name="txtEmail" id="txtEmail" placeholder="Enter Email Here">
+
+        <input type="text" name="txtSalary" id="txtSalary" placeholder="Enter Salary Here">
+
+        <input type="password" name="txtPwd" id="txtPwd" placeholder="******************"><input type="checkbox"  id="cbox" onchange="showHide()"><span id="msg">Show</span>
+
+        <input type="submit" value="Register Me" name="btnRegister" onclick="return validateInput()" />
+        </pre>
+    </form>
+</body>
+
+</html>
