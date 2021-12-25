@@ -1,0 +1,75 @@
+<!-- 
+Create an Employee Page:
+Create Given fields :ID, Name, Email, Phone, Gender, City(Dropdown),Date of birth.
+On click on submit Button Store above details in array of objects .
+Create Display button to show data on Page in Table format
+Perform validation on ID, Name, Email, Phone on blur event
+(Field must not be empty and Name must at least 4 chars and phone must have 10 chars)
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Details</title>
+    <link rel="stylesheet" href="empstyle.css">
+    <script src="empscript.js"></script>
+</head>
+
+<body onload="init()">
+    <section class="empdetails">
+        <h1>Employee Details Page</h1>
+        <hr style="background-color:green;height:3px;">
+        <p> <span>*</span>All fields are required</p>
+        <form method="get" onsubmit="return display()">
+            <label for="id">ID: </label>
+            <input type="text" name="id" id="id" onblur="validateID()" onkeyup="clr()">
+            <span id="idmsg"></span>
+            <br><br>
+
+            <label for="name">Name: </label>
+            <input type="text" name="name" id="name" onblur="validateName()" onkeyup="clr()">
+            <span id="namemsg"></span>
+            <br><br>
+
+            <label for="email">Email: </label>
+            <input type="email" name="email" id="email" onblur="validateEmail()" onkeyup="clr()">
+            <span id="emailmsg"></span>
+            <br><br>
+
+            <label for="phone">Phone: </label>
+            <input type="text" name="phone" id="phone" onblur="validatePhone()" onkeyup="clr()">
+            <span id="phonemsg"></span>
+            <br><br>
+
+            <label for="gender">Gender: </label>
+            <input type="radio" name="gender" class="gender" value="Male" checked>Male &nbsp;
+            <input type="radio" name="gender" class="gender" value="Female">Female
+            <br><br>
+
+            <label for="City">City: </label>
+            <select name="city" id="city">
+                <option value="Patna">Patna</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Lucknow">Lucknow</option>
+            </select>
+            <br><br>
+
+            <label for="date">Date Of Birth: </label>
+            <input type="date" name="dob" id="dob">
+            <br><br>
+
+            <input type="submit" value="Display">
+        </form>
+    </section>
+    <section id="emptable">
+        <marquee onmouseover="this.stop();" onmouseout="this.start();" behavior="alternate">
+            <h4>Here Employee Details will be displayed</h4>
+        </marquee>
+    </section>
+
+</body>
+
+</html>
