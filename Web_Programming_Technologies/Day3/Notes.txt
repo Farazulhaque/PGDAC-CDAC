@@ -1,0 +1,75 @@
+DOM(Document Object Model):
+->Every tag of page is stored as DOM in browser
+->Its a tree of objects
+->Every tag object is inside "document" object
+->Browser first creates DOM of each tag of page then uses to draw on the page
+->We can use DOM to manipulate or fetch data from HTML
+document = {
+    ......
+    children:[{HTML
+               .....
+               children:[{head}{body
+                        ....
+                            children: [{h1},{p
+                                    ....
+                                        children:[]
+                                    ...
+                                }]
+                        ....
+                    }] 
+               ....     
+            }]
+    .....
+
+}
+document.children[0].children[1].children[0].innerText = "HI Sid"
+
+Functions to select DOM of any tag:
+document.getElementById("id") -> return single DOM of Selected DOM of tag by ID
+document.getElementsByName("Name") ->returns array of DOM having the same name attribute
+document.getElementsByClassName("class") ->return array of DOM having the same class attribute
+document.getElementsByTagName("Tag") ->returns array of Tag DOM
+___________________________________________________________________________
+Notes:
+->For input tag use .value
+->For any tag other than tag .innerText or innerHTML
+->Use .innerHTML if text contains the HTML tags
+->Use .innerText if text does not contain any HTML tags
+______________________________________________________________________________________
+Events:
+->Every action on fires an event
+Event List:
+click
+mouseover
+mouseenter
+mouseleave
+focus
+blur
+change
+select
+dblClick
+___________________________________________________________________________________
+Form Level Validation:
+->register function onsubmit event in form Tag
+Syntax:
+onsubmit="return func_name()"
+->If this function returns true form will submit data
+->If this function returns false form will not submit data
+_________________________________________________________________________________________
+Scopes:
+1.Block scope: created by curly brackets
+{
+    //block scope
+}
+2.Function scope: created by functions
+function func_name(){
+    //function scope
+}
+3.Global scope: you can access it anywhere
+
+->variable declared with var,let cannot accessed outside function scope
+->var does not consider block scope thats why we accces var variables outside of block
+->let considers block scope thats why we cannot access it outside
+->const considers block scope thats why we cannot access it outside
+->const and let follows the same scope idea
+->const is used constant variable means we can not change the value of that variable
