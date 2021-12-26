@@ -1,0 +1,159 @@
+Programming languages follows three types:JS
+->Loosly types: You dont need to mention data type,JS,Python,PHP
+->Dynamically Typed: You can change datatype of variable at runtime,Python,JS,PHP
+->Strongly Typed: You must declare datatype of variable and cannot change it later,Java,C,C++ etc
+______________________________________________________________
+JS(Javascript):
+->No relation to JAVA
+-> Its programming language desgined for browser
+-> Case senstive
+->No need to download any tool(interpreter/compiler)
+
+Comment:
+//Single Line comment
+/* Multi Line Comment*/
+
+Variables:
+Naming Rules:
+->variable names cannot be JS language keyword
+->Variable name can start from letters, $ and _ only
+->Variable name can have letters,digits,$ and _
+
+Notes:
+->No need to mention datatype
+->You can change datatype of any variable
+->Write all JS code in script tag anywhere(Recommended:HEAD, and At the end of body)
+->Declare variable with "var","let","const" keyword
+
+
+
+What is datatype of variable?
+Depends on data we are assigning to the variable
+
+E.G:
+var x; // variable declaration
+var a = 10 ; //Variable declation and Intialization
+a = "Siddhant"; // Now a datatype is string
+a = 10.4; //Now a is double
+a = false; //Now a boolean
+
+How to print on Page?
+use document.write(string);
+
+How to print on browser console?
+console.log(variable/string)
+Purpose:debugging,Testing
+
+Typecasting:
+Change datatype of variable
+Implicit Typcasting: JS engine handles this by itself
+Explict Typecasting: Developer changes datatype manually
+parseInt(data) ->convert to integer
+parseFloat(data) -> Convert to Float
+Number(data) -> changes the datatype to integer or float
+
+Airthmatic Operators:
++,-,*,/,%,**(exponent)
+
+
+Dialog Box:
+prompt()->This gives a input box to enter data
+alert()->This show only information
+
+How to take input with JS?
+use prompt()
+______________________________________________________
+Control Stucture:
+IF:
+if(expressions){
+   statements
+}
+
+IF-ELSE:
+if(expressions){
+    statements
+}else{
+    statements
+}
+
+IF-ELSE-IF:
+if(expressions){
+    statements
+}else if(expressions){
+
+}else{
+
+}
+____________________________________________________________
+Switch Case:
+switch(expression){
+    case OPTION : statement;            
+                break;
+    case OPTION : statement;            
+                    break;
+    case OPTION : statement;            
+                    break;
+    default : statement;
+}
+
+_____________________________________________________________
+Loops:
+while(expressions){
+    //statements
+}
+
+do{
+    //statements
+}while(expressions)
+
+for(inilialization;condition;increment/decrement){
+    //statements
+}
+
+_____________________________________________________________
+Strings:
+var str = "Siddhant"
+
+Property:
+str.length ->  Provides length of string
+Functions:
+str.startsWith(substring)->returns true or false if string starts with the given substring
+str.endsWith(substring) ->returns true or false if string ends with the given substring
+str.includes(substring) -> if string includes substring return true else false
+str.replace(old_str,new_str) -> it'll replace old string with the new string
+str.match(pattern)
+str.search()
+str.split("seperator") -> return array after splitting string
+str.toUpperCase() ->convert to upper case
+str.toLowerCase() -> convert to lower case
+str.substring(startIndex,endIndex) -> get  substring from startIndex to endIndex
+str.charAt(index) -> returns charcter of the index
+str.indexOf(substring) ->returns the first occurance of the string
+str.lastIndexOf(substring) ->returns the last occurance of the string
+_______________________________________________________________________________________________________
+Arrays:
+-> Arrays can store anythings
+Declaration:
+var arr = [12,2,3,"sid",10.3,false]
+
+Property:
+arr.length -> gives the length
+Functions:
+arr.push(data) -> Insert data at the end
+arr.pop(data) -> remove data from the end
+arr.shift(data) -> remove data from the begining
+arr.splice(index,count) ->remove that count data from the index
+e.g
+arr.splice(2,3) -> delete 3 values from 2 index
+arr.splice(2,1) -> delete 1 value from 2 index
+
+arr.concat(new_arr) -> concats two arrays
+arr.join("delimiter") -> Joins the array element by delimiter to create string
+arr.toString() -> convert array to comma seperated string
+arr.unshift(data) -> Add data to the begining
+arr.map(func)
+arr.filter(func)
+arr.forEach(func)
+arr.find(func) ->returns the  element after passing text function
+arr.includes(data) -> returns true or false if data is present in array or not
+arr.indexOf(data) -> index of data
