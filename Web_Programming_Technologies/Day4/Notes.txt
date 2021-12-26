@@ -1,0 +1,43 @@
+There are two ways of JS code:
+Internal script:
+->Write code inside script tag
+External Script:
+->write code in seperate JS file
+->Extension of external script is .js
+->use src attribute of script to import external script
+->Use defer keyword with script tag : it'll excecute after parser the page but before loading DOM
+
+_________________________________________________________________
+Functions:
+Three types of functions:
+->Normal function
+function greet(){ //Normal function with name
+			document.write("Hi Sid!");
+		}
+
+->Anonymous functions
+var add = function(a,b){
+	return a + b;
+}
+//here assigning a anonymous function to a variable
+		var anon_func = function(){ // this is anonymous function because its without name
+			document.write("This is anon function");
+		}
+
+->Arrow functions
+--> if arrow contains single statement and that statement is returning value then you dont need the curly braces and return keyword
+var add = (a,b) => a + b
+add(2,4)
+-->if you have single argument you dont round braces
+var get_tax = salary  => salary * 0.10
+get_tax(4000)
+_____________________________________________________________
+Objects:
+->Objects creates a namespace
+->Thats why we use object to create modules
+
+What is namespace?
+seperates the names(identifier) by creating scope
+_______________________________________________________________
+This keyword:
+->Points to owner object
