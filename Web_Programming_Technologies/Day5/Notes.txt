@@ -1,0 +1,180 @@
+var obj = { //Object Literal
+    a : 10,
+    b: 20
+}
+
+Instance:
+There are three ways to create Instance:
+1.Use new keyword
+// //When we use new keyword this function act as a constructor
+// function Emp(){ 
+// 	this.id = 1;
+// 	this.name = "Siddhant";
+// 	this.salary = 4900
+// }
+
+// Emp() //normal function calling
+// var emp1 = new Emp() //creating instance
+// var emp2 = new Emp() // crearing instance
+// var emp3 = new Emp() // creating instance
+
+//parameterized constructor
+function Emp(id,name,salary){
+	this.id = id;
+	this.name = name;
+	this.salary = salary;
+	this.get_tax = function(){
+		return 0.18 * this.salary
+	}
+}
+
+var emp1 = new Emp(1,"Sid",3000)
+var emp2 = new Emp(2,"Anubhav",4000)
+var emp3 = new Emp(3,"Rajat",6000)
+
+
+
+
+
+2.Use Object.create()
+->Use this to create instance of Object literal
+var student = { // Object literal
+	name: "Siddhant",
+	email:"sid0308v@gmai.com",
+	phone: "2384798790",
+	get_grade : function(){
+		return "A"
+	}
+}
+
+//Creating instance
+var s1 = Object.create(student)
+var s2 = Object.create(student)
+var s3 = Object.create(student)
+s1.gender = "male";
+s2.country = "India"
+
+
+3.Use ES6(JS standard released in 2015) class syntax and with new keyword
+->Use class syntax
+->here constructor name is always constructor
+// class Employee{
+// 	constructor(){ // Initialize the data members
+// 		this.id = 1;
+// 		this.name ="Sid";
+// 		this.salary = 4000;
+// 	}
+
+// 	get_tax(){ // Here we dont use function keyword and dont use arrow key function
+// 		return 0.10 * this.salary
+// 	}
+
+// }
+
+// var e1 = new Employee() //creating object of Class
+// var e2 = new Employee()
+
+
+
+class Employee{
+	//parameterized consturctor
+	constructor(id,name,salary){ // Initialize the data members
+		this.id = id;
+		this.name =name;
+		this.salary = salary;
+	}
+
+	get_tax(){ // Here we dont use function keyword and dont use arrow key function
+		return 0.10 * this.salary
+	}
+
+}
+
+var e1 = new Employee(1,"sid",3000) //creating object of Class
+var e2 = new Employee(2,"anubhav",3000)
+
+//Accessing e1 instance data
+console.log(e1.name)
+e1.email = "sid0308v@ghm.com"
+console.log(e1)
+_____________________________________________________________
+->Instance create by any of the above we can add any member/key/property and we can delete any member/key/property
+________________________________________________________________
+Functions scope:
+->Normal function and anonymous function create function scope
+->That's why normal and anonymous function got "this" to access owner namespace 
+->Arrow key function does not  have "this" keyword
+->If we try to access this in arrow function we are accessing owners scope "this" keyword
+->"window" is the for a tab or a page. In  other words global scope
+of page
+
+Notes:
+--------> "this" points to owner namespace
+____________________________________________________________________
+BOM(Browser Object Model):
+->window object
+->It manages the history,location,navigation,document etc
+window.history(-2) // moving 2 step backword in history of current page
+window.history(+2)  // moving 2 step forward in histroy of current page
+window.location object for redirection
+
+___________________________________________________________________
+Object()
+->This is also Object object
+->It is in built root object
+->MOst of the object in JS inherit Object()
+->Inherit the property means prototyping Object()
+___________________________________________________________________
+Prototype:
+->Mechanism to inherit the property of other objects
+->BY default objects prototypes the Object
+->Arrays prototypes the Array
+function School(){
+	this.schName = "Public School"
+}
+
+// It is prototyping the Object
+
+function Student(id,name,marks){
+	this.id = id;
+	this.name = name;
+	this.marks = marks;
+	this.get_cgpa = function(){
+		return this.marks/10
+	}
+}
+//Overriding (Polymorphism)
+Student.prototype.toString = function(){
+	return "My Id is :"+this.id + " and Name is : "+this.name
+}
+
+Student.prototype.valueOf = function(){
+	return this.id
+}
+
+var st1 = new Student(1,"sid",60)
+
+//Here setting the prototype of st1 to School
+Object.setPrototypeOf(st1,School)
+
+
+
+//ES6 standard Inheritance syntax
+//Here Inheriting Employee class using extends keyword
+ 
+ class Tester extends Employee{
+ 	constructor(id,name,salary,dept){
+ 		super(id,name,salary) // Here calling super class constructor and passing parameters
+ 		this.dept = dept
+ 	}
+ 	get_salary(){
+ 		return this.salary + 1000;
+ 	}
+ 	get_tax(){
+ 		return this.salary*0.05;
+ 	}
+ }
+
+var t1 = new Tester(5,"Rajat",5000,"testing")
+console.log(t1.get_salary()) // It'll execute the child function
+console.log(t1.get_tax())
