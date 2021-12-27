@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Add Name to List</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript">
+		//var r = 100,g = 100,b = 100;
+		$(document).ready(function () {
+			$("#add_to_list").click(function () {
+				var name = $("#name").val()
+				//$("#lst").append("<li>"+name+"</li>") //add at the end
+				//$("<li>"+name+"</li>").appendTo("#lst") // add at the end
+				$("#lst").prepend("<li>" + name + "</li>")
+			})
+
+			$("#change_background").click(function () {
+				$("body").css("background-color", "yellow")
+				//$("body").css("background-color","rgb("+r+","+g+","+b+")")
+				// r+=20;
+				// g+=20;
+				// b+=20;
+			})
+
+			$("#mydiv").mouseenter(function () {
+				$("#mydiv").css("background-color", "red")
+				$("#mydiv").html("<p>THis is p tag</p>")
+			})
+
+
+			$("#mydiv").mouseleave(function () {
+				$("#mydiv").css("background-color", "white")
+				$("#mydiv").html("")
+			})
+
+
+			$("#other_div").mouseenter(function () {
+				$("#other_div").addClass("design")
+			})
+
+			$("#other_div").mouseleave(function () {
+				$("#other_div").removeClass("design")
+			})
+
+			$("#animate").click(function () {
+				$("#other_div").fadeToggle(100, "swing")
+			})
+
+		})
+	</script>
+	<style type="text/css">
+		#mydiv {
+			height: 100px;
+			width: 100px;
+			border: 1px solid black;
+		}
+
+		#other_div {
+			height: 100px;
+			width: 100px;
+			border: 1px solid black;
+		}
+
+		.design {
+			background-color: green;
+			color: red;
+
+		}
+	</style>
+</head>
+
+<body>
+	<input type="text" name="name" id="name">
+	<button id="add_to_list">Add to List</button>
+	<button id="change_background">Change Background</button>
+	<ul id="lst"></ul>
+
+	<div id="mydiv"></div>
+
+	Other div:
+	<button id="animate">Animate</button>
+	<div id="other_div"></div>
+
+</body>
+
+</html>

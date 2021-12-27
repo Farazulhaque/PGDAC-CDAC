@@ -1,0 +1,28 @@
+Jquery:
+->Library of JS
+->For DOM Manipulation
+->Animation
+->Event handling
+Cheatsheet:
+https://oscarotero.com/jquery/
+____________________________________________________________
+How to Use library?
+Two ways:
+1.Download and Import
+->Download from jquery website
+->Import using script Tag as external script
+2.Directly import from Jquery CDN link
+____________________________________________________________
+Notes:
+-> $ is the function name, we pass DOM or DOM selectors to this function
+->You can pass CSS DOM selectors here
+->$ returns Jquery Object
+->We should write all our Jquery code after loading the page
+Thats why write your code inside 
+$(document).ready(function(){
+    //code
+})
+->Here we are passing a handler  to the .ready function
+->Actually it is executing on event DOMContentLoaded
+->Page fires DOMContentLoaded event when browser renders the DOM
+
