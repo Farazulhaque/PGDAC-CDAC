@@ -29,8 +29,25 @@
         <input type="number" id="txtNumber">
         <input type="range" id="txtRange">
         <input type="color" id="txtColor">        
-        <button>Submit</button>
+        <input list="cities" name="cities">
+        <datalist id="cities">
+        <option value="Noida">
+        <option value="Delhi">
+        <option value="Dehradun">
+        <option value="Nagpur">
+        <option value="Patna">
+        </datalist>
+        <button type="submit">Submit</button>
+        <button type="submit" formmethod="post"  formaction="HTML5Demo1.html" 
+        formnovalidate formtarget="_blank" > Next</button>
+        <button type="submit"  formaction="HTML5Demo2.html">HTML-2</button>
     </form>
+    <h2>Output Tag in HTML5</h2>
+    
+    <form oninput="x.value=parseInt(a.value)+parseInt(b.value)">
+        <input type="number" name="a" value="50">+<input type="number" name="b" value="50">=<output  name="x" for="a b">100</output>
+    </form>
+    
     </pre>
 </body>
 
