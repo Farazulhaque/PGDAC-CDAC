@@ -112,6 +112,6 @@ function clr() {
     document.getElementById("phonemsg").innerHTML = "";
 }
 
-function init() {
-    document.getElementById("id").focus();
-}
+// function init() {
+//     document.getElementById("id").focus();
+// }

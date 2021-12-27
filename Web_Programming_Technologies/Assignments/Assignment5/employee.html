@@ -17,14 +17,16 @@ Perform validation on ID, Name, Email, Phone on blur event
     <script src="empscript.js"></script>
 </head>
 
-<body onload="init()">
+<!-- <body onload="init()"> -->
+
+<body>
     <section class="empdetails">
         <h1>Employee Details Page</h1>
         <hr style="background-color:green;height:3px;">
         <p> <span>*</span>All fields are required</p>
         <form method="get" onsubmit="return display()">
             <label for="id">ID: </label>
-            <input type="text" name="id" id="id" onblur="validateID()" onkeyup="clr()">
+            <input type="text" name="id" id="id" onblur="validateID()" onkeyup="clr()" autofocus>
             <span id="idmsg"></span>
             <br><br>
 
