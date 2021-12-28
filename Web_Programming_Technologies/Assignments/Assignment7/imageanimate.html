@@ -1,0 +1,52 @@
+<!-- 
+1. Create a HTML page thats shows paragraph and images side by side.
+If your move your cursor over image it should zoom to double the previous size
+ -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Jquery ANimation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <style type="text/css">
+        img {
+            width: 100%;
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("img").mouseenter(function () {
+                $("img").animate({
+                    width: '200%'
+                }, 1000)
+            })
+            $("img").mouseleave(function () {
+                $("img").animate({
+                    width: '100%'
+                }, 1000)
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo quae delectus omnis sit sequi
+                    quisquam. Maxime quas reprehenderit inventore tenetur fugit blanditiis voluptas quia. Repellat
+                    voluptate est hic esse.!</p>
+            </div>
+            <div class="col-md-2">
+                <img src="nightsky.jpg" alt="Night Sky, Tree">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
