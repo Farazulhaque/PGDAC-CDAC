@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Demo</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <script src="../js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+    <script>
+        // $(document).ready(function () {
+        //     $("#selectall").click(function () {
+        //         if (this.checked) {
+        //             $('.checkbox').each(function () {
+        //                 this.checked = true;
+        //             });
+        //             console.log("The checkbox of name is checked");
+        //         } else {
+        //             $('.checkbox').each(function () {
+        //                 this.checked = false;
+        //             });
+        //             console.log("The checkbox of name is unchecked");
+        //         }
+        //     })
+        // })
+
+        function check() {
+            var chkbox = document.getElementById("selectall");
+            var checkboxes = document.getElementsByClassName("checkbox");
+            if (chkbox.checked) {
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = true;
+                    console.log(checkboxes[i].checked)
+                }
+                // console.log("All checked")
+            } else {
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = false;
+                }
+                // console.log("All unchecked")
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="container" style="height:150px;">
+        <table class="table table-bordered table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Salary</th>
+                <th><input type="checkbox" class="checkbox" id="selectall" onclick="check()"> Select All</th>
+            </tr>
+            <tr>
+                <td>1000</td>
+                <td>Amit</td>
+                <td>2500</td>
+                <td><input type="checkbox" class="checkbox"></td>
+            </tr>
+            <tr>
+                <td>1000</td>
+                <td>Amit</td>
+                <td>2500</td>
+                <td><input type="checkbox" class="checkbox"></td>
+            </tr>
+            <tr>
+                <td>1000</td>
+                <td>Amit</td>
+                <td>2500</td>
+                <td><input type="checkbox" class="checkbox"></td>
+            </tr>
+            <tr>
+                <td>1000</td>
+                <td>Amit</td>
+                <td>2500</td>
+                <td><input type="checkbox" class="checkbox"></td>
+            </tr>
+            <tr>
+                <td>1000</td>
+                <td>Amit</td>
+                <td>2500</td>
+                <td><input type="checkbox" class="checkbox"></td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+
+</html>
