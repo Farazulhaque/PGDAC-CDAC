@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Fetch data from HTML</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"
+		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			//Iterate through array of 4 DOM 
+			$("li").each(function () {
+				var data = $(this).text()
+				if (data == "Anubhav") {
+					$(this).css("color", "red")
+				}
+				$(this).text(data + "HI")
+			})
+
+		})
+	</script>
+</head>
+
+<body>
+	<ol id="lst">
+		<li>Sid</li>
+		<li>Anubhav</li>
+		<li>Rajat</li>
+		<li>Siddhant</li>
+	</ol>
+</body>
+
+</html>

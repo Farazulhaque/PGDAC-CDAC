@@ -1,0 +1,123 @@
+Jquery:
+Animation:
+$(selector).animate({arguments},speed,callback)
+
+JSON:
+(Javascript Object Notation):
+-> Its independent of language
+->Its data interchange format
+->Its a string
+Docs: https://www.json.org/json-en.html
+{
+    "name":"siddhant",
+    "email" :"sid0308v@gn.com",
+    "id":1,
+    "contact":{
+        "city":"pune"
+    },
+    "hobbies":["hobbies","reading"],
+    "boolean":true,
+    "data":null
+}
+
+["Siddhant","Anubhav"]
+
+[{"a":1,"b":2},{"c":4,"s":10}]
+
+->JSON.parse(json_data) -> returns object of JSON
+->JSON.stringify(object) -> returns JSON of object
+__________________________________________________________________
+HTTP:
+
+-> Hypertext tranfer protocol
+-> Application layer protocol
+-> It follows request response model
+-> It is stateless protocol
+Request/Response packet: headers + body
+
+
+URL Format:
+http://www.google.com/search?q=abc
+http -> protocol,If http means no encryption if https means encrypted body (encrypt the body using TLS/SSL)
+www.google.com -> Domain name,server address
+/search -> endpoint/resource -> address of file/folder/program
+q=abc -> querystring -> data for the endpoint/resource
+
+Request Type:
+GET -> Sends data with URL(in querystring) ->used to fetch data from server
+POST -> Sends data with body -> used to create data on server
+PUT ->send data with body -> used to modify the data on server
+DELETE -> send data with url ->used to delete the data on server
+PATCH ->send data with body -> used to modify on server
+OPTIONS ->for options configuration
+HEAD ->Same as get but for testing because resposne will not have body 
+TRACE -> testing , looback test
+CONNECT -> for connection 
+
+
+Status code:
+->Idenify the status of response like error,crash,not found,success
+
+__________________________________________________________________________________
+AJAX:
+->Asynchronous Javascript and XML
+->it also works over HTTP
+->It a mechanism of communication with the server
+->It uses XMLHttpRequest Object
+->It is for browser
+->It is fast
+
+Steps to implement in JS:
+1.Create object of XMLHttpRequest
+2.Configure request
+    a)Open request to target
+    b)Configure header
+3.Register a function onreadystatechange for each state change event 
+4.send request
+
+->Recieve any kind of data except XML in reponseText
+->Recieve XML data in response XML
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

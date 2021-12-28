@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>JSON</title>
+	<script type="text/javascript">
+		//Object
+		var student = {
+			"name": "Siddhant",
+			"email": "sid@gmai.com",
+			"contact": {
+				"city": "phone"
+			}
+		}
+		console.log(student)
+		var json_data = '{"name":"sid","id":1}' // JSON
+		console.log(json_data)
+		//Create object from JSON
+		var obj = JSON.parse(json_data) // converts JSON to object
+
+		//Create JSON from object
+		var json_student = JSON.stringify(student); // converts object to JSON
+	</script>
+</head>
+
+<body>
+</body>
+
+</html>
