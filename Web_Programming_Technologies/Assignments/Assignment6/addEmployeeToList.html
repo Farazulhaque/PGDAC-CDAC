@@ -26,6 +26,13 @@
                 var row = "<tr><td>" + empname + "</td></tr>"
                 $("#table").append(row)
             })
+
+            $("#table").mouseenter(function () {
+                $("#table").css("background-color", "gray")
+            })
+            $("#table").mouseleave(function () {
+                $("#table").css("background-color", "white")
+            })
         })
     </script>
 </head>
