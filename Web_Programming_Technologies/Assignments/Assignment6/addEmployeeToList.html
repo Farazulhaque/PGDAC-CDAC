@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee to List</title>
+    <!-- <script src="../js/jquery-3.1.1.min.js" type="text/javascript"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $("form").submit(function (e) {
+                e.preventDefault()
+            })
+
+            $("#add_to_list").click(function () {
+                var empname = $("#empName").val()
+                var li = "<li>" + empname + "</li>"
+                $("#lst").append(li)
+            })
+
+            $("#add_to_table").click(function () {
+                var empname = $("#empName").val()
+                var row = "<tr><td>" + empname + "</td></tr>"
+                $("#table").append(row)
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <form>
+        <label for="empName">Employee Name: </label>
+        <input type="text" name="empName" id="empName">
+        <button id="add_to_list">Add To List</button>
+        <button id="add_to_table">Add To Table</button>
+
+    </form>
+    <ol id="lst"></ol>
+    <table id="table" border="1">
+        <tr>
+            <th>Employee Names</th>
+        </tr>
+    </table>
+</body>
+
+</html>
