@@ -1,0 +1,34 @@
+Nodejs
+->It also JS
+->JS for the backend means PC or you can say without browser
+->It uses Chrome V8 engine
+->It is different from browser
+
+->It doesnot have anything that require browser
+such as DOM,alert,prompt etc
+
+Download Nodejs enviroment:
+https://nodejs.org/en/download/
+
+->It got asynchronous programming
+->Nodejs uses built-in module and external libraries
+->The file-extension must be .js
+Execute the code:
+node filename
+
+____________________________________________________________
+Print on terminal:
+console.log("string")
+_____________________________________________________
+VS code terminal shortcut
+ctrl+`
+____________________________________________________
+Modules:
+->Create seperate files for functions or objects
+->Export functions from modules using exports
+->define functions using exports.function_name
+->Use anonymous function
+
+->Import using require function
+For user defined module pass the path of that module to require function
+For built-in module and external module pass the module name to the require function
