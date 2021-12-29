@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+	<h2 align="center">Working with HTML Form Elements</h2>
+	<hr color="red" size="5" />
+	<form method="GET" action="regform.html" accept-charset="utf-8">
+		<div style="width:80%;margin:auto">
+			<fieldset>
+				<legend><b>Registration Form</b></legend>
+				<table width="80%" align="center" border="1px" cellspacing="0px" cellpadding="5px">
+					<tr>
+						<td>Full Name:</td>
+						<td><input type="text" name="txtName"></td>
+					</tr>
+					<tr>
+						<td>User Name:</td>
+						<td><input type="text" name="txtUserName" /></td>
+					</tr>
+					<tr>
+						<td>Password:</td>
+						<td><input type="password" name="txtPwd" /></td>
+					</tr>
+					<tr>
+						<td>Retype Password:</td>
+						<td><input type="password" name="txtRpwd" /></td>
+					</tr>
+					<tr>
+						<td>Email:</td>
+						<td><input type="email" name="txtEmail" /></td>
+					</tr>
+					<tr>
+						<td>Address:</td>
+						<td><textarea name="txtAddress" rows="5" cols="20"></textarea></td>
+					</tr>
+					<tr>
+						<td>Gender:</td>
+						<td>
+							<input type="radio" name="gender" checked="checked" value="m" />Male
+							<input type="radio" name="gender" value="fm" />Female
+							<input type="radio" name="gender" value="o" />Other
+						</td>
+					</tr>
+					<tr>
+						<td>Hobbies:</td>
+						<td>
+							<input type="checkbox" name="hobby[]" checked value="1" />Coding
+							<input type="checkbox" name="hobby[]" value="2" />Dancing
+							<br><input type="checkbox" name="hobby[]" value="3" />Cooking
+							<input type="checkbox" name="hobby[]" value="4" />Singing
+						</td>
+					</tr>
+					<tr>
+						<td>City:</td>
+						<td>
+							<select name="ddlCity">
+								<option value="-1">---Select City---</option>
+								<optgroup label="Bihar">
+									<option value="1">Patna</option>
+									<option value="2">Gaya</option>
+									<option>Muzaffarpur</option>
+								</optgroup>
+								<optgroup label="UP">
+									<option>Lucknow</option>
+									<option>Agra</option>
+									<option>Prayagraj</option>
+								</optgroup>
+								<option>Mohali</option>
+								<option>Chandigarh</option>
+								<option>Ludhiyana</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Preffered Job City:</td>
+						<td>
+							<select name="ddlJobCity[]" multiple="multiple">
+								<optgroup label="Bihar">
+									<option value="1" selected>Patna</option>
+									<option value="2">Gaya</option>
+									<option>Muzaffarpur</option>
+								</optgroup>
+								<optgroup label="UP">
+									<option>Lucknow</option>
+									<option>Agra</option>
+									<option>Prayagraj</option>
+								</optgroup>
+								<optgroup label="Punjab">
+									<option>Mohali</option>
+									<option>Chandigarh</option>
+									<option>Ludhiyana</option>
+								</optgroup>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Age:</td>
+						<td>
+							<!--	<input type="number"
+								name="txtAge" min="20" max="110" step="5" />-->
+
+							<input type="range" name="txtAge" min="0" max="110" value="0" />
+
+						</td>
+					</tr>
+					<tr>
+						<td>DOB:</td>
+						<td>
+							<input type="date" name="txtDOB" />
+						</td>
+					</tr>
+					<tr>
+						<td>Profile Picture:</td>
+						<td>
+							<input type="file" name="txtPic" />
+						</td>
+					</tr>
+					<tr>
+						<td><label for="txtUrl">Company URL:</label> </td>
+						<td>
+							<input type="url" name="txtUrl" id="txtUrl" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="checkbox" />
+							I Accept <a href="#">Terms and Conditions</a>
+						</td>
+						<td>
+							<!--<input type="submit" name="btnRegister"  value="Register Me">-->
+							<button type="submit" name="btnRegister" onclick="myfun()">Register Me</button>
+							<button type="reset" name="btnReset">Cancel</button>
+							<button type="button" name="btn2" onclick="myfun()">Submit</button>
+							<script type="text/javascript">
+								function myfun() {
+									alert(document.getElementById("txtUrl").value);
+								}
+							</script>
+
+							<input type="image" src="./images/untitled.png" name="btnReg" />
+
+
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+		</div>
+	</form>
+</body>
+
+</html>
