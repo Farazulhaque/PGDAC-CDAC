@@ -78,46 +78,17 @@ Steps to implement in JS:
 ->Recieve any kind of data except XML in reponseText
 ->Recieve XML data in response XML
 
+__________________________________________________________________________________
 
+AJAX:
+Using jquery
+$.ajax(Object_of_config).done(Function_to_handle_data)
+var opt = {
+		url:"https://cat-fact.herokuapp.com/facts/random",
+		method:"GET"
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	$.ajax(opt).done(function(data){ // it also converts JSON to object
+		$("table").append("<tr><td>"+data.type+"</td><td>"+data.text+"</td></tr>")
+		$("tr:even").css("background-color","grey")
+	})
