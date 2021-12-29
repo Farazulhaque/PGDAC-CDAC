@@ -10,31 +10,21 @@
     <script src="../js/bootstrap.min.js" type="text/javascript"></script>
     <title>Shopping Cart Dummy</title>
     <script>
-        function updateItem1Price() {
-            var item1total = parseFloat(document.getElementById("item1price").innerHTML) * parseInt(document
-                .getElementById("item1qty").value);
-            document.getElementById("item1total").innerHTML = item1total;
-            updateTotal();
-        }
-
-        function updateItem2Price() {
-            var item2total = parseFloat(document.getElementById("item2price").innerHTML) * parseInt(document
-                .getElementById("item2qty").value);
-            document.getElementById("item2total").innerHTML = item2total;
-            updateTotal();
-        }
-
-        function updateItem3Price() {
-            var item3total = parseFloat(document.getElementById("item3price").innerHTML) * parseInt(document
-                .getElementById("item3qty").value);
-            document.getElementById("item3total").innerHTML = item3total;
+        function updateItemPrice(id) {
+            // console.log(id)
+            i = id.charAt(4)
+            var itemtotal = parseFloat(document.getElementById("item" + i + "price").innerHTML) * parseInt(document
+                .getElementById("item" + i + "qty").value);
+            document.getElementById("item" + i + "total").innerHTML = itemtotal;
             updateTotal();
         }
 
         function updateTotal() {
             var total = 0;
-            for (var i = 1; i <= 3; i++) {
+            var i = 1;
+            while (document.getElementById("item" + i + "total") != null) {
                 total += parseFloat(document.getElementById("item" + i + "total").innerHTML)
+                i++;
             }
             document.getElementById("grandTotal").innerHTML = total;
         }
@@ -58,7 +48,8 @@
                 <td>Compaq510</td>
                 <td><img src="..\..\HTML_CSS\images\back2.jpg" height="50px" /></td>
                 <td id="item1price">45000</td>
-                <td><input type="number" name="" id="item1qty" value="1" min="1" max="20" onchange="updateItem1Price()">
+                <td><input type="number" name="" id="item1qty" value="1" min="1" max="20"
+                        onchange="updateItemPrice(this.id)">
                 </td>
                 <td id="item1total">45000</td>
             </tr>
@@ -67,7 +58,8 @@
                 <td>Compaq510</td>
                 <td><img src="..\..\HTML_CSS\images\back2.jpg" height="50px" /></td>
                 <td id="item2price">40000</td>
-                <td><input type="number" name="" id="item2qty" value="1" min="1" max="20" onchange="updateItem2Price()">
+                <td><input type="number" name="" id="item2qty" value="1" min="1" max="20"
+                        onchange="updateItemPrice(this.id)">
                 </td>
                 <td id="item2total">40000</td>
             </tr>
@@ -76,7 +68,8 @@
                 <td>Compaq510</td>
                 <td><img src="..\..\HTML_CSS\images\back2.jpg" height="50px" /></td>
                 <td id="item3price">35000</td>
-                <td><input type="number" name="" id="item3qty" value="1" min="1" max="20" onchange="updateItem3Price()">
+                <td><input type="number" name="" id="item3qty" value="1" min="1" max="20"
+                        onchange="updateItemPrice(this.id)">
                 </td>
                 <td id="item3total">35000</td>
             </tr>
