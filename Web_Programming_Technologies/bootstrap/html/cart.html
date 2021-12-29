@@ -12,7 +12,7 @@
     <script>
         function updateItemPrice(id) {
             // console.log(id)
-            i = id.charAt(4)
+            var i = id.charAt(4)
             var itemtotal = parseFloat(document.getElementById("item" + i + "price").innerHTML) * parseInt(document
                 .getElementById("item" + i + "qty").value);
             document.getElementById("item" + i + "total").innerHTML = itemtotal;
