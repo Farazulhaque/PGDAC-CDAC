@@ -22,9 +22,14 @@
 		}
 
 		function fetch_data() {
+			// to create object of XMLHttprequest
 			var req = new XMLHttpRequest();
+
+			// to initialize the request
 			req.open("GET", "https://cat-fact.herokuapp.com/facts/random", true)
+
 			// (TYPE of request,URL,asynchronous/synchronous)
+			// wait for response
 			req.onreadystatechange = function () {
 				//this exeutes on each state change
 				// 0 -> request not started
@@ -38,6 +43,7 @@
 					display_table(data)
 				}
 			}
+			// send request for processing on server
 			req.send()
 		}
 	</script>
