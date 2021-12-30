@@ -1,0 +1,66 @@
+->Write path for user defined module in require
+->Write name for built-in and external module
+
+->For object use module.exports
+->use exports.variable for function/object/variable
+_____________________________________________________
+File handling:
+Use build-in module fs
+1.Synchronous ->
+//use fs.readFileSync to read file synchronously
+//fs.writeFileSync() os used to write data synchronously
+2.Asynchronous ->
+//For async file reading use fs.readFile()
+fs.readFile("demo.txt",function(err,data){ // here order of argument is fixed
+    //callback function will be called after reading data from file
+    console.log(data.toString())
+})
+
+fs.writeFile("demo.txt",str,function(){
+    console.log("success")
+    // var x = fs.readFileSync("demo.txt")
+    // console.log(x.toString())
+    fs.readFile("demo.txt",function(err,data){
+            if(err){
+                console.log(err)
+            }else{
+                console.log(data.toString())
+            }
+        })
+})
+________________________________________________________
+Asynchronous programming(Nodejs):
+->It not thread
+->It parallel execution 
+->I/O operation are slow
+_______________________________________________________
+HTTP Server:
+Use http module
+->
+http://localhost:port/endpoint?querypoint
+
+http://localhost:8000
+Endpoint: /
+
+http://localhost:8000/calc.html
+Endpoint/resource : /calc.html
+
+http:localhost:8000/data
+Endpoint/resource: /data
+
+Code:
+var http = require("http")
+
+//here we are creating server object
+var server = http.createServer(function(req,res){    //the order of argument is fixed
+    //this will execute for every request
+    //request handler
+    console.log("Hi");
+    res.write("Hi Sid") //here writing in response object
+    res.end() //here close the response
+})
+
+server.listen(8000,function(){ // starting the server
+    //this callback will execute after launch of server
+    console.log("Server running at 8000")
+})
