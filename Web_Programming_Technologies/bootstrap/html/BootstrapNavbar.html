@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="../js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+
+    <!-- Right Aligned navigation bar -->
+    <nav class="navbar  navbar-expand-md navbar-dark bg-dark">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">App Name</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+            </ul>
+            <ul class="nav navbar-nav float-right">
+                <li class="nav-item"><a class="nav-link" href="#">
+                        <span class="fa fa-user"></span> Sign Up</a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="#">
+                        <span class="fa fa-sign-in"></span> Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- <nav class="navbar  navbar-expand-md navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">PG-DAC Sep Batch</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active nav-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li> 
+            <li class="nav-item"><a class="nav-link" href="#">Register</a></li> 
+            <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Sign In</a></li>
+        </ul>
+        </div>    
+    </nav> -->
+
+    <!-- <nav class="navbar  navbar-expand ">
+            <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">PG-DAC Sep Batch</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li> 
+                <li class="nav-item"><a class="nav-link" href="#">Register</a></li> 
+                <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+            </ul>
+            </div>    
+        </nav> -->
+    <!-- <hr style="margin-top: 5%;"> -->
+    <hr>
+
+    <div class="container p-2 bg-secondary">
+        <div class="btn-group">
+            <a href="#" class="btn btn-primary">Home</a>
+            <a href="#" class="btn btn-primary">About Us</a>
+            <a href="#" class="btn btn-primary">Contact Us</a>
+            <div class="btn-group dropdown">
+                <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Services <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Link 1</a></li>
+                    <li><a href="#">Link 2</a></li>
+                    <li><a href="#">Link 3</a></li>
+                </ul>
+            </div>
+            <a href="#" class="btn btn-primary">Query</a>
+        </div>
+        <br><br>
+        <div class="card">
+            <div class="card-header bg-primary p-1">Header Section </div>
+            <div class="card-body">
+                actual content goes here<br>
+                actual content goes here<br>
+                actual content goes here<br>
+                actual content goes here<br>
+                actual content goes here<br>
+
+                <a data-target="#demo" class="text-success" data-toggle="collapse">Collapsible</a>
+                <div id="demo" class="collapse">
+                    Collapisible content goes here<br />
+                    Collapisible content goes here<br />
+                    Collapisible content goes here<br />
+                </div>
+            </div>
+            <div class="card-footer bg-primary p-1">Footer sector</div>
+        </div>
+
+
+        <br><br>
+        <ul class="pagination">
+            <li class="active page-item"><a class="page-link" href="#">First</a></li>
+            <li class="page-item "><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item "><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">Last</a></li>
+        </ul>
+
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Service</a></li>
+            <li class="breadcrumb-item"><a href="#">Laptop</a></li>
+            <li class="breadcrumb-item"><a href="#">Desktop</a></li>
+            <li class="breadcrumb-item"><a href="#">FAQ</a></li>
+        </ul>
+        <!-- Home>Services>Laptop>Dell -->
+        <br><br>
+
+        <div class="progress">
+            <div class="progress-bar progress-bar-striped" role="progressbar" style="width:30%">
+                Normal Zone
+            </div>
+            <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width:40%">
+                Warning Zone
+            </div>
+            <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width:30%">
+                Danger Zone
+            </div>
+        </div>
+
+
+        <br><br <a href="#">Likes <span class="badge">5</span></a>
+        <a href="#">Comments <span class="badge badge-primary">10</span></a>
+        <a href="#">Notifications <span class="badge">2</span></a>
+
+        <br><br>
+        <i class="fa	 fa-cloud"></i>
+        <i class="fa	 fa-coffee"></i>
+        <i class="fa	 fa-car"></i>
+        <i class="fa	 fa-file"></i>
+        <i class="fa	 fa-search"></i>
+        <button type="button" class="btn btn-primary">
+            <span class="fa	 fa-search"></span> Search
+        </button>
+        <button type="button" class="btn btn-primary">
+            <span class="fa	 fa-sign-in"></span> Login
+        </button>
+        <button type="button" class="btn btn-primary">
+            <span class="fa	 fa-user"></span> Sign Up
+        </button>
+        <div class="btn-group dropdown">
+            <a href="#" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                Dropdown Example
+                <!-- <span class="caret"></span> -->
+            </a>
+            <ul class="dropdown-menu">
+                <li class="dropdown-divider">
+                </li>
+                <li>Link-1</li>
+                <li class="dropdown-divider"></li>
+                <li>Link-2</li>
+                <li class="dropdown-divider"></li>
+                <li>Link-3</li>
+                <li>Link-4</li>
+                <li>Link-5</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>
