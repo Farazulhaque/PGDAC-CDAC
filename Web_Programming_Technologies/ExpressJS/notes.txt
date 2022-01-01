@@ -1,0 +1,38 @@
+NPM(Node package manager):
+Website: npmjs.com
+
+Install the library/module/package:
+npm install package_name -> Installs in current directory in node_modules folder
+npm install package_name -g ->Installs globally in global node_modules folder
+
+Uninstall the package/module/library:
+npm uninstall package_name
+npm uninstall package_name -g
+
+Update the package:
+npm update package_name
+
+Initialize the project:
+npm init
+->This command creates a package.json file
+->package.json file contains the current project configs and depnedency
+->package-lock.json contains the list of all modules installed and their versions
+
+
+Run install with version :
+npm install package_name@7.4.0
+
+_____________________________________________________________
+Express:
+->Module to develop API's ,web application
+->It is based on http module
+
+
+Setup project:
+->Create a folder
+->Open terminal in that folder
+->Initialize project: 
+ npm init
+->Install the library
+npm install express
+->Create app.js and start working
