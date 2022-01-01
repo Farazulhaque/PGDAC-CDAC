@@ -19,22 +19,73 @@
     <hr>
     <div class="container">
         <div class="jumbotron" style="background-color: pink;">
-            <form>
+            <!-- <form class="was-validated"> -->
+            <form class="needs-validation" novalidate>
                 <div class="form-row">
                     <div class="col-md">
                         <input type="text" id="txtId" class="form-control" placeholder="Enter Full Name" required />
                         <!-- for custom validation mesaages -->
-                        <!-- <div class="valid-feedback">Valid</div>
-                         <div class="invalid-feedback">Please fill out your full name</div> -->
+                        <!-- <div class="valid-feedback">Valid</div> -->
+                        <div class="invalid-feedback">Please fill out your full name</div>
                     </div>
                     <div class="col-md">
                         <input type="email" id="txtEmail" class="form-control" placeholder="Enter Email" required />
                         <!-- for custom validation mesaages -->
-                        <div class="valid-feedback">Valid</div>
-                        <div class="invalid-feedback">Please fill valid email</div>
+                        <!-- <div class="valid-feedback">Valid</div>
+                        <div class="invalid-feedback">Please fill valid email</div> -->
                     </div>
                 </div>
+                <div class="form-row">
+                    <div class="col-md">
+                        <input type="text" id="txtMoble" class="form-control" placeholder="Enter your mobile"
+                            required />
+                        <!-- for custom validation mesaages -->
+                        <!-- <div class="valid-feedback">Valid</div>
+                        <div class="invalid-feedback">Please fill out your full name</div> -->
+                    </div>
+                    <div class="col-md">
+                        <select id="txtCountry" class="form-control" required>
+                            <option value="">---Select Country---</option>
+                            <option value="1">India</option>
+                        </select>
+                        <!-- for custom validation mesaages -->
+                        <!-- <div class="valid-feedback">Valid</div>
+                       <div class="invalid-feedback">Please fill valid email</div> -->
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md">
+                        <label class="form-check-inline">
+                            <input type="checkbox" id="txtTerms" class="form-check" required />
+                            I accept terms & conditions
+                            <!-- for custom validation mesaages -->
+                            <!-- <div class="valid-feedback">Valid</div>
+                            <div class="invalid-feedback">Please fill out your full name</div> -->
+                            <input type="submit" value="Register Me" class="btn btn-primary">
+                        </label>
+                    </div>
+
+                </div>
             </form>
+            <script>
+                (function () {
+                    window.addEventListener('load', function () {
+                        var forms = document.getElementsByClassName('needs-validation');
+                        //filter() calls a provided callback function once for each element in an array, and constructs a new array of all the values for which callback returns a value that coerces to true. 
+                        var validation = Array.prototype.filter.call(forms, function (form) {
+                            form.addEventListener('submit', function (e) {
+                                if (form.checkValidity() === false) {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                }
+                                form.classList.add('was-validated');
+                            }, false);
+                        });
+                    }, false);
+                })();
+            </script>
+
+
         </div>
     </div>
 </body>

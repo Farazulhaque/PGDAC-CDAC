@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+    <script src="../js/jquery-3.1.1.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+            <!--<div class="navbar-header">-->
+            <a class="navbar-brand" href="#">App Name</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!--</div>-->
+            <div class="collapse navbar-collapse" id="Navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item active"> <a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="#">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">
+                            <span class="fa fa-user"></span> Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">
+                            <span class="fa fa-sign-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br><br>
+
+    <!-- <form class="form-inline"> -->
+    <form>
+        <div class="container">
+            <div class="jumbotron" style="background-color:pink;">
+                <div class="form-group">
+                    <label for="username">User Name:</label>
+                    <input type="text" class="form-control" id="username" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" id="password" />
+                </div>
+                <div class="form-group">
+                    <label><input type="checkbox" /> Remember me</label> </div>
+                <input type="submit" class="btn btn-primary" value="Submit" id="submit" />
+            </div>
+
+
+            <button type="button" class="btn-primary" id="btn1">Show Toast</button>
+            <div class="toast hide" data-autohide="true">
+                <div class="toast-header">
+                    <strong class="mr-auto text-primary">Warning</strong>
+                    <span class="text-muted">5 mins ago</span>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">&times;</button>
+                </div>
+                <div class="toast-body">
+                    Bootstrap Toast
+                </div>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $('#btn1').click(function () {
+                        $('.toast').toast('show');
+                    });
+
+                    $("#p1").popover();
+                });
+            </script>
+            <br>
+            <input type="text" data-toggle="tooltip" title="Enter Full name!" />
+            <a href="#" id="p1" data-toggle="popover" title="Popover Header"
+                data-content="Some content inside the popover">Toggle popover</a>
+
+            <br>
+
+            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" 
+        data-target="#mypopup" data-backdrop="true"> Show Popup with overlay</button>
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" 
+        data-target="#mypopup" data-backdrop="false"> Show Popup without overlay</button> -->
+
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mypopup"
+                data-backdrop="static"> Show Popup static</button>
+            <div class="modal" id="mypopup">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modal Header</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            Modal body content goes here<br /> Modal body content goes here<br />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <input type="button" class="btn btn-primary" value="Submit Changes">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <br>
+        </div>
+    </form>
+
+</body>
+
+</html>
