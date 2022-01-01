@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function getData() {
+            //to create object of XMLHttpRequest
+            var ajax = new XMLHttpRequest();
+            alert(ajax.readyState);
+            //to initialize the request
+            ajax.open("get", "data.json", true);
+            alert(ajax.readyState);
+            //wait for response
+            ajax.onreadystatechange = function () {
+                alert("inner" + ajax.readyState);
+                if (ajax.readyState == 4) {
+                    //bind the response on your UI
+                    document.getElementById("data").innerHTML = ajax.responseText;
+                }
+            }
+            //send the request for processing on server
+            ajax.send(null);
+            alert(ajax.readyState);
+        }
+    </script>
+
+</head>
+
+<body>
+    <input type="button" value="get data" onclick="getData()">
+    <div id="data">
+
+    </div>
+</body>
+
+</html>
