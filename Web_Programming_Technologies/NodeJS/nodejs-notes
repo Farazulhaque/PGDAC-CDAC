@@ -32,3 +32,25 @@ Modules:
 ->Import using require function
 For user defined module pass the path of that module to require function
 For built-in module and external module pass the module name to the require function
+
+____________________________________________________________
+
+await 
+->wait for promise
+->It resolve the promise
+->We cannot use this outside function
+->And if using inside function that function must be async
+async function calc(){
+    var x = await add(10,30)
+    console.log(x)
+}
+
+calc()
+____________________________________________________________
+Timer:
+Four functions:
+setInterval(function,interval) ->Call the passed function periodically.Interval is in milliseconds
+setTimeout(function,time)->Call the function one time after that time passed.time is in milliseconds
+clearInterval(Object_of_set_interval) ->Stop the setInetrval function
+clearTimeout(Object_of_setTimeout) ->Stop the setTimeout function
+
