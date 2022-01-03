@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<body>
+    <form action="/calccircle" method="post">
+        <input type="text" name="radius" placeholder="Enter radius" required><br>
+        <!-- <input type="radio" name="choice" value="area">Area
+        <input type="radio" name="choice" value="circumference">Circumference -->
+        <select name="choice" required>
+            <option value="area">Area</option>
+            <option value="circumference">Circumference</option>
+        </select>
+        <button> Calculate</button>
+    </form>
+</body>
+</html>
