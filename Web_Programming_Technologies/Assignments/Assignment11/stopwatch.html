@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var sec = 1
+        var min = 1
+
+        setInterval(function () {
+            document.getElementById("minutes").innerHTML = min;
+            min++
+            sec = 1
+        }, 60000)
+
+        setInterval(() => {
+            document.getElementById("seconds").innerHTML = sec;
+            sec++
+        }, 1000);
+    </script>
+</head>
+
+<body>
+    <span id="minutes">00</span>:<span id="seconds">00</span>
+</body>
+
+</html>
