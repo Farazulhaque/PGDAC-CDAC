@@ -36,3 +36,15 @@ Setup project:
 ->Install the library
 npm install express
 ->Create app.js and start working
+
+Express:
+->to parse request:
+use body-parser module
+Install it using "npm install body-parser"
+
+->Use it as middleware in express
+->then For POST request types use req.body to get data object
+->For GET type request use req.query to get data object
+
+Middleware:
+->module which process the request before handling
