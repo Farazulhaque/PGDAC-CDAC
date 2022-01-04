@@ -24,5 +24,5 @@ app.get("/xyz", function (req, res) {
 //starting server at 8000 port
 app.listen(8000, function () {
     //this callback function executes after server launch
-    console.log("Server is running at 8000")
+    console.log("Server is running at http://localhost:8000")
 })
