@@ -1,0 +1,128 @@
+npm vs npx
+npm -> Download and install
+npm ->it can be used to run the file also
+npx -> for Installation/Execution and manage dependency
+
+
+
+Installation:
+npx create-react-app project_name
+->Go inside project
+npm start
+->For each changes in  code we dont have to restart development server .It automatically updates the changes
+->Open in browser at localhost:3000
+
+React:
+->Web framework for front-end design
+->React is used for SPA(single page application)
+-->Single page application:Open pages/part of page without reloading the page
+
+Folder structure:
+node_modules: stores modules/library
+public : Its for static assets(CSS,JS,Image,media)
+src : (source code )work here
+
+Execution Flow:
+public/index.html -> src/index.js -> src/App.js( work here) -> src/creates your files
+_______________________________________________________
+Component:
+
+->Component a faundamental block of the page
+->Create on the basis of UI and data
+->Treat App component as a root component
+First Task:
+App <- Hello <- Data
+
+Component Syntax:
+function Hello(){
+return()
+}
+export default Hello;
+
+->Component Name must start from Uppercase
+->File name and exported component must be same
+->extension of file is .js
+
+
+Here use Import statement to import the component:
+import ComponentName from 'Path_TO_FILE'
+Use the imported component in JSX
+<ComponentName/>
+or <ComponentName></ComponentName>
+______________________________________________________
+JSX(Javascript XML):
+-> It a syntax of writing inside return function
+->JSX got strict rules
+->Write all JSX in the return function only
+->Close all the tags
+->Even br,hr tag also
+<br/> <hr/> <input type="text"/>
+
+->Root element inside a component must be one.You cannot have adjacent element
+Valid:
+<div>
+    <h1>Hi</h1>
+</div>
+
+
+Invalid:
+<div>
+  <h1>Hi Sid</h1>
+</div>    
+<div>
+</div>
+
+
+-> All JS code must be inside {} in JSX
+-> All the JS code must evaluate to something must return something
+
+_________________________________________________________
+States:
+
+-> Current UI data
+-> Variable which is on the UI and might change in future
+-> To update/re-render the UI we need a method/function to change the variable
+->In React ,state is consist of variable and function 
+->State function must start 'set'
+-> use 'useState' function to create states
+//var [stateVariable setStateFunction] = useState(Default_value_of_state)
+var [ name , setNames ] = useState("Sid") // here useState function is creating state
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
