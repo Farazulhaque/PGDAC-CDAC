@@ -3,7 +3,12 @@
 // import EventHandling from './ComponentStates/EventHandling';
 // import NameList from "./ComponentStates/NameList"
 // import Movies from './MoviesStates/Movies'
-import Series from './SeriesStates/Series'
+// import Series from './SeriesStates/Series'
+// import Hello from './PropsDemo/Hello'
+// import MovieForm from "./MoviesWithProps/MovieForm";
+
+// import Hello from './ContextDemo/Hello'
+import MovieForm from './MoviesWithContext/MovieForm'
 
 function App() {
 
@@ -15,7 +20,9 @@ function App() {
       {/*<NameList/>*/}
       {/* <Movies /> */}
 
-      <Series />
+      {/* <Series /> */}
+      {/* <Hello /> */}
+      <MovieForm />
     </div>
 
   );
