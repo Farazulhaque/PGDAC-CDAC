@@ -6,9 +6,10 @@
 // import Series from './SeriesStates/Series'
 // import Hello from './PropsDemo/Hello'
 // import MovieForm from "./MoviesWithProps/MovieForm";
-
 // import Hello from './ContextDemo/Hello'
-import MovieForm from './MoviesWithContext/MovieForm'
+// import MovieForm from './MoviesWithContext/MovieForm'
+
+import SeriesForm from './SeriesWithProps/SeriesForm'
 
 function App() {
 
@@ -22,7 +23,8 @@ function App() {
 
       {/* <Series /> */}
       {/* <Hello /> */}
-      <MovieForm />
+      {/* <MovieForm /> */}
+      <SeriesForm />
     </div>
 
   );
