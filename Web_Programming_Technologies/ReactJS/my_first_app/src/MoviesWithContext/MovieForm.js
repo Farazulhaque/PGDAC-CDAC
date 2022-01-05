@@ -4,6 +4,7 @@ import { MovieContext } from './Context';
 
 function MovieForm() {
     var [movies, setMovies] = useState([])
+    var [iderror, setIdError] = useState("")
 
     var handleSubmit = function (event) {
         event.preventDefault()
@@ -24,13 +25,24 @@ function MovieForm() {
 
     }
 
+    var validateId = function (event) {
+        var mid = event.target.value
+        if (isNaN(mid)) {
+            setIdError("Invalid Id")
+        }
+        else {
+            setIdError("")
+        }
+    }
+
     return (
         <div className="container-fluid">
             <div className="row">
                 <div className="col-4 p-5 border-end border-dark">
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
-                            <input type="text" className="form-control" name="movieId" placeholder="Enter Movie Id" />
+                            <input type="text" className="form-control" name="movieId" placeholder="Enter Movie Id" onBlur={validateId} />
+                            <span>{iderror}</span>
                         </div>
                         <div className="mb-3">
                             <input type="text" className="form-control" name="movieName" placeholder="Enter Movie Name" />

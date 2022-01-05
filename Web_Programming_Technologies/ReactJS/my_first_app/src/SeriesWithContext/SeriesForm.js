@@ -1,9 +1,14 @@
 import { useState } from 'react'
 import SeriesTable from './SeriesTable'
-import {SeriesContext} from './Context'
+import { SeriesContext } from './Context'
 
 function Series() {
     var [series, setSeries] = useState([])
+    var [iderror, setIdError] = useState("")
+    var [eperror, setEpError] = useState("")
+
+
+
     var handleSubmit = function (event) {
         event.preventDefault()
         var sid = event.target.seriesId.value
@@ -23,13 +28,33 @@ function Series() {
         setSeries([...series, data]
         )
     }
+
+    var validateId = function (event) {
+        var sid = event.target.value
+        if (isNaN(sid)) {
+            setIdError("Invalid Id")
+        }
+        else {
+            setIdError("")
+        }
+    }
+
+    var validateEpisodes = function (event) {
+        var ep = event.target.value
+        if (ep > 15) {
+            setEpError("Invalid Episode Number")
+        } else {
+            setEpError("")
+        }
+    }
     return (
         < div className="container-fluid" >
             <div className="row">
                 <div className="col-4 p-5 border-end border-dark">
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
-                            <input type="text" className="form-control" name="seriesId" placeholder="Enter Series Id" />
+                            <input type="text" className="form-control" name="seriesId" placeholder="Enter Series Id" onBlur={validateId} />
+                            <span>{iderror}</span>
                         </div>
                         <div className="mb-3">
                             <input type="text" className="form-control" name="seriesName" placeholder="Enter Series Name" />
@@ -44,7 +69,8 @@ function Series() {
                             <input type="date" className="form-control" name="releaseDate" placeholder="Enter Release date" />
                         </div>
                         <div className="mb-3">
-                            <input type="number" className="form-control" name="episodes" placeholder="Enter No. of Episodes" />
+                            <input type="number" className="form-control" name="episodes" placeholder="Enter No. of Episodes" onBlur={validateEpisodes} />
+                            <span>{eperror}</span>
                         </div>
                         <div className="mb-3 text-center">
                             <button className="btn btn-primary"> Add Series</button>
