@@ -5,6 +5,10 @@ import { SeriesContext } from './Context'
 function SeriesForm() {
     var [series, setSeries] = useState([])
     var [iderror, setIdError] = useState("")
+    var [nameError, setNameError] = useState("")
+    var [actorError, setActorError] = useState("")
+    var [genreError, setGenreError] = useState("")
+    var [releaseDateError, setreleaseDateError] = useState("")
     var [eperror, setEpError] = useState("")
 
 
@@ -31,17 +35,50 @@ function SeriesForm() {
 
     var validateId = function (event) {
         var sid = event.target.value
-        if (isNaN(sid)) {
+        if (isNaN(sid) || !sid) {
             setIdError("Invalid Id")
         }
         else {
             setIdError("")
         }
     }
-
+    var validateName = function (event) {
+        var mname = event.target.value
+        if (!mname) {
+            setNameError("Please Enter Series Name")
+        }
+        else {
+            setNameError("")
+        }
+    }
+    var validateActor = function (event) {
+        var act = event.target.value
+        if (!act) {
+            setActorError("Please Enter Actor Name")
+        } else {
+            setActorError("")
+        }
+    }
+    var validateGenre = function (event) {
+        var gen = event.target.value
+        if (!gen) {
+            setGenreError("Please Enter Genre")
+        } else {
+            setGenreError("")
+        }
+    }
+    var validateReleaseDate = function (event) {
+        var rd = event.target.value
+        console.log(rd)
+        if (!rd) {
+            setreleaseDateError("Please Enter Valid Date")
+        } else {
+            setreleaseDateError("")
+        }
+    }
     var validateEpisodes = function (event) {
         var ep = event.target.value
-        if (ep > 15) {
+        if (ep > 15 || !ep) {
             setEpError("Invalid Episode Number")
         } else {
             setEpError("")
@@ -57,16 +94,20 @@ function SeriesForm() {
                             <span>{iderror}</span>
                         </div>
                         <div className="mb-3">
-                            <input type="text" className="form-control" name="seriesName" placeholder="Enter Series Name" />
+                            <input type="text" className="form-control" name="seriesName" placeholder="Enter Series Name" onBlur={validateName} />
+                            <span>{nameError}</span>
                         </div>
                         <div className="mb-3">
-                            <input type="text" className="form-control" name="actors" placeholder="Enter Actors" />
+                            <input type="text" className="form-control" name="actors" placeholder="Enter Actors" onBlur={validateActor} />
+                            <span>{actorError}</span>
                         </div>
                         <div className="mb-3">
-                            <input type="text" className="form-control" name="genre" placeholder="Enter Genre" />
+                            <input type="text" className="form-control" name="genre" placeholder="Enter Genre" onBlur={validateGenre} />
+                            <span>{genreError}</span>
                         </div>
                         <div className="mb-3">
-                            <input type="date" className="form-control" name="releaseDate" placeholder="Enter Release date" />
+                            <input type="date" className="form-control" name="releaseDate" placeholder="Enter Release date" onBlur={validateReleaseDate} />
+                            <span>{releaseDateError}</span>
                         </div>
                         <div className="mb-3">
                             <input type="number" className="form-control" name="episodes" placeholder="Enter No. of Episodes" onBlur={validateEpisodes} />
