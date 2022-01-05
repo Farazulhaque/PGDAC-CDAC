@@ -8,8 +8,8 @@
 // import MovieForm from "./MoviesWithProps/MovieForm";
 // import Hello from './ContextDemo/Hello'
 // import MovieForm from './MoviesWithContext/MovieForm'
-
-import SeriesForm from './SeriesWithProps/SeriesForm'
+// import SeriesForm from './SeriesWithProps/SeriesForm'
+import SeriesForm from './SeriesWithContext/SeriesForm'
 
 function App() {
 

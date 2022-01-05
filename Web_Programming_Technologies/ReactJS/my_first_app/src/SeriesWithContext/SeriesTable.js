@@ -1,6 +1,6 @@
 import TableRow from "./TableRow";
 
-function MovieTable() {
+function SeriesTable() {
     return (
         <table className="table table-striped">
             <thead>
@@ -10,12 +10,12 @@ function MovieTable() {
                     <th>Actors</th>
                     <th>Genre</th>
                     <th>Release Date</th>
+                    <th>No. of Episodes</th>
                 </tr>
             </thead>
             <TableRow />
         </table>
-
     )
 }
 
-export default MovieTable;
+export default SeriesTable;

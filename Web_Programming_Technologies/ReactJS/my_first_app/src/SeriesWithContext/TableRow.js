@@ -1,19 +1,20 @@
-import { MovieContext } from './Context'
+import { SeriesContext } from './Context'
 
-function TableRow() {
+function TableRow(props) {
     return (
         <tbody>
-            <MovieContext.Consumer>
+            <SeriesContext.Consumer>
                 {value => value.map((element) => {
                     return <tr>
-                        <td>{element.movieId}</td>
-                        <td>{element.movieName}</td>
+                        <td>{element.seriesId}</td>
+                        <td>{element.seriesName}</td>
                         <td>{element.actors}</td>
                         <td>{element.genre}</td>
                         <td>{element.releaseDate}</td>
+                        <td>{element.episodes}</td>
                     </tr>
                 })}
-            </MovieContext.Consumer>
+            </SeriesContext.Consumer>
         </tbody>
     )
 }
