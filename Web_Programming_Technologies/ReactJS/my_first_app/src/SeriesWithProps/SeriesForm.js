@@ -2,7 +2,7 @@ import { useState } from 'react'
 import SeriesTable from './SeriesTable'
 
 
-function Series() {
+function SeriesForm() {
     var [series, setSeries] = useState([])
     var handleSubmit = function (event) {
         event.preventDefault()
@@ -59,4 +59,4 @@ function Series() {
     )
 }
 
-export default Series;
+export default SeriesForm;

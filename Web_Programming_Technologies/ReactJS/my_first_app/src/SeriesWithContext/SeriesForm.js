@@ -2,7 +2,7 @@ import { useState } from 'react'
 import SeriesTable from './SeriesTable'
 import { SeriesContext } from './Context'
 
-function Series() {
+function SeriesForm() {
     var [series, setSeries] = useState([])
     var [iderror, setIdError] = useState("")
     var [eperror, setEpError] = useState("")
@@ -87,4 +87,4 @@ function Series() {
     )
 }
 
-export default Series;
+export default SeriesForm;

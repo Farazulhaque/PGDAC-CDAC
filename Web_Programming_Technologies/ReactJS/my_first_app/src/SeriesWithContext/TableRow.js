@@ -1,6 +1,6 @@
 import { SeriesContext } from './Context'
 
-function TableRow(props) {
+function TableRow() {
     return (
         <tbody>
             <SeriesContext.Consumer>
