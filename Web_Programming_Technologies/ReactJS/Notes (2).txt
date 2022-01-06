@@ -1,0 +1,86 @@
+keys :
+-> Unique identifier for the multiples same element such as li tag, tr tag
+->It is a prop
+->Cannot be accessed by props object
+->used for unique operation on that element
+_________________________________________________________________________________________
+Conditional Rendering:
+->Rendering the Component or tag or value based on condition
+{showBtn ?  <Data/> : <p>Click on button to show Data</p> }
+______________________________________________________________
+Nodejs Event Loop:
+->It is a single threaded event loop
+->It always checks for event and perform the task on event
+->It performs non-blocking I/O operation beacause of event loop
+https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/
+->Phases:Each phase is fifo queue
+Timer
+Pending callback
+Idle,Prepare
+Poll
+check
+close callbacks
+
+timers: this phase executes callbacks scheduled by setTimeout() and setInterval().
+pending callbacks: executes I/O callbacks deferred to the next loop iteration.
+idle, prepare: only used internally.
+poll: retrieve new I/O events; execute I/O related callbacks (almost all with the exception of close callbacks, the ones scheduled by timers, and setImmediate()); node will block here when appropriate.
+check: setImmediate() callbacks are invoked here.
+close callbacks: some close callbacks, e.g. socket.on('close', ...).
+
+________________________________________________________________________________________
+React-Redux:
+->For state management
+->Similar to context
+->It is a external library
+->redux itself is a library
+->react-redux is a binding for react library
+->It solves same problem the context solves
+
+Installtion:
+npm install react-redux
+
+Action:When some component dispatches the updates to store it passes the action what to do with the updates
+->Action is a object
+->Action got two keys/properties
+1.type : Type of action,means what to do at reducer
+2.payload : contains data
+
+Reducer : After recieving updates decides how to perform that action
+->takes two argument 
+1.State:current state
+2.action: brings the updates and the action type
+
+Steps:
+1.Create reducer to perform task on some action
+2.Create Store
+3.Add Provider in index.js
+4.Dispatch action
+5.Subscribe using connect function and mapStateToProps
+
+
+____________________________________________________
+Node REPL:
+REPL:Read ,evaluate,print,loop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

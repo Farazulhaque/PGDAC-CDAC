@@ -9,7 +9,13 @@
 // import MovieForm from "./MoviesWithProps/MovieForm";
 // import MovieForm from './MoviesWithContext/MovieForm'
 // import SeriesForm from './SeriesWithProps/SeriesForm'
-import SeriesForm from './SeriesWithContext/SeriesForm'
+// import SeriesForm from './SeriesWithContext/SeriesForm'
+
+// import Hello from './ConditionalRendering/Hello'
+
+// import Student from './ReactRedux/Student'
+import Student from './ClassComponents/Student'
+
 
 function App() {
 
@@ -21,9 +27,9 @@ function App() {
       {/* <NameList /> */}
       {/* <Movies /> */}
       {/* <Hello /> */}
-
       {/* <MovieForm /> */}
-      <SeriesForm />
+      {/* <SeriesForm /> */}
+      <Student />
     </div>
 
   );
