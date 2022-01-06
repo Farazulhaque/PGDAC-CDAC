@@ -14,8 +14,9 @@
 // import Hello from './ConditionalRendering/Hello'
 
 // import Student from './ReactRedux/Student'
-import Student from './ClassComponents/Student'
+// import Student from './ClassComponents/Student'
 
+import MovieSeries from "./MovieSeriesComponent/MovieSeries";
 
 function App() {
 
@@ -29,7 +30,8 @@ function App() {
       {/* <Hello /> */}
       {/* <MovieForm /> */}
       {/* <SeriesForm /> */}
-      <Student />
+      {/* <Student /> */}
+      <MovieSeries />
     </div>
 
   );
