@@ -1,3 +1,5 @@
+package jdbcwork;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -28,7 +30,7 @@ public class DbOps {
 		} else {
 			System.err.println("Data insertion failed");
 		}
-		sc.close();
+		// sc.close();
 	}
 
 	public static void deleteData(Statement s) throws SQLException {
@@ -43,7 +45,7 @@ public class DbOps {
 		} else {
 			System.err.println("Data deletion failed");
 		}
-		sc.close();
+		// sc.close();
 	}
 
 	public static void updateData(Statement s) throws SQLException {
@@ -79,7 +81,7 @@ public class DbOps {
 		} else {
 			System.err.println("Data updation failed");
 		}
-		sc.close();
+		// sc.close();
 	}
 
 	public static void main(String[] args) {
