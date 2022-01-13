@@ -11,6 +11,7 @@ public class DbOps {
 	private static String user = "root";
 	private static String password = "mysql";
 	private static String dbName = "cdac";
+	private static Connection con = null;
 
 	public static void insertData(Statement s) throws SQLException {
 		Scanner sc = new Scanner(System.in);
@@ -92,7 +93,7 @@ public class DbOps {
 			String url = "jdbc:mysql://localhost:3306/" + dbName;
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			// Step - 2: Establish connection
-			Connection con = DriverManager.getConnection(url, user, password);
+			con = DriverManager.getConnection(url, user, password);
 			if (con != null) {
 				System.out.println("Connection Established");
 				// Step - 3: Create statement interface reference
