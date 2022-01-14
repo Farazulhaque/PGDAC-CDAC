@@ -1,11 +1,8 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Scanner;
+import java.sql.*;
+import java.util.*;
+import com.beans.StudentBean;
 
 public class DbService {
 	static Connection con = null;
@@ -20,7 +17,7 @@ public class DbService {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(url, user, password);
 			if (con != null) {
-				System.out.println("Connection Established");
+				// System.out.println("Connection Established");
 			}
 		} catch (ClassNotFoundException e) {
 			System.err.println("Driver class not found" + e);
@@ -55,5 +52,30 @@ public class DbService {
 		PreparedStatement ps = con.prepareStatement(query);
 		ResultSet rs = ps.executeQuery();
 		return rs;
+	}
+
+	public static int updateStatus(StudentBean s) throws SQLException {
+		String query = "update student set status=1 where sid=? and sname=? and spass=?";
+		PreparedStatement ps = con.prepareStatement(query);
+		ps.setInt(1, s.getId());
+		ps.setString(2, s.getName());
+		ps.setString(3, s.getPassword());
+		int i = ps.executeUpdate();
+		return i;
+	}
+
+	public static ArrayList<StudentBean> studentNames() throws SQLException {
+		ArrayList<StudentBean> al = new ArrayList<StudentBean>();
+		String query = "select sname from student";
+		PreparedStatement ps = con.prepareStatement(query);
+		ResultSet rs = ps.executeQuery();
+
+		while (rs.next()) {
+			StudentBean sb = new StudentBean();
+			String name = rs.getString(1);
+			sb.setName(name);
+			al.add(sb);
+		}
+		return al;
 	}
 }
