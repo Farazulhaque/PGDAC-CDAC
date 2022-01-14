@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Scanner;
 
 public class DbService {
@@ -22,7 +21,6 @@ public class DbService {
 			con = DriverManager.getConnection(url, user, password);
 			if (con != null) {
 				System.out.println("Connection Established");
-				Statement s = con.createStatement();
 			}
 		} catch (ClassNotFoundException e) {
 			System.err.println("Driver class not found" + e);

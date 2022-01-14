@@ -6,7 +6,6 @@ import java.util.Scanner;
 import dao.DbService;
 
 public class Student {
-
 	public static void main(String[] args) {
 		System.out.println("Enter 1 to insert data");
 		System.out.println("Enter 2 to fetch data");
