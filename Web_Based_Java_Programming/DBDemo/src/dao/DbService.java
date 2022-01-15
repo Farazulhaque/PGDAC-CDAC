@@ -78,4 +78,13 @@ public class DbService {
 		}
 		return al;
 	}
+
+	public static void addData(int id, String dname) throws SQLException {
+		CallableStatement cs = con.prepareCall("call addDeptData(?, ?)");
+		cs.setInt(1, id);
+		cs.setString(2, dname);
+		cs.execute();
+
+		con.close();
+	}
 }
