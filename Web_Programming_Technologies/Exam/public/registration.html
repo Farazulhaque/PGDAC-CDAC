@@ -33,13 +33,13 @@
             outline: none;
         }
 
-        input[type=button] {
+        button {
             outline: none;
             border-bottom: 2px double rgb(5, 83, 5);
             cursor: pointer;
         }
 
-        input[type=button]:hover {
+        button:hover {
             border-bottom: 2px double rgb(10, 161, 10);
 
         }
@@ -49,13 +49,13 @@
 <body>
     <div class="container text-center p-2">
         <h1>Registration From</h1>
-        <form action="http://localhost:8000/register" method="get">
+        <form action="/register" method="post">
             <label for="name">Name: </label>
             <input type="text" name="name" id="name"> <br><br>
             <label for="pwd">Password: </label>
             <input type="password" name="pwd" id="pwd"> <br><br>
             <label for="repwd">Re-type Password: </label>
-            <input type="password" name="pwd" id="repwd" onblur="checkpwd()">
+            <input type="password" name="repwd" id="repwd" onblur="checkpwd()">
             <br>
             <span id="errmsg"></span>
             <br>
@@ -66,7 +66,8 @@
             <input type="radio" name="gender" id="female" value="female"> Female &nbsp;&nbsp;
             <input type="radio" name="gender" id="other" value="other"> Others &nbsp;&nbsp;
             <br><br>
-            <input type="button" value="Submit" onclick="showData()">
+            <input type="submit" value="Submit" onclick="showData()">
+            <!-- <button onsubmit="showData()">Submit</button> -->
         </form>
     </div>
     <script>
@@ -97,6 +98,7 @@
             data += "\nEmail: " + email;
             data += "\nGender: " + gender;
             console.log(data)
+            return false;
         }
     </script>
 </body>

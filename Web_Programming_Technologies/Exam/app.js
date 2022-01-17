@@ -14,8 +14,14 @@ app.get("/", function (req, res) {
     res.send("hello")
 })
 
-app.get("/register", function (req, res) {
+app.post("/register", function (req, res) {
+    var data = req.body
+    var name = data.name;
+    var password = data.pwd;
+    var email = data.email;
+    var gender = data.gender;
     res.send("Data saved")
+    console.log(name, password, email, gender)
 })
 
 
