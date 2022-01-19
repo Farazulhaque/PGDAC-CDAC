@@ -42,10 +42,10 @@ public class ViewServlet extends HttpServlet {
 			while (rs.next()) {
 				out.println("<tr>");
 				out.println("<td>" + rs.getInt(1) + "</td>");
-				out.println("<td>" + rs.getString(1) + "</td>");
 				out.println("<td>" + rs.getString(2) + "</td>");
 				out.println("<td>" + rs.getString(3) + "</td>");
 				out.println("<td>" + rs.getString(4) + "</td>");
+				out.println("<td>" + rs.getString(5) + "</td>");
 				out.println("<td><a href=RemoveStudent?id=" + rs.getInt(1) + "&name=" + rs.getString(1)
 						+ ">Delete </a></td>");
 				out.println("</tr");
