@@ -21,9 +21,9 @@ public class Welcome extends HttpServlet {
 	/**
 	 * Default constructor.
 	 */
-//    public Welcome() {
-//        // TODO Auto-generated constructor stub
-//    }
+	// public Welcome() {
+	// // TODO Auto-generated constructor stub
+	// }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -32,11 +32,11 @@ public class Welcome extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// response.getWriter().append("Served at: ").append(request.getContextPath());
 		response.setContentType("text/html");
 		String u = "faraz";
 		int pass = 1234;
-//		getParameter always returns String object
+		// getParameter always returns String object
 		String user = request.getParameter("uname");
 		String password = request.getParameter("upass").trim();
 		int p = Integer.parseInt(password);
@@ -51,10 +51,11 @@ public class Welcome extends HttpServlet {
 		out.println("</h2>");
 		out.println("</body>");
 		out.println("</html>");
-		if (u.equals(user) && p == pass) {
+		if (u.equals(user) && (pass == p)) {
 			RequestDispatcher rd = request.getRequestDispatcher("ProfileServlet");
-			rd.forward(request, response);
-		}
+			rd.include(request, response);
+		} else
+			response.sendRedirect("https://www.linkedin.com");
 	}
 
 	/**

@@ -9,11 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DbService;
+
 /**
- * Servlet implementation class ProfileServlet
+ * Servlet implementation class RemoveStudent
  */
-@WebServlet("/ProfileServlet")
-public class ProfileServlet extends HttpServlet {
+@WebServlet("/RemoveStudent")
+public class RemoveStudent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -22,19 +24,14 @@ public class ProfileServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		response.setContentType("text/html");
-
 		PrintWriter out = response.getWriter();
-		out.println("<html>");
-		out.println("<body>");
-		out.println("<h1> Welcome to Profile Servlet </h1>");
-		out.println("<h2>");
-
-		out.println("</h2>");
-
-		out.println("</body>");
-		out.println("</html>");
-
+		int id = Integer.parseInt(request.getParameter("id").trim());
+		int res = DbService.deleteStudent(id);
+		if (res > 0) {
+			out.println("Student deleted");
+		}
 	}
 
 	/**
