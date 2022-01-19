@@ -3,6 +3,7 @@ package myservlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,13 +25,15 @@ public class RemoveStudent extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		int id = Integer.parseInt(request.getParameter("id").trim());
 		int res = DbService.deleteStudent(id);
 		if (res > 0) {
 			out.println("Student deleted");
+			RequestDispatcher rd = request.getRequestDispatcher("login.html");
+			rd.include(request, response);
+
 		}
 	}
 

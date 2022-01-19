@@ -1,12 +1,10 @@
 package dao;
 
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import dao.*;
 
 public class DbService {
 	static Connection con = null;
@@ -21,7 +19,7 @@ public class DbService {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(url, user, password);
 			if (con != null) {
-				System.out.println("Connection Established");
+				// System.out.println("Connection Established");
 			}
 		} catch (ClassNotFoundException e) {
 			System.err.println("Driver class not found" + e);
@@ -72,6 +70,58 @@ public class DbService {
 			i = ps.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println("Exception while deleting student data" + e);
+		}
+
+		return i;
+	}
+
+	public static boolean validateData(String name, String password) {
+		ResultSet rs = null;
+		try {
+			String query = "select * from student where sname=? and spass=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, name);
+			ps.setString(2, password);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			System.err.println("Exception while fetching data");
+		}
+
+		return false;
+	}
+
+	public static ResultSet showData(String name, String password) {
+		ResultSet rs = null;
+		try {
+			String query = "select * from student where sname=? and spass=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, name);
+			ps.setString(2, password);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			System.err.println("Exception while fetching data");
+		}
+		return rs;
+	}
+
+	public static int updateData(int sid, String name, String password, String dept, int status) {
+		int i = 0;
+		try {
+
+			String query = "update student set sname=?, spass=?, sdept=?, status=? where sid=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, name);
+			ps.setString(2, password);
+			ps.setString(3, dept);
+			ps.setInt(4, status);
+			ps.setInt(5, sid);
+
+			i = ps.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("Exception while updating student data" + e);
 		}
 
 		return i;
