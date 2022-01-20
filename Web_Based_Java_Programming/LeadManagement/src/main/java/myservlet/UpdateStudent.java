@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.DbService;
 
@@ -35,6 +36,15 @@ public class UpdateStudent extends HttpServlet {
 		String upass = request.getParameter("spass");
 		String dept = request.getParameter("sdept");
 		int status = Integer.parseInt(request.getParameter("status").trim());
+
+		// HttpSession hs = request.getSession(false);
+		// hs.setAttribute("sid",
+		// Integer.parseInt(request.getParameter("sroll").trim()));
+		// hs.setAttribute("uname", request.getParameter("sname"));
+		// hs.setAttribute("upass", request.getParameter("spass"));
+		// hs.setAttribute("dept", request.getParameter("sdept"));
+		// hs.setAttribute("status",
+		// Integer.parseInt(request.getParameter("status").trim()));
 
 		int i = DbService.updateData(sid, uname, upass, dept, status);
 		if (i > 0) {

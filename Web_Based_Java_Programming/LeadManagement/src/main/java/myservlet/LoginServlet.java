@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.DbService;
 
@@ -34,6 +35,10 @@ public class LoginServlet extends HttpServlet {
 
 		boolean valid = DbService.validateData(name, password);
 		if (valid) {
+			HttpSession hs = request.getSession();
+			// setting values in session object
+			hs.setAttribute("uname", name);
+			hs.setAttribute("upass", password);
 			try {
 				ResultSet rs = DbService.showData(name, password);
 				out.print("<table border=2 cellspacing=0 cellpadding=2>");
@@ -53,8 +58,7 @@ public class LoginServlet extends HttpServlet {
 					out.println("<td>" + rs.getString(4) + "</td>");
 					out.println("<td>" + rs.getString(5) + "</td>");
 					out.println("<td><a href=RemoveStudent?id=" + rs.getInt(1) + ">Delete </a></td>");
-					out.println("<td><a href=ViewStudentDetails?uname=" + rs.getString(2) + "&upass=" + rs.getString(3)
-							+ ">Update </a></td>");
+					out.println("<td><a href=ViewStudentDetails> Update </a></td>");
 					out.println("</tr");
 				}
 				out.print("</table>");

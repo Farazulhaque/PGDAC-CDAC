@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.DbService;
 
@@ -29,8 +30,13 @@ public class ViewStudentDetails extends HttpServlet {
 
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String name = request.getParameter("uname");
-		String password = request.getParameter("upass");
+
+		// String name = request.getParameter("uname");
+		// String password = request.getParameter("upass");
+
+		HttpSession hs = request.getSession(false);
+		String name = (String) hs.getAttribute("uname");
+		String password = (String) hs.getAttribute("upass");
 
 		boolean valid = DbService.validateData(name, password);
 		if (valid) {

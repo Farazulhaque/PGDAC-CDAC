@@ -87,13 +87,27 @@ public class DbService {
 				return true;
 			}
 		} catch (SQLException e) {
-			System.err.println("Exception while fetching data");
+			System.err.println("Exception while validating data");
 		}
 
 		return false;
 	}
 
 	public static ResultSet showData(String name, String password) {
+		ResultSet rs = null;
+		try {
+			String query = "select * from student where sname=? and spass=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, name);
+			ps.setString(2, password);
+			rs = ps.executeQuery();
+		} catch (SQLException e) {
+			System.err.println("Exception while fetching data");
+		}
+		return rs;
+	}
+
+	public static ResultSet fetchProfile(String name, String password) {
 		ResultSet rs = null;
 		try {
 			String query = "select * from student where sname=? and spass=?";
