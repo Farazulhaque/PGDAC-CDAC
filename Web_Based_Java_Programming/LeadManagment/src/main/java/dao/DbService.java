@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class DbService {
 	static Connection con = null;
 	private static String user = "root";
-	private static String password = "1234";
+	private static String password = "mysql";
 	private static String dbName = "cdac";
 	static {
 		try {

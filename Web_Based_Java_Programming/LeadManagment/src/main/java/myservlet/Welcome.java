@@ -31,7 +31,7 @@ public class Welcome extends HttpServlet {
 
 		String user = request.getParameter("uname");
 		// getParameter(param name) it return string object
-		String password = request.getParameter("upass").trim();
+		String password = request.getParameter("upass");
 
 		PrintWriter out = response.getWriter();
 		out.println("<html>");
