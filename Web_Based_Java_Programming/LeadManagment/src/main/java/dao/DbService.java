@@ -111,7 +111,23 @@ public class DbService {
 
 		}
 		return rs;
+	}
 
+	public static int updateInfo(int roll, String n, String p) {
+		int i = 0;
+		try {
+			String query = "update student set sname=?, spass=? where sid=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, n);
+			ps.setString(2, p);
+			ps.setInt(3, roll);
+			i = ps.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("exception while updating" + e);
+
+		}
+
+		return i;
 	}
 
 }

@@ -2,7 +2,9 @@ package myservlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,30 +12,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class ServletContextDemoServlet
  */
-@WebServlet("/home")
-public class Login extends HttpServlet {
+@WebServlet("/ServletContextDemoServlet")
+public class ServletContextDemoServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
+
+		// getting servlet context object
+		ServletContext context = getServletContext();
+
+		// getting value of Driver parameter from web.xml
+		String drivername = context.getInitParameter("Driver");
+
+		// setting value in context object
+		context.setAttribute("portno", 3306);
+
+		// getting all parameter names from web.xml
+		Enumeration<String> parameternames = context.getInitParameterNames();
+
 		out.println("<html>");
 		out.println("<body>");
-		out.println("<form action=SecondLogin method=post>");
-		out.println("<input type =text name=uname > <br>");
-		out.println("<input type =password name=upass > <br>");
-		out.println("<input type =submit value=Login > <br>");
-		out.println("</form>");
-		String msg = (String) request.getAttribute("msg");
-		String msg1 = (String) request.getAttribute("msg1");
-		if (msg != null) {
-			out.println(msg);
+		out.println("<h4>" + drivername + "</h4>");
+
+		while (parameternames.hasMoreElements()) {
+			// getting parameter name from enumeration
+			String name = parameternames.nextElement();
+			out.println("<h4>" + name + "</h4>");
 		}
-		if (msg1 != null) {
-			out.println(msg1);
-		}
+
 		out.println("</body>");
 		out.println("</html>");
 

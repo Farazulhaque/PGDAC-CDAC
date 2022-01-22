@@ -36,6 +36,14 @@
 		<servlet-name>First</servlet-name>
 		<url-pattern>/First</url-pattern>
 	</servlet-mapping>
+	<context-param>
+		<param-name>Driver</param-name>
+		<param-value>com.mysql.cj.jdbc.Driver</param-value>
+	</context-param>
+	<context-param>
+		<param-name>DbName</param-name>
+		<param-value>cdac</param-value>
+	</context-param>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
