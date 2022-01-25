@@ -17,12 +17,17 @@
 	tr:nth-child(odd) {
 		background-color: aqua;
 	}
+
+	table {
+		text-align: center;
+		width: 100%;
+	}
 </style>
 
-<body align="center">
+<body align="center" bgcolor="#b3ffd9">
 	<%@include file="Header.jsp"%>
-	<div style="width: 100%; height: 500px">
-		<table border=1 cellspacing=0 cellpadding=5 align="center">
+	<div style="width: 50%; margin: auto;">
+		<table border=1 cellspacing=0 cellpadding=5>
 			<tr>
 				<th>Roll No</th>
 				<th>Student Name</th>
