@@ -28,7 +28,7 @@ public class DbService {
 	}
 
 	public static int insertData() throws SQLException {
-		String query = "insert into student values(?,?,?,?)";
+		String query = "insert into student(sid,sname,spass,sdept) values(?,?,?,?)";
 		PreparedStatement ps = con.prepareStatement(query);
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Enter Student Id: ");
