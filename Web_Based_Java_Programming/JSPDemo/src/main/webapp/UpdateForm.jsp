@@ -8,7 +8,7 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body align="center">
+<body align="center" bgcolor="#b3ffd9">
 	<%@include file="Header.jsp"%>
 	<div style="width: 100%; height: 500px">
 

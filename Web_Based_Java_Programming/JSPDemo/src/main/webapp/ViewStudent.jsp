@@ -32,7 +32,7 @@
 				<th>Roll No</th>
 				<th>Student Name</th>
 				<th>Student Password</th>
-				<th>Student department</th>
+				<th>Student Department</th>
 				<th></th>
 				<th></th>
 			</tr>
