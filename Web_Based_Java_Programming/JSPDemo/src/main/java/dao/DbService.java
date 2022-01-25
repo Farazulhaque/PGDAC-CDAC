@@ -25,7 +25,6 @@ public class DbService {
 		} catch (ClassNotFoundException ex) {
 			System.out.println("Driver class not found" + ex);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -55,6 +54,21 @@ public class DbService {
 		try {
 			String query = "select * from student";
 			PreparedStatement ps = con.prepareStatement(query);
+			rs = ps.executeQuery();
+
+		} catch (SQLException ex) {
+			System.err.println("Exception while fetching data" + ex);
+		}
+		return rs;
+
+	}
+
+	public static ResultSet fetchStudent(int id) {
+		ResultSet rs = null;
+		try {
+			String query = "select * from student where sid=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setInt(1, id);
 			rs = ps.executeQuery();
 
 		} catch (SQLException ex) {
@@ -107,7 +121,6 @@ public class DbService {
 
 		} catch (SQLException e) {
 			System.err.println("exception while validation" + e);
-
 		}
 		return rs;
 	}
@@ -123,7 +136,23 @@ public class DbService {
 			i = ps.executeUpdate();
 		} catch (SQLException e) {
 			System.err.println("exception while updating" + e);
+		}
 
+		return i;
+	}
+
+	public static int updateInfo(int id, String name, String pass, String dept) {
+		int i = 0;
+		try {
+			String query = "update student set sname=?, spass=?, sdept=? where sid=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, name);
+			ps.setString(2, pass);
+			ps.setString(3, dept);
+			ps.setInt(4, id);
+			i = ps.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("exception while updating" + e);
 		}
 
 		return i;

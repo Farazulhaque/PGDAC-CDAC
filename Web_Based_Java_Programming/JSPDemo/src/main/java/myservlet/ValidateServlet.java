@@ -42,16 +42,10 @@ public class ValidateServlet extends HttpServlet {
 				request.setAttribute("msg", "Invalid username or password");
 				rd.forward(request, response);
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ServletException e) {
-			// TODO Auto-generated catch block
+		} catch (SQLException | IOException | ServletException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 }
