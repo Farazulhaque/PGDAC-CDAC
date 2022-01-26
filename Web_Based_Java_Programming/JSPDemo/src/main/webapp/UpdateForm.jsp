@@ -1,17 +1,38 @@
 <%@page import="dao.DbService"%>
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" session="true"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
 </head>
+
 <body align="center" bgcolor="#b3ffd9">
 	<%@include file="Header.jsp"%>
 	<div style="width: 100%; height: 500px">
 
+		<%--Sir's Solution --%>
+		<%
+		String rollno = request.getParameter("id");
+		session.setAttribute("id", rollno);
+		%>
+		<form action="Update.jsp" method="post">
+			Name: <input type="text" name="uname"><br>
+			Password: <input type="text" name="upass"><br>
+			Student Dept <select name="udept">
+				<option value="CS"> CS </option>
+				<option value="IT"> IT </option>
+				<option value="ECE"> ECE </option>
+				<option value="ME"> ME </option>
+			</select>
+			<input type="submit" value="Update">
+		</form>
+
+		<%--My Solution --%>
+		<%--
 		<%
 		int id = Integer.parseInt(request.getParameter("id"));
 		ResultSet rs = DbService.fetchStudent(id);
@@ -31,9 +52,12 @@
 		<%
 		}
 		%>
+		--%>
+
 
 	</div>
 	<%@include file="Footer.html"%>
 
 </body>
+
 </html>

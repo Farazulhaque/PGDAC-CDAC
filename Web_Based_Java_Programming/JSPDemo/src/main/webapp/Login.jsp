@@ -42,6 +42,18 @@
 	<%
 	}
 	%>
+
+	<%
+	String message1 = request.getParameter("msg");
+
+	if (message1 != null) {
+	%>
+
+	<h3 style="color: green"><%=message1%></h3>
+
+	<%
+	}
+	%>
 	<%@include file="Footer.html"%>
 </body>
 

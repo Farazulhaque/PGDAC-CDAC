@@ -158,4 +158,21 @@ public class DbService {
 		return i;
 	}
 
+	public static int updateStudentInfo(int id, String name, String pass, String dept) {
+		int i = 0;
+		try {
+			String query = "update student set sname=?, spass=?, sdept=? where sid=?";
+			PreparedStatement ps = con.prepareStatement(query);
+			ps.setString(1, name);
+			ps.setString(2, pass);
+			ps.setString(3, dept);
+			ps.setInt(4, id);
+			i = ps.executeUpdate();
+		} catch (SQLException e) {
+			System.err.println("exception while updating" + e);
+		}
+
+		return i;
+	}
+
 }

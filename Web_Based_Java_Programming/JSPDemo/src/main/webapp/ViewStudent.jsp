@@ -69,7 +69,7 @@
 		%>
 
 	</div>
-	<%@include file="Footer.html"%>
+	<jsp:include page="Footer.html"></jsp:include>
 </body>
 
 </html>
