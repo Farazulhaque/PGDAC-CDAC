@@ -13,5 +13,7 @@
 		<property name="hibernate.format_sql">true</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<mapping class="cdac.HibernateDemo.Employee" />
+		<mapping class="cdac.HibernateDemo.Product" />
+		<mapping class="cdac.HibernateDemo.Company" />
 	</session-factory>
 </hibernate-configuration>

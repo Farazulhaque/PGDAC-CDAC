@@ -19,7 +19,7 @@ public class CriteriaApiExample {
 		for (Employee emp : emplist) {
 			System.out.println(emp.getEid() + " " + emp.getEname() + " " + emp.getEpassword());
 		}
-		// tx.commit();
+		tx.commit();
 	}
 
 	@SuppressWarnings("deprecation")

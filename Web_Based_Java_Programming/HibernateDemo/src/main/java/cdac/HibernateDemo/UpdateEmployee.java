@@ -63,18 +63,18 @@ public class UpdateEmployee {
 		System.out.println("Enter 4 to save or  update object");
 		int ch = sc.nextInt();
 		switch (ch) {
-		case 1:
-			updateUsingMerge(session, tx);
-			break;
-		case 2:
-			updateEmployeeUsingTransientUpdate(session, tx);
-			break;
-		case 3:
-			updateEmployeeUsingPersistentUpdate(session, tx);
-			break;
-		case 4:
-			updateEmployeeUsingUpdateAndSave(session, tx);
-			break;
+			case 1:
+				updateUsingMerge(session, tx);
+				break;
+			case 2:
+				updateEmployeeUsingTransientUpdate(session, tx);
+				break;
+			case 3:
+				updateEmployeeUsingPersistentUpdate(session, tx);
+				break;
+			case 4:
+				updateEmployeeUsingUpdateAndSave(session, tx);
+				break;
 		}
 	}
 }
