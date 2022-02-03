@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Page</title>
+<script type="text/javascript">
+     
+     function login(){
+    	 var ajax=new XMLHttpRequest();
+    	 var id=document.getElementById("sid").value;
+    	 var pass=document.getElementById("spass").value;
+    	 var url="Login?sid="+id+"&spass="+pass;
+    	 alert("outside:"+ajax.readyState);
+    	 ajax.onreadystatechange=function(){
+    	      alert("inside:"+ajax.readyState);
+    		 if(ajax.readyState==4){   
+    			 alert(ajax.responseText);
+    			 if(ajax.responseText.includes("Invalid")){
+    			 document.getElementById("msg").innerHTML=ajax.responseText;
+    			 }
+    		     else
+    		     {
+    		          window.location="ViewStudent";	 
+    		     }
+    		 }
+    	 }; 
+    	 alert("out:"+ajax.readyState);
+    	 ajax.open("GET",url,true);
+    	 ajax.send(null);    	
+     }
+
+</script>
+</head>
+<body>
+     <form >
+          <pre>
+              Student Id: <input type="number" id="sid" name="sid"/>              
+              
+              
+              Password  : <input type="password" id="spass" name="spass"/>            
+             
+                          
+                           <input type="button" value="Login" onclick="login()">
+                                                    
+                          <div id="msg" style="color:red" ></div>              
+           </pre>
+     </form>
+</body>
+</html>

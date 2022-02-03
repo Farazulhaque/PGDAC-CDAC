@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Add Student</title>
+</head>
+<body>
+     <form action="Student" method="post">
+          <pre>
+              Student Id: <input type="number" name="sid"/>
+              
+              Full Name : <input type="text" name="sname"/>
+              
+              Password  : <input type="password" name="spass"/>
+              
+              Department: <select name="sdept">
+                            <option value="">Select Department</option>
+                            <option value="cs">CS</option>
+                            <option value="it">IT</option>
+                            <option value="me">ME</option>
+                          </select>
+                          
+              Type      : <select name="type">
+                            <option value="">Type</option>
+                            <option value="student">Student</option>
+                            <option value="admin">Admin</option>                            
+                          </select>
+                          
+                          <input type="submit" value="Save Record">   <a href="ViewStudent">View All</a>
+              
+          </pre>
+     </form>
+</body>
+</html>

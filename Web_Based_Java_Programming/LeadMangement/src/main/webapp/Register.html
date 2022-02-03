@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+     
+     function checkUser(){
+    	
+    	 var name=document.getElementById("name").value; 
+    	 if(name.length>3){
+    		 var ajax=new XMLHttpRequest();
+	    	 var url="CheckUser?uname="+name;	    	
+	    	 ajax.onreadystatechange=function(){	    	      
+	    		 if(ajax.readyState==4){ 
+	    			// alert(ajax.responseText);
+	    			document.getElementById("msg").innerHTML=ajax.responseText;
+	    		 }
+	    	 };    	 
+	    	 ajax.open("GET",url,true);
+	    	 ajax.send(null); 
+	    }
+     }
+
+</script>
+</head>
+<body>
+
+ <form >
+ <pre>
+       User Name :<input type="text" id="name" onkeyup="checkUser()">
+                  <div id="msg"></div>
+       Password  :<input type="text" id="password">
+       
+       Email     :<input type="text" id="email">
+       
+       <input type="button" value="Register Me">
+       
+ </pre>
+ </form>
+
+
+</body>
+</html>
