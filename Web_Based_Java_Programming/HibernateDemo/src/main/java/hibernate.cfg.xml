@@ -15,5 +15,12 @@
 		<mapping class="cdac.HibernateDemo.Employee" />
 		<mapping class="cdac.HibernateDemo.Product" />
 		<mapping class="cdac.HibernateDemo.Company" />
+		<mapping class="cdac.HibernateMapping.Employee1" />
+		<mapping class="cdac.HibernateMapping.Address" />
+		<mapping class="cdac.HibernateOMMapping.Question" />
+		<mapping class="cdac.HibernateOMMapping.Answers" />
+		<mapping class="cdac.HibernateMOMapping.Products" />
+		<mapping class="cdac.HibernateMOMapping.Company1" />
+
 	</session-factory>
 </hibernate-configuration>
