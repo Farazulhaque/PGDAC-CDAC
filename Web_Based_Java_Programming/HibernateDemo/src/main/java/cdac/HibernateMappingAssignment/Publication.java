@@ -15,10 +15,9 @@ public class Publication {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int publicationId;
 	private String pubicationName;
-	private String publicationAddress;
 
-	@OneToOne(targetEntity = Book.class, cascade = CascadeType.ALL)
-	private Book book;
+	@OneToOne(targetEntity = Address1.class, cascade = CascadeType.ALL)
+	private Address1 publicationAddress;
 
 	public int getPublicationId() {
 		return publicationId;
@@ -36,20 +35,11 @@ public class Publication {
 		this.pubicationName = pubicationName;
 	}
 
-	public String getPublicationAddress() {
+	public Address1 getPublicationAddress() {
 		return publicationAddress;
 	}
 
-	public void setPublicationAddress(String publicationAddress) {
+	public void setPublicationAddress(Address1 publicationAddress) {
 		this.publicationAddress = publicationAddress;
 	}
-
-	public Book getBook() {
-		return book;
-	}
-
-	public void setBook(Book book) {
-		this.book = book;
-	}
-
 }

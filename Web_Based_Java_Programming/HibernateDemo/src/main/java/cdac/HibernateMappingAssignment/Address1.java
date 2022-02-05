@@ -4,12 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "assign_address")
-public class Address {
+public class Address1 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int addressid;
@@ -17,9 +16,6 @@ public class Address {
 	private String city;
 	private String state;
 	private int pincode;
-
-	@OneToOne(targetEntity = Publication.class)
-	private Publication publication;
 
 	public int getAddressid() {
 		return addressid;
@@ -59,13 +55,5 @@ public class Address {
 
 	public void setPincode(int pincode) {
 		this.pincode = pincode;
-	}
-
-	public Publication getPublication() {
-		return publication;
-	}
-
-	public void setPublication(Publication publication) {
-		this.publication = publication;
 	}
 }
