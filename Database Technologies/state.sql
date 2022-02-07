@@ -1,3 +1,8 @@
+create table state_master(
+    state_id int primary key,
+    state_name varchar(80)
+);
+
 insert into state_master values (1, 'Andhra Pradesh');
 insert into state_master values (2, 'Arunachal Pradesh');
 insert into state_master values (3, 'Assam');

@@ -1,3 +1,10 @@
+create table city_master (
+    city_id int primary key,
+    city_name varchar(80),
+    city_state_id int,
+    foreign key(city_state_id) references state_master(state_id)
+);
+
 insert into city_master values(1, 'Adilabad',1);
 insert into city_master values(2, 'Adoni',1);
 insert into city_master values(3, 'Alwal',1);
