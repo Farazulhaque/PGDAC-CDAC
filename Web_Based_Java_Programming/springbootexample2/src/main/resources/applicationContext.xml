@@ -27,4 +27,75 @@
 		<property name="product" ref="myproduct"></property>
 	</bean>
 
+	<bean id="mcq" class="practice_cd.Question">
+		<constructor-arg value="1"></constructor-arg>
+		<constructor-arg value="what is spring?"></constructor-arg>
+		<constructor-arg>
+			<list>
+				<value>Spring is framework</value>
+				<value>Spring supports dependency injection</value>
+				<value>dependency can be achieved by constructor or setter method
+				</value>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="customer" class="practice_cd.Customer">
+		<constructor-arg value="101"></constructor-arg>
+		<constructor-arg value="chintu"></constructor-arg>
+		<constructor-arg>
+			<list>
+				<ref bean="paddress" />
+				<ref bean="saddress" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="paddress" class="practice_cd.CustomerAddress">
+		<constructor-arg value="111"></constructor-arg>
+		<constructor-arg value="tilak nagar delhi"></constructor-arg>
+		<constructor-arg value="110021"></constructor-arg>
+	</bean>
+
+	<bean id="saddress" class="practice_cd.CustomerAddress">
+		<constructor-arg value="112"></constructor-arg>
+		<constructor-arg value="mayur vihar phase 1 delhi"></constructor-arg>
+		<constructor-arg value="110091"></constructor-arg>
+	</bean>
+
+	<bean id="leadbean" class="practice_sd.Lead">
+		<property name="Leadid">
+			<value>1</value>
+		</property>
+		<property name="LeadName">
+			<value>Faraz</value>
+		</property>
+		<property name="LeadCourse">
+			<value>Web Development</value>
+		</property>
+	</bean>
+
+	<bean id="myproduct1" class="practice_sd.MyProduct">
+		<property name="mpid">
+			<value>11</value>
+		</property>
+		<property name="mproductName">
+			<value>Nirma</value>
+		</property>
+		<property name="minv">
+			<ref bean="myproductinventory"/>
+		</property>
+
+	</bean>
+
+	<bean id="myproductinventory" class="practice_sd.MyProductInventory">
+		<property name="invid">
+			<value>501</value>
+		</property>
+		<property name="quantity">
+			<value>1000</value>
+		</property>
+		
+	</bean>
+
 </beans>
