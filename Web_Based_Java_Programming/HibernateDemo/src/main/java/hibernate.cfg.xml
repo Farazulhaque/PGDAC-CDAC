@@ -27,5 +27,7 @@
 		<mapping class="cdac.HibernateMMMapping.MultiAnswers" />
 		<mapping class="cdac.HibernateMMMapping.MultiQuestion" />
 		<mapping class="cdac.HQLExample.Books" />
+		<mapping class="cdac.HQLAssignment.User"/>
+		
 	</session-factory>
 </hibernate-configuration>
