@@ -35,7 +35,7 @@
 			border-bottom: 1px solid black;
 		}
 
-		#submitbtn {
+		#btn {
 			width: 150px;
 			height: 50px;
 			text-align: center;
@@ -49,7 +49,7 @@
 			font-size: 20px;
 		}
 
-		#submitbtn:hover {
+		#btn:hover {
 			border: 1px solid rgb(70, 34, 34);
 			color: rgb(1, 39, 1);
 		}
@@ -66,6 +66,12 @@
 	</style>
 </head>
 <script type="text/javascript">
+	function disappearMsg() {
+		document.getElementById("success_msg").innerHTML = "";
+		console.log("message appeared");
+	}
+	setTimeout(disappearMsg, 3000);
+
 	function getCity() {
 		var stateid = document.getElementById("ddlState").value;
 		var ajax = new XMLHttpRequest();
@@ -85,7 +91,11 @@
 		Working with Cascading Dropdown using Ajax</h2>
 	<hr color="red" size="5" />
 	<div>
-		<form method="post">
+		<form method="post" action="RegisterUser">
+
+			<label for="fname">Full Name:</label>
+			<input type="text" name="fname" id="fname"> <br> <br>
+
 			<label for="txtUser">UserName:</label>
 			<input type="text" name="txtUser" id="txtUser"> <br> <br>
 
@@ -117,8 +127,22 @@
 			<p>
 				<input type="checkbox"> I accept terms and condition
 			</p>
-			<input type="submit" name="submitbtn" id="submitbtn" value="Register Me"> <br>
+			<input type="submit" name="submitbtn" id="btn" value="Register Me"> <br>
+			<input type="submit" name="displaybtn" id="btn" value="Display Data" formaction="DisplayData"> <br>
 		</form>
+		<br>
+		<p style="color: green;">
+			<%
+				HttpSession hs = request.getSession(false);
+				String msg = (String)hs.getAttribute("msg");
+				if(msg!=null){
+			%>
+			<h2 id="success_msg"><%=msg %></h2>
+			<%
+				hs.setAttribute("msg", "");
+				}
+			%>
+		</p>
 	</div>
 </body>
 
