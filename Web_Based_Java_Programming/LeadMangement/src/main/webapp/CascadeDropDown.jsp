@@ -87,39 +87,32 @@
 </script>
 
 <body>
-	<h2 style="text-align: center; color: green">
-		Working with Cascading Dropdown using Ajax</h2>
+	<h2 style="text-align: center; color: green">Working with
+		Cascading Dropdown using Ajax</h2>
 	<hr color="red" size="5" />
 	<div>
 		<form method="post" action="RegisterUser">
 
-			<label for="fname">Full Name:</label>
-			<input type="text" name="fname" id="fname"> <br> <br>
-
-			<label for="txtUser">UserName:</label>
+			<label for="fname">Full Name:</label> <input type="text" name="fname" id="fname"> <br> <br> <label
+				for="txtUser">UserName:</label>
 			<input type="text" name="txtUser" id="txtUser"> <br> <br>
 
-			<label for="txtPass">Password:</label>
-			<input type="password" name="txtPass" id="txtPass"> <br> <br>
-
-			<label for="txtCPass">Confirm Password:</label>
-			<input type="password" name="txtCPass" id="txtCPass"> <br> <br>
-
-			<label for="ddlState">State:</label>
-			<select name="ddlState" id="ddlState" onchange="getCity()">
+			<label for="txtPass">Password:</label> <input type="password" name="txtPass" id="txtPass"> <br> <br> <label
+				for="txtCPass">Confirm Password:</label> <input type="password" name="txtCPass" id="txtCPass"> <br> <br>
+			<label for="ddlState">State:</label> <select name="ddlState" id="ddlState" onchange="getCity()">
 				<option value="-1">----------------SelectState----------------</option>
 
-				<%  
+				<%
 				IDbService service = DbFactory.getDbService();
 				ResultSet rs = service.fetchData("select * from state_master");
-				while(rs.next()){ %>
+				while (rs.next()) {
+				%>
 
-				<option value=<%=rs.getString(1)%>><%= rs.getString(2)%></option>
-				<%	}%>
-			</select> <br> <br>
-
-			<label for="ddlCity">City:</label>
-			<select name="ddlCity" id="ddlCity">
+				<option value=<%=rs.getString(1)%>><%=rs.getString(2)%></option>
+				<%
+				}
+				%>
+			</select> <br> <br> <label for="ddlCity">City:</label> <select name="ddlCity" id="ddlCity">
 				<option value="-1">----------------SelectCity-----------------</option>
 
 			</select> <br>
@@ -127,10 +120,12 @@
 			<p>
 				<input type="checkbox"> I accept terms and condition
 			</p>
-			<input type="submit" name="submitbtn" id="btn" value="Register Me"> <br>
-			<input type="submit" name="displaybtn" id="btn" value="Display Data" formaction="DisplayData"> <br>
+			<input type="submit" name="submitbtn" id="btn" value="Register Me">
+			<br> <input type="submit" name="displaybtn" id="btn" value="Display Data" formaction="TableView.jsp"> <br>
 		</form>
 		<br>
+
+
 		<p style="color: green;">
 			<%
 				HttpSession hs = request.getSession(false);
@@ -143,6 +138,7 @@
 				}
 			%>
 		</p>
+
 	</div>
 </body>
 

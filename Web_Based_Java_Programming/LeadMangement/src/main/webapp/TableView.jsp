@@ -46,10 +46,12 @@
 <body>
 	<h2 style="text-align: center; color: green">Please Enter Details</h2>
 	<hr color="red" size="5" />
-	<table>
-		<thead>
-			<tr>
-				<form method="post">
+
+	<form method="post">
+		<table>
+			<thead>
+				<tr>
+
 					<th><input type="text" placeholder="Full Name" id="fname" name="fname" onkeyup="getData(this.id)"
 							autofocus="autofocus"></th>
 					<th><input type="text" placeholder="User Name" id="uname" name="uname" onkeyup="getData(this.id)">
@@ -58,15 +60,17 @@
 					</th>
 					<th><input type="text" placeholder="City Name" id="city" name="city" onkeyup="getData(this.id)">
 					</th>
-				</form>
-			</tr>
-		</thead>
-		<tbody id="userData">
+
+				</tr>
+			</thead>
+			<tbody id="userData">
 
 
-		</tbody>
+			</tbody>
 
-	</table>
+		</table>
+	</form>
+
 	<p id="result"></p>
 
 	<script>
@@ -92,12 +96,13 @@
 				"<br>State    : " + state + "<br>City     : " + city;
 			document.getElementById("result").innerHTML = str;
 			var ajax = new XMLHttpRequest();
-			// var url = "DisplayData?fullname=" + fullname + "&username=" +
-			// 	username + "&state=" + state + "&city=" + city;
-			var url = "DisplayData.java?fullname=" + fullname;
+			var url = "DisplayData?fullname=" + fullname + "&username=" +
+				username + "&state=" + state + "&city=" + city;
+			// document.getElementById("result").innerHTML += url;
 			ajax.onreadystatechange = function () {
 				if (ajax.readyState == 4) {
-					document.getElementById("userData").innerHTML = url;
+					//alert(ajax.responseText)
+					document.getElementById("userData").innerHTML = ajax.responseText;
 				}
 			};
 			ajax.open("GET", url, true);
