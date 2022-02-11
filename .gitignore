@@ -1,39 +1,6 @@
-Data Structures and Algorithm/DSAlgo/ListUsingArray/.classpath
-Data Structures and Algorithm/DSAlgo/ListUsingArray/.project
-Data Structures and Algorithm/DSAlgo/ListUsingArray/.settings/org.eclipse.jdt.core.prefs
-Data Structures and Algorithm/DSAlgo/AllQueueUsingArray/.classpath
-Data Structures and Algorithm/DSAlgo/AllQueueUsingArray/.project
-Data Structures and Algorithm/DSAlgo/AllQueueUsingArray/.settings/org.eclipse.jdt.core.prefs
-Data Structures and Algorithm/DSAlgo/StackUsingArray/.classpath
-Data Structures and Algorithm/DSAlgo/StackUsingArray/.project
-Data Structures and Algorithm/DSAlgo/StackUsingArray/.settings/org.eclipse.jdt.core.prefs
-Object Oriented Programming with Java/JavaProgramming/.classpath
-Object Oriented Programming with Java/JavaProgramming/.project
-Object Oriented Programming with Java/JavaProgramming/.settings/org.eclipse.jdt.core.prefs
-Data Structures and Algorithm/.metadata/
-Data Structures and Algorithm/DSAlgo/SingleLinkList/.classpath
-Data Structures and Algorithm/DSAlgo/SingleLinkList/.project
-Data Structures and Algorithm/DSAlgo/SingleLinkList/.settings/org.eclipse.jdt.core.prefs
-Data Structures and Algorithm/DSAlgo/Polynomial/.project
-Data Structures and Algorithm/DSAlgo/Polynomial/.settings/org.eclipse.jdt.core.prefs
-Data Structures and Algorithm/DSAlgo/Polynomial/.classpath
-Object Oriented Programming with Java/JavaProgramming/.metadata/
 .vscode/settings.json
-Data Structures and Algorithm/DSAlgo/Sorting/.classpath
-Data Structures and Algorithm/DSAlgo/Sorting/.project
-Data Structures and Algorithm/DSAlgo/Sorting/.settings/org.eclipse.jdt.core.prefs
-Data Structures and Algorithm/DSAlgo/HighestCommonFactor/.settings/org.eclipse.jdt.core.prefs
-Data Structures and Algorithm/DSAlgo/HighestCommonFactor/.project
-Data Structures and Algorithm/DSAlgo/HighestCommonFactor/.classpath
-Data Structures and Algorithm/DSAlgo/AdditionUsingDLL/.settings/org.eclipse.jdt.core.prefs
-Data Structures and Algorithm/DSAlgo/AdditionUsingDLL/.project
-Data Structures and Algorithm/DSAlgo/AdditionUsingDLL/.classpath
-Data Structures and Algorithm/DSAlgo/Tree/.settings/org.eclipse.jdt.core.prefs
-Data Structures and Algorithm/DSAlgo/Tree/.project
-Data Structures and Algorithm/DSAlgo/Tree/.classpath
-Data Structures and Algorithm/DSAlgo/Graph/.project
-Data Structures and Algorithm/DSAlgo/Graph/.settings/org.eclipse.jdt.core.prefs
-Data Structures and Algorithm/DSAlgo/Graph/.classpath
-Data Structures and Algorithm/DSAlgo/Test/.settings/org.eclipse.jdt.core.prefs
-Data Structures and Algorithm/DSAlgo/Test/.project
-Data Structures and Algorithm/DSAlgo/Test/.classpath
+.metadata
+.classpath
+.project
+org.eclipse.jdt.core.prefs
+*.class
