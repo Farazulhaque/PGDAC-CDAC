@@ -32,13 +32,20 @@ public class UserRepositoryTest {
 		user.setFirstName("faraz");
 		user.setLastName("haque");
 		user.setPassword("faraz123");
-		
-//		insert user
+
+		// insert user
 		User savedUser = urepo.save(user);
-//		fetch user
+		// fetch user
 		User existUser = entityManager.find(User.class, savedUser.getUserId());
-//		email test
+		// email test
 		assertThat(existUser.getEmail()).isEqualTo(user.getEmail());
+	}
+
+	@Test
+	public void testFindByEmail() {
+		String emailString = "faraz@gmail.com";
+		User user = urepo.findByEmail(emailString);
+		assertThat(user).isNotNull();
 	}
 
 }
