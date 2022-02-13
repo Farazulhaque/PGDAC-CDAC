@@ -3,7 +3,7 @@ package com.cdac.mybootex;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.*;
 
 public class CustomUserDetails implements UserDetails {
 

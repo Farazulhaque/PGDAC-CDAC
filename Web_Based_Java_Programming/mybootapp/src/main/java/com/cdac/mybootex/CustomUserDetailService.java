@@ -15,7 +15,7 @@ public class CustomUserDetailService implements UserDetailsService {
 		// TODO Auto-generated method stub
 		User user = userRepository.findByEmail(email);
 		if (user == null) {
-			throw new UsernameNotFoundException("User email not found");
+			throw new UsernameNotFoundException("user email not found");
 		}
 		return new CustomUserDetails(user);
 	}

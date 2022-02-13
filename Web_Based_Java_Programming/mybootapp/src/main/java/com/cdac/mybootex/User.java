@@ -10,6 +10,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "users")
 public class User {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long userId;
@@ -17,9 +18,9 @@ public class User {
 	private String email;
 	@Column(nullable = false, length = 20)
 	private String firstName;
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false, length = 38)
 	private String lastName;
-	@Column(nullable = false, length = 16)
+	@Column(nullable = false, length = 255)
 	private String password;
 
 	public long getUserId() {
