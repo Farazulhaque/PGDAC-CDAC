@@ -93,12 +93,15 @@
 	<div>
 		<form method="post" action="RegisterUser">
 
-			<label for="fname">Full Name:</label> <input type="text" name="fname" id="fname"> <br> <br> <label
-				for="txtUser">UserName:</label>
-			<input type="text" name="txtUser" id="txtUser"> <br> <br>
+			<label for="fname">Full Name:</label> <input type="text" name="fname" id="fname"> <br> <br>
 
-			<label for="txtPass">Password:</label> <input type="password" name="txtPass" id="txtPass"> <br> <br> <label
-				for="txtCPass">Confirm Password:</label> <input type="password" name="txtCPass" id="txtCPass"> <br> <br>
+			<label for="txtUser">UserName:</label> <input type="text" name="txtUser" id="txtUser"> <br> <br>
+
+			<label for="txtPass">Password:</label> <input type="password" name="txtPass" id="txtPass"> <br> <br>
+
+			<label for="txtCPass">Confirm Password:</label> <input type="password" name="txtCPass" id="txtCPass"> <br>
+			<br>
+
 			<label for="ddlState">State:</label> <select name="ddlState" id="ddlState" onchange="getCity()">
 				<option value="-1">----------------SelectState----------------</option>
 
@@ -112,7 +115,9 @@
 				<%
 				}
 				%>
-			</select> <br> <br> <label for="ddlCity">City:</label> <select name="ddlCity" id="ddlCity">
+			</select> <br> <br>
+
+			<label for="ddlCity">City:</label> <select name="ddlCity" id="ddlCity">
 				<option value="-1">----------------SelectCity-----------------</option>
 
 			</select> <br>
