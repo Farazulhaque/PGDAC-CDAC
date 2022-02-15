@@ -11,3 +11,4 @@ This repository contains all the files used in Post Graduate Diploma in Advance 
 5. Web Programming Technologies
 6. Web Based Java Programming
 7. Software Development Methodologies
+8. MS.Net Technologies
