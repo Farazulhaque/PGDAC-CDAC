@@ -1,0 +1,15 @@
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\winp\bin\Debug\net6.0-windows\winp.exe
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\winp\bin\Debug\net6.0-windows\winp.deps.json
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\winp\bin\Debug\net6.0-windows\winp.runtimeconfig.json
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\winp\bin\Debug\net6.0-windows\winp.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\winp\bin\Debug\net6.0-windows\ref\winp.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\winp\bin\Debug\net6.0-windows\winp.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\winp\obj\Debug\net6.0-windows\winp.csproj.AssemblyReference.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\winp\obj\Debug\net6.0-windows\winp.GeneratedMSBuildEditorConfig.editorconfig
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\winp\obj\Debug\net6.0-windows\winp.AssemblyInfoInputs.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\winp\obj\Debug\net6.0-windows\winp.AssemblyInfo.cs
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\winp\obj\Debug\net6.0-windows\winp.csproj.CoreCompileInputs.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\winp\obj\Debug\net6.0-windows\winp.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\winp\obj\Debug\net6.0-windows\ref\winp.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\winp\obj\Debug\net6.0-windows\winp.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\winp\obj\Debug\net6.0-windows\winp.genruntimeconfig.cache
