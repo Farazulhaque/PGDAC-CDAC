@@ -1,0 +1,15 @@
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET\C#\coredemo\bin\Debug\net6.0\coredemo.exe
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET\C#\coredemo\bin\Debug\net6.0\coredemo.deps.json
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET\C#\coredemo\bin\Debug\net6.0\coredemo.runtimeconfig.json
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET\C#\coredemo\bin\Debug\net6.0\coredemo.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET\C#\coredemo\bin\Debug\net6.0\ref\coredemo.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET\C#\coredemo\bin\Debug\net6.0\coredemo.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET\C#\coredemo\obj\Debug\net6.0\coredemo.csproj.AssemblyReference.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET\C#\coredemo\obj\Debug\net6.0\coredemo.GeneratedMSBuildEditorConfig.editorconfig
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET\C#\coredemo\obj\Debug\net6.0\coredemo.AssemblyInfoInputs.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET\C#\coredemo\obj\Debug\net6.0\coredemo.AssemblyInfo.cs
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET\C#\coredemo\obj\Debug\net6.0\coredemo.csproj.CoreCompileInputs.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET\C#\coredemo\obj\Debug\net6.0\coredemo.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET\C#\coredemo\obj\Debug\net6.0\ref\coredemo.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET\C#\coredemo\obj\Debug\net6.0\coredemo.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET\C#\coredemo\obj\Debug\net6.0\coredemo.genruntimeconfig.cache
