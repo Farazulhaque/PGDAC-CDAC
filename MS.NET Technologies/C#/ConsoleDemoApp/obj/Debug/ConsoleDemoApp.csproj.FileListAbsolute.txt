@@ -1,0 +1,8 @@
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\ConsoleDemoApp\bin\Debug\ConsoleDemoApp.exe.config
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\ConsoleDemoApp\bin\Debug\ConsoleDemoApp.exe
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\ConsoleDemoApp\bin\Debug\ConsoleDemoApp.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\ConsoleDemoApp\obj\Debug\ConsoleDemoApp.csproj.AssemblyReference.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\ConsoleDemoApp\obj\Debug\ConsoleDemoApp.csproj.SuggestedBindingRedirects.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\ConsoleDemoApp\obj\Debug\ConsoleDemoApp.csproj.CoreCompileInputs.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\ConsoleDemoApp\obj\Debug\ConsoleDemoApp.exe
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\ConsoleDemoApp\obj\Debug\ConsoleDemoApp.pdb
