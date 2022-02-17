@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleDemoApp.Day4.ClassWork.Operators</StartupObject>
+    <StartupObject>ConsoleDemoApp.Day4.ClassWork.MethodCalling</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Day3\Third.cs" />
+    <Compile Include="Day4\ClassWork\ControlStmt.cs" />
+    <Compile Include="Day4\ClassWork\Employee.cs" />
+    <Compile Include="Day4\ClassWork\MethodCalling.cs" />
     <Compile Include="Day4\ClassWork\Operators.cs" />
     <Compile Include="Second.cs" />
     <Compile Include="Program.cs" />
