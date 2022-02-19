@@ -5,18 +5,37 @@ namespace ConsoleDemoApp.Day4.Assignment
     {
         static void Main(string[] args)
         {
+            Admin admin = Admin.GetInstance();
+            admin.DisplayMessage();
+
+            Console.WriteLine("========================================");
+
             int[][] arr2 = new int[3][]{
                 new int[4]{ 4, 2, 7, 1},
                 new int[4]{20, 70, 40, 90},
                 new int[3]{1, 2, 0}
             };
             FindLargest(arr2);
+
+            Console.WriteLine("========================================");
+
             Maskify("4556364607935616");
             Maskify("1");
             Maskify("");
+
+            Console.WriteLine("========================================");
+
             int[] arr = { 92, 6, 73, -77, 81, -90, 99, 8, -85, 34 };
             CountPosSumNeg(arr);
-            // SortDescending(73065);
+
+            Console.WriteLine("========================================");
+
+            SortDescending(73065);
+
+            Console.WriteLine("========================================");
+
+            Reverse("This is a typical sentence.");
+            Reverse("The dog is big.");
         }
         static void FindLargest(int[][] arr)
         {
@@ -32,13 +51,12 @@ namespace ConsoleDemoApp.Day4.Assignment
                     }
                 }
                 largest[r] = max;
-
-                //Console.WriteLine();
             }
             foreach (var item in largest)
             {
-                Console.WriteLine($"{item}\t");
+                Console.Write($"{item}\t");
             }
+            Console.WriteLine();
         }
         static void Maskify(string str)
         {
@@ -74,46 +92,51 @@ namespace ConsoleDemoApp.Day4.Assignment
             }
             for (int i = 0; i < newarr.Length; i++)
             {
-                Console.WriteLine(newarr[i]);
+                Console.Write(newarr[i] + "\t");
             }
+            Console.WriteLine();
         }
-
-
-
         static void SortDescending(int num)
         {
-            Console.WriteLine(num);
             string str = "" + num;
-            char[] array = new char[str.Length];
-            char[] arraydes = new char[str.Length];
-
-            for (int i = 0; i < str.Length; i++)
+            char[] arr = str.ToCharArray();
+            for (int i = 0; i < arr.Length; i++)
             {
-                array[i] = (char)0;
-                arraydes[i] = str[i];
-            }
-
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                int jcount = 0;
-                for (int j = 0; j < arraydes.Length; j++)
+                for (int j = 0; j < arr.Length; j++)
                 {
-                    if (array[i] <= arraydes[j])
+                    if (int.Parse(arr[i].ToString()) > int.Parse(arr[j].ToString()))
                     {
-                        array[i]
-                            = arraydes[j];
-                        jcount = j;
-
+                        char temp = arr[i];
+                        arr[i] = arr[j];
+                        arr[j] = temp;
                     }
                 }
-                arraydes[jcount] = (char)0;
-                jcount = 0;
             }
-            Console.WriteLine(array);
-
+            Console.WriteLine(new String(arr));
         }
 
-
+        static void Reverse(string sentence)
+        {
+            string[] arr = sentence.Split(' ');
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i].Length >= 5)
+                {
+                    char[] word = arr[i].ToCharArray();
+                    int first_index = 0;
+                    int last_index = word.Length - 1;
+                    while (first_index <= last_index)
+                    {
+                        char temp = word[first_index];
+                        word[first_index] = word[last_index];
+                        word[last_index] = temp;
+                        first_index++;
+                        last_index--;
+                    }
+                    arr[i] = new String(word);
+                }
+            }
+            Console.WriteLine(string.Join(" ", arr));
+        }
     }
 }
