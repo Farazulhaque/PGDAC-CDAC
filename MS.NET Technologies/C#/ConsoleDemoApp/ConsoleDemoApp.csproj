@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleDemoApp.Day4.ClassWork.MethodCalling</StartupObject>
+    <StartupObject>ConsoleDemoApp.Day6.ArrayDemo2</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -47,10 +47,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Day3\Third.cs" />
+    <Compile Include="Day4\Assignment\Assignment2.cs" />
     <Compile Include="Day4\ClassWork\ControlStmt.cs" />
     <Compile Include="Day4\ClassWork\Employee.cs" />
     <Compile Include="Day4\ClassWork\MethodCalling.cs" />
     <Compile Include="Day4\ClassWork\Operators.cs" />
+    <Compile Include="Day4\ClassWork\Point.cs" />
+    <Compile Include="Day4\ClassWork\StaticDemo.cs" />
+    <Compile Include="Day4\ClassWork\Student.cs" />
+    <Compile Include="Day6\ArrayDemo1.cs" />
+    <Compile Include="Day6\ArrayDemo2.cs" />
+    <Compile Include="Day6\Employee.cs" />
+    <Compile Include="Day6\EmployeeExtension.cs" />
+    <Compile Include="Day6\Student.cs" />
     <Compile Include="Second.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -58,8 +67,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Day4\Assignment\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
