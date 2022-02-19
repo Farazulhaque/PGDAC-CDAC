@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleDemoApp.Day4.Assignment.Assignment2</StartupObject>
+    <StartupObject>ConsoleDemoApp.Day4.ClassWork.ComplexMain</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -49,6 +49,7 @@
     <Compile Include="Day3\Third.cs" />
     <Compile Include="Day4\Assignment\Admin.cs" />
     <Compile Include="Day4\Assignment\Assignment2.cs" />
+    <Compile Include="Day4\ClassWork\Complex.cs" />
     <Compile Include="Day4\ClassWork\ControlStmt.cs" />
     <Compile Include="Day4\ClassWork\Employee.cs" />
     <Compile Include="Day4\ClassWork\MethodCalling.cs" />
