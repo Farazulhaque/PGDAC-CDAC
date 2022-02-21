@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleDemoApp.Day8.StringDemo</StartupObject>
+    <StartupObject>ConsoleDemoApp.Day7.Assignment3.IndexerFor2DArray</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -65,6 +65,7 @@
     <Compile Include="Day7\ArrayDemo3.cs" />
     <Compile Include="Day7\ArrayDemo4.cs" />
     <Compile Include="Day7\Assignment3\Assignment3.cs" />
+    <Compile Include="Day7\Assignment3\IndexerFor2DArray.cs" />
     <Compile Include="Day7\StringDemo.cs" />
     <Compile Include="Day8\DateTimeDemo.cs" />
     <Compile Include="Day8\IndexersDemo.cs" />
