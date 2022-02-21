@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleDemoApp.Day7.Assignment3.IndexerFor2DArray</StartupObject>
+    <StartupObject>ConsoleDemoApp.Day7.Assignment3.Assignment3</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
