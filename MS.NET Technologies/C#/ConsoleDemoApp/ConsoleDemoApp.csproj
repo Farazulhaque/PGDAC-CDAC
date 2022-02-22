@@ -71,6 +71,10 @@
     <Compile Include="Day8\IndexersDemo.cs" />
     <Compile Include="Day8\StringBuilderDemo.cs" />
     <Compile Include="Day8\StringDemo.cs" />
+    <Compile Include="Day9\Inheritance\InheritanceDemo1.cs" />
+    <Compile Include="Day9\Inheritance\InheritanceDemo2.cs" />
+    <Compile Include="Day9\Inheritance\InheritanceDemo3.cs" />
+    <Compile Include="Day9\Inheritance\InheritanceDemo4.cs" />
     <Compile Include="Second.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
