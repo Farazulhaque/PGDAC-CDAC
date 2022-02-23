@@ -24,11 +24,19 @@ namespace ConsoleDemoApp.Day9.Inheritance
     }
     class Triangle : Shape
     {
-        internal override int Area(int l, int b)
+        sealed internal override int Area(int l, int b)
         {
             return (l * b) / 2;
         }
     }
+    class MyTriangle : Triangle
+    {
+        //internal override int Area(int l, int b)
+        //{
+        //    return (l * b) / 2;
+        //}
+    }
+    //internal class InheritanceDemo4 : Triangle // Invalid
     internal class InheritanceDemo4
     {
         static void Main(string[] args)
