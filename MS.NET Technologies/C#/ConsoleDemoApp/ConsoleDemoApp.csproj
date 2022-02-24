@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleDemoApp.Day10.InterfaceExp.InterfaceDemo1</StartupObject>
+    <StartupObject>ConsoleDemoApp.Day10.DelegateDemo.DelegateAssignment</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,7 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Day10\DelegateDemo\DelegateAssignment.cs" />
     <Compile Include="Day10\DelegateDemo\DelegateDemo1.cs" />
+    <Compile Include="Day10\DelegateDemo\DelegateDemo2.cs" />
+    <Compile Include="Day10\DelegateDemo\DelegateDemo3.cs" />
     <Compile Include="Day10\InterfaceExp\InterfaceDemo1.cs" />
     <Compile Include="Day10\InterfaceExp\InterfaceDemo2.cs" />
     <Compile Include="Day3\Third.cs" />
