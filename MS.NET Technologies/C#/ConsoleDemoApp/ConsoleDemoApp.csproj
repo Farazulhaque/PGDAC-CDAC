@@ -52,6 +52,7 @@
     <Compile Include="Day10\DelegateDemo\DelegateDemo3.cs" />
     <Compile Include="Day10\InterfaceExp\InterfaceDemo1.cs" />
     <Compile Include="Day10\InterfaceExp\InterfaceDemo2.cs" />
+    <Compile Include="Day11\Events\EventDemo1.cs" />
     <Compile Include="Day3\Third.cs" />
     <Compile Include="Day4\Assignment\Admin.cs" />
     <Compile Include="Day4\Assignment\Assignment2.cs" />
