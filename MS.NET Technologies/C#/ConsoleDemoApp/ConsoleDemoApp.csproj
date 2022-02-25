@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleDemoApp.Day10.DelegateDemo.DelegateAssignment</StartupObject>
+    <StartupObject>ConsoleDemoApp.Day11.Events.EventDemo2</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -53,6 +53,7 @@
     <Compile Include="Day10\InterfaceExp\InterfaceDemo1.cs" />
     <Compile Include="Day10\InterfaceExp\InterfaceDemo2.cs" />
     <Compile Include="Day11\Events\EventDemo1.cs" />
+    <Compile Include="Day11\Events\EventDemo2.cs" />
     <Compile Include="Day3\Third.cs" />
     <Compile Include="Day4\Assignment\Admin.cs" />
     <Compile Include="Day4\Assignment\Assignment2.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Day9\Inheritance\InheritanceDemo2.cs" />
     <Compile Include="Day9\Inheritance\InheritanceDemo3.cs" />
     <Compile Include="Day9\Inheritance\InheritanceDemo4.cs" />
+    <Compile Include="NameSpaces\NameSpaceDemo.cs" />
     <Compile Include="Second.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
