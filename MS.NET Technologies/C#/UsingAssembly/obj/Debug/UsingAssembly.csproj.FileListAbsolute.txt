@@ -1,0 +1,11 @@
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\UsingAssembly\bin\Debug\UsingAssembly.exe.config
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\UsingAssembly\bin\Debug\UsingAssembly.exe
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\UsingAssembly\bin\Debug\UsingAssembly.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\UsingAssembly\bin\Debug\Calculator.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\UsingAssembly\bin\Debug\Calculator.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\UsingAssembly\obj\Debug\UsingAssembly.csproj.AssemblyReference.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\UsingAssembly\obj\Debug\UsingAssembly.csproj.SuggestedBindingRedirects.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\UsingAssembly\obj\Debug\UsingAssembly.csproj.CoreCompileInputs.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\UsingAssembly\obj\Debug\UsingAssembly.csproj.CopyComplete
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\UsingAssembly\obj\Debug\UsingAssembly.exe
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\UsingAssembly\obj\Debug\UsingAssembly.pdb

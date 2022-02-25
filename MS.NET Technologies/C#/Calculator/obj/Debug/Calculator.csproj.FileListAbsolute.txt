@@ -1,0 +1,6 @@
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\Calculator\bin\Debug\Calculator.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\Calculator\bin\Debug\Calculator.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\Calculator\obj\Debug\Calculator.csproj.AssemblyReference.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\Calculator\obj\Debug\Calculator.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\Calculator\obj\Debug\Calculator.pdb
