@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleDemoApp.Day11.Assignment4.EventCurrencyAssignment</StartupObject>
+    <StartupObject>ConsoleDemoApp.Day11.Assignment4.AscDescUsingEvent</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
