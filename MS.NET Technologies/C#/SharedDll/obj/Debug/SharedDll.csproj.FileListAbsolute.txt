@@ -1,0 +1,10 @@
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\bin\Debug\SharedDll.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\obj\Debug\SharedDll.csproj.AssemblyReference.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\obj\Debug\SharedDll.csproj.CoreCompileInputs.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\obj\Debug\SharedDll.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\obj\Debug\SharedDll.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\bin\Debug\SharedDll.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\bin\Debug\UsingSharedLib.exe
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\bin\Debug\UsingSharedLib.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\bin\Debug\UsingSharedLib.exe.config
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\obj\Debug\SharedDll.csproj.CopyComplete

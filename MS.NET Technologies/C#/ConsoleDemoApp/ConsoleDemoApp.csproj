@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Day11\Assignment4\AscDescUsingEvent.cs" />
     <Compile Include="Day11\Assignment4\DelegateAssignment.cs" />
     <Compile Include="Day10\DelegateDemo\DelegateDemo1.cs" />
     <Compile Include="Day10\DelegateDemo\DelegateDemo2.cs" />

@@ -1,0 +1,5 @@
+sn -k mykey.snk => To generate key file
+csc /out:SharedLibrary.dll /t:library /keyfile:mykey.snk PrivateAssembly.cs => to generate shared library
+gacutil /i SharedLibrary.dll => to install shared library into GAC (Global Assembly Cache)
+csc /r:sharedlibrary.dll /out:UseSharedLib.exe UseAssembly.cs => to reference shared library
+UseSharedLib.exe
