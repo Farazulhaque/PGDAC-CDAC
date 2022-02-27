@@ -38,15 +38,7 @@ namespace ConsoleDemoApp.MultiThreading
                 Thread.Sleep(300);
             }
         }
-        public void DisplayTime()
-        {
-            DateTime d = DateTime.Now;
-            //Console.WriteLine(d.ToString());
-            string dt = d.ToString();
-            Console.Write(dt);
-            Console.SetCursorPosition(1, 0);
-            Console.Write("A");
-        }
+
     }
     class Test2
     {
