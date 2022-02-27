@@ -1,0 +1,15 @@
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\InterOperabilityCheck\bin\Debug\InterOperabilityCheck.exe.config
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\InterOperabilityCheck\bin\Debug\InterOperabilityCheck.exe
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\InterOperabilityCheck\bin\Debug\InterOperabilityCheck.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\InterOperabilityCheck\bin\Debug\InterOperabilityCheck.xml
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\InterOperabilityCheck\bin\Debug\SharedDll.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\InterOperabilityCheck\bin\Debug\SharedDll.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\InterOperabilityCheck\obj\Debug\InterOperabilityCheck.vbproj.AssemblyReference.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\InterOperabilityCheck\obj\Debug\InterOperabilityCheck.vbproj.SuggestedBindingRedirects.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\InterOperabilityCheck\obj\Debug\InterOperabilityCheck.Resources.resources
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\InterOperabilityCheck\obj\Debug\InterOperabilityCheck.vbproj.GenerateResource.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\InterOperabilityCheck\obj\Debug\InterOperabilityCheck.vbproj.CoreCompileInputs.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\InterOperabilityCheck\obj\Debug\InterOperabilityCheck.vbproj.CopyComplete
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\InterOperabilityCheck\obj\Debug\InterOperabilityCheck.exe
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\InterOperabilityCheck\obj\Debug\InterOperabilityCheck.xml
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\InterOperabilityCheck\obj\Debug\InterOperabilityCheck.pdb

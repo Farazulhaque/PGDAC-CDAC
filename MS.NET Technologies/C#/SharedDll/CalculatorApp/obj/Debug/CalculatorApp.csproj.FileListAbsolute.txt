@@ -1,0 +1,14 @@
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\CalculatorApp\bin\Debug\CalculatorApp.exe.config
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\CalculatorApp\bin\Debug\CalculatorApp.exe
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\CalculatorApp\bin\Debug\CalculatorApp.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\CalculatorApp\obj\Debug\CalculatorApp.csproj.AssemblyReference.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\CalculatorApp\obj\Debug\CalculatorApp.csproj.SuggestedBindingRedirects.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\CalculatorApp\obj\Debug\CalculatorApp.Form1.resources
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\CalculatorApp\obj\Debug\CalculatorApp.Properties.Resources.resources
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\CalculatorApp\obj\Debug\CalculatorApp.csproj.GenerateResource.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\CalculatorApp\obj\Debug\CalculatorApp.csproj.CoreCompileInputs.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\CalculatorApp\obj\Debug\CalculatorApp.exe
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\CalculatorApp\obj\Debug\CalculatorApp.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\CalculatorApp\bin\Debug\SharedDll.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\CalculatorApp\bin\Debug\SharedDll.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\C#\SharedDll\CalculatorApp\obj\Debug\CalculatorApp.csproj.CopyComplete
