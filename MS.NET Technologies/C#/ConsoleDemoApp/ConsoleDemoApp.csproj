@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleDemoApp.Day11.Assignment4.AscDescUsingEvent</StartupObject>
+    <StartupObject>ConsoleDemoApp.MultiThreading.ThreadDemo1</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -86,6 +86,8 @@
     <Compile Include="Day9\Inheritance\InheritanceDemo2.cs" />
     <Compile Include="Day9\Inheritance\InheritanceDemo3.cs" />
     <Compile Include="Day9\Inheritance\InheritanceDemo4.cs" />
+    <Compile Include="MultiThreading\ThreadDemo1.cs" />
+    <Compile Include="MultiThreading\ThreadDemo2.cs" />
     <Compile Include="NameSpaces\NameSpaceDemo.cs" />
     <Compile Include="Second.cs" />
     <Compile Include="Program.cs" />
