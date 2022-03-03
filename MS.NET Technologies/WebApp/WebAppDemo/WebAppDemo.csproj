@@ -113,7 +113,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="DatabaseWork\AdapterDemo.aspx" />
+    <Content Include="DatabaseWork\AddUser.aspx" />
     <Content Include="DatabaseWork\DbConnection.aspx" />
+    <Content Include="DatabaseWork\ManageUser.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -174,6 +176,7 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BusinessLogic.cs" />
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -188,12 +191,26 @@
     <Compile Include="DatabaseWork\AdapterDemo.aspx.designer.cs">
       <DependentUpon>AdapterDemo.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DatabaseWork\AddUser.aspx.cs">
+      <DependentUpon>AddUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DatabaseWork\AddUser.aspx.designer.cs">
+      <DependentUpon>AddUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="DatabaseWork\DbConnection.aspx.cs">
       <DependentUpon>DbConnection.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="DatabaseWork\DbConnection.aspx.designer.cs">
       <DependentUpon>DbConnection.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseWork\ManageUser.aspx.cs">
+      <DependentUpon>ManageUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DatabaseWork\ManageUser.aspx.designer.cs">
+      <DependentUpon>ManageUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
