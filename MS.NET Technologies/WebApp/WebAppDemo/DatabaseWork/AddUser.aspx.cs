@@ -18,18 +18,19 @@ namespace WebAppDemo.DatabaseWork
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection("server=PC; database=pgdac2021; uid=sa; pwd=sql");
+            // SqlConnection con = new SqlConnection("server=PC; database=pgdac2021; uid=sa; pwd=sql");
             String insertQry = "insert into user_master values('" + txtUserName.Text + "', '" + txtPassword.Text + "', '" + txtName.Text + "', " + txtMobile.Text + ")";
 
-            SqlCommand cmd = new SqlCommand(insertQry, con);
-            con.Open();
-            int res = cmd.ExecuteNonQuery();
+            //SqlCommand cmd = new SqlCommand(insertQry, con);
+            //con.Open();
+            //int res = cmd.ExecuteNonQuery();
+            int res = BusinessLogic.ExecuteQry(insertQry);
             if (res > 0)
             {
                 Label1.Text = "User Details Saved Successfully";
                 ClearText();
             }
-            con.Close();
+            //con.Close();
         }
         void ClearText()
         {

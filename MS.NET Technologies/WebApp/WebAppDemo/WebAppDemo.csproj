@@ -115,6 +115,7 @@
     <Content Include="DatabaseWork\AdapterDemo.aspx" />
     <Content Include="DatabaseWork\AddUser.aspx" />
     <Content Include="DatabaseWork\DbConnection.aspx" />
+    <Content Include="DatabaseWork\Login.aspx" />
     <Content Include="DatabaseWork\ManageUser.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
@@ -204,6 +205,13 @@
     </Compile>
     <Compile Include="DatabaseWork\DbConnection.aspx.designer.cs">
       <DependentUpon>DbConnection.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseWork\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DatabaseWork\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="DatabaseWork\ManageUser.aspx.cs">
       <DependentUpon>ManageUser.aspx</DependentUpon>

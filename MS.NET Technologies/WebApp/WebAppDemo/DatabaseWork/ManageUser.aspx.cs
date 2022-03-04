@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebApplicationFirst.databasework
+namespace WebAppDemo.DatabaseWork
 {
     public partial class ManageUser : System.Web.UI.Page
     {
@@ -25,6 +25,16 @@ namespace WebApplicationFirst.databasework
             if (!IsPostBack)
             {
                 FillGrid();
+            }
+            if (Request.QueryString["name"] != null)
+            {
+                // Retrieving data from query string
+                Response.Write("Welcome " + Request.QueryString["name"]);
+            }
+            else
+            {
+                //Server.Transfer("Login.aspx");
+                Response.Redirect("Login.aspx");
             }
         }
 
@@ -64,10 +74,10 @@ namespace WebApplicationFirst.databasework
             con.Close();
         }
 
-        protected async void btnUpdate_Click(object sender, EventArgs e)
+        protected void btnUpdate_Click(object sender, EventArgs e)
         {
             string updateQry = "update user_master set " + "username=@uname, fullname=@name, mobile=@mobile where user_id=@id";
-            cmd = new SqlCommand(@updateQry, con);
+            //cmd = new SqlCommand(@updateQry, con);
             //cmd.Parameters.AddWithValue("@id", txtUserId.Text);
             //cmd.Parameters.AddWithValue("@uname", txtUserName.Text);
             //cmd.Parameters.AddWithValue("@name", txtName.Text);
@@ -81,16 +91,23 @@ namespace WebApplicationFirst.databasework
                 new SqlParameter("@mobile", txtMobile.Text),
 
             };
-            cmd.Parameters.AddRange(parameters);
-            await con.OpenAsync();
-            int res = await cmd.ExecuteNonQueryAsync();
+            //cmd.Parameters.AddRange(parameters);
+            //await con.OpenAsync();
+            //int res = await cmd.ExecuteNonQueryAsync();
+            //if (res > 0)
+            //{
+            //    Label1.Text = "User Details updated Successfully";
+            //    FillGrid();
+            //    Label1.ForeColor = System.Drawing.Color.Green;
+            //}
+            //con.Close();
+            int res = BusinessLogic.ExecuteQry(updateQry, parameters);
             if (res > 0)
             {
                 Label1.Text = "User Details updated Successfully";
                 FillGrid();
                 Label1.ForeColor = System.Drawing.Color.Green;
             }
-            con.Close();
         }
         void FillGrid()
         {

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplicationFirst.databasework
+namespace WebAppDemo.DatabaseWork
 {
 
 
