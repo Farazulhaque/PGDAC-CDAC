@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@DateTime.Now
+<br />
+2+3
+<br />
+@*@(2+3)*@
+<br />
+
+@{
+    var x = 20;
+    var y = 30;
+
+    var z = x + y;
+    Write(z);
+    <br />
+    @z;
+}
+
+<br />
+
+@@faraz@gmail.com
+
+<br />
+
+@{
+    int a = 20;
+    int b = 45;
+}
+@if (a > b)
+{
+    @a<span>is max</span>}
+else
+{
+    @b<span>is max</span>
+}
+
+
+<br />
+@for (int i = 0; i < 10; i++)
+{
+    @i
+    <br />
+}
+<br />
+
+
+@{
+    string[] cities = { "Patna", "Noida", "Delhi", "Mumbai" };
+
+}
+
+
+<h2>City List: </h2>
+<ul>
+    @foreach (var item in cities)
+    {
+        <li>@item</li>
+    }
+
+</ul>

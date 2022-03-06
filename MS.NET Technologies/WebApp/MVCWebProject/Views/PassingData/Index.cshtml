@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Passing Data Using Parameters</h2>
+
+<form method="post">
+    <input type="text" name="fname" placeholder="First Name" /><br /><br />
+    <input type="text" name="lname" placeholder="Last Name" /><br /><br />
+    <input type="submit" name="Submit" /><br /><br />
+</form>
+
+
+<h2>Passing Data Using Request</h2>
+@*
+    It is comment in Razor syntax
+    PostUsingRequest -> Action Method Name
+    PassingData      -> Controller Name
+    Default FormMethod is POST
+*@
+@using (Html.BeginForm("PostUsingRequest", "PassingData", FormMethod.Post))
+{
+    <input type="text" name="fname" placeholder="First Name" />
+    <br />
+    <br />
+    <input type="text" name="lname" placeholder="Last Name" />
+    <br />
+    <br />
+    <input type="submit" name="Submit" />
+    <br />
+    <br />
+}
+
+
+<h2>Passing Data Using FormCollection</h2>
+
+@using (Html.BeginForm("PostUsingForm", "PassingData"))
+{
+    <input type="text" name="fname" placeholder="First Name" />
+    <br />
+    <br />
+    <input type="text" name="lname" placeholder="Last Name" />
+    <br />
+    <br />
+    <input type="submit" name="Submit" />
+    <br />
+    <br />
+}
