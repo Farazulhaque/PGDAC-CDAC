@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleDemoApp.MultiThreading.PrallelForEachDemo</StartupObject>
+    <StartupObject>ConsoleDemoApp.LinqExp.LinqDemo1</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -86,6 +86,7 @@
     <Compile Include="Day9\Inheritance\InheritanceDemo2.cs" />
     <Compile Include="Day9\Inheritance\InheritanceDemo3.cs" />
     <Compile Include="Day9\Inheritance\InheritanceDemo4.cs" />
+    <Compile Include="LinqExp\LinqDemo1.cs" />
     <Compile Include="MultiThreading\PrallelForEachDemo.cs" />
     <Compile Include="MultiThreading\TaskUsingForLoop.cs" />
     <Compile Include="MultiThreading\TaskUsingParallelForLoop.cs" />
