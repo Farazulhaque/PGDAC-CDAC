@@ -1,0 +1,26 @@
+﻿@using MVCWebProject.Models  @*Importing helper class folder*@
+
+@*@model MVCWebProject.Models.Student*@
+
+@{
+    ViewBag.Title = "CustomHelper";
+}
+
+<h2>CustomHelper</h2>
+
+@*@CustomHelper.Button()*@
+@Html.Button() @* Extension method *@
+<br />
+<br />
+
+@*@CustomHelper.Button(type: "button", id: "btn2", name: "btn2", value: "Click Me")*@
+@Html.Button(type: "button", id: "btn2", name: "btn2", value: "Click Me") @* Extension method *@
+<br />
+<br />
+
+@CustomHelper.Image("/Content/Images/nature.jpg", "Nature", width: "200px")
+<br />
+<br />
+
+<img src="~/Content/Images/nature.jpg" />
+

@@ -32,5 +32,10 @@ namespace MVCWebProject.Controllers
         {
             return View();
         }
+
+        public ViewResult CustomHelper()
+        {
+            return View();
+        }
     }
 }
