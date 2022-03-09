@@ -33,7 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>ConsoleDemoApp.LinqExp.LinqDemo1</StartupObject>
+    <StartupObject>ConsoleDemoApp.LinqExp.HashTableDemo</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -86,7 +86,11 @@
     <Compile Include="Day9\Inheritance\InheritanceDemo2.cs" />
     <Compile Include="Day9\Inheritance\InheritanceDemo3.cs" />
     <Compile Include="Day9\Inheritance\InheritanceDemo4.cs" />
+    <Compile Include="LinqExp\ArrayListDemo.cs" />
+    <Compile Include="LinqExp\ArrayListDemo2.cs" />
+    <Compile Include="LinqExp\HashTableDemo.cs" />
     <Compile Include="LinqExp\LinqDemo1.cs" />
+    <Compile Include="LinqExp\StateCity.cs" />
     <Compile Include="MultiThreading\PrallelForEachDemo.cs" />
     <Compile Include="MultiThreading\TaskUsingForLoop.cs" />
     <Compile Include="MultiThreading\TaskUsingParallelForLoop.cs" />
