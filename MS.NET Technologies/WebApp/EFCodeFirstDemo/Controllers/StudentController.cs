@@ -1,6 +1,8 @@
-﻿using EFCodeFirstDemo.Models;
+﻿using EFCodeFirstDemo.Migrations;
+using EFCodeFirstDemo.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -34,11 +36,15 @@ namespace EFCodeFirstDemo.Controllers
         [HttpPost]
         public ActionResult Create(Student student)
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<PGDACContext, Configuration>());
+            //DANGER
+            //Database.SetInitializer(new DropCreateDatabaseAlways<PGDACContext>());
+
             if (ModelState.IsValid)
             {
                 db.Students.Add(student); //add current entity in context locally
                 db.SaveChanges();// save to database
-                ViewBag.Message = "Student Data saved successfully";
+                //ViewBag.Message = "Student Data saved successfully";
                 return RedirectToAction("Index");
             }
             return View(student);
