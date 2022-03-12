@@ -16,24 +16,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("School Management", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Faculty", "Index", "Faculties")</li>
-                    <li>@Html.ActionLink("Student", "Index", "Students")</li>
-                    <li>@Html.ActionLink("Standard", "Index", "Standards")</li>
-                    <li>@Html.ActionLink("Course", "Index", "Courses")</li>
-
-                </ul>
-            </div>
+            @*rendering partial view*@
+            @Html.Partial("_MenuBar")
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
+            @*rendering partial view*@
+            @Html.Partial("_MenuBar")
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>

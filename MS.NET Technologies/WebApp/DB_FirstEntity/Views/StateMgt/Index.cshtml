@@ -1,0 +1,14 @@
+﻿@using DB_FirstEntity.Controllers;
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+Message Data from ViewData: @ViewData["Message"]
+<br />
+<br />
+@{
+    Test test = (Test)ViewData["Test"];
+}
+Test Data from ViewData: @test.Id
+
