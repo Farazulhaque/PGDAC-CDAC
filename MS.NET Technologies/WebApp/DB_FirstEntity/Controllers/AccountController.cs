@@ -85,8 +85,11 @@ namespace DB_FirstEntity.Controllers
 
         public ActionResult SignOut()
         {
-            Request.Cookies["PGDAC"].Expires = DateTime.Now.AddMilliseconds(-1);
-            Request.Cookies.Remove("PGDAC");
+            //Request.Cookies["PGDAC"].Expires = DateTime.Now.AddMilliseconds(-1);
+            //Request.Cookies.Remove("PGDAC");
+            HttpCookie cookie = Request.Cookies["PGDAC"];
+            cookie.Expires = DateTime.Now.AddMilliseconds(-1);
+            Response.Cookies.Add(cookie);
             return View("Login");
         }
 
