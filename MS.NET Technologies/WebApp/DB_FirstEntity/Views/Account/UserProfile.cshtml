@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewBag.Title = "UserProfile";
+}
+
+<h2>UserProfile</h2>
+
+<h3>Welcome: @ViewBag.UserName</h3>
+<h4>Login Time: @ViewBag.LoginTime</h4>
+
+<span>@Html.ActionLink("Sign Out", "SignOut", "Account")</span>

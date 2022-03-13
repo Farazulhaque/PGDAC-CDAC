@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DB_FirstEntity.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,7 +7,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using DB_FirstEntity.Models;
 
 namespace DB_FirstEntity.Controllers
 {
@@ -17,8 +17,19 @@ namespace DB_FirstEntity.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            var students = db.Students.Include(s => s.Course).Include(s => s.Standard);
-            return View(students.ToList());
+            if (Request.Cookies["PGDAC"] != null)
+            {
+                ViewBag.UserName = Request.Cookies["PGDAC"]["UserName"];
+
+                ViewBag.LoginTime = Request.Cookies["PGDAC"]["LoginTime"];
+                var students = db.Students.Include(s => s.Course).Include(s => s.Standard);
+                return View(students.ToList());
+            }
+            else
+            {
+                //return View("Login", "Account");
+                return RedirectToAction("Login", "Account"); // since we are communicating between two controllers, we have to pass controller name
+            }
         }
 
         // GET: Students/Details/5

@@ -11,11 +11,16 @@ namespace DB_FirstEntity.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Login
     {
         public int Id { get; set; }
+
+        [Required]
+        [RegularExpression("\\w{6,50}")]
         public string Username { get; set; }
+        [Required]
+        [RegularExpression("\\w{8,50}")]
         public string Password { get; set; }
     }
 }
