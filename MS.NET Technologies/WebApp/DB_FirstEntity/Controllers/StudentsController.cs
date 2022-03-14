@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace DB_FirstEntity.Controllers
 {
+    //[Authorize]
     public class StudentsController : Controller
     {
         private CollegeDbEntities1 db = new CollegeDbEntities1();
@@ -17,19 +18,18 @@ namespace DB_FirstEntity.Controllers
         // GET: Students
         public ActionResult Index()
         {
-            if (Request.Cookies["PGDAC"] != null)
-            {
-                ViewBag.UserName = Request.Cookies["PGDAC"]["UserName"];
-
-                ViewBag.LoginTime = Request.Cookies["PGDAC"]["LoginTime"];
-                var students = db.Students.Include(s => s.Course).Include(s => s.Standard);
-                return View(students.ToList());
-            }
-            else
-            {
-                //return View("Login", "Account");
-                return RedirectToAction("Login", "Account"); // since we are communicating between two controllers, we have to pass controller name
-            }
+            //if (Request.Cookies["PGDAC"] != null)
+            //{
+            //    ViewBag.UserName = Request.Cookies["PGDAC"]["UserName"];
+            //    ViewBag.LoginTime = Request.Cookies["PGDAC"]["LoginTime"];
+            var students = db.Students.Include(s => s.Course).Include(s => s.Standard);
+            return View(students.ToList());
+            //}
+            //else
+            //{
+            //    //return View("Login", "Account");
+            //    return RedirectToAction("Login", "Account"); // since we are communicating between two controllers, we have to pass controller name
+            //}
         }
 
         // GET: Students/Details/5

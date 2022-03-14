@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Optimization;
-using System.Web.Routing;
+using System.Web.Security;
 
 namespace DB_FirstEntity.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         // GET: Account
@@ -29,30 +29,9 @@ namespace DB_FirstEntity.Controllers
                 u.Password == login.Password);
                 if (isValidUser)
                 {
-                    //ViewBag.UserName = login.Username;
-                    //TempData["UserName"] = login.Username;
-                    //return RedirectToAction("UserProfile");
+                    FormsAuthentication.SetAuthCookie(login.Username, false);
 
-                    /*
-                    // temporary Cookie Creation
-                    HttpCookie ht = new HttpCookie("PGDAC");
-                    ht.Values.Add("UserName", login.Username);
-                    ht.Values.Add("LoginTime", DateTime.Now.ToString());
-
-                    // to create persistent cookie
-                    ht.Expires = DateTime.Now.AddMinutes(40);
-
-                    // Writing cookie data with current response
-                    Response.Cookies.Add(ht);
-                    */
-
-                    //---------------------------------
-                    // Using Session
-                    Session["UserName"] = login.Username;
-                    Session["LoginTime"] = DateTime.Now;
-
-
-                    return RedirectToAction("UserProfile");
+                    return RedirectToAction("Index", "Students");
                 }
                 else
                 {
@@ -61,11 +40,13 @@ namespace DB_FirstEntity.Controllers
             }
             return View(login);
         }
+        //[AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
 
+        //[AllowAnonymous]
         [HttpPost]
         public ActionResult Register(Login login)
         {
@@ -78,6 +59,7 @@ namespace DB_FirstEntity.Controllers
             return View(login);
         }
 
+        [Authorize]
         public ActionResult UserProfile()
         {
             /*
@@ -122,7 +104,8 @@ namespace DB_FirstEntity.Controllers
             cookie.Expires = DateTime.Now.AddMilliseconds(-1);
             Response.Cookies.Add(cookie);
             */
-            Session.Abandon();
+            //Session.Abandon();
+            FormsAuthentication.SignOut();
             return View("Login");
         }
 

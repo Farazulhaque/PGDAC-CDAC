@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DB_FirstEntity.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,10 +7,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using DB_FirstEntity.Models;
 
 namespace DB_FirstEntity.Controllers
 {
+    //[Authorize]
     public class StandardsController : Controller
     {
         private CollegeDbEntities1 db = new CollegeDbEntities1();

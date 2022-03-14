@@ -1,9 +1,23 @@
 ﻿<div class="navbar-collapse collapse">
     <ul class="nav navbar-nav">
         <li>@Html.ActionLink("Home", "Index", "Home")</li>
-        <li>@Html.ActionLink("Faculty", "Index", "Faculties")</li>
-        <li>@Html.ActionLink("Student", "Index", "Students")</li>
-        <li>@Html.ActionLink("Standard", "Index", "Standards")</li>
-        <li>@Html.ActionLink("Course", "Index", "Courses")</li>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <li>@Html.ActionLink("Faculty", "Index", "Faculties")</li>
+            <li>@Html.ActionLink("Student", "Index", "Students")</li>
+            <li>@Html.ActionLink("Standard", "Index", "Standards")</li>
+            <li>@Html.ActionLink("Course", "Index", "Courses")</li>
+            <li>
+                Welcome: @User.Identity.Name.ToUpper()
+            </li>
+            <li>@Html.ActionLink("Sign Out", "SignOut", "Account")</li>
+
+        }
+        else
+        {
+            <li>@Html.ActionLink("Login", "Login", "Account")</li>
+        }
+
     </ul>
+
 </div>
