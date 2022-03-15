@@ -24,9 +24,7 @@ namespace DB_FirstEntity.Controllers
             if (ModelState.IsValid)
             {
                 // Login query
-                bool isValidUser = db.Logins.Any(u =>
-                u.Username == login.Username &&
-                u.Password == login.Password);
+                bool isValidUser = db.Logins.Any(u => u.Username == login.Username && u.Password == login.Password);
                 if (isValidUser)
                 {
                     FormsAuthentication.SetAuthCookie(login.Username, false);
