@@ -1,0 +1,12 @@
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceHost\bin\Debug\HelloServiceHost.exe.config
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceHost\bin\Debug\HelloServiceHost.exe
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceHost\bin\Debug\HelloServiceHost.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceHost\bin\Debug\WCFDemoService.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceHost\bin\Debug\WCFDemoService.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceHost\bin\Debug\WCFDemoService.dll.config
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceHost\obj\Debug\HelloServiceHost.csproj.AssemblyReference.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceHost\obj\Debug\HelloServiceHost.csproj.SuggestedBindingRedirects.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceHost\obj\Debug\HelloServiceHost.csproj.CoreCompileInputs.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceHost\obj\Debug\HelloServiceHost.csproj.CopyComplete
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceHost\obj\Debug\HelloServiceHost.exe
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceHost\obj\Debug\HelloServiceHost.pdb

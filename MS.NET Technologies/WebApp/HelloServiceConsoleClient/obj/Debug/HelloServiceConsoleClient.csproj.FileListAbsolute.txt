@@ -1,0 +1,8 @@
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceConsoleClient\bin\Debug\HelloServiceConsoleClient.exe.config
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceConsoleClient\bin\Debug\HelloServiceConsoleClient.exe
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceConsoleClient\bin\Debug\HelloServiceConsoleClient.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceConsoleClient\obj\Debug\HelloServiceConsoleClient.csproj.AssemblyReference.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceConsoleClient\obj\Debug\HelloServiceConsoleClient.csproj.SuggestedBindingRedirects.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceConsoleClient\obj\Debug\HelloServiceConsoleClient.csproj.CoreCompileInputs.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceConsoleClient\obj\Debug\HelloServiceConsoleClient.exe
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\HelloServiceConsoleClient\obj\Debug\HelloServiceConsoleClient.pdb

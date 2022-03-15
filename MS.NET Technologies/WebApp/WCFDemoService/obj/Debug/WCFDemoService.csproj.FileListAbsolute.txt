@@ -1,0 +1,7 @@
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\WCFDemoService\obj\Debug\WCFDemoService.csproj.AssemblyReference.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\WCFDemoService\obj\Debug\WCFDemoService.csproj.CoreCompileInputs.cache
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\WCFDemoService\bin\Debug\WCFDemoService.dll.config
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\WCFDemoService\bin\Debug\WCFDemoService.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\WCFDemoService\bin\Debug\WCFDemoService.pdb
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\WCFDemoService\obj\Debug\WCFDemoService.dll
+G:\FARAZ\Github\PGDAC-CDAC\MS.NET Technologies\WebApp\WCFDemoService\obj\Debug\WCFDemoService.pdb
