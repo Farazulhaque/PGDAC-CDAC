@@ -1,6 +1,6 @@
 @charset "ISO-8859-1";
-/* start home page */
 
+/* start home page */
 body {
 	/* background-image: linear-gradient(to right, #efffda, #ffffff); */
 	/* background-image: linear-gradient(to right, #a3fdf2af, #f1f4f8); */
@@ -374,3 +374,75 @@ footer {
 }
 
 /* end Login page */
+
+/* Search Style */
+#SearchListPage {
+	background-color: rgb(255, 255, 255);
+
+	margin-top: 10px;
+	align-items: center;
+	border: 2px solid rgb(194, 187, 187);
+	border-radius: 12px;
+	padding: 20px;
+}
+
+#SearchListPage .searchDetails {
+	justify-content: space-around;
+	width: 70%;
+	height: 150px;
+	margin: auto;
+	margin-bottom: 5px;
+	margin-bottom: 5px;
+
+	background-color: #fcfcfc;
+	border: 2px solid rgb(194, 187, 187);
+	border-radius: 12px;
+	padding: 20px;
+}
+
+@media only screen and (max-width: 750px) {
+	#SearchListPage .searchDetails {
+		height: auto;
+		width: 90%;
+	}
+}
+
+#SearchListPage .searchDetails .productNameandbarnd {
+	width: 100%;
+}
+
+#SearchListPage .searchDetails .productNameandbarnd p {
+	margin-top: 10px;
+	color: rgb(51 160 74 / 67%);
+	font-size: 15px;
+	font-weight: 600;
+}
+
+#SearchListPage .searchDetails .productNameandbarnd a {
+	color: rgb(46 154 248);
+	font-size: larger;
+	font-family: open sans;
+	font-weight: 600;
+}
+
+#SearchListPage .searchDetails .MrpOPriceDiscount {
+	width: 50%;
+}
+
+#SearchListPage .searchDetails .MrpOPriceDiscount .ourPrice {
+	color: rgb(46 154 248);
+	font-size: xx-large;
+}
+
+#SearchListPage .searchDetails .MrpOPriceDiscount .Discount {
+	color: rgb(125, 241, 150);
+}
+
+#SearchListPage .searchDetails .cartbtn {
+	width: 50%;
+}
+
+#SearchListPage #pagingnationbar {
+	justify-content: center;
+	margin-top: 20px;
+}

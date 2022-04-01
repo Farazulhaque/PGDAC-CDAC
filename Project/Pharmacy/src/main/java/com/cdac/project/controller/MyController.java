@@ -41,4 +41,10 @@ public class MyController {
 		System.out.println(user.toString());
 		return "index";
 	}
+	
+	@RequestMapping("/search")
+	public String processQuery() {
+		System.out.println("process query called");
+		return "Search";
+	}
 }
