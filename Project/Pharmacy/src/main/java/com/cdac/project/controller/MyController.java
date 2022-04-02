@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cdac.project.model.UserSignup;
 import com.cdac.project.repository.UserSignupRepository;
+import com.cdac.project.service.UserSignupService;
 
 @Controller
 public class MyController {
 
 	@Autowired
-	private UserSignupRepository userSignupRepository;
+	private UserSignupService userSignupService;
 
 	@RequestMapping("/")
 	public String index() {
@@ -37,7 +38,7 @@ public class MyController {
 	@PostMapping("/process_userSignup")
 	public String ProcessUserSignup(UserSignup user) {
 		System.out.println("process_userSignup called");
-		userSignupRepository.save(user);
+		userSignupService.saveUser(user);
 		System.out.println(user.toString());
 		return "index";
 	}
