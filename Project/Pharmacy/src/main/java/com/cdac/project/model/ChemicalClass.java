@@ -1,22 +1,35 @@
 package com.cdac.project.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class ChemicalClass {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@PrimaryKeyJoinColumn
 	private int chemicalId;
 
 	@Column(nullable = false)
 	private String chemicalName;
+
+	@OneToMany(mappedBy = "chemicalClass", cascade = CascadeType.ALL)
+	private List<MedicineMaster> medicineMaster;
+
+	public List<MedicineMaster> getMedicineMaster() {
+		return medicineMaster;
+	}
+
+	public void setMedicineMaster(List<MedicineMaster> medicineMaster) {
+		this.medicineMaster = medicineMaster;
+	}
 
 	public int getChemicalId() {
 		return chemicalId;

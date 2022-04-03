@@ -1,64 +1,54 @@
 package com.cdac.project.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.*;
 
 @Entity
 public class MedicineMaster {
 
 	@Id
-	@OneToMany
-	@PrimaryKeyJoinColumn
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int medicineId;
 
 	@Column(nullable = false)
 	private String medicineName;
 
-	@Column(columnDefinition = "integer default 0")
+	@Column
 	private int prescription;
 
 	@Column(nullable = false)
 	private String typeOfSell;
 
-	@OneToOne(targetEntity = ManufacturerClass.class, cascade = CascadeType.ALL)
-	private ManufacturerClass manufactureId;
-
-	@Column(nullable = false)
+	@Column(nullable = false, length = 50)
 	private String salt;
 
 	@Column(nullable = false)
 	private float mrp;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 1000)
 	private String uses;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 1000)
 	private String alternateMedicines;
 
-	@Column(nullable = false)
+	@Column(nullable = false, length = 1000)
 	private String sideEffects;
 
 	@Column(nullable = false)
 	private String howToUse;
 
-	@OneToOne(targetEntity = ChemicalClass.class, cascade = CascadeType.ALL)
-	private ChemicalClass chemicalClassId;
+	@ManyToOne
+	private ChemicalClass chemicalClass;
 
-	@Column(nullable = false)
+	@ManyToOne
+	private TherapeuticClass therapeuticClass;
+
+	@ManyToOne
+	private ManufactureMaster manufacture;
+
+	@Column(nullable = false, length = 1000)
 	private String habitForming;
 
-	@OneToOne(targetEntity = TherapeuticClass.class, cascade = CascadeType.ALL)
-	private TherapeuticClass theraputicClassId;
-
-	@Column(nullable = false)
+	@Column(nullable = false, length = 1000)
 	private String actionClass;
 
 	private String medicineUrl1;
@@ -95,14 +85,6 @@ public class MedicineMaster {
 
 	public void setTypeOfSell(String typeOfSell) {
 		this.typeOfSell = typeOfSell;
-	}
-
-	public ManufacturerClass getManufactureId() {
-		return manufactureId;
-	}
-
-	public void setManufactureId(ManufacturerClass manufactureId) {
-		this.manufactureId = manufactureId;
 	}
 
 	public String getSalt() {
@@ -153,12 +135,28 @@ public class MedicineMaster {
 		this.howToUse = howToUse;
 	}
 
-	public ChemicalClass getChemicalClassId() {
-		return chemicalClassId;
+	public ChemicalClass getChemicalClass() {
+		return chemicalClass;
 	}
 
-	public void setChemicalClassId(ChemicalClass chemicalClassId) {
-		this.chemicalClassId = chemicalClassId;
+	public void setChemicalClass(ChemicalClass chemicalClass) {
+		this.chemicalClass = chemicalClass;
+	}
+
+	public TherapeuticClass getTherapeuticClass() {
+		return therapeuticClass;
+	}
+
+	public void setTherapeuticClass(TherapeuticClass therapeuticClass) {
+		this.therapeuticClass = therapeuticClass;
+	}
+
+	public ManufactureMaster getManufacture() {
+		return manufacture;
+	}
+
+	public void setManufacture(ManufactureMaster manufacture) {
+		this.manufacture = manufacture;
 	}
 
 	public String getHabitForming() {
@@ -167,14 +165,6 @@ public class MedicineMaster {
 
 	public void setHabitForming(String habitForming) {
 		this.habitForming = habitForming;
-	}
-
-	public TherapeuticClass getTheraputicClassId() {
-		return theraputicClassId;
-	}
-
-	public void setTheraputicClassId(TherapeuticClass theraputicClassId) {
-		this.theraputicClassId = theraputicClassId;
 	}
 
 	public String getActionClass() {
