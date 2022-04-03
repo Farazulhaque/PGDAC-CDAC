@@ -4,7 +4,8 @@
 body {
 	/* background-image: linear-gradient(to right, #efffda, #ffffff); */
 	/* background-image: linear-gradient(to right, #a3fdf2af, #f1f4f8); */
-	background-image: linear-gradient(to right, rgb(214 248 240), rgb(218 237 254));
+	background-image: linear-gradient(to right, rgb(214 248 240),
+		rgb(218, 237, 254));
 }
 
 /* nav */
@@ -40,7 +41,6 @@ body {
 /* #navcart {} */
 
 /* #searchnav {} */
-
 #headertop {
 	justify-content: space-around;
 	padding-right: 25px;
@@ -93,18 +93,14 @@ body {
 	background-color: #2e9af8;
 }
 
-
-
 /* Extra small devices (phones, 700px and down) */
 @media only screen and (max-width: 700px) {
 	#headertop {
 		display: none;
 	}
-
 	.navUl {
 		justify-content: space-evenly;
 	}
-
 	.mobileMenu {
 		-webkit-transform: translateX(-100%);
 		transform: translateX(-100%);
@@ -119,16 +115,13 @@ body {
 		background-color: #2e9af8;
 		z-index: 500;
 	}
-
 	.mobileMenu.open {
 		-webkit-transform: translateX(0%);
 		transform: translateX(0%);
 	}
-
 	.mobileMenu .navbar-nav {
 		overflow-y: auto;
 	}
-
 	.overlay {
 		position: fixed;
 		top: 0;
@@ -139,86 +132,68 @@ body {
 		background-color: rgba(0, 0, 0, 0.5);
 		display: none;
 	}
-
 	.overlay.open {
 		display: block;
 		z-index: 499;
 	}
-
 	.navUl li {
 		/* justify-content: space-between; */
 		margin: 14px 14px 9px 24px;
 		/* padding: 0 0 0 0; */
 	}
-
 	#accountSec {
 		bottom: 0;
 	}
 }
-
 
 /* Medium devices (landscape tablets, 700px and up) */
 @media only screen and (min-width: 700px) {
 	#accountSec {
 		display: none;
 	}
-
 	#navhide {
 		display: none;
 	}
-
 	.navbar-expand-lg {
 		-ms-flex-flow: row nowrap;
 		flex-flow: row nowrap;
 		-ms-flex-pack: start;
 		justify-content: flex-start;
 	}
-
 	.navbar-expand-lg .navbar-nav {
 		-ms-flex-direction: row;
 		flex-direction: row;
 	}
-
 	.navbar-expand-lg .navbar-nav .dropdown-menu {
 		position: absolute;
 	}
-
 	.navbar-expand-lg .navbar-nav .nav-link {
 		padding-right: 0.5rem;
 		padding-left: 0.5rem;
 	}
-
-	.navbar-expand-lg>.container,
-	.navbar-expand-lg>.container-fluid,
-	.navbar-expand-lg>.container-sm,
-	.navbar-expand-lg>.container-md,
-	.navbar-expand-lg>.container-lg,
-	.navbar-expand-lg>.container-xl {
+	.navbar-expand-lg>.container, .navbar-expand-lg>.container-fluid,
+		.navbar-expand-lg>.container-sm, .navbar-expand-lg>.container-md,
+		.navbar-expand-lg>.container-lg, .navbar-expand-lg>.container-xl {
 		-ms-flex-wrap: nowrap;
 		flex-wrap: nowrap;
 	}
-
 	.navbar-expand-lg .navbar-nav-scroll {
 		overflow: visible;
 	}
-
 	.navbar-expand-lg .navbar-collapse {
 		display: -ms-flexbox !important;
 		display: flex !important;
 		-ms-flex-preferred-size: auto;
 		flex-basis: auto;
 	}
-
 	.navbar-expand-lg .navbar-toggler {
 		display: none;
 	}
 
 	/* .CustmPadingMargin {} */
-
 }
 
 /* end nav part */
-
 
 /* banner  */
 @media only screen and (max-width: 700px) {
@@ -252,7 +227,7 @@ section {
 	height: 170px;
 	border-radius: 10%;
 	margin-top: 4%;
-	box-shadow: 0px 9px 20px 0px rgb(161 163 102);
+	box-shadow: 0px 9px 20px 0px rgb(161, 163, 102);
 }
 
 .widthSet img {
@@ -262,7 +237,7 @@ section {
 }
 
 .widthSet:hover {
-	box-shadow: 0px 0px 13px 8px rgb(192 211 232);
+	box-shadow: 0px 0px 13px 8px rgb(192, 211, 232);
 }
 
 @media only screen and (max-width:700px) {
@@ -316,18 +291,15 @@ footer {
 
 /* footer display order */
 @media only screen and (max-width: 450px) {
-
 	/* #main-footer .row{
     flex-direction: column
   } */
 	#addresssection {
 		order: 1;
 	}
-
 	#Copyrightsection {
 		order: 3;
 	}
-
 	#footerSocialMedia {
 		order: 2;
 	}
@@ -335,11 +307,11 @@ footer {
 
 /* end home page */
 
-
 /* Login page*/
 #home-section {
 	/* background: url(./image/signupPageBackColor.jpg) ; */
-	background: linear-gradient(rgba(255, 255, 255, .5), rgba(255, 255, 255, .5)), url(./image/signupPageBackColor.jpg);
+	background: linear-gradient(rgba(255, 255, 255, .5),
+		rgba(255, 255, 255, .5)), url(./image/signupPageBackColor.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
@@ -378,7 +350,6 @@ footer {
 /* Search Style */
 #SearchListPage {
 	background-color: rgb(255, 255, 255);
-
 	margin-top: 10px;
 	align-items: center;
 	border: 2px solid rgb(194, 187, 187);
@@ -393,7 +364,6 @@ footer {
 	margin: auto;
 	margin-bottom: 5px;
 	margin-bottom: 5px;
-
 	background-color: #fcfcfc;
 	border: 2px solid rgb(194, 187, 187);
 	border-radius: 12px;
@@ -413,13 +383,13 @@ footer {
 
 #SearchListPage .searchDetails .productNameandbarnd p {
 	margin-top: 10px;
-	color: rgb(51 160 74 / 67%);
+	color: rgb(51 160 74/ 67%);
 	font-size: 15px;
 	font-weight: 600;
 }
 
 #SearchListPage .searchDetails .productNameandbarnd a {
-	color: rgb(46 154 248);
+	color: rgb(46, 154, 248);
 	font-size: larger;
 	font-family: open sans;
 	font-weight: 600;
@@ -430,7 +400,7 @@ footer {
 }
 
 #SearchListPage .searchDetails .MrpOPriceDiscount .ourPrice {
-	color: rgb(46 154 248);
+	color: rgb(46, 154, 248);
 	font-size: xx-large;
 }
 
@@ -445,4 +415,17 @@ footer {
 #SearchListPage #pagingnationbar {
 	justify-content: center;
 	margin-top: 20px;
+}
+
+.search-container {
+	position: relative;
+}
+
+.search-result {
+	position: relative;
+	background: white;
+	width: inherit;
+	padding: 10px;
+	border: 1px solid grey;
+	display: none; 
 }

@@ -25,6 +25,11 @@ public class TherapeuticClass {
 
 	@OneToMany(mappedBy = "therapeuticClass", cascade = CascadeType.ALL)
 	private List<MedicineMaster> medicineMaster;
+	
+	public TherapeuticClass() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public TherapeuticClass(int therapeuticClassId, String tName, String tDescription) {
 		this.therapeuticClassId = therapeuticClassId;

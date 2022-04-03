@@ -1,13 +1,21 @@
 package com.cdac.project.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.cassandra.CassandraProperties.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cdac.project.model.MedicineMaster;
 import com.cdac.project.model.UserSignup;
+import com.cdac.project.repository.SearchRepository;
 import com.cdac.project.repository.UserSignupRepository;
 import com.cdac.project.service.UserSignupService;
 
@@ -16,6 +24,9 @@ public class MyController {
 
 	@Autowired
 	private UserSignupService userSignupService;
+
+	@Autowired
+	private SearchRepository searchRepository;
 
 	@RequestMapping("/")
 	public String index() {
@@ -39,13 +50,21 @@ public class MyController {
 	public String ProcessUserSignup(UserSignup user) {
 		System.out.println("process_userSignup called");
 		userSignupService.saveUser(user);
-		System.out.println(user.toString());
 		return "index";
 	}
-	
-	@RequestMapping("/search")
-	public String processQuery() {
+
+	@GetMapping("/search")
+	public String processQuery(@RequestParam("query") String query, Model model) {
 		System.out.println("process query called");
+
+		System.out.println(query);
+
+		List<MedicineMaster> medicinesList = searchRepository.findByMedicineName(query);
+		for (MedicineMaster medicineMaster : medicinesList) {
+		 System.out.println(medicineMaster.toString());
+		}
+		model.addAttribute("medicinesQueryList",medicinesList);
+		System.out.println(medicinesList);
 		return "Search";
 	}
 }

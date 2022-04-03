@@ -28,6 +28,11 @@ public class ManufactureMaster {
 	@OneToMany(mappedBy = "manufacture", cascade = CascadeType.ALL)
 	private List<MedicineMaster> medicineMaster;
 
+	public ManufactureMaster() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getManufactureId() {
 		return manufactureId;
 	}

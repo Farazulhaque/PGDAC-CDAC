@@ -23,6 +23,11 @@ public class ChemicalClass {
 	@OneToMany(mappedBy = "chemicalClass", cascade = CascadeType.ALL)
 	private List<MedicineMaster> medicineMaster;
 
+	public ChemicalClass() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public List<MedicineMaster> getMedicineMaster() {
 		return medicineMaster;
 	}

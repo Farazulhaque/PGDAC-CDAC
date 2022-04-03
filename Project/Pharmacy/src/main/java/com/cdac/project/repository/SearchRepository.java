@@ -1,7 +1,16 @@
 package com.cdac.project.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.List;
 
-public interface SearchRepository{
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.cdac.project.model.MedicineMaster;
+
+public interface SearchRepository extends JpaRepository<MedicineMaster, Integer> {
+
+	@Query("select mm from MedicineMaster mm where mm.medicineName like %?1%")
+	public List<MedicineMaster> findByMedicineName(String query);
 
 }

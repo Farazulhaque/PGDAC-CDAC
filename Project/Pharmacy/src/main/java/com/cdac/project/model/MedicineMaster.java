@@ -191,4 +191,14 @@ public class MedicineMaster {
 		this.medicineUrl2 = medicineUrl2;
 	}
 
+	@Override
+	public String toString() {
+		return "MedicineMaster [medicineId=" + medicineId + ", medicineName=" + medicineName + ", prescription="
+				+ prescription + ", typeOfSell=" + typeOfSell + ", salt=" + salt + ", mrp=" + mrp + ", uses=" + uses
+				+ ", alternateMedicines=" + alternateMedicines + ", sideEffects=" + sideEffects + ", howToUse="
+				+ howToUse + ", chemicalClass=" + chemicalClass + ", therapeuticClass=" + therapeuticClass
+				+ ", manufacture=" + manufacture + ", habitForming=" + habitForming + ", actionClass=" + actionClass
+				+ ", medicineUrl1=" + medicineUrl1 + ", medicineUrl2=" + medicineUrl2 + "]";
+	}
+
 }
