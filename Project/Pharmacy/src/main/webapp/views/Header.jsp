@@ -1,6 +1,7 @@
+<%@page import="java.sql.Statement"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	
+
 <%@page isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -40,15 +41,19 @@
 		<!-- search -->
 		<div class="col-5 mt-3 search-container">
 			<form class="d-flex input-group" action="/search">
-				<input class="form-control me-2" type="search" id="search-input"
-					name="query" placeholder="Search" aria-label="Search" />
+				<input onkeyup="search()" class="form-control me-2" type="search"
+					id="search-input" name="query" placeholder="Search"
+					aria-label="Search" />
 				<div class="input-group-append">
 					<button class="btn btn-" type="submit">
 						<i class="fas fa-search"></i>
 					</button>
 				</div>
 			</form>
-			<div class="search-result"></div>
+			<div class="search-result">
+			<p id="search-item"></p>
+
+			</div>
 
 		</div>
 
@@ -119,6 +124,8 @@
 							</button>
 						</div>
 					</form>
+
+					<div class="search-result"></div>
 				</div>
 			</div>
 

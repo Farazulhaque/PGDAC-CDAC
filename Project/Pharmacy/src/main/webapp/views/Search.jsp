@@ -36,27 +36,29 @@
 
 	<!--Search listing page-->
 	<section Id="SearchListPage" class="container container-fluid">
-		<div class="text-center">Showing all results for..............</div>
+		<div class="text-center">
+			<h2>
+				Showing all results for
+				<c:out value="${query}"></c:out>
+			</h2>
+		</div>
 		<c:forEach var="item" items="${medicinesQueryList}">
 			<div class=" row searchDetails">
-
 				<div class="productNameandbarnd text-center">
-					<a href="./Adeel/Product.html">
-					${item.medicineName}&nbsp;${item.typeOfSell}
-					</a>
-					<p>BY SUN PHARMA</p>
+					<a href="/product?mid=${item.medicineId}">
+						${item.medicineName}&nbsp;${item.typeOfSell} </a>
+					<p>${item.manufacture.manufactureName }</p>
 				</div>
 
 				<div class="MrpOPriceDiscount text-center">
-					<b class="ourPrice"><strong>&#x20b9;99</strong></b> <strike>&#x20b9;${item.mrp}</strike> <b
-						class=" Discount"><strong>14% off</strong></b>
+					<b class="ourPrice"><strong>&#x20b9;99</strong></b> <strike>&#x20b9;${item.mrp}</strike>
+					<b class=" Discount"><strong>14% off</strong></b>
 				</div>
 
 				<div class="cartbtn text-center">
 					<a href="cart.html" class="btn" role="button"><i
 						class="fas fa-cart-plus"> Add to Cart</i> </a>
 				</div>
-
 			</div>
 		</c:forEach>
 
