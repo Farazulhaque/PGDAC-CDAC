@@ -29,7 +29,7 @@
 	<header class="container-fluid row" id="headertop">
 		<!-- logo -->
 		<div class="col-3">
-			<img src="./image/logo1.png" alt="@logo" height="auto" width="200px" />
+		 <a href="/home">	<img src="./image/logo1.png" alt="@logo" height="auto" width="200px" /></a>
 		</div>
 
 		<!-- search -->
@@ -69,7 +69,7 @@
 
 		<!-- cart -->
 		<div class="container-fluid col-1 mt-3">
-			<a href="cart.html" class="btn" role="button"><i class="fas fa-cart-plus">Cart</i> </a>
+			<a href="cart.html" class="btn" role="button"><i class="fas fa-cart-plus"></i> <span id="item-count"><sup>0</sup></span> </a>
 		</div>
 	</header>
 
@@ -89,7 +89,7 @@
 					<!-- logo nav-->
 					<div class="col-4" id="navlogo">
 						<div class="mobnavlogobg" id="logonav">
-							<img src="./image/logo1.png" alt="@logo" height="auto" width="100px" />
+						<a href="/home">		<img src="./image/logo1.png" alt="@logo" height="auto" width="100px" /></a>
 						</div>
 					</div>
 

@@ -41,7 +41,7 @@
 					<h6>${medicine.typeOfSell }</h6>
 				</div>
 				<div class="row">
-					<h4>₹ 106.60</h4>
+					<h4>&#x20b9; 106.60</h4>
 					&nbsp; &nbsp;
 					<h5>
 						<del>&#x20b9;${medicine.mrp }</del>
@@ -103,7 +103,7 @@
 		<h3>Similar Products</h3>
 	</div>
 
-	<div class="container row productpage-similar-outerDiv">
+	<div class=" row productpage-similar-outerDiv">
 
 		<c:forEach var="item" items="${alternateMedicine}">
 			<%-- <c:if test="${item.medicineId } != ${medicine.medicineId }"> --%>
@@ -152,7 +152,7 @@
 	</div>
 
 	<div class="container para mt-1 mb-1">
-		<div >
+		<div>
 			<h5>Therapeutic Class</h5>
 			<p>${medicine.therapeuticClass.tName }</p>
 		</div>

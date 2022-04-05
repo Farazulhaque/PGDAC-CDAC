@@ -38,6 +38,12 @@ public class MyController {
 		System.out.println("Index page called");
 		return "index";
 	}
+	
+	@RequestMapping("/home")
+	public String home() {
+		System.out.println("Index page called");
+		return "index";
+	}
 
 	@RequestMapping("/UserSignup")
 	public String userSignup() {
