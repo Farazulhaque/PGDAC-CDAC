@@ -16,7 +16,7 @@ public interface SearchRepository extends JpaRepository<MedicineMaster, Integer>
 	@Query("select mm from MedicineMaster mm where mm.medicineId=?1")
 	public MedicineMaster findMedicineById(Integer mid);
 
-	@Query("select mm from MedicineMaster mm where mm.salt=?1")
+	@Query("select mm from MedicineMaster mm where mm.salt = ?1")
 	public List<MedicineMaster> findAlternateMedicines(String salt);
 	
 }
