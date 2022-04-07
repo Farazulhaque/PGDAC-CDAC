@@ -80,8 +80,10 @@
 				<!-- ************ Add to wishlist/cart button ************* -->
 				<div class="row">
 					<a href="Wishlist.html" class="btn wishlist-btn mr-3"><span>+
-							Add to Wish List</span></a> <a href="#" class="btn"> <i class="fa fa-cart-plus"
-							aria-hidden="true"></i>Add to Cart
+							Add to Wish List</span></a>
+					<a href="#" class="btn" id="addToCartbtn"
+						onclick="add_to_cart('${medicine.medicineId }','${medicine.medicineName}','${medicine.typeOfSell }' ,'${medicine.manufacture.manufactureName}', '${medicine.mrp }')">
+						<i class="fa fa-cart-plus"></i>Add to Cart
 					</a>
 				</div>
 				<!-- ************ Composition ************** -->

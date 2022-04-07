@@ -29,7 +29,7 @@
 	<header class="container-fluid row" id="headertop">
 		<!-- logo -->
 		<div class="col-3">
-		 <a href="/home">	<img src="./image/logo1.png" alt="@logo" height="auto" width="200px" /></a>
+			<a href="/home"> <img src="./image/logo1.png" alt="@logo" height="auto" width="200px" /></a>
 		</div>
 
 		<!-- search -->
@@ -69,7 +69,15 @@
 
 		<!-- cart -->
 		<div class="container-fluid col-1 mt-3">
-			<a href="cart.html" class="btn" role="button"><i class="fas fa-cart-plus"></i> <span id="item-count"><sup>0</sup></span> </a>
+			<form>
+				<button formaction="/cart" class="btn" onclick="updateCart();"><i class="fas fa-cart-plus"></i>
+					<span id="cart-items">
+						<sup>
+
+						</sup>
+					</span>
+				</button>
+			</form>
 		</div>
 	</header>
 
@@ -89,13 +97,15 @@
 					<!-- logo nav-->
 					<div class="col-4" id="navlogo">
 						<div class="mobnavlogobg" id="logonav">
-						<a href="/home">		<img src="./image/logo1.png" alt="@logo" height="auto" width="100px" /></a>
+							<a href="/home"> <img src="./image/logo1.png" alt="@logo" height="auto" width="100px" /></a>
 						</div>
 					</div>
 
 					<!-- cart nav -->
 					<div class="col-2 offset-4 justify-content-around" id="navcart">
-						<a href="cart.html" class="btn" role="button"><i class="fas fa-cart-plus">Cart</i> </a>
+						<a href="cart.html" class="btn" role="button"><i class="fas fa-cart-plus"></i>
+							<sup><span id="item-count"></span></sup>
+						</a>
 					</div>
 				</div>
 
@@ -121,7 +131,7 @@
 					<a class="btnclsnav" id="navhide"> <img alt="logo" src="./image/Closeicon.png" height="30px"
 							width="30px" />
 					</a>
-					<li class="nav-item"><a class="nav-link active" aria-current="page" href="./index.html"> <i
+					<li class="nav-item"><a class="nav-link active" aria-current="page" href="/home"> <i
 								class="fa fa-home"></i>Home
 						</a></li>
 					<li class="nav-item"><a class="nav-link" href="Adeel/Product.html"><i
