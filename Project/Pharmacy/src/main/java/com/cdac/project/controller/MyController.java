@@ -31,7 +31,7 @@ public class MyController {
 		System.out.println("Index page called");
 		return "index";
 	}
-	
+
 	@RequestMapping("/home")
 	public String home() {
 		System.out.println("Index page called");
@@ -61,29 +61,38 @@ public class MyController {
 	public String processQuery(@RequestParam("query") String query, Model model) {
 		System.out.println("process query called");
 
-//		System.out.println(query);
+		// System.out.println(query);
 
 		List<MedicineMaster> medicinesList = searchRepository.findByMedicineName(query);
-//		for (MedicineMaster medicineMaster : medicinesList) {
-//		 System.out.println(medicineMaster.toString());
-//		}
+		// for (MedicineMaster medicineMaster : medicinesList) {
+		// System.out.println(medicineMaster.toString());
+		// }
+		System.out.println(medicinesList.size());
 		model.addAttribute("medicinesQueryList", medicinesList);
 		model.addAttribute("query", query);
-//		System.out.println(medicinesList);
+		if(medicinesList.size() == 0) {
+			model.addAttribute("isEmpty", true);
+		} else {
+			model.addAttribute("isEmpty", false);
+		}
+		// System.out.println(medicinesList);
 		return "Search";
 	}
 
 	@RequestMapping("/processAJAX")
 	@ResponseBody
-//	@RequestMapping(value = "/processAJAX", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-//	public @ResponseBody List<MedicineMaster> processAJAX(@RequestParam("query") String query, Model model) {
+	// @RequestMapping(value = "/processAJAX", method = RequestMethod.GET, produces
+	// = MediaType.APPLICATION_JSON_VALUE, consumes =
+	// MediaType.APPLICATION_JSON_VALUE)
+	// public @ResponseBody List<MedicineMaster> processAJAX(@RequestParam("query")
+	// String query, Model model) {
 	public List<MedicineMaster> processAJAX(@RequestParam("query") String query, Model model) {
 
 		List<MedicineMaster> medicinesList = searchRepository.findByMedicineName(query);
 
 		model.addAttribute("medicinesQueryList", medicinesList);
 		model.addAttribute("query", query);
-//		System.out.println(medicinesList);
+		// System.out.println(medicinesList);
 		return medicinesList;
 	}
 
@@ -97,7 +106,7 @@ public class MyController {
 	}
 
 	@RequestMapping("/cart")
-	public String cart(HttpServletRequest request,Model model) {
+	public String cart(HttpServletRequest request, Model model) {
 		return "Cart";
 	}
 }

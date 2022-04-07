@@ -33,9 +33,16 @@
 		<div class="text-center">
 			<h2>
 				Showing all results for
-				<c:out value="${query}"></c:out>
+				<em style="color: blue; text-decoration: underline;">
+					<c:out value="${query}"></c:out>
+				</em>
 			</h2>
 		</div>
+		<c:if test="${isEmpty}">
+			<div style="color: red; text-align: center; margin-top: 20px;">
+				<h2>No Results Found</h2>
+			</div>
+		</c:if>
 		<c:forEach var="item" items="${medicinesQueryList}">
 			<div class=" row searchDetails">
 				<div class="productNameandbarnd text-center">
