@@ -444,15 +444,29 @@ footer {
 	position: relative;
 }
 
-.search-result {
+#search-result {
 	position: relative;
 	background: white;
 	width: inherit;
 	padding: 10px;
-	border: 1px solid grey;
+	border: 1px dotted rgb(58, 143, 143);
+	border-radius: 5px;
 	display: none;
+	position: fixed;
 }
 
+.search-item {
+	text-decoration: none;
+	border-bottom: 1px solid rgb(196, 192, 192);
+	padding: 5px;
+	color: #010722;
+	font-weight: 400;
+	margin: 0;
+}
+
+.search-item a {
+	text-decoration: none;
+}
 
 /* Cart Style */
 #product-name {

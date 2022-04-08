@@ -43,8 +43,7 @@
 					</button>
 				</div>
 			</form>
-			<div class="search-result">
-				<p id="search-item"></p>
+			<div id="search-result">
 
 			</div>
 
@@ -121,7 +120,6 @@
 						</div>
 					</form>
 
-					<div class="search-result"></div>
 				</div>
 			</div>
 
@@ -160,69 +158,45 @@
 	</nav>
 	<div class="overlay"></div>
 
-	<!-- <script type="text/javascript">
+	<script type="text/javascript">
 		function search() {
 			let query = $("#search-input").val();
 			console.log(query);
-			var ajax = new XMLHttpRequest();
-			var url = "processAJAX?query=" + query
-			ajax.onreadystatechange = function () {
-				if (ajax.readyState == 4) {
-					document.write(ajax.responseText);
-					//document.getElementById("search-item").innerHTML = ajax.responseText;
-				}
-			};
-			ajax.open("GET", url, true);
-			ajax.send(null);
-
-		}
-
-		const search = () => {
-			// console.log("searching...");
-			let query = $("#search-input").val();
-
-			if (query == '') {
-				$(".search-result").hide();
-			} else {
-				console.log(query);
-				var opt = {
-					url: "http://localhost:8282/processAJAX?query=" + query,
-					method: "GET"
-				}
+			if (query.length > 3) {
 				var ajax = new XMLHttpRequest();
-				$.ajax(opt).done(function (data) {
-					for (var i = 0; i < data.length; i++) {
-						document.getElementById("search-item").innerHTML += data[i].medicineName + "<br>";
-					}
-				})
-				var ajax = new XMLHttpRequest();
-				var url = "/processAJAX?query=" + query;
+				var url = "processAJAX?query=" + query
 				ajax.onreadystatechange = function () {
 					if (ajax.readyState == 4) {
-						alert(ajax.responseText);
-						document.getElementById("search-item").innerHTML = ajax.responseText + "<br>";
+						// alert(ajax.responseText);
+						// console.log(typeof (ajax.responseText));
+
+						let res = ajax.responseText
+						let result = JSON.parse(res);
+
+						$("#search-result").css("display", "block");
+
+						var count = Object.keys(result).length;
+						console.log(count)
+						for (let i = 0; i < count; i++) {
+
+							// let mname = "medicineName"
+							console.log(result[i]["medicineId"]);
+							console.log(result[i]["medicineName"]);
+							let para = "<p class=search-item><a href=/product?mid=" + result[i]["medicineId"] + "> " +
+								result[i]["medicineName"] + "</a></p>";
+							document.getElementById("search-result").innerHTML += para;
+						}
 					}
 				};
 				ajax.open("GET", url, true);
 				ajax.send(null);
-
-				var request = new XMLHttpRequest();
-				request.open("GET", "http://localhost:8282/processAJAX?query=" + query);
-				request.onreadystatechange = function () {
-					// Check if the request is compete and was successful
-					if (this.readyState === 4 && this.status === 200) {
-						// Inserting the response from server into an HTML element
-						document.getElementById("search-item").innerHTML += this.responseText;
-					}
-				};
-
-				request.send();
-				console.log()
-				$(".search-result").show()
-
+			} else {
+				$("#search-result").css("display", "none");
+				document.getElementById("search-result").innerHTML = "";
 			}
-		};
-	</script> -->
+
+		}
+	</script>
 </body>
 
 </html>

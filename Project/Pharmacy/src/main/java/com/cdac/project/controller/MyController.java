@@ -1,6 +1,9 @@
 package com.cdac.project.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import com.cdac.project.model.MedicineMaster;
 import com.cdac.project.model.UserSignup;
 import com.cdac.project.repository.SearchRepository;
 import com.cdac.project.service.UserSignupService;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 
 @Controller
 public class MyController {
@@ -61,39 +65,54 @@ public class MyController {
 	public String processQuery(@RequestParam("query") String query, Model model) {
 		System.out.println("process query called");
 
-		// System.out.println(query);
-
 		List<MedicineMaster> medicinesList = searchRepository.findByMedicineName(query);
-		// for (MedicineMaster medicineMaster : medicinesList) {
-		// System.out.println(medicineMaster.toString());
-		// }
-		System.out.println(medicinesList.size());
 		model.addAttribute("medicinesQueryList", medicinesList);
 		model.addAttribute("query", query);
-		if(medicinesList.size() == 0) {
+		if (medicinesList.size() == 0) {
 			model.addAttribute("isEmpty", true);
 		} else {
 			model.addAttribute("isEmpty", false);
 		}
-		// System.out.println(medicinesList);
 		return "Search";
 	}
 
+	// @RequestMapping("/processAJAX")
+	// @ResponseBody
+	// public HashMap<String, String> processAJAX(@RequestParam("query") String
+	// query, Model model) {
+	// List<MedicineMaster> medicinesList =
+	// searchRepository.findByMedicineName(query);
+
+	// model.addAttribute("medicinesQueryList", medicinesList);
+	// model.addAttribute("query", query);
+	// HashMap<String, String> map = new HashMap<String, String>();
+	// int i = 0;
+
+	// for (MedicineMaster medicineMaster : medicinesList) {
+	// map.put("medicineName" + i, medicineMaster.getMedicineName());
+	// i++;
+
+	// }
+	// return map;
+	// }
+
 	@RequestMapping("/processAJAX")
 	@ResponseBody
-	// @RequestMapping(value = "/processAJAX", method = RequestMethod.GET, produces
-	// = MediaType.APPLICATION_JSON_VALUE, consumes =
-	// MediaType.APPLICATION_JSON_VALUE)
-	// public @ResponseBody List<MedicineMaster> processAJAX(@RequestParam("query")
-	// String query, Model model) {
-	public List<MedicineMaster> processAJAX(@RequestParam("query") String query, Model model) {
-
+	public ArrayList processAJAX(@RequestParam("query") String query, Model model) {
 		List<MedicineMaster> medicinesList = searchRepository.findByMedicineName(query);
 
 		model.addAttribute("medicinesQueryList", medicinesList);
 		model.addAttribute("query", query);
-		// System.out.println(medicinesList);
-		return medicinesList;
+		ArrayList arr = new ArrayList();
+
+
+		for (MedicineMaster medicineMaster : medicinesList) {
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("medicineId", medicineMaster.getMedicineId()+"");
+			map.put("medicineName", medicineMaster.getMedicineName());
+			arr.add(map);
+		}
+		return arr;
 	}
 
 	@GetMapping("/product")
