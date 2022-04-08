@@ -445,14 +445,14 @@ footer {
 }
 
 #search-result {
-	position: relative;
+	position: absolute;
 	background: white;
 	width: inherit;
 	padding: 10px;
 	border: 1px dotted rgb(58, 143, 143);
 	border-radius: 5px;
 	display: none;
-	position: fixed;
+	z-index: 600;
 }
 
 .search-item {

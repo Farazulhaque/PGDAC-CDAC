@@ -163,6 +163,7 @@
 			let query = $("#search-input").val();
 			console.log(query);
 			if (query.length > 3) {
+				document.getElementById("search-result").innerHTML = "";
 				var ajax = new XMLHttpRequest();
 				var url = "processAJAX?query=" + query
 				ajax.onreadystatechange = function () {
