@@ -17,9 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cdac.project.model.MedicineMaster;
 import com.cdac.project.model.UserSignup;
-import com.cdac.project.repository.SearchRepository;
+import com.cdac.project.service.SearchService;
 import com.cdac.project.service.UserSignupService;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 @Controller
 public class MyController {
@@ -28,8 +27,8 @@ public class MyController {
 	private UserSignupService userSignupService;
 
 	@Autowired
-	private SearchRepository searchRepository;
-
+	private SearchService searchService;
+	
 	@RequestMapping("/")
 	public String index() {
 		System.out.println("Index page called");
@@ -65,7 +64,7 @@ public class MyController {
 	public String processQuery(@RequestParam("query") String query, Model model) {
 		System.out.println("process query called");
 
-		List<MedicineMaster> medicinesList = searchRepository.findByMedicineName(query);
+		List<MedicineMaster> medicinesList = searchService.findByMedicineName(query);
 		model.addAttribute("medicinesQueryList", medicinesList);
 		model.addAttribute("query", query);
 		if (medicinesList.size() == 0) {
@@ -81,7 +80,7 @@ public class MyController {
 	// public HashMap<String, String> processAJAX(@RequestParam("query") String
 	// query, Model model) {
 	// List<MedicineMaster> medicinesList =
-	// searchRepository.findByMedicineName(query);
+	// searchService.findByMedicineName(query);
 
 	// model.addAttribute("medicinesQueryList", medicinesList);
 	// model.addAttribute("query", query);
@@ -99,7 +98,7 @@ public class MyController {
 	@RequestMapping("/processAJAX")
 	@ResponseBody
 	public ArrayList processAJAX(@RequestParam("query") String query, Model model) {
-		List<MedicineMaster> medicinesList = searchRepository.findByMedicineName(query);
+		List<MedicineMaster> medicinesList = searchService.findByMedicineName(query);
 
 		model.addAttribute("medicinesQueryList", medicinesList);
 		model.addAttribute("query", query);
@@ -117,10 +116,10 @@ public class MyController {
 
 	@GetMapping("/product")
 	public String product(@RequestParam("mid") Integer mid, Model model) {
-		MedicineMaster medicine = searchRepository.findMedicineById(mid);
+		MedicineMaster medicine = searchService.findMedicineById(mid);
 		model.addAttribute("medicine", medicine);
 		System.out.println(medicine.getMedicineName());
-		model.addAttribute("alternateMedicine", searchRepository.findAlternateMedicines(medicine.getSalt()));
+		model.addAttribute("alternateMedicine", searchService.findAlternateMedicines(medicine.getSalt()));
 		return "Product";
 	}
 
