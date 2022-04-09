@@ -71,7 +71,7 @@
 
 									<div class="form-group">
 										<input type="password" class="form-control form-control-lg"
-											placeholder="Password" />
+											placeholder="password" />
 									</div>
 
 									<input type="submit" value="Sign IN " class="btn btn-outline-light btn-block" />

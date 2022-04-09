@@ -1,7 +1,7 @@
 package com.cdac.project.service;
 
-import com.cdac.project.model.UserSignup;
+import com.cdac.project.model.User;
 
 public interface UserSignupService {
-	UserSignup saveUser(UserSignup user);
+	User saveUser(User user);
 }

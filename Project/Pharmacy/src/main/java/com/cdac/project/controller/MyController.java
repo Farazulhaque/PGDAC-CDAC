@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cdac.project.model.MedicineMaster;
-import com.cdac.project.model.UserSignup;
+import com.cdac.project.model.User;
 import com.cdac.project.service.SearchService;
 import com.cdac.project.service.UserSignupService;
 
@@ -28,7 +28,7 @@ public class MyController {
 
 	@Autowired
 	private SearchService searchService;
-	
+
 	@RequestMapping("/")
 	public String index() {
 		System.out.println("Index page called");
@@ -54,7 +54,7 @@ public class MyController {
 	}
 
 	@PostMapping("/process_userSignup")
-	public String ProcessUserSignup(UserSignup user) {
+	public String ProcessUserSignup(User user) {
 		System.out.println("process_userSignup called");
 		userSignupService.saveUser(user);
 		return "index";
@@ -104,10 +104,9 @@ public class MyController {
 		model.addAttribute("query", query);
 		ArrayList arr = new ArrayList();
 
-
 		for (MedicineMaster medicineMaster : medicinesList) {
 			HashMap<String, String> map = new HashMap<String, String>();
-			map.put("medicineId", medicineMaster.getMedicineId()+"");
+			map.put("medicineId", medicineMaster.getMedicineId() + "");
 			map.put("medicineName", medicineMaster.getMedicineName());
 			arr.add(map);
 		}

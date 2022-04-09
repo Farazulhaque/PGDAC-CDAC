@@ -63,28 +63,28 @@
 								<p>Please fill out this form to register</p>
 								<form method="post" action="process_userSignup">
 									<div class="form-group">
-										<input type="text" class="form-control form-control-lg" id="FullName"
-											name="FullName" placeholder="Full Name" onblur="checkFullName()" />
+										<input type="text" class="form-control form-control-lg" id="fullName"
+											name="fullName" placeholder="Full Name" onblur="checkFullName()" />
 										<span id="fullname-error" class="text-danger"></span>
 									</div>
 									<div class="form-group">
-										<input type="text" class="form-control form-control-lg" id="ContactNumber"
-											name="ContactNumber" placeholder="Mobile" onblur="checkContactNo()" />
+										<input type="text" class="form-control form-control-lg" id="contactNumber"
+											name="contactNumber" placeholder="Mobile" onblur="checkContactNo()" />
 										<span id="contact-error" class="text-danger"></span>
 									</div>
 									<div class="form-group">
-										<input type="email" class="form-control form-control-lg" id="EmailId"
-											name="EmailId" placeholder="Email" onblur="checkEmail()" />
+										<input type="email" class="form-control form-control-lg" id="emailId"
+											name="emailId" placeholder="Email" onblur="checkEmail()" />
 										<span id="email-error" class="text-danger"></span>
 									</div>
 									<div class="form-group">
-										<input type="password" class="form-control form-control-lg" id="Password"
-											name="Password" placeholder="Password" onblur="checkPassword()" />
+										<input type="password" class="form-control form-control-lg" id="password"
+											name="password" placeholder="password" onblur="checkPassword()" />
 										<span id="password-error" class="text-danger"></span>
 									</div>
 									<div class="form-group">
 										<input type="password" class="form-control form-control-lg" id="RePassword"
-											name="RePassword" placeholder="Confirm Password"
+											name="RePassword" placeholder="Confirm password"
 											onblur="checkPasswordMatch()" />
 										<span id="repassword-error" class="text-danger"></span>
 									</div>

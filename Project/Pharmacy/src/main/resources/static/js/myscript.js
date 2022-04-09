@@ -42,7 +42,7 @@ $(document).ready(function () {
 });
 
 function checkFullName() {
-	var name = document.getElementById("FullName").value;
+	var name = document.getElementById("fullName").value;
 	var alphExp = /^[a-zA-Z]+$/;
 	if ((name.length < 8) && (name.match(alphExp))) {
 		document.getElementById("fullname-error").innerText = "Name must have more than 4 chars and not numric value";
@@ -52,7 +52,7 @@ function checkFullName() {
 }
 
 function checkContactNo() {
-	var contactno = document.getElementById("ContactNumber").value
+	var contactno = document.getElementById("contactNumber").value
 	var contact_regex = /^[0-9]{10}$/
 	if (!contactno.match(contact_regex)) {
 		document.getElementById("contact-error").innerText = "Contact Number must be of 10 digits number";

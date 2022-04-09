@@ -1,70 +1,82 @@
 package com.cdac.project.model;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name = "User")
-public class UserSignup {
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int UserId;
+	private int userId;
 
 	@Column(nullable = false)
-	private String FullName;
+	private String fullName;
 
 	@Column(nullable = false, unique = true)
-	private String EmailId;
+	private String emailId;
 
 	@Column(nullable = false, unique = true)
-	private String ContactNumber;
+	private String contactNumber;
 
 	@Column(nullable = false)
-	private String Password;
+	private String password;
+
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<UserAddress> userAddresses;
 
 	public int getUserId() {
-		return UserId;
+		return userId;
 	}
 
 	public void setUserId(int userId) {
-		UserId = userId;
+		this.userId = userId;
 	}
 
 	public String getFullName() {
-		return FullName;
+		return fullName;
 	}
 
 	public void setFullName(String fullName) {
-		FullName = fullName;
+		this.fullName = fullName;
 	}
 
 	public String getEmailId() {
-		return EmailId;
+		return emailId;
 	}
 
 	public void setEmailId(String emailId) {
-		EmailId = emailId;
+		this.emailId = emailId;
 	}
 
 	public String getContactNumber() {
-		return ContactNumber;
+		return contactNumber;
 	}
 
 	public void setContactNumber(String contactNumber) {
-		ContactNumber = contactNumber;
+		this.contactNumber = contactNumber;
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
+	}
+
+	public List<UserAddress> getUserAddresses() {
+		return userAddresses;
+	}
+
+	public void setUserAddresses(List<UserAddress> userAddresses) {
+		this.userAddresses = userAddresses;
 	}
 
 }
