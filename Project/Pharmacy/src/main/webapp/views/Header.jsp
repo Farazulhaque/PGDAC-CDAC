@@ -134,8 +134,8 @@
 						</a></li>
 					<li class="nav-item"><a class="nav-link" href="Adeel/Product.html"><i
 								class="fa fa-store"></i>Shop</a></li>
-					<li class="nav-item"><a href="./aboutus.html" class="nav-link" role="button">About Us</a></li>
-					<li class="nav-item"><a href="contactus.html" class="nav-link" role="button"><i
+					<li class="nav-item"><a href="/aboutus" class="nav-link" role="button">About Us</a></li>
+					<li class="nav-item"><a href="/contactus" class="nav-link" role="button"><i
 								class="fa fa-address-book"></i>Contact Us</a></li>
 					<!-- accountSec after size decrease -->
 					<li class="nav-item" id="accountSec">
