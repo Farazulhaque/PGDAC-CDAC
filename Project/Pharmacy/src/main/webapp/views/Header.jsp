@@ -70,11 +70,7 @@
 		<div class="container-fluid col-1 mt-3">
 			<form>
 				<button formaction="/cart" class="btn" onclick="updateCart();"><i class="fas fa-cart-plus"></i>
-					<span id="cart-items">
-						<sup>
-
-						</sup>
-					</span>
+					<span id="cart-items"></span>
 				</button>
 			</form>
 		</div>
@@ -102,17 +98,20 @@
 
 					<!-- cart nav -->
 					<div class="col-2 offset-4 justify-content-around" id="navcart">
-						<a href="cart.html" class="btn" role="button"><i class="fas fa-cart-plus"></i>
-							<sup><span id="item-count"></span></sup>
-						</a>
+						<form>
+							<button formaction="/cart" class="btn" onclick="updateCart();"><i
+									class="fas fa-cart-plus"></i>
+								<span id="mobile-cart-items"></span>
+							</button>
+						</form>
 					</div>
 				</div>
 
 				<!-- search nav -->
 				<div class="container-fluid mt-1 ml-auto row" id="navhide">
 					<form class="d-flex input-group" id="searchnav" action="/search">
-						<input class="form-control me-2" type="search" name="query" placeholder="Search"
-							aria-label="Search" />
+						<input onkeyup="search()" class="form-control me-2" id="mobile-search-input" type="search"
+							name="query" placeholder="Search" aria-label="Search" />
 						<div class="input-group-append">
 							<button class="btn btn-" type="submit">
 								<i class="fas fa-search"></i>
@@ -161,6 +160,9 @@
 	<script type="text/javascript">
 		function search() {
 			let query = $("#search-input").val();
+			if (query == "") {
+				query = $("#mobile-search-input").val();
+			}
 			console.log(query);
 			if (query.length > 3) {
 				document.getElementById("search-result").innerHTML = "";

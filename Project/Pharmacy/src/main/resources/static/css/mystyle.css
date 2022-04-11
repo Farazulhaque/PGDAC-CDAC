@@ -629,82 +629,82 @@ footer {
 
 /*About Us Style*/
 .quote {
-    width: 100%;
-    height: 200px;
-    text-align: center;
+	width: 100%;
+	height: 200px;
+	text-align: center;
 }
 
 .quote .text {
-    margin-top: 10%;
-    font-size: 50px;
+	margin-top: 10%;
+	font-size: 50px;
 }
 
 .heading {
-    margin-left: 2%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 32px;
+	margin-left: 2%;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 32px;
 }
 
 .about-para .column {
-    float: left;
-    width: 50%;
-    padding: 2%;
-    text-align: justify;
-    font-family: sans-serif;
+	float: left;
+	width: 50%;
+	padding: 2%;
+	text-align: justify;
+	font-family: sans-serif;
 }
 
 .about-para .image {
-    width: 100%;
+	width: 100%;
 }
 
 /* Clear floats after the columns */
 .about-para:after {
-    content: "";
-    display: table;
-    clear: both;
+	content: "";
+	display: table;
+	clear: both;
 }
 
 .services {
-    display: table;
-    height: max-content;
-    background-color: none;
+	display: table;
+	height: max-content;
+	background-color: none;
 }
 
 .services .service {
-    float: left;
-    width: 21%;
-    padding: 10px;
-    margin: 2%;
-    background-color: rgba(208, 252, 249, 255);
-    border: 2px solid rgb(15, 153, 146);
-    border-radius: 30px;
+	float: left;
+	width: 21%;
+	padding: 10px;
+	margin: 2%;
+	background-color: rgba(208, 252, 249, 255);
+	border: 2px solid rgb(15, 153, 146);
+	border-radius: 30px;
 }
 
 .services .service h2 {
-    text-align: center;
-    font-size: 26px;
+	text-align: center;
+	font-size: 26px;
 }
 
 .services .service:hover {
-    transition: all .5s ease;
-    -webkit-transition: all .5s ease;
-    box-shadow: inset 0px 0px 20px rgb(116 187 182);
+	transition: all .5s ease;
+	-webkit-transition: all .5s ease;
+	box-shadow: inset 0px 0px 20px rgb(116 187 182);
 }
 
 .services .service p {
-    text-align: justify;
+	text-align: justify;
 }
 
 @media screen and (max-width: 760px) {
-    .about-para .column {
-        width: 100%;
-    }
+	.about-para .column {
+		width: 100%;
+	}
 
-    .services .service {
-        width: 100%;
-        margin: 0;
-        margin-top: 10px;
-        border: none;
-        background-color: inherit;
-    }
+	.services .service {
+		width: 100%;
+		margin: 0;
+		margin-top: 10px;
+		border: none;
+		background-color: inherit;
+	}
 }

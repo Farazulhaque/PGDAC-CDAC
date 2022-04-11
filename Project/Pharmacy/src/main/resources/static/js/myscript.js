@@ -127,11 +127,17 @@ window.onload = function updateCart() {
 		console.log("cart is empty");
 		$("#cart-items").html("0");
 		$("#cart-item").css("display", "none");
+
+		$("#mobile-cart-items").html("0");
+
 	} else {
 		// there is something in cart
 		$("#cart-items").html(`${cart.length}`);
+		$("#mobile-cart-items").html(`${cart.length}`);
 		$("#your-cart").html(`${cart.length}`);
 		$("#empty-cart").css("display", "none");
+
+
 		console.log(cartString);
 
 		let parentDiv = document.getElementById("cart-item")
