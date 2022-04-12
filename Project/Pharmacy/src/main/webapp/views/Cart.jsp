@@ -52,11 +52,7 @@
             </div>
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-
-        })
-    </script>
+    
     <!-- footer -->
     <%@include file="Footer.jsp"%>
 </body>

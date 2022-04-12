@@ -1,0 +1,158 @@
+@charset "ISO-8859-1";
+/* ********************Product page************************ */
+
+
+/* body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+} */
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width:800px) {
+
+  html,
+  body {
+    width: 100%;
+
+    overflow-x: hidden;
+  }
+}
+
+.carousel-inner {
+  width: 100px;
+  height: auto;
+  text-align: center;
+  background-color: inherit;
+  border-radius: 5%;
+  padding: 0;
+  box-shadow: 0px 0px 10px 5px rgb(180, 227, 233);
+  border: 2px solid rgb(185, 227, 241);
+}
+
+/* @wali work on similar product page */
+.productpage-similar-outerDiv {
+  justify-content: space-around;
+}
+
+.productpage-similar img {
+  margin-top: 2px;
+  height: auto;
+  width: 150px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10%;
+}
+
+
+.productpageimage-main {
+  height: 400px;
+  width: 200px;
+}
+
+.productpage-similar {
+  height: 300px;
+  width: 18%;
+  float: left;
+  flex-wrap: nowrap;
+  padding: 5px;
+  margin-top: 2%;
+  margin-left: 1px;
+  text-align: center;
+  background-color: transparent;
+  border-radius: 5%;
+  border: 2px solid rgb(200, 234, 245);
+}
+
+.productpage-similar:hover {
+  box-shadow: 0px 0px 13px 8px rgb(192 211 232);
+}
+
+@media only screen and (max-width:750px) {
+  .productpageimage-main {
+    height: 300px;
+    width: auto;
+
+  }
+
+  .productpage-similar {
+    height: auto;
+    width: 40%;
+    float: left;
+    flex-wrap: nowrap;
+    margin-top: 2%;
+    padding: 0 0 0 0;
+    text-align: center;
+    background-color: inherit;
+    border-radius: 10%;
+  }
+
+  .productpage-similar:hover {
+    box-shadow: 0px 0px 13px 8px rgb(192 211 232);
+  }
+
+  .productpage-similar img {
+    margin-top: 2px;
+    height: 146px;
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10%;
+  }
+}
+
+
+
+/* wishlist button */
+.wishlist-btn {
+  background-color: crimson;
+}
+
+.wishlist-btn:hover {
+  background-color: red;
+}
+
+/* footer description */
+.ft-dsc {
+  display: flex;
+  text-align: center;
+}
+
+.para {
+  text-align: justify;
+}
+
+/* footer section */
+
+footer {
+  background-color: #2e9af8;
+  bottom: 0;
+  margin-top: 30px;
+  width: 100%;
+  /* height: 100px; */
+  color: white;
+  text-align: center;
+}
+
+@media only screen and (max-width: 450px) {
+  #addresssection {
+    order: 1;
+  }
+
+  #Copyrightsection {
+    order: 3;
+  }
+
+  #footerSocialMedia {
+    order: 2;
+  }
+}

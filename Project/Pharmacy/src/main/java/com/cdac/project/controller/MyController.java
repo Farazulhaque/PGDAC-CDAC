@@ -138,4 +138,9 @@ public class MyController {
 	public String cart(HttpServletRequest request, Model model) {
 		return "Cart";
 	}
+	
+	@RequestMapping("/checkout")
+	public String checkout() {
+		return "Checkout";
+	}
 }
