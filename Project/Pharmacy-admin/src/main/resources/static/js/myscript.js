@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
 	//for nav on mobile view
 	var fixHeight = function () {
@@ -44,37 +43,36 @@ $(document).ready(function () {
 
 //usersignup page 
 function checkFullName() {
-  var name = document.getElementById("fullName").value;
-  var alphExp = /^[a-zA-Z]+$/;
-  if ((name.length < 4) && (name.match(alphExp))) {
-    document.getElementById("fullname-error").innerText = "Name must have more than 4 chars and not numric value";
-  } else {
-    document.getElementById("fullname-error").innerText = "";
-  }
+	var name = document.getElementById("fullName").value;
+	var alphExp = /^[a-zA-Z]+$/;
+	if ((name.length < 4) && (name.match(alphExp))) {
+		document.getElementById("fullname-error").innerText = "Name must have more than 4 chars and not numric value";
+	} else {
+		document.getElementById("fullname-error").innerText = "";
+	}
 }
 //usersignup page
 function checkContactNo() {
-  var contactno = document.getElementById("contactNumber").value;
-  var contact_regex = /^[0-9]{10}$/
-  if (!contactno.match(contact_regex))
- {
-    document.getElementById("contact-error").innerText = "Contact Number Must be 10 digits";
-    //document.getElementsByClassName("").style.color ="red";
-  } else {
-    document.getElementById("contact-error").innerText = "";
-  }
+	var contactno = document.getElementById("contactNumber").value;
+	var contact_regex = /^[0-9]{10}$/
+	if (!contactno.match(contact_regex)) {
+		document.getElementById("contact-error").innerText = "Contact Number Must be 10 digits";
+		//document.getElementsByClassName("").style.color ="red";
+	} else {
+		document.getElementById("contact-error").innerText = "";
+	}
 }
 
 //usersignup page
 function checkPasswordMatch() {
-  var Password = document.getElementById("password").value;
-  var RePassword = document.getElementById("RePassword").value;
-  //var alphExp = /^[0-9]+$/;
-  if (Password   != RePassword ) {
-    document.getElementById("repassword-error").innerText = "Password not matched";
-  } else {
-    document.getElementById("repassword-error").innerText = "";
-  }
+	var Password = document.getElementById("password").value;
+	var RePassword = document.getElementById("RePassword").value;
+	//var alphExp = /^[0-9]+$/;
+	if (Password != RePassword) {
+		document.getElementById("repassword-error").innerText = "Password not matched";
+	} else {
+		document.getElementById("repassword-error").innerText = "";
+	}
 }
 
 
@@ -153,15 +151,16 @@ window.onload = function updateCart() {
 		$("#empty-cart").css("display", "none");
 
 
-		console.log(cartString);
+		//console.log(cartString);
 
 		let parentDiv = document.getElementById("cart-item")
 		let totalPrice = 0;
 		// create a separate div for all items
+		let mids = new Array();
 		cart.map((item) => {
 			productPrice = parseFloat(item.productPrice);
 			totalPrice += productPrice;
-
+			mids.push(`${item.productId}`);
 			let itemdiv =
 				`
 				<div class="item-info">
@@ -169,6 +168,7 @@ window.onload = function updateCart() {
 						<img src="image/medicine.png" width="80%" />
 					</div>
 					<div class="medicine-details">
+						<input type="hidden" class="mid" value="${item.productId}">
 						<a href="/product?mid=${item.productId}"><span id="product-name">${item.productName}</span></a>
 						<br>
 						<span id="product-details">${item.productTypeOfSell}</span>
@@ -197,6 +197,11 @@ window.onload = function updateCart() {
 			parentDiv.innerHTML += itemdiv;
 
 		})
+
+		sessionStorage.setItem("medicineIds", mids);
+		// for (let i = 0; i < mids.length; i++) {
+		// 	console.log(mids[i]);
+		// }
 		total.price = totalPrice
 		document.getElementById("total").innerHTML = "&#x20b9; " + totalPrice.toFixed(2);
 

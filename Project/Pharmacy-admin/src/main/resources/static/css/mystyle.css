@@ -590,7 +590,7 @@ footer {
 }
 
 /* Media query for mobiles */
-@media (max-width: 480px) {
+@media (max-width : 480px) {
 	.item-info {
 		height: 200px;
 		width: 100%;
@@ -625,7 +625,6 @@ footer {
 		height: auto;
 	}
 }
-
 
 /*About Us Style*/
 .quote {
@@ -688,7 +687,7 @@ footer {
 .services .service:hover {
 	transition: all .5s ease;
 	-webkit-transition: all .5s ease;
-	box-shadow: inset 0px 0px 20px rgb(116 187 182);
+	box-shadow: inset 0px 0px 20px rgb(116, 187, 182);
 }
 
 .services .service p {
@@ -709,106 +708,133 @@ footer {
 	}
 }
 
-
 /* ++++++++++++++++++++++++++++++++++++++++++user profile page start ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 .account-settings {
-    text-align: center;
+	text-align: center;
 }
 
 .user-profile img {
-    width: 200px;
-    height: auto;
-    margin: auto;
+	width: 200px;
+	height: auto;
+	margin: auto;
 }
 
 .user-name {
-    margin-top: 10px;
-    color: darkblue;
+	margin-top: 10px;
+	color: darkblue;
 }
 
 .user-email,
 .user-contactno {
-    color: grey;
-    font-size: 0.9em;
-    margin: 0;
+	color: grey;
+	font-size: 0.9em;
+	margin: 0;
 }
 
 .manage-address button {
-    background-color: inherit;
-    border: none;
-    font-weight: 500;
-    color: darkblue;
-    font-size: 1.2em;
+	background-color: inherit;
+	border: none;
+	font-weight: 500;
+	color: darkblue;
+	font-size: 1.2em;
 }
 
 .manage-address button:hover {
-    color: rgba(0, 0, 139, 0.800);
-    border-bottom: 1px solid rgba(0, 0, 139, 0.800);
+	color: rgba(0, 0, 139, 0.800);
+	border-bottom: 1px solid rgba(0, 0, 139, 0.800);
 }
 
 .logout a {
-    text-decoration: none;
-    font-weight: 500;
-    color: red;
+	text-decoration: none;
+	font-weight: 500;
+	color: red;
 }
 
 .logout a:hover {
-    color: rgba(255, 0, 0, 0.800);
+	color: rgba(255, 0, 0, 0.800);
 }
 
 .left {
-    float: left;
+	float: left;
 }
 
 .right {
-    float: right;
+	float: right;
 }
 
 .user-address-section {
-    border: 1px dotted gray;
+	border: 1px dotted gray;
 }
 
 .user-address-section button {
-    background-color: inherit;
-    border: none;
+	background-color: inherit;
+	border: none;
 }
 
 .user-address-section button:hover {
-    /* box-shadow: 4px 4px 4px grey; */
-    /* border-radius: 20%; */
-    color: darkblue;
+	/* box-shadow: 4px 4px 4px grey; */
+	/* border-radius: 20%; */
+	color: darkblue;
 }
 
 .username,
 .usercontactno {
-    font-weight: bold;
-
+	font-weight: bold;
 }
 
 .add-address {
-    border-bottom: 2px solid gray;
+	border-bottom: 2px solid gray;
 }
 
 .add-address button {
-    background-color: inherit;
-    border: none;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: darkblue;
+	background-color: inherit;
+	border: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: darkblue;
 }
 
 #save-address-btn {
-    width: 100%;
-    margin: auto;
+	width: 100%;
+	margin: auto;
 }
 
 #save-address-btn button {
-    width: 100%;
-    margin: auto;
+	width: 100%;
+	margin: auto;
 }
 
-
 /*================================================ user profile page end ================================================================ */
+#myoderdetails {
+	border: 1px solid black;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-top: 74px;
+	background-color: #fff;
+}
 
+#order-details {
+	margin: 1% 1% 0 1%;
+	padding: 0;
+	border-top: 2px solid rgb(225, 17, 17);
+	margin-left: -14px;
+	background-color: #fff;
+}
 
+#checkout-page .user-address-section {
+	border: 2px outset #acb7b8;
+	border-radius: 5px;
+	align-items: center;
+}
 
+#myorderCheckoutpage-orderlist .orderlist-details {
+	border-radius: 5px;
+}
+
+#myorderCheckoutpage-orderlist .deliver-btn {}
+
+#checkout-page .user-address-section .address-radio {}
+
+#checkout-page .user-address-section .addressprint {}
+
+#checkout-page .user-address-section .edit-btn {}

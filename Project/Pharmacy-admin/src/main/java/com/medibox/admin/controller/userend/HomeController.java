@@ -20,9 +20,8 @@ import com.medibox.admin.service.SearchService;
 @Controller
 public class HomeController {
 
-	
-	//@Autowired
-	//private UserSignupService userSignupService;
+	// @Autowired
+	// private UserSignupService userSignupService;
 
 	@Autowired
 	private SearchService searchService;
@@ -38,21 +37,19 @@ public class HomeController {
 		System.out.println("Index page called");
 		return "users/index";
 	}
-	
+
 	@RequestMapping("/aboutus")
 	public String aboutUs() {
 		System.out.println("AboutUs page called");
 		return "users/AboutUs";
 	}
-	
+
 	@RequestMapping("/contactus")
 	public String contactUs() {
 		System.out.println("ContactUs page called");
 		return "users/ContactUs";
 	}
-	
-	
-	
+
 	@GetMapping("/search")
 	public String processQuery(@RequestParam("query") String query, Model model) {
 		System.out.println("process query called");
@@ -67,8 +64,7 @@ public class HomeController {
 		}
 		return "users/Search";
 	}
-	
-	
+
 	@RequestMapping("/processAJAX")
 	@ResponseBody
 	public ArrayList processAJAX(@RequestParam("query") String query, Model model) {
@@ -86,8 +82,7 @@ public class HomeController {
 		}
 		return arr;
 	}
-	
-	
+
 	@GetMapping("/product")
 	public String product(@RequestParam("mid") Integer mid, Model model) {
 		MedicineMaster medicine = searchService.findMedicineById(mid);
@@ -101,9 +96,5 @@ public class HomeController {
 	public String cart(HttpServletRequest request, Model model) {
 		return "users/Cart";
 	}
-	
 
-	
-	
-	
 }

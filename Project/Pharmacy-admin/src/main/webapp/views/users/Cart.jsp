@@ -40,7 +40,9 @@
                     Grand Total: <span id="grandTotal">0</span>
                     <br>
                     <br>
-                    <button id="checkout-btn">Order Now</button>
+                    <form action="/checkout">
+                        <button id="checkout-btn" type="submit" onclick="checkout()">Checkout</button>
+                    </form>
                     <br>
                     <br>
                     <p class="checkout-msg">
@@ -50,15 +52,31 @@
                     </p>
                 </div>
             </div>
+
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
 
-        })
-    </script>
     <!-- footer -->
     <%@include file="Footer.jsp"%>
 </body>
+<script>
+    function checkout() {
+        var mid_string = "";
+        var mids = document.getElementsByClassName("mid");
+        for (let i = 0; i < mids.length; i++) {
+            const element = mids[i].value;
+            mid_string += element + "_";
+            console.log(element);
+        }
+        mid_string = mid_string.slice(0, mid_string.length - 1)
+        console.log(mid_string);
+        var ajax = new XMLHttpRequest();
+
+        var url = "cartItems?mid=" + mid_string;
+
+        ajax.open("GET", url, true);
+        ajax.send(null);
+    }
+</script>
 
 </html>

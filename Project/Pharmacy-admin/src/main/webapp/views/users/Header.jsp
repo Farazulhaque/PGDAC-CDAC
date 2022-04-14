@@ -53,19 +53,26 @@
 		<div class="accountSec col-3 mt-3 navbar-expand-lg" id="acctTop">
 			<button class="btn dropdown-toggle float-lg-right float-md-right" type="button" data-toggle="dropdown"
 				aria-expanded="false">
-				 <i class="fas fa-user"><c:if test="${logedInUser==null}">Account</c:if>${logedInUser.fullName} </i>  
-				
+				<i class="fas fa-user">
+					<c:if test="${logedInUser==null}">Account</c:if>${logedInUser.fullName}
+				</i>
+
 			</button>
 			<ul class="dropdown-menu">
-				<li><c:if test="${logedInUser==null}"><a class="dropdown-item"  href="/userloginpage">LOGIN</a></c:if></li>
-				<li><c:if test="${logedInUser!=null}"><a class="dropdown-item" href="/profile">Profile</a></c:if></li>
-				
+				<li>
+					<c:if test="${logedInUser==null}"><a class="dropdown-item" href="/userloginpage">LOGIN</a></c:if>
+				</li>
+				<li>
+					<c:if test="${logedInUser!=null}"><a class="dropdown-item" href="/profile">Profile</a></c:if>
+				</li>
+
 
 				<li>
 					<hr class="dropdown-divider" />
 				</li>
-				<li><c:if test="${logedInUser==null}"><a  class="dropdown-item" href="/sellerlogin">SELLER</a></c:if>
-					<c:if test="${logedInUser!=null}"><a class="dropdown-item" href="/logoutuser">Logout</a></c:if>					
+				<li>
+					<c:if test="${logedInUser==null}"><a class="dropdown-item" href="/sellerlogin">SELLER</a></c:if>
+					<c:if test="${logedInUser!=null}"><a class="dropdown-item" href="/logoutuser">Logout</a></c:if>
 				</li>
 			</ul>
 		</div>
@@ -73,8 +80,10 @@
 		<!-- cart -->
 		<div class="container-fluid col-1 mt-3">
 			<form>
-				<button formaction="/cart" class="btn  stretched-link" onclick="updateCart();"><i class="fas fa-cart-plus"></i>
-					<span id="cart-items"></span>
+				<button formaction="/cart" class="btn  stretched-link" onclick="updateCart();"><i
+						class="fas fa-cart-plus"></i>
+					<span id="cart-items"
+						class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"></span>
 				</button>
 			</form>
 		</div>
@@ -105,7 +114,8 @@
 						<form>
 							<button formaction="/cart" class="btn" onclick="updateCart();"><i
 									class="fas fa-cart-plus"></i>
-								<span id="mobile-cart-items"></span>
+								<span id="mobile-cart-items"
+									class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"></span>
 							</button>
 						</form>
 					</div>
@@ -143,19 +153,30 @@
 					<!-- accountSec after size decrease -->
 					<li class="nav-item" id="accountSec">
 						<button class="btn dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-							 <i class="fas fa-user"><c:if test="${logedInUser==null}">Account</c:if>${logedInUser.fullName} </i>  
-							
+							<i class="fas fa-user">
+								<c:if test="${logedInUser==null}">Account</c:if>${logedInUser.fullName}
+							</i>
+
 						</button>
 						<ul class="dropdown-menu">
-							<li><c:if test="${logedInUser==null}"><a class="dropdown-item"  href="/userloginpage">LOGIN</a></c:if></li>
-							<li><c:if test="${logedInUser!=null}"><a class="dropdown-item" href="/profile">Profile</a></c:if></li>
-							
-			
+							<li>
+								<c:if test="${logedInUser==null}"><a class="dropdown-item"
+										href="/userloginpage">LOGIN</a></c:if>
+							</li>
+							<li>
+								<c:if test="${logedInUser!=null}"><a class="dropdown-item" href="/profile">Profile</a>
+								</c:if>
+							</li>
+
+
 							<li>
 								<hr class="dropdown-divider" />
 							</li>
-							<li><c:if test="${logedInUser==null}"><a  class="dropdown-item" href="/sellerlogin">SELLER</a></c:if>
-								<c:if test="${logedInUser!=null}"><a class="dropdown-item" href="/logoutuser">Logout</a></c:if>					
+							<li>
+								<c:if test="${logedInUser==null}"><a class="dropdown-item"
+										href="/sellerlogin">SELLER</a></c:if>
+								<c:if test="${logedInUser!=null}"><a class="dropdown-item" href="/logoutuser">Logout</a>
+								</c:if>
 							</li>
 						</ul>
 					</li>

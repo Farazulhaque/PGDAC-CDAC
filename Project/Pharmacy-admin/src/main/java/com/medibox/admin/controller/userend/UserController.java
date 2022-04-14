@@ -23,121 +23,89 @@ import com.medibox.admin.service.UserService;
 @Controller
 public class UserController {
 
-
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private UserAddressService uAddService;
-	
-	
+
 	@ModelAttribute
-	public void commonDataSendforModal(Model m,HttpServletRequest request) {
-		HttpSession session=request.getSession();
-		User user=(User) session.getAttribute("logedInUser");
-		if(user!=null) {
-			m.addAttribute("userdetails",userService.findByUserId(user.getUserId()));
-		}	
+	public void commonDataSendforModal(Model m, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("logedInUser");
+		if (user != null) {
+			m.addAttribute("userdetails", userService.findByUserId(user.getUserId()));
+		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	//profile page open
+
+	// profile page open
 	@RequestMapping("/profile")
-	public String profile(Model m,HttpServletRequest request){
-		HttpSession session=request.getSession();
-		User user=(User) session.getAttribute("logedInUser");
-		if(user!=null) {
+	public String profile(Model m, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("logedInUser");
+		if (user != null) {
 			return "users/UserProfile";
 		}
-		return  "redirect:/userloginpage";
+		return "redirect:/userloginpage";
 	}
-	
-	
-	
-	
-	//adding user address process
+
+	// adding user address process
 	@PostMapping("/saveUserAdd")
-	public String saveUserAddressDB(UserAddress uAddress,Model m,HttpServletRequest request) {
-		
-		HttpSession session=request.getSession();
-		User user=(User) session.getAttribute("logedInUser");
-		if(user!=null) {
+	public String saveUserAddressDB(UserAddress uAddress, Model m, HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("logedInUser");
+		if (user != null) {
 			uAddress.setUser(user);
 			uAddService.addUserAddress(uAddress);
 			m.addAttribute("addressSave", true);
-			return "users/UserProfile";	
+			return "users/UserProfile";
 		}
-		return  "redirect:/userloginpage";
+		return "redirect:/userloginpage";
 	}
-	
-	
-	
-	//useraddres edit data sending on form 
+
+	// useraddres edit data sending on form
 	@GetMapping("/editUserAddress")
-	public String editAddForm(@RequestParam("userAId") Integer uAid, Model m,HttpServletRequest request) {
-		HttpSession session=request.getSession();
-		User user=(User) session.getAttribute("logedInUser");
-		if(user!=null) {
-			UserAddress userAddress=uAddService.findByUserAddressId(uAid);
-			m.addAttribute("editAddFormDetails",userAddress);
+	public String editAddForm(@RequestParam("userAId") Integer uAid, Model m, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("logedInUser");
+		if (user != null) {
+			UserAddress userAddress = uAddService.findByUserAddressId(uAid);
+			m.addAttribute("editAddFormDetails", userAddress);
 			m.addAttribute("editAddForm", true);
 			return "users/UserProfile";
 		}
-		
-		return  "redirect:/userloginpage";
+
+		return "redirect:/userloginpage";
 	}
-	
-	
-	
-	
-	
-	
-	//updating useraddress  
-		@PostMapping("/updateUserAddress")
-		public String updateUserAddress(UserAddress uAddress, Model m,HttpServletRequest request) {
-			HttpSession session=request.getSession();
-			User user=(User) session.getAttribute("logedInUser");
-			if(user!=null) {
-				uAddress.setUser(user);
-				uAddService.addUserAddress(uAddress);
+
+	// updating useraddress
+	@PostMapping("/updateUserAddress")
+	public String updateUserAddress(UserAddress uAddress, Model m, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("logedInUser");
+		if (user != null) {
+			uAddress.setUser(user);
+			uAddService.addUserAddress(uAddress);
+			return "users/UserProfile";
+		}
+		return "redirect:/userloginpage";
+	}
+
+	// deleting user address
+	@GetMapping("/deleteUserAddress")
+	public String deleteUAddress(@RequestParam("userAId") Integer uAid, Model m, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("logedInUser");
+		if (user != null) {
+			UserAddress userAddress = uAddService.findByUserAddressId(uAid);
+
+			if (userAddress != null) {
+				uAddService.deleteUserAddress(userAddress);
+				m.addAttribute("deletedAdd", true);
 				return "users/UserProfile";
 			}
-			return  "redirect:/userloginpage";
 		}
-	
-	
-	
-	
-	//deleting user address
-	@GetMapping("/deleteUserAddress")
-	public String deleteUAddress(@RequestParam("userAId") Integer uAid, Model m,HttpServletRequest request) {
-			HttpSession session=request.getSession();
-			User user=(User) session.getAttribute("logedInUser");
-			if(user!=null) {
-				UserAddress userAddress=uAddService.findByUserAddressId(uAid);
-				
-				if(userAddress!=null) {
-					uAddService.deleteUserAddress(userAddress);
-					m.addAttribute("deletedAdd", true);
-					 return "users/UserProfile";
-				}
-			}
-			return  "redirect:/userloginpage";
+		return "redirect:/userloginpage";
 	}
-	
-	
 
-	
-	
-	
-	
-	
-	
-	
-	
 }
