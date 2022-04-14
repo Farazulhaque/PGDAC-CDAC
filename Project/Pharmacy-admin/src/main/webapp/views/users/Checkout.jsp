@@ -170,28 +170,35 @@
 
 						</div>
 						<div class="row collapse" id="order-details">
+							<c:set var="count" value="1" scope="session" />
 
 							<c:forEach var="medicine" items='${sessionScope["arr"] }'>
-								<div class="container-fluid row ml-1 order-item">
+								<div class="container-fluid row ml-1 order-item" style="font-size: 16px;">
+									<br>
 									<div class="col-6 col-md-6 p-2">
-										<h6 id="product-name">${medicine.medicineName }</h6>
-										<p id="product-description">${medicine.typeOfSell }</p>
+										<h6 id="product-name" style="font-weight: 500; font-size: 16px;">${count}.
+											${medicine.medicineName }</h6>
+										<c:set var="count" value="${count+1}" scope="session" />
+										<span id="product-description">&emsp;${medicine.typeOfSell }</span>
+										<br>
+										<span>&emsp;${medicine.manufacture.manufactureName}</span>
 									</div>
 									<div class="col-4 offset-1 p-2">
-										<br>
-										<p>
+										<span>
 											MRP &emsp;&emsp;&nbsp; : <span class="product-mrp">&#x20b9;
 												${medicine.mrp }</span>
-										</p>
-										<p>
+										</span>
+										<br>
+										<span>
 											Discount&emsp;: <span class="product-discount">&#x20b9;
 												100</span>
-										</p>
+										</span>
+										<br>
 										<hr>
-										<p>
+										<span>
 											Total Price&nbsp; : <span class="product-price">&#x20b9;
 												999</span>
-										</p>
+										</span>
 									</div>
 								</div>
 								<hr>
