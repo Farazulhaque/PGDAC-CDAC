@@ -119,13 +119,14 @@
 
 							</div>
 							<div class="edit-btn col-3">
-
-								<a class="float-right "
-									href="/editUserAddressCheckout?userAId=${address.userAddressId}	"><i
-										class='fas fa-pencil-alt'></i>&nbsp;</a>
-
+								<a class="float-right" href="/editUserAddressCheckout?userAId=${address.userAddressId}">
+									<i class='fas fa-pencil-alt'></i>&nbsp;
+								</a>
 							</div>
 
+							<div class="text-danger font-weight-bold availability_message " id="${address.pincode}">
+								<hr>
+							</div>
 						</div>
 					</c:forEach>
 				</div>
@@ -169,54 +170,45 @@
 
 
 						</div>
-						<div class="row collapse" id="order-details">
+						<div class="row collapse" id="order-details" style="font-size: 16px;">
 
 							<c:set var="count" value="1" scope="session" />
 
 							<c:forEach var="medicine" items='${sessionScope["medicines"]}'>
 
-
 								<div class="container-fluid row ml-1 order-item">
 									<div class="col-6 col-md-6 p-2">
-										<h6 id="product-name">${count}.${medicine.medicineName}</h6>
+										<input type="hidden" class="mid" value="${medicine.medicineId}">
+										<h6 id="product-name" style="font-size: 18px;">${count}.
+											${medicine.medicineName}</h6>
 
-										<span id="product-description">${medicine.typeOfSell}</span>
-										<br>
+										<span id="product-description">${medicine.typeOfSell}</span> <br>
 										<span id="product-description">Manufaturer:
-											${medicine.manufacture.manufactureName}</span>
-										<br>
-										<span>Quantity: ${sessionScope["quantity"][count-1]} </span>
-										<br>
+											${medicine.manufacture.manufactureName}</span> <br> <span>Quantity:
+											${sessionScope["quantity"][count-1]} </span> <br>
 										<c:set var="count" value="${count+1}" scope="session" />
 									</div>
 									<div class="col-4 offset-1 p-2">
-										<br>
-										<span>
-											MRP &emsp;&emsp;&nbsp; : <span class="${medicine.mrp}">&#x20b9;
-												1099</span>
-										</span>
-										<br>
-										<span>
-											Discount&emsp;: <span class="product-discount">&#x20b9;
+										<br> <span> MRP &emsp;&emsp;&nbsp; : <span class="product-mrp">&#x20b9;
+												${medicine.mrp}</span>
+										</span> <br> <span> Discount&emsp;: <span class="product-discount">&#x20b9;
 												100</span>
 										</span>
 										<hr>
-										<span>
-											Total Price&nbsp; : <span class="product-price">&#x20b9;
+										<span> Total Price&nbsp; : <span class="product-price">&#x20b9;
 												999</span>
 										</span>
 									</div>
 								</div>
+
 								<hr>
 							</c:forEach>
 							<c:set var="count" value="1" scope="session" />
 							<div class="row ml-1">
 								<div class="col-12 p-2 seller-details">
-									<span id="seller-name">Seller Name</span>
-									<p>
-										Seller Address: <span id="seller-address: ">Lorem ipsum
-											dolor sit amet consectetur adipisicing elit. Minus, expedita.</span>
-									</p>
+									<span id="seller-name"></span>
+									<br>
+									<span id="seller-address"></span>
 								</div>
 
 							</div>
@@ -252,10 +244,44 @@
 		var delivery_pincode;
 		for (let i = 0; i < addresses.length; i++) {
 			if (addresses[i].checked) {
-				delivery_pincode = addresses[i].value
-
+				delivery_pincode = addresses[i].value;
 			}
 		}
+
+		// removing message
+		var availability_message = document
+			.getElementsByClassName("availability_message");
+		for (let i = 0; i < availability_message.length; i++) {
+			availability_message[i].innerHTML = "";
+		}
+
+		var ajax = new XMLHttpRequest();
+		var url = "findSeller?pincode=" + delivery_pincode;
+		ajax.onreadystatechange = function () {
+			if (ajax.readyState == 4) {
+				let res = ajax.responseText
+				let result = JSON.parse(res);
+				if (result["seller"] == null) {
+					document.getElementById(delivery_pincode).innerHTML = "Seller not available at this location";
+				} else {
+					document.getElementById("seller-name").innerHTML = "Shop Name: " +
+						result["seller"]["shopName"];
+					document.getElementById("seller-address").innerHTML = "Shop Address: " +
+						result["seller"]["shopAddress"];
+					// for (let i = 0; i < mids.length; i++) {
+					// 	var ajax = new XMLHttpRequest();
+					// 	var mids = document.getElementByClassName("mid");
+
+					// 	var url = "findDiscount?sid=" + result["seller"]["sellerId"] + "&mid=" + mids[i];
+					// 	ajax.open("GET", url, true);
+					// 	ajax.send(null);
+					// }
+				}
+			}
+		}
+		ajax.open("GET", url, true);
+		ajax.send(null);
+
 		console.log(delivery_pincode);
 	}
 </script>

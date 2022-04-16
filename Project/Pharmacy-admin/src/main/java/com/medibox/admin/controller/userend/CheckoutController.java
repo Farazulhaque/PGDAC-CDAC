@@ -2,6 +2,7 @@ package com.medibox.admin.controller.userend;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,9 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.medibox.admin.model.MedicineMaster;
 import com.medibox.admin.model.Seller;
+import com.medibox.admin.model.SellerMedicneManager;
 import com.medibox.admin.model.User;
 import com.medibox.admin.model.UserAddress;
+import com.medibox.admin.reprository.SellerMedicneManagerReporository;
 import com.medibox.admin.reprository.SellerReprository;
+import com.medibox.admin.service.SellerService;
 import com.medibox.admin.service.UserAddressService;
 import com.medibox.admin.service.UserService;
 import com.medibox.admin.service.implement.MedicineMasterImplementation;
@@ -38,7 +42,10 @@ public class CheckoutController {
 	private MedicineMasterImplementation medicineMasterImp;
 
 	@Autowired
-	private SellerReprository sellerReprository;
+	private SellerService sellerService;
+
+	@Autowired
+	private SellerMedicneManagerReporository sellerMedicneManagerReporository;
 
 	@ModelAttribute
 	public void commonDataSendforModal(Model m, HttpServletRequest request) {
@@ -123,7 +130,12 @@ public class CheckoutController {
 	public HashMap<String, Seller> findseller(@RequestParam("pincode") String pin) {
 		int pincode = Integer.parseInt(pin);
 		System.out.println(pincode);
-		Seller seller = sellerReprository.findSellerByPincode(pincode);
+		Seller seller = sellerService.findSellerByPincode(pincode);
+//		List<SellerMedicneManager> sellerMedicneManager = sellerMedicneManagerReporository.findSellerByPincode(pincode);
+
+
+//		HashMap<String, List<SellerMedicneManager>> sellerMap = new HashMap<String, List<SellerMedicneManager>>();
+
 		HashMap<String, Seller> sellerMap = new HashMap<String, Seller>();
 
 		if (seller == null) {
@@ -131,7 +143,7 @@ public class CheckoutController {
 			System.out.println("Seller not found!!");
 		} else {
 			sellerMap.put("seller", seller);
-			System.out.println("Seller Name: " + seller.getFullName());
+			// System.out.println("Seller Name: " + seller);
 		}
 		return sellerMap;
 	}

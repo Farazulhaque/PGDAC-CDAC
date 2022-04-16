@@ -66,13 +66,11 @@ public class SellerMedicneManager {
 		this.medicineMaster = medicineMaster;
 	}
 
-	@Override
-	public String toString() {
-		return "SellerMedicneManager [sellerMediManagerId=" + sellerMediManagerId + ", qunatity=" + qunatity
-				+ ", sellerDiscount=" + sellerDiscount + ", seller=" + seller + ", medicineMaster=" + medicineMaster
-				+ "]";
-	}
-
-	///////////////////////////////////////////////////////////////
+//	@Override
+//	public String toString() {
+//		return "SellerMedicneManager [sellerMediManagerId=" + sellerMediManagerId + ", qunatity=" + qunatity
+//				+ ", sellerDiscount=" + sellerDiscount + ", seller=" + seller + ", medicineMaster=" + medicineMaster
+//				+ "]";
+//	}
 
 }

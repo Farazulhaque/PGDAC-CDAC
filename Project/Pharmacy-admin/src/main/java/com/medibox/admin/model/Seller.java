@@ -5,10 +5,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Seller {
@@ -48,6 +51,7 @@ public class Seller {
 	private String documentUrl;
 
 	@OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<SellerMedicneManager> sellerMedicneManager;
 
 	@OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
@@ -157,13 +161,13 @@ public class Seller {
 		this.orderMaster = orderMaster;
 	}
 
-	@Override
-	public String toString() {
-		return "Seller [sellerId=" + sellerId + ", fullName=" + fullName + ", emailId=" + emailId + ", password="
-				+ password + ", status=" + status + ", shopName=" + shopName + ", shopeRegNo=" + shopeRegNo
-				+ ", shopContactNo=" + shopContactNo + ", shopAddress=" + shopAddress + ", shopPincode=" + shopPincode
-				+ ", documentUrl=" + documentUrl + ", sellerMedicneManager=" + sellerMedicneManager + ", orderMaster="
-				+ orderMaster + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Seller [sellerId=" + sellerId + ", fullName=" + fullName + ", emailId=" + emailId + ", password="
+//				+ password + ", status=" + status + ", shopName=" + shopName + ", shopeRegNo=" + shopeRegNo
+//				+ ", shopContactNo=" + shopContactNo + ", shopAddress=" + shopAddress + ", shopPincode=" + shopPincode
+//				+ ", documentUrl=" + documentUrl + ", sellerMedicneManager=" + sellerMedicneManager + ", orderMaster="
+//				+ orderMaster + "]";
+//	}
 
 }
