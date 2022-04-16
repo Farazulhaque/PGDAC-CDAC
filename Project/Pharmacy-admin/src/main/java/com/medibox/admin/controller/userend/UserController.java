@@ -1,7 +1,5 @@
 package com.medibox.admin.controller.userend;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.medibox.admin.model.Seller;
 import com.medibox.admin.model.User;
 import com.medibox.admin.model.UserAddress;
 import com.medibox.admin.service.UserAddressService;

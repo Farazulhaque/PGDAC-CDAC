@@ -1,8 +1,7 @@
-<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.medibox.admin.model.MedicineMaster"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -15,6 +14,7 @@
 	<%@include file="Header.jsp"%>
 
 	<section class="container  mt-3" id="checkout-page">
+
 		<div class="row  ">
 
 			<action class="col-md-5  col-lg-5   col-12   address-div   mt-3 ">
@@ -60,7 +60,7 @@
 									<label for="address">Address(Area/Street/Locality)</label>
 									<textarea class="form-control" name="localityAreaStreet" id="address" rows="5"
 										cols="10">${editAddFormDetails.localityAreaStreet}
-										   </textarea>
+                                       </textarea>
 								</div>
 							</div>
 
@@ -106,8 +106,8 @@
 					<c:forEach var="address" items="${userdetails.userAddresses }">
 						<div class="user-address-section row justify-content-center   mt-3 ml-3 mb-2 mr-3 ">
 							<div id=" radio address-radio col-2 ">
-								<input type="radio" class="m-1" value="current" name="address-sel" id="address-sel"
-									checked>
+								<input type="radio" class="m-1 addresses" value="${address.pincode}" name="address-sel"
+									id="address-sel" onchange="myfunc()">
 							</div>
 							<div class="px-4 py-1 addressprint col-8 ">
 								<span class="">${address.name}</span> &nbsp;<br> <span
@@ -170,30 +170,36 @@
 
 						</div>
 						<div class="row collapse" id="order-details">
+
 							<c:set var="count" value="1" scope="session" />
 
-							<c:forEach var="medicine" items='${sessionScope["arr"] }'>
-								<div class="container-fluid row ml-1 order-item" style="font-size: 16px;">
-									<br>
+							<c:forEach var="medicine" items='${sessionScope["medicines"]}'>
+
+
+								<div class="container-fluid row ml-1 order-item">
 									<div class="col-6 col-md-6 p-2">
-										<h6 id="product-name" style="font-weight: 500; font-size: 16px;">${count}.
-											${medicine.medicineName }</h6>
-										<c:set var="count" value="${count+1}" scope="session" />
-										<span id="product-description">&emsp;${medicine.typeOfSell }</span>
+										<h6 id="product-name">${count}.${medicine.medicineName}</h6>
+
+										<span id="product-description">${medicine.typeOfSell}</span>
 										<br>
-										<span>&emsp;${medicine.manufacture.manufactureName}</span>
+										<span id="product-description">Manufaturer:
+											${medicine.manufacture.manufactureName}</span>
+										<br>
+										<span>Quantity: ${sessionScope["quantity"][count-1]} </span>
+										<br>
+										<c:set var="count" value="${count+1}" scope="session" />
 									</div>
 									<div class="col-4 offset-1 p-2">
+										<br>
 										<span>
-											MRP &emsp;&emsp;&nbsp; : <span class="product-mrp">&#x20b9;
-												${medicine.mrp }</span>
+											MRP &emsp;&emsp;&nbsp; : <span class="${medicine.mrp}">&#x20b9;
+												1099</span>
 										</span>
 										<br>
 										<span>
 											Discount&emsp;: <span class="product-discount">&#x20b9;
 												100</span>
 										</span>
-										<br>
 										<hr>
 										<span>
 											Total Price&nbsp; : <span class="product-price">&#x20b9;
@@ -203,6 +209,7 @@
 								</div>
 								<hr>
 							</c:forEach>
+							<c:set var="count" value="1" scope="session" />
 							<div class="row ml-1">
 								<div class="col-12 p-2 seller-details">
 									<span id="seller-name">Seller Name</span>
@@ -222,18 +229,35 @@
 
 
 	</section>
-	<div class="row deliver-btn my-2  ">
+	<div class="row mx-0 deliver-btn my-2  ">
 		<button class="btn btn-outline-primary float-right col-2 offset-8 py-2 ">Cash
 			on delivery</button>
 
 	</div>
-	<div class="row deliver-btn my-2  ">
+	<div class="row mx-0 deliver-btn my-2  ">
 
 		<button class="btn btn-outline-primary float-right col-2 offset-8 py-2 ">Online
 			Payment</button>
 	</div>
+
+
+
+
 	<!-- footer -->
 	<%@include file="Footer.jsp"%>
 </body>
+<script>
+	function myfunc() {
+		var addresses = document.getElementsByClassName("addresses");
+		var delivery_pincode;
+		for (let i = 0; i < addresses.length; i++) {
+			if (addresses[i].checked) {
+				delivery_pincode = addresses[i].value
+
+			}
+		}
+		console.log(delivery_pincode);
+	}
+</script>
 
 </html>

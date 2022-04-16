@@ -20,102 +20,86 @@ import com.medibox.admin.model.Seller;
 import com.medibox.admin.service.SellerService;
 import com.medibox.admin.service.implement.SellerServiceImplemention;
 
-
-
 @Controller
 public class SellerSignUpController {
 
 	@Autowired
 	private SellerService sellerService;
-	
+
 	@RequestMapping("/sellerSignUp")
 	public String RegistrationForm() {
-		//System.out.println("seller SignUp form");
+		// System.out.println("seller SignUp form");
 		return "seller/sellerSignUp";
 	}
-	
-	
-	
-	
-	
-	
-	
-//	@PostMapping("/addSeller")
-//	public String Registration(Seller s,Model m) {
-//		sellerService.addSeller(s);
-//		m.addAttribute("sellerReg",true);
-//		System.out.println("seller Registration");
-//		return "sellerSignUp";
-//	}
-	
-	//signup -process
+
+	// @PostMapping("/addSeller")
+	// public String Registration(Seller s,Model m) {
+	// sellerService.addSeller(s);
+	// m.addAttribute("sellerReg",true);
+	// System.out.println("seller Registration");
+	// return "sellerSignUp";
+	// }
+
+	// signup -process
 	@PostMapping("/addSeller")
-	public String Registration(Seller s,@RequestParam("myfilesdoc")MultipartFile multipartFile,Model m) throws IOException{
-		
-		Seller existingseller=sellerService.findBySellerEmail(s.getEmailId());
-		
-		if (existingseller==null) {
-			
-			String filename=StringUtils.cleanPath(multipartFile.getOriginalFilename());
-			//String uploadDir="src/main/resources/static/documents/seller";
-			String uploadDir ="src/main/webapp/uplodedDocImg/DocumentSeller";
-			
+	public String Registration(Seller s, @RequestParam("myfilesdoc") MultipartFile multipartFile, Model m)
+			throws IOException {
+
+		Seller existingseller = sellerService.findBySellerEmail(s.getEmailId());
+
+		if (existingseller == null) {
+
+			String filename = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+			// String uploadDir="src/main/resources/static/documents/seller";
+			String uploadDir = "src/main/webapp/uplodedDocImg/DocumentSeller";
+
 			FileUploadUtils.saveFile(uploadDir, filename, multipartFile);
-			s.setDocumentUrl("/uplodedDocImg/DocumentSeller/"+filename);
+			s.setDocumentUrl("/uplodedDocImg/DocumentSeller/" + filename);
 			sellerService.addSeller(s);
-			
-			m.addAttribute("sellerReg",true);
+
+			m.addAttribute("sellerReg", true);
 			return "seller/sellerSignUp";
 		}
-		m.addAttribute("sellerexist",true);
+		m.addAttribute("sellerexist", true);
 		return "seller/sellerSignUp";
 	}
-	
-	
-	//seller login page opening
+
+	// seller login page opening
 	@RequestMapping("/sellerlogin")
 	public String loginpage() {
 		System.out.println("seller login");
-		return  "seller/sellerLogin";
+		return "seller/sellerLogin";
 	}
-	
-	
-	
-	//sellerlogin
+
+	// sellerlogin
 	@PostMapping("/sellerlogin")
-	public String sellerLogin(@RequestParam("uemail")String uname,@RequestParam("upass")String upass,
-							HttpServletRequest request	,Model m) {
-		
-		Seller seller=sellerService.findBySellerEmailAndPasswordStatusIsActive(uname, upass);
-		
-		if(seller!=null) {
-			if(seller.getStatus()==0) {
+	public String sellerLogin(@RequestParam("uemail") String uname, @RequestParam("upass") String upass,
+			HttpServletRequest request, Model m) {
+
+		Seller seller = sellerService.findBySellerEmailAndPasswordStatusIsActive(uname, upass);
+
+		if (seller != null) {
+			if (seller.getStatus() == 0) {
 				m.addAttribute("notactive", true);
-				return  "seller/sellerLogin";
-			}
-			else {
-				HttpSession session=request.getSession();
+				return "seller/sellerLogin";
+			} else {
+				HttpSession session = request.getSession();
 				session.setAttribute("logedinSeller", seller);
 				return "seller/sellerIndex";
 			}
 		}
 		m.addAttribute("invalid", true);
 		System.out.println("login not success");
-		return  "seller/sellerLogin";
+		return "seller/sellerLogin";
 	}
-	
-	
-	
-	//logout seller
+
+	// logout seller
 	@RequestMapping("/logout")
 	public String Logoutseller(HttpServletRequest request) {
-		HttpSession session=request.getSession();
+		HttpSession session = request.getSession();
 		session.invalidate();
 		System.out.println("seller logout");
-		return  "redirect:/sellerlogin";
+		return "redirect:/sellerlogin";
 	}
-	
-	
-	
-	
+
 }

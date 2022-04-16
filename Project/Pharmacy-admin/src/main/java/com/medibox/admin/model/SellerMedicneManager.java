@@ -13,16 +13,16 @@ public class SellerMedicneManager {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int sellerMediManagerId;
-	
+
 	@Column(nullable = false)
 	private int qunatity;
-	
+
 	@Column(nullable = false)
 	private int sellerDiscount;
-	
+
 	@ManyToOne
 	private Seller seller;
-	
+
 	@ManyToOne
 	private MedicineMaster medicineMaster;
 
@@ -73,26 +73,6 @@ public class SellerMedicneManager {
 				+ "]";
 	}
 
-	
-	
-	
-	
-	
 	///////////////////////////////////////////////////////////////
 
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

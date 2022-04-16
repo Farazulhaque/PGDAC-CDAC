@@ -1,7 +1,5 @@
 package com.medibox.admin.model;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,47 +11,51 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-
 @Entity
 public class OrderMaster {
 	@Id
-	@GeneratedValue(strategy =GenerationType.AUTO )
-	private long orderId;
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int orderId;
+
 	@Column(nullable = false)
-	private SimpleDateFormat orderDate ;
-	
+	private String orderDate;
+
 	@Column(nullable = false)
-	private float  orderAmount;
-	
+	private float orderAmount;
+
 	@Column(nullable = false)
 	private int discount;
-	
+
 	@Column(nullable = false)
 	private float netAmount;
-	
+
 	@Column(nullable = false)
-	private LocalDate shipingDate;
-	
-	
+	private String shipingDate;
+
+	private String paytmentType;
+
+	public String getPaytmentType() {
+		return paytmentType;
+	}
+
+	public void setPaytmentType(String paytmentType) {
+		this.paytmentType = paytmentType;
+	}
+
 	@ManyToOne
 	private User user;
-	
+
 	@ManyToOne
 	private UserAddress userAddress;
-	
-	
+
 	@ManyToOne
 	private Seller seller;
-	
+
 	@ManyToOne
 	private OrderStatus status;
-	
-	
-	@OneToMany(mappedBy = "orderMaster" ,cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "orderMaster", cascade = CascadeType.ALL)
 	private List<OrderDetails> orderDetails;
-	
-	
 
 	public List<OrderDetails> getOrderDetails() {
 		return orderDetails;
@@ -63,19 +65,19 @@ public class OrderMaster {
 		this.orderDetails = orderDetails;
 	}
 
-	public long getOrderId() {
+	public int getOrderId() {
 		return orderId;
 	}
 
-	public void setOrderId(long orderId) {
+	public void setOrderId(int orderId) {
 		this.orderId = orderId;
 	}
 
-	public SimpleDateFormat getOrderDate() {
+	public String getOrderDate() {
 		return orderDate;
 	}
 
-	public void setOrderDate(SimpleDateFormat orderDate) {
+	public void setOrderDate(String orderDate) {
 		this.orderDate = orderDate;
 	}
 
@@ -103,11 +105,11 @@ public class OrderMaster {
 		this.netAmount = netAmount;
 	}
 
-	public LocalDate getShipingDate() {
+	public String getShipingDate() {
 		return shipingDate;
 	}
 
-	public void setShipingDate(LocalDate shipingDate) {
+	public void setShipingDate(String shipingDate) {
 		this.shipingDate = shipingDate;
 	}
 
@@ -143,7 +145,4 @@ public class OrderMaster {
 		this.status = status;
 	}
 
-	
-	
-	
 }

@@ -21,16 +21,13 @@ public class ChemicalClass {
 	@Column(nullable = false)
 	private String chemicalName;
 
-	
-	@OneToMany(mappedBy = "chemicalClass" ,cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "chemicalClass", cascade = CascadeType.ALL)
 	private List<MedicineMaster> medicineMaster;
-	
-	
+
 	public List<MedicineMaster> getMedicineMaster() {
 		return medicineMaster;
 	}
 
-	
 	public void setMedicineMaster(List<MedicineMaster> medicineMaster) {
 		this.medicineMaster = medicineMaster;
 	}
@@ -51,19 +48,10 @@ public class ChemicalClass {
 		this.chemicalName = chemicalName;
 	}
 
-
 	@Override
 	public String toString() {
 		return "ChemicalClass [chemicalId=" + chemicalId + ", chemicalName=" + chemicalName + ", medicineMaster="
 				+ medicineMaster + "]";
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
 }

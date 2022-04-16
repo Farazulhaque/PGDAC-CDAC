@@ -13,34 +13,28 @@ import javax.persistence.OneToMany;
 
 import lombok.Getter;
 
-
 @Entity
 public class TherapeuticClass {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int therapeuticClassId;
-	
-	@Column(unique = true )
+
+	@Column(unique = true)
 	private String tName;
-	
-	@Column(length = 1000 )
+
+	@Column(length = 1000)
 	private String tDescription;
-	
-	@OneToMany(mappedBy = "therapeuticClass" ,cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "therapeuticClass", cascade = CascadeType.ALL)
 	private List<MedicineMaster> medicineMaster;
-	
-	
-	
-	
-	
-	
+
 	public TherapeuticClass() {
 		this.therapeuticClassId = therapeuticClassId;
 		this.tName = tName;
 		this.tDescription = tDescription;
 	}
-	
+
 	public TherapeuticClass(int therapeuticClassId, String tName, String tDescription) {
 		this.therapeuticClassId = therapeuticClassId;
 		this.tName = tName;
@@ -78,9 +72,5 @@ public class TherapeuticClass {
 	public void setMedicineMaster(List<MedicineMaster> medicineMaster) {
 		this.medicineMaster = medicineMaster;
 	}
-	
-	
-	
-	
-	
+
 }

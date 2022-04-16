@@ -13,138 +13,122 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class UserAddress {
-		
-		@Id
-		@GeneratedValue(strategy = GenerationType.AUTO)
-		private int userAddressId;
-		
-		@Column(nullable = false)
-		private String name;
-		
-		@ManyToOne
-		private User user;
-		
 
-		@OneToMany(mappedBy = "userAddress" ,cascade = CascadeType.ALL)
-		private List<OrderMaster> orderMasters;
-		
-		
-		@Column(nullable = false)
-		private String mobileNumber;
-		
-		@Column( length = 1000)
-		private String localityAreaStreet;
-		
-		
-		private String landmark;
-		
-		@Column(nullable = false , length = 50)
-		private String city;
-		
-		@Column(nullable = false)
-		private String state;
-		
-		@Column(nullable = false , length = 6)
-		private int pincode;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int userAddressId;
 
-		public int getUserAddressId() {
-			return userAddressId;
-		}
+	@Column(nullable = false)
+	private String name;
 
-		public void setUserAddressId(int userAddressId) {
-			this.userAddressId = userAddressId;
-		}
+	@ManyToOne
+	private User user;
 
-		public String getName() {
-			return name;
-		}
+	@OneToMany(mappedBy = "userAddress", cascade = CascadeType.ALL)
+	private List<OrderMaster> orderMasters;
 
-		public void setName(String name) {
-			this.name = name;
-		}
+	@Column(nullable = false)
+	private String mobileNumber;
 
-		public User getUser() {
-			return user;
-		}
+	@Column(length = 1000)
+	private String localityAreaStreet;
 
-		public void setUser(User user) {
-			this.user = user;
-		}
+	private String landmark;
 
-		public String getMobileNumber() {
-			return mobileNumber;
-		}
+	@Column(nullable = false, length = 50)
+	private String city;
 
-		public void setMobileNumber(String mobileNumber) {
-			this.mobileNumber = mobileNumber;
-		}
+	@Column(nullable = false)
+	private String state;
 
-		public String getLocalityAreaStreet() {
-			return localityAreaStreet;
-		}
+	@Column(nullable = false, length = 6)
+	private int pincode;
 
-		public void setLocalityAreaStreet(String localityAreaStreet) {
-			this.localityAreaStreet = localityAreaStreet;
-		}
+	public int getUserAddressId() {
+		return userAddressId;
+	}
 
-		public String getLandmark() {
-			return landmark;
-		}
+	public void setUserAddressId(int userAddressId) {
+		this.userAddressId = userAddressId;
+	}
 
-		public void setLandmark(String landmark) {
-			this.landmark = landmark;
-		}
+	public String getName() {
+		return name;
+	}
 
-		public String getCity() {
-			return city;
-		}
+	public void setName(String name) {
+		this.name = name;
+	}
 
-		public void setCity(String city) {
-			this.city = city;
-		}
+	public User getUser() {
+		return user;
+	}
 
-		public String getState() {
-			return state;
-		}
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-		public void setState(String state) {
-			this.state = state;
-		}
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
 
-		public int getPincode() {
-			return pincode;
-		}
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
 
-		public void setPincode(int pincode) {
-			this.pincode = pincode;
-		}
+	public String getLocalityAreaStreet() {
+		return localityAreaStreet;
+	}
 
-		public List<OrderMaster> getOrderMasters() {
-			return orderMasters;
-		}
+	public void setLocalityAreaStreet(String localityAreaStreet) {
+		this.localityAreaStreet = localityAreaStreet;
+	}
 
-		public void setOrderMasters(List<OrderMaster> orderMasters) {
-			this.orderMasters = orderMasters;
-		}
+	public String getLandmark() {
+		return landmark;
+	}
 
-		@Override
-		public String toString() {
-			return "UserAddress [userAddressId=" + userAddressId + ", name=" + name + ", user=" + user
-					+ ", orderMasters=" + orderMasters + ", mobileNumber=" + mobileNumber + ", localityAreaStreet="
-					+ localityAreaStreet + ", landmark=" + landmark + ", city=" + city + ", state=" + state
-					+ ", pincode=" + pincode + "]";
-		}
-		
-		
-		
-		
+	public void setLandmark(String landmark) {
+		this.landmark = landmark;
+	}
 
-		
-		
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public int getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(int pincode) {
+		this.pincode = pincode;
+	}
+
+	public List<OrderMaster> getOrderMasters() {
+		return orderMasters;
+	}
+
+	public void setOrderMasters(List<OrderMaster> orderMasters) {
+		this.orderMasters = orderMasters;
+	}
+
+	@Override
+	public String toString() {
+		return "UserAddress [userAddressId=" + userAddressId + ", name=" + name + ", user=" + user + ", orderMasters="
+				+ orderMasters + ", mobileNumber=" + mobileNumber + ", localityAreaStreet=" + localityAreaStreet
+				+ ", landmark=" + landmark + ", city=" + city + ", state=" + state + ", pincode=" + pincode + "]";
+	}
 
 }
-
-	
-	
-	
-

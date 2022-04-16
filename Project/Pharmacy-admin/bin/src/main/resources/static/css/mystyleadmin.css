@@ -1,0 +1,144 @@
+.input-group-text {
+  width: 145px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.table-widthset {
+  width: 50%;
+  margin: auto;
+}
+
+#button-med-reg {
+  float: right;
+  margin-top: 10px;
+}
+
+#medicineRegisterpage {
+  width: 50%;
+  margin: auto;
+}
+
+#collapseAddchemicalClass {
+  width: 50%;
+  margin: auto;
+
+}
+
+#collapseAddManufacture {
+  width: 50%;
+  margin: auto;
+
+}
+
+#collapseAddtheraputicClass {
+  width: 50%;
+  margin: auto;
+
+}
+
+.account-settings {
+    text-align: center;
+}
+
+.user-profile img {
+    width: 200px;
+    height: auto;
+    margin: auto;
+}
+
+.user-name {
+    margin-top: 10px;
+    color: darkblue;
+}
+
+.user-email,
+.user-contactno {
+    color: grey;
+    font-size: 0.9em;
+    margin: 0;
+}
+
+.manage-address button {
+  /*  background-color: inherit; */
+    border: none;
+    font-weight: 500;
+    color: darkblue;
+    font-size: 1.2em;
+}
+
+.manage-address button:hover {
+    color: rgba(0, 0, 139, 0.800);
+    border-bottom: 1px solid rgba(0, 0, 139, 0.800);
+}
+
+.logout a {
+    text-decoration: none;
+    font-weight: 500;
+    color: red;
+}
+
+.logout a:hover {
+    color: rgba(255, 0, 0, 0.800);
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.user-address-section {
+    border: 1px dotted gray;
+}
+
+.user-address-section button {
+    background-color: inherit;
+    border: none;
+}
+
+.user-address-section button:hover {
+    /* box-shadow: 4px 4px 4px grey; */
+    /* border-radius: 20%; */
+    color: darkblue;
+}
+
+.username,
+.usercontactno {
+    font-weight: bold;
+
+}
+
+.add-address {
+    border-bottom: 2px solid gray;
+}
+
+.add-address button {
+  /*   background-color: inherit; */
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: darkblue;
+}
+
+#save-address-btn {
+    width: 100%;
+    margin: auto;
+}
+
+#save-address-btn button {
+    width: 100%;
+    margin: auto;
+}

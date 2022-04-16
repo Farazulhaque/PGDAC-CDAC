@@ -1,35 +1,41 @@
 package com.medibox.admin.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.springframework.data.jpa.repository.Query;
+
 @Entity
-public class OrderDetails {
-	
+public class OrderDetails implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long orderdetailId;
-	
+	private int orderdetailId;
+
 	private int medicineQuantity;
 
-	private  float medicnePrice;
-	
-	private int  medicineDiscount;
-	
+	private float medicnePrice;
+
+	private int medicineDiscount;
+
 	@ManyToOne
 	private MedicineMaster medicineMaster;
-	
+
 	@ManyToOne
 	private OrderMaster orderMaster;
 
-	public long getOrderdetailId() {
+	public int getOrderdetailId() {
 		return orderdetailId;
 	}
 
-	public void setOrderdetailId(long orderdetailId) {
+	public void setOrderdetailId(int orderdetailId) {
 		this.orderdetailId = orderdetailId;
 	}
 
@@ -72,9 +78,5 @@ public class OrderDetails {
 	public void setOrderMaster(OrderMaster orderMaster) {
 		this.orderMaster = orderMaster;
 	}
-
-
-
-
 
 }

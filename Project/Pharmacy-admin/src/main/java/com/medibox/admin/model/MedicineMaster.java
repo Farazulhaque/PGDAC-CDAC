@@ -20,77 +20,51 @@ public class MedicineMaster {
 	@Column(nullable = false)
 	private String typeOfSell;
 
-
-	@Column(nullable = false , length = 50)
+	@Column(nullable = false, length = 200)
 	private String salt;
 
 	@Column(nullable = false)
 	private float mrp;
 
-	@Column(nullable = false , length = 1000)
+	@Column(nullable = false, length = 1000)
 	private String uses;
 
-	@Column(nullable = false  , length = 1000)
+	@Column(nullable = false, length = 1000)
 	private String alternateMedicines;
 
-	@Column(nullable = false  , length = 1000)
+	@Column(nullable = false, length = 1000)
 	private String sideEffects;
 
 	@Column(nullable = false)
 	private String howToUse;
 
-	
 	@ManyToOne
 	private ChemicalClass chemicalClass;
 
 	@ManyToOne
 	private TherapeuticClass therapeuticClass;
-	
 
 	@ManyToOne
 	private ManufactureMaster manufacture;
-	
-	
-	@Column(nullable = false , length = 1000)
+
+	@Column(nullable = false, length = 1000)
 	private String habitForming;
 
-	
-
-	@Column(nullable = false , length = 1000)
+	@Column(nullable = false, length = 1000)
 	private String actionClass;
 
 	private String medicineUrl1;
 
 	private String medicineUrl2;
 
-	
-	
-
-	@OneToMany(mappedBy = "medicineMaster" ,cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "medicineMaster", cascade = CascadeType.ALL)
 	private List<SellerMedicneManager> sellerMedicneManager;
-	
-	@OneToMany(mappedBy = "medicineMaster" ,cascade = CascadeType.ALL)
+
+	@OneToMany(mappedBy = "medicineMaster", cascade = CascadeType.ALL)
 	private List<OrderDetails> orderDetails;
-	
-	
-	
-	
-	
-	
+
 	/////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public int getMedicineId() {
 		return medicineId;
 	}
@@ -103,14 +77,15 @@ public class MedicineMaster {
 		this.orderDetails = orderDetails;
 	}
 
-	public List<SellerMedicneManager> getSellerMedicneManager() {                                            //////////////////
+	public List<SellerMedicneManager> getSellerMedicneManager() { //////////////////
 		return sellerMedicneManager;
 	}
 
 	public void setSellerMedicneManager(List<SellerMedicneManager> sellerMedicneManager) {
 		this.sellerMedicneManager = sellerMedicneManager;
 	}
-																										/////////////////////
+
+	/////////////////////
 	public void setMedicineId(int medicineId) {
 		this.medicineId = medicineId;
 	}
@@ -254,31 +229,4 @@ public class MedicineMaster {
 				+ sellerMedicneManager + "]";
 	}
 
-	
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

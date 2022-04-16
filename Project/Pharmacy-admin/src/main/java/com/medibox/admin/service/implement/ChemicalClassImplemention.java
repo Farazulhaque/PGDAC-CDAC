@@ -14,7 +14,7 @@ public class ChemicalClassImplemention implements ChemicalClassService {
 
 	@Autowired
 	private ChemicalClassReprository chemicalClassReprositoryRepo;
-	
+
 	@Override
 	public ChemicalClass addChemicalClass(ChemicalClass cClass) {
 		// TODO Auto-generated method stub
@@ -23,33 +23,33 @@ public class ChemicalClassImplemention implements ChemicalClassService {
 
 	@Override
 	public ChemicalClass findByChemicalClassId(Integer ChemicalClassId) {
-		if( ChemicalClassId!=null) {
-		    return chemicalClassReprositoryRepo.findChemicalClassById(ChemicalClassId);
+		if (ChemicalClassId != null) {
+			return chemicalClassReprositoryRepo.findChemicalClassById(ChemicalClassId);
 		}
 		return null;
 	}
 
-	
 	@Override
 	public void deleteChemicalClass(ChemicalClass cClass) {
-		if( cClass!=null) {
-		    chemicalClassReprositoryRepo.delete(cClass);;
+		if (cClass != null) {
+			chemicalClassReprositoryRepo.delete(cClass);
+			;
 		}
-		
+
 	}
 
 	@Override
 	public void editChemicalClass(ChemicalClass cClass) {
-		if( cClass!=null) {
-			 chemicalClassReprositoryRepo.save(cClass);
+		if (cClass != null) {
+			chemicalClassReprositoryRepo.save(cClass);
 		}
-		
+
 	}
 
 	@Override
 	public List<ChemicalClass> listOfChemicalClass() {
-		
-		return  chemicalClassReprositoryRepo.findAll();
+
+		return chemicalClassReprositoryRepo.findAll();
 	}
 
 }

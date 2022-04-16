@@ -32,20 +32,12 @@ public class User {
 	@Column(nullable = false)
 	private String password;
 
-	@OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<UserAddress> userAddresses;
 
-	
-	
-	@OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<OrderMaster> orderMaster;
-	
-	
-	
-	
-	
-	
-	
+
 	public List<OrderMaster> getOrderMaster() {
 		return orderMaster;
 	}
@@ -102,10 +94,4 @@ public class User {
 		this.userAddresses = userAddresses;
 	}
 
-	
-
-	
-
-	
-	
 }

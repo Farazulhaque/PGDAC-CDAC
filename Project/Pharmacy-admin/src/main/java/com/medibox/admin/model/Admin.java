@@ -12,42 +12,36 @@ public class Admin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int adminId;
-	
-	@Column(nullable = false ,length = 50)
+
+	@Column(nullable = false, length = 50)
 	private String fullName;
-	
-	@Column(nullable = false ,unique = true)
+
+	@Column(nullable = false, unique = true)
 	private String username;
-	
-	@Column(nullable = false ,length = 500)
+
+	@Column(nullable = false, length = 500)
 	private String Password;
 
-
-	
 	public Admin(int adminId, String fullName, String username, String password) {
-		
+
 		this.adminId = adminId;
 		this.fullName = fullName;
 		this.username = username;
 		this.Password = password;
 	}
 
-
-
-	
-	
 	public int getAdminId() {
 		return adminId;
 	}
-	
+
 	public void setAdminId(int adminId) {
 		this.adminId = adminId;
 	}
-	
+
 	public String getFullName() {
 		return fullName;
 	}
-	
+
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
 	}
@@ -59,7 +53,7 @@ public class Admin {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
 	public String getPassword() {
 		return Password;
 	}

@@ -590,7 +590,7 @@ footer {
 }
 
 /* Media query for mobiles */
-@media (max-width : 480px) {
+@media (max-width: 480px) {
 	.item-info {
 		height: 200px;
 		width: 100%;
@@ -625,6 +625,7 @@ footer {
 		height: auto;
 	}
 }
+
 
 /*About Us Style*/
 .quote {
@@ -687,7 +688,7 @@ footer {
 .services .service:hover {
 	transition: all .5s ease;
 	-webkit-transition: all .5s ease;
-	box-shadow: inset 0px 0px 20px rgb(116, 187, 182);
+	box-shadow: inset 0px 0px 20px rgb(116 187 182);
 }
 
 .services .service p {
@@ -707,6 +708,7 @@ footer {
 		background-color: inherit;
 	}
 }
+
 
 /* ++++++++++++++++++++++++++++++++++++++++++user profile page start ++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 .account-settings {
@@ -780,6 +782,7 @@ footer {
 .username,
 .usercontactno {
 	font-weight: bold;
+
 }
 
 .add-address {
@@ -804,20 +807,22 @@ footer {
 	margin: auto;
 }
 
-/*================================================ user profile page end ================================================================ */
-#myoderdetails {
-	border: 1px solid black;
-	margin-top: auto;
-	margin-bottom: auto;
-	margin-top: 74px;
-	background-color: #fff;
-}
 
+/*================================================ user profile page end ================================================================ */
+
+/* =====================checkout page================================ */
 #order-details {
+	margin: 1% 1% 0 1%;
+	padding: 0;
 	margin: 0;
 	padding-top: 10px;
 	border-top: 2px solid rgb(225, 17, 17);
+	margin-left: -14px;
 	background-color: #fff;
+}
+
+.order-item {
+	border-bottom: 1px double rgb(0, 0, 0);
 }
 
 #checkout-page .user-address-section {
@@ -828,8 +833,4 @@ footer {
 
 #myorderCheckoutpage-orderlist .orderlist-details {
 	border-radius: 5px;
-}
-
-.order-item {
-	border-bottom: 1px double rgb(0, 0, 0);
 }
