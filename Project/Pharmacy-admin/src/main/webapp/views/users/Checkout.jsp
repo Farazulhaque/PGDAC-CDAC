@@ -107,16 +107,17 @@
 						<div class="user-address-section row justify-content-center   mt-3 ml-3 mb-2 mr-3 ">
 							<div id=" radio address-radio col-2 ">
 								<input type="radio" class="m-1 addresses" value="${address.pincode}" name="address-sel"
-									id="address-sel" onchange="myfunc()">
+									id="address-sel"
+									onchange="myfunc('${address.name}', '${address.localityAreaStreet} ${address.landmark}',' ${address.city} ${address.state} - ${address.pincode}')">
 							</div>
-							<div class="px-4 py-1 addressprint col-8 ">
-								<span class="">${address.name}</span> &nbsp;<br> <span
-									class="">${address.mobileNumber}</span> <br> <span
-									class="">${address.localityAreaStreet}</span>
-								<br> <span class="">${address.landmark}</span> <br> <span
-									class="">${address.city}</span>, <span class="">${address.state}</span>
-								-<span class="">${address.pincode}</span> &nbsp;
-
+							<div class="px-4 py-1 addressprint col-8 " id="${address.userAddressId}">
+								<span style="font-weight: 500;">${address.name}</span><br>
+								<span class="">${address.mobileNumber}</span><br>
+								<span class="">${address.localityAreaStreet} </span>
+								<span class="">${address.landmark} </span>
+								<br> <span class="">${address.city}, </span>
+								<span class="">${address.state} - </span>
+								<span class="">${address.pincode}</span>
 							</div>
 							<div class="edit-btn col-3">
 								<a class="float-right" href="/editUserAddressCheckout?userAId=${address.userAddressId}">
@@ -141,18 +142,14 @@
 
 			<aside Id="myorderCheckoutpage-orderlist" class=" col-md-7  col-lg-7  col-12">
 				<div class="bg-white p-5 mt-5  orderlist-details" data-toggle="collapse" data-target="#order-details">
-					<h3>Order List</h3>
+
 					<div class="row orderrow">
 						<div class="col-6">
-							<h6>
-								Order Id: <span id="orderid">ABC123456</span>
-							</h6>
-							<h6 id="customer-name" style="display: inline;">Reciver Name</h6>
+
+							<h6 id="customer-name">Reciver Name</h6>
 							<p>
-								<i class="fas fa-shipping-fast"></i>Delivery Address: <span id="delivery-address">Lorem
-									ipsum dolor sit amet
-									consectetur adipisicing elit. Aliquid ea harum debitis,
-									pariatur voluptatem illum!</span>
+								<i class="fas fa-shipping-fast"></i>Delivery Address: <span
+									id="delivery-address"></span>
 							</p>
 
 						</div>
@@ -161,12 +158,13 @@
 								Total Price &emsp;: &#x20b9; <span id="grand-total-price">
 									0000<span>
 							</h6>
-							<p>
+							<span>
 								Order Date &emsp;: <span id="order-date">DD-MM-YYYY</span>
-							</p>
-							<p>
+							</span>
+							<br>
+							<span>
 								Delivery Date : <span id="delivery-date">DD-MM-YYYY</span>
-							</p>
+							</span>
 
 
 						</div>
@@ -184,8 +182,11 @@
 
 										<span id="product-description">${medicine.typeOfSell}</span> <br>
 										<span id="product-description">Manufaturer:
-											${medicine.manufacture.manufactureName}</span> <br> <span>Quantity:
-											${sessionScope["quantity"][count-1]} </span> <br>
+											${medicine.manufacture.manufactureName}</span> <br>
+										Quantity: <span
+											id="quantity${medicine.medicineId}">${sessionScope["quantity"][count-1]}
+										</span> <br>
+										<span id="controller-message${medicine.medicineId}"></span>
 										<c:set var="count" value="${count+1}" scope="session" />
 									</div>
 									<div class="col-4 offset-1 p-2">
@@ -232,13 +233,13 @@
 
 	</section>
 	<div class="row mx-0 deliver-btn my-2  ">
-		<button class="btn btn-outline-primary float-right col-2 offset-8 py-2 ">Cash
+		<button class="btn btn-outline-primary float-right col-2 offset-8 py-2 " id="cash_on_delivery_btn"
+			onclick="placeOrder()">Cash
 			on delivery</button>
 
 	</div>
 	<div class="row mx-0 deliver-btn my-2  ">
-
-		<button class="btn btn-outline-primary float-right col-2 offset-8 py-2 ">Online
+		<button class="btn btn-outline-primary float-right col-2 offset-8 py-2 " id="online_payment_btn">Online
 			Payment</button>
 	</div>
 
@@ -249,7 +250,23 @@
 	<%@include file="Footer.jsp"%>
 </body>
 <script>
-	function myfunc() {
+	// disable buttons on load
+	// window.onload = () => {
+	// 	document.getElementById("cash_on_delivery_btn").style.backgroundColor = "#2e9af8";
+	// 	document.getElementById("cash_on_delivery_btn").style.color = "white";
+	// 	document.getElementById("cash_on_delivery_btn").disabled = true;
+
+	// 	document.getElementById("online_payment_btn").style.backgroundColor = "#2e9af8";
+	// 	document.getElementById("online_payment_btn").style.color = "white";
+	// 	document.getElementById("online_payment_btn").disabled = true;
+
+	// 	var all_medicines_available = true;
+	// }
+
+	function myfunc(name, address, city_state) {
+		document.getElementById("customer-name").innerHTML = name;
+		document.getElementById("delivery-address").innerHTML = address + "<br>" + city_state;
+
 		var sellerid;
 		var addresses = document.getElementsByClassName("addresses");
 		var delivery_pincode;
@@ -281,14 +298,11 @@
 					document.getElementById("seller-address").innerHTML = "Shop Address: " +
 						result["seller"]["shopAddress"];
 					var mids = document.getElementsByClassName("mid");
-					var grand_total_price = 0;
 					for (let i = 0; i < mids.length; i++) {
-						var url2 = "getSellerMedicineData?sid=5" +
+						var url2 = "getSellerMedicineData?sid=" + result["seller"]["sellerId"] +
 							"&mid=" + mids[i].value;
 						call_ajax(url2, mids[i].value);
 					}
-
-
 				}
 			}
 		}
@@ -305,11 +319,32 @@
 				let res2 = ajax2.responseText
 				let result2 = JSON.parse(res2);
 
+				// check if product is available or not at seller
 				if (result2["smm"] == null) {
 					document.getElementById("seller-discount" + mid).innerHTML = "0.00";
 					document.getElementById(mid).style.border = "2px solid red";
-
-				} else {
+					document.getElementById("controller-message" + mid).innerHTML =
+						"<br>Product Not Available at seller";
+					document.getElementById("controller-message" + mid).style.color = "red";
+					document.getElementById("controller-message" + mid).style.fontWeight = "500";
+					// window.all_medicines_available = false;
+					// console.log("null " + window.all_medicines_available);
+				}
+				// Check if the sufficient quantity is available or not
+				else if (result2["smm"]["qunatity"] < parseInt(document.getElementById("quantity" + mid).innerHTML)) {
+					document.getElementById(mid).style.border = "2px solid red";
+					document.getElementById("controller-message" + mid).innerHTML = "<br>Product Out Of Stock";
+					document.getElementById("controller-message" + mid).style.color = "red";
+					document.getElementById("controller-message" + mid).style.fontWeight = "500";
+					// window.all_medicines_available = false;
+					// console.log("quantity: " + window.all_medicines_available);
+				}
+				// if product is also available and quantity is also sufficient
+				else {
+					// console.log(window.all_medicines_available);
+					// if (window.all_medicines_available == true) {
+					// 	document.getElementById("cash_on_delivery_btn").disabled = false;
+					// }
 					var product_price = parseFloat(document.getElementById("product-mrp" + mid).innerHTML);
 
 					var discount_percent = parseFloat(result2["smm"]["sellerDiscount"]);
@@ -323,8 +358,8 @@
 
 					document.getElementById("product-price" + mid).innerHTML = total_price.toFixed(2);
 
-					document.getElementById("grand-total-price").innerHTML = parseFloat(document.getElementById(
-						"grand-total-price").innerHTML) + total_price;
+					document.getElementById("grand-total-price").innerHTML = (parseFloat(document.getElementById(
+						"grand-total-price").innerHTML) + total_price).toFixed(0);
 				}
 			}
 		}
@@ -333,14 +368,32 @@
 
 	}
 	let currentDate = new Date();
-	let cDay = currentDate.getDate()
-	let cMonth = currentDate.getMonth() + 1
-	let cYear = currentDate.getFullYear()
+	let cDay = currentDate.getDate();
+	let cMonth = currentDate.getMonth() + 1;
+	let cYear = currentDate.getFullYear();
 	let today = cDay + "-" + cMonth + "-" + cYear;
 	document.getElementById("order-date").innerHTML = today;
-	cDay += 1;
+	currentDate.setDate(new Date().getDate() + 1);
+	cDay = currentDate.getDate();
+	cMonth = currentDate.getMonth() + 1;
+	cYear = currentDate.getFullYear();
 	today = cDay + "-" + cMonth + "-" + cYear;
 	document.getElementById("delivery-date").innerHTML = today;
+
+
+
+
+	function placeOrder() {}
 </script>
 
 </html>
+
+
+
+
+<!-- 
+	userId
+sellerId
+userAddressId
+medicine[medicineId, quantity, discount]
+ -->
