@@ -108,7 +108,7 @@
 							<div id=" radio address-radio col-2 ">
 								<input type="radio" class="m-1 addresses" value="${address.pincode}" name="address-sel"
 									id="address-sel"
-									onchange="myfunc('${address.name}', '${address.localityAreaStreet} ${address.landmark}',' ${address.city} ${address.state} - ${address.pincode}')">
+									onchange="myfunc('${address.userAddressId}' ,'${address.name}', '${address.localityAreaStreet} ${address.landmark}',' ${address.city} ${address.state} - ${address.pincode}')">
 							</div>
 							<div class="px-4 py-1 addressprint col-8 " id="${address.userAddressId}">
 								<span style="font-weight: 500;">${address.name}</span><br>
@@ -232,18 +232,22 @@
 
 
 	</section>
-	<div class="row mx-0 deliver-btn my-2  ">
-		<button class="btn btn-outline-primary float-right col-2 offset-8 py-2 " id="cash_on_delivery_btn"
-			onclick="placeOrder()">Cash
-			on delivery</button>
+	<div class="row mx-0 deliver-btn my-2 " id="order-btn-section">
+		<form method="get" action="placeOrder" class="float-right col-2 offset-8 py-2">
+			<input type="hidden" name="uAId" id="uAId">
+			<input type="hidden" name="sId" value="" id="sId">
+			<input type="hidden" name="mId" value="" id="mid">
+			<input type="hidden" name="mQty" value="" id="mQty">
+			<input type="hidden" name="mDiscount" id="mDiscount">
 
+			<input type="submit" class="btn btn-outline-primary" id="cash_on_delivery_btn" value="Cash On Delivery" />
+
+		</form>
 	</div>
-	<div class="row mx-0 deliver-btn my-2  ">
+	<!-- <div class="row mx-0 deliver-btn my-2  ">
 		<button class="btn btn-outline-primary float-right col-2 offset-8 py-2 " id="online_payment_btn">Online
 			Payment</button>
-	</div>
-
-
+	</div> -->
 
 
 	<!-- footer -->
@@ -262,8 +266,12 @@
 
 	// 	var all_medicines_available = true;
 	// }
+	var medicineId = "";
+	var mQty = "";
+	var mDiscount = "";
 
-	function myfunc(name, address, city_state) {
+	function myfunc(uAId, name, address, city_state) {
+
 		document.getElementById("customer-name").innerHTML = name;
 		document.getElementById("delivery-address").innerHTML = address + "<br>" + city_state;
 
@@ -273,6 +281,8 @@
 		for (let i = 0; i < addresses.length; i++) {
 			if (addresses[i].checked) {
 				delivery_pincode = addresses[i].value;
+				// setting value of user address id to send to controller
+				document.getElementById("uAId").value = uAId;
 			}
 		}
 
@@ -293,6 +303,10 @@
 					document.getElementById(delivery_pincode).innerHTML = "Seller not available at this location";
 				} else {
 					sellerid = result["seller"]["sellerId"];
+
+					// setting value of seller id to send to controller
+					document.getElementById("sId").value = sellerid;
+
 					document.getElementById("seller-name").innerHTML = "Shop Name: " +
 						result["seller"]["shopName"];
 					document.getElementById("seller-address").innerHTML = "Shop Address: " +
@@ -301,8 +315,9 @@
 					for (let i = 0; i < mids.length; i++) {
 						var url2 = "getSellerMedicineData?sid=" + result["seller"]["sellerId"] +
 							"&mid=" + mids[i].value;
-						call_ajax(url2, mids[i].value);
+						checkMedicineDataAtSeller(url2, mids[i].value);
 					}
+
 				}
 			}
 		}
@@ -310,7 +325,7 @@
 		ajax.send(null);
 	}
 
-	function call_ajax(url2, mid) {
+	function checkMedicineDataAtSeller(url2, mid) {
 
 		var ajax2 = new XMLHttpRequest();
 		ajax2.onreadystatechange = function () {
@@ -318,7 +333,7 @@
 
 				let res2 = ajax2.responseText
 				let result2 = JSON.parse(res2);
-
+				var qtyy = parseInt(document.getElementById("quantity" + mid).innerHTML);
 				// check if product is available or not at seller
 				if (result2["smm"] == null) {
 					document.getElementById("seller-discount" + mid).innerHTML = "0.00";
@@ -327,29 +342,36 @@
 						"<br>Product Not Available at seller";
 					document.getElementById("controller-message" + mid).style.color = "red";
 					document.getElementById("controller-message" + mid).style.fontWeight = "500";
-					// window.all_medicines_available = false;
-					// console.log("null " + window.all_medicines_available);
+
 				}
 				// Check if the sufficient quantity is available or not
-				else if (result2["smm"]["qunatity"] < parseInt(document.getElementById("quantity" + mid).innerHTML)) {
+				else if (result2["smm"]["qunatity"] < qtyy) {
 					document.getElementById(mid).style.border = "2px solid red";
 					document.getElementById("controller-message" + mid).innerHTML = "<br>Product Out Of Stock";
 					document.getElementById("controller-message" + mid).style.color = "red";
 					document.getElementById("controller-message" + mid).style.fontWeight = "500";
-					// window.all_medicines_available = false;
-					// console.log("quantity: " + window.all_medicines_available);
+
 				}
 				// if product is also available and quantity is also sufficient
 				else {
-					// console.log(window.all_medicines_available);
-					// if (window.all_medicines_available == true) {
-					// 	document.getElementById("cash_on_delivery_btn").disabled = false;
-					// }
+
+					window.medicineId = window.medicineId + mid + "-";
+
+					mQty = mQty + qtyy + "-";
+					document.getElementById("product-mrp" + mid).innerHTML = parseFloat(document.getElementById(
+						"product-mrp" + mid).innerHTML) * qtyy;
 					var product_price = parseFloat(document.getElementById("product-mrp" + mid).innerHTML);
 
 					var discount_percent = parseFloat(result2["smm"]["sellerDiscount"]);
 					var discount = (product_price / 100) * discount_percent;
 					var our_discount = (product_price / 100) * 5;
+					var total_discount = (discount + our_discount).toFixed(2);
+					mDiscount = mDiscount + total_discount + "-";
+
+					// setting input field to send data to controller
+					document.getElementById("mid").value = window.medicineId;
+					document.getElementById("mQty").value = window.mQty;
+					document.getElementById("mDiscount").value = window.mDiscount;
 
 					document.getElementById("seller-discount" + mid).innerHTML = discount.toFixed(2);
 					document.getElementById("our-discount" + mid).innerHTML = our_discount.toFixed(2);
