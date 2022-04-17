@@ -158,14 +158,14 @@
 						</div>
 						<div class="col-6">
 							<h6>
-								Total Price &emsp;: <span id="grand-total-price">
-									&#x20b9;5999</span>
+								Total Price &emsp;: &#x20b9; <span id="grand-total-price">
+									0000<span>
 							</h6>
 							<p>
-								Order Date &emsp;: <span id="order-date">29-03-2022</span>
+								Order Date &emsp;: <span id="order-date">DD-MM-YYYY</span>
 							</p>
 							<p>
-								Delivery Date : <span id="order-date">30-03-2022</span>
+								Delivery Date : <span id="delivery-date">DD-MM-YYYY</span>
 							</p>
 
 
@@ -176,7 +176,7 @@
 
 							<c:forEach var="medicine" items='${sessionScope["medicines"]}'>
 
-								<div class="container-fluid row ml-1 order-item">
+								<div class="container-fluid row ml-1 order-item" id="${medicine.medicineId}">
 									<div class="col-6 col-md-6 p-2">
 										<input type="hidden" class="mid" value="${medicine.medicineId}">
 										<h6 id="product-name" style="font-size: 18px;">${count}.
@@ -189,14 +189,26 @@
 										<c:set var="count" value="${count+1}" scope="session" />
 									</div>
 									<div class="col-4 offset-1 p-2">
-										<br> <span> MRP &emsp;&emsp;&nbsp; : <span class="product-mrp">&#x20b9;
+										<br>
+										<span> MRP &emsp;&emsp;&emsp; : &#x20b9; <span class="product-mrp"
+												id="product-mrp${medicine.medicineId}">
 												${medicine.mrp}</span>
-										</span> <br> <span> Discount&emsp;: <span class="product-discount">&#x20b9;
-												100</span>
 										</span>
+										<br>
+										<span>Seller Offer &nbsp;: &#x20b9; -<span class="product-discount"
+												style="text-align: right;"
+												id="seller-discount${medicine.medicineId}">0.00
+											</span>
+										</span>
+										<br>
+										<span>Our Offer &emsp;: &#x20b9; -<span class="our-discount"
+												style="text-align: right;" id="our-discount${medicine.medicineId}">0.00
+											</span>
+										</span>
+
 										<hr>
-										<span> Total Price&nbsp; : <span class="product-price">&#x20b9;
-												999</span>
+										<span> Total Price&nbsp;&nbsp; : &#x20b9; &nbsp;<span class="product-price"
+												id="product-price${medicine.medicineId}">${medicine.mrp}</span>
 										</span>
 									</div>
 								</div>
@@ -206,9 +218,7 @@
 							<c:set var="count" value="1" scope="session" />
 							<div class="row ml-1">
 								<div class="col-12 p-2 seller-details">
-									<span id="seller-name"></span>
-									<br>
-									<span id="seller-address"></span>
+									<span id="seller-name"></span> <br> <span id="seller-address"></span>
 								</div>
 
 							</div>
@@ -240,6 +250,7 @@
 </body>
 <script>
 	function myfunc() {
+		var sellerid;
 		var addresses = document.getElementsByClassName("addresses");
 		var delivery_pincode;
 		for (let i = 0; i < addresses.length; i++) {
@@ -264,26 +275,72 @@
 				if (result["seller"] == null) {
 					document.getElementById(delivery_pincode).innerHTML = "Seller not available at this location";
 				} else {
+					sellerid = result["seller"]["sellerId"];
 					document.getElementById("seller-name").innerHTML = "Shop Name: " +
 						result["seller"]["shopName"];
 					document.getElementById("seller-address").innerHTML = "Shop Address: " +
 						result["seller"]["shopAddress"];
-					// for (let i = 0; i < mids.length; i++) {
-					// 	var ajax = new XMLHttpRequest();
-					// 	var mids = document.getElementByClassName("mid");
+					var mids = document.getElementsByClassName("mid");
+					var grand_total_price = 0;
+					for (let i = 0; i < mids.length; i++) {
+						var url2 = "getSellerMedicineData?sid=5" +
+							"&mid=" + mids[i].value;
+						call_ajax(url2, mids[i].value);
+					}
 
-					// 	var url = "findDiscount?sid=" + result["seller"]["sellerId"] + "&mid=" + mids[i];
-					// 	ajax.open("GET", url, true);
-					// 	ajax.send(null);
-					// }
+
 				}
 			}
 		}
 		ajax.open("GET", url, true);
 		ajax.send(null);
-
-		console.log(delivery_pincode);
 	}
+
+	function call_ajax(url2, mid) {
+
+		var ajax2 = new XMLHttpRequest();
+		ajax2.onreadystatechange = function () {
+			if (ajax2.readyState == 4) {
+
+				let res2 = ajax2.responseText
+				let result2 = JSON.parse(res2);
+
+				if (result2["smm"] == null) {
+					document.getElementById("seller-discount" + mid).innerHTML = "0.00";
+					document.getElementById(mid).style.border = "2px solid red";
+
+				} else {
+					var product_price = parseFloat(document.getElementById("product-mrp" + mid).innerHTML);
+
+					var discount_percent = parseFloat(result2["smm"]["sellerDiscount"]);
+					var discount = (product_price / 100) * discount_percent;
+					var our_discount = (product_price / 100) * 5;
+
+					document.getElementById("seller-discount" + mid).innerHTML = discount.toFixed(2);
+					document.getElementById("our-discount" + mid).innerHTML = our_discount.toFixed(2);
+
+					var total_price = product_price - discount - our_discount;
+
+					document.getElementById("product-price" + mid).innerHTML = total_price.toFixed(2);
+
+					document.getElementById("grand-total-price").innerHTML = parseFloat(document.getElementById(
+						"grand-total-price").innerHTML) + total_price;
+				}
+			}
+		}
+		ajax2.open("GET", url2, true);
+		ajax2.send(null);
+
+	}
+	let currentDate = new Date();
+	let cDay = currentDate.getDate()
+	let cMonth = currentDate.getMonth() + 1
+	let cYear = currentDate.getFullYear()
+	let today = cDay + "-" + cMonth + "-" + cYear;
+	document.getElementById("order-date").innerHTML = today;
+	cDay += 1;
+	today = cDay + "-" + cMonth + "-" + cYear;
+	document.getElementById("delivery-date").innerHTML = today;
 </script>
 
 </html>

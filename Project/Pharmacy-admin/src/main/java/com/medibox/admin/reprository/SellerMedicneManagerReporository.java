@@ -32,6 +32,9 @@ public interface SellerMedicneManagerReporository extends JpaRepository<SellerMe
 	
 	@Query("select s from SellerMedicneManager s where s.seller.sellerId=?1")
 	List<SellerMedicneManager> findSellerByPincode(Integer pincode);
+
+	@Query("select sm from SellerMedicneManager sm where sm.seller.sellerId=?1 and sm.medicineMaster.medicineId=?2")
+	SellerMedicneManager getSellerMedicineData(int sid, int mid);
 	
 	
 

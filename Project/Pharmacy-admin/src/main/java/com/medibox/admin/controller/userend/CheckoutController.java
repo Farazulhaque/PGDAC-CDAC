@@ -24,6 +24,7 @@ import com.medibox.admin.model.User;
 import com.medibox.admin.model.UserAddress;
 import com.medibox.admin.reprository.SellerMedicneManagerReporository;
 import com.medibox.admin.reprository.SellerReprository;
+import com.medibox.admin.service.SellerMedicneManagerService;
 import com.medibox.admin.service.SellerService;
 import com.medibox.admin.service.UserAddressService;
 import com.medibox.admin.service.UserService;
@@ -45,7 +46,7 @@ public class CheckoutController {
 	private SellerService sellerService;
 
 	@Autowired
-	private SellerMedicneManagerReporository sellerMedicneManagerReporository;
+	private SellerMedicneManagerService sellerMedicneManagerService;
 
 	@ModelAttribute
 	public void commonDataSendforModal(Model m, HttpServletRequest request) {
@@ -129,12 +130,8 @@ public class CheckoutController {
 	@ResponseBody
 	public HashMap<String, Seller> findseller(@RequestParam("pincode") String pin) {
 		int pincode = Integer.parseInt(pin);
-		System.out.println(pincode);
+		// System.out.println(pincode);
 		Seller seller = sellerService.findSellerByPincode(pincode);
-//		List<SellerMedicneManager> sellerMedicneManager = sellerMedicneManagerReporository.findSellerByPincode(pincode);
-
-
-//		HashMap<String, List<SellerMedicneManager>> sellerMap = new HashMap<String, List<SellerMedicneManager>>();
 
 		HashMap<String, Seller> sellerMap = new HashMap<String, Seller>();
 
@@ -143,8 +140,25 @@ public class CheckoutController {
 			System.out.println("Seller not found!!");
 		} else {
 			sellerMap.put("seller", seller);
-			// System.out.println("Seller Name: " + seller);
+			System.out.println("Seller Name: " + seller.getFullName());
 		}
 		return sellerMap;
+	}
+
+	@GetMapping("/getSellerMedicineData")
+	@ResponseBody
+	public HashMap<String, SellerMedicneManager> getDiscount(@RequestParam("sid") int sid,
+			@RequestParam("mid") int mid) {
+		SellerMedicneManager sellerMedicneManager = sellerMedicneManagerService.getSellerMedicineData(sid, mid);
+		// System.out.println(sellerMedicneManager.getQunatity());
+		HashMap<String, SellerMedicneManager> sMMhashMap = new HashMap<String, SellerMedicneManager>();
+		if (sellerMedicneManager == null) {
+			sMMhashMap.put("smm", null);
+		} else {
+			sMMhashMap.put("smm", sellerMedicneManager);
+			System.out.println(sellerMedicneManager.getSellerDiscount());
+		}
+		return sMMhashMap;
+
 	}
 }
