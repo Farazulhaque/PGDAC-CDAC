@@ -27,14 +27,6 @@ public class OrderStatus {
 
 	private int isActive;
 
-	public int getCancel() {
-		return isCanceled;
-	}
-
-	public void setCancel(int isCanceled) {
-		this.isCanceled = isCanceled;
-	}
-
 	@OneToMany(mappedBy = "status", cascade = CascadeType.ALL)
 	private List<OrderMaster> orderMaster;
 
@@ -76,6 +68,14 @@ public class OrderStatus {
 
 	public void setOrderMaster(List<OrderMaster> orderMaster) {
 		this.orderMaster = orderMaster;
+	}
+
+	public int getIsCanceled() {
+		return isCanceled;
+	}
+
+	public void setIsCanceled(int isCanceled) {
+		this.isCanceled = isCanceled;
 	}
 
 }

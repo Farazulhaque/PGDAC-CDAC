@@ -26,4 +26,6 @@ public interface MedicineMasterService {
 	List<MedicineMaster> listOfMedicineNameId();
 
 	Page<MedicineMaster> listOfMedicineByPage(Pageable pageable);
+
+	float getMedicineMrp(int mid);
 }

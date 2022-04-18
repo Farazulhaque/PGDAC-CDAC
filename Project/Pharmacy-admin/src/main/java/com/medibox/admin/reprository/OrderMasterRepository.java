@@ -21,4 +21,7 @@ public interface OrderMasterRepository extends JpaRepository<OrderMaster, Intege
 
 	@Query("select u from OrderMaster u ")
 	List<OrderMaster> LIST();
+
+	@Query("select u from OrderMaster u where u.user.userId=?1")
+	List<OrderMaster> findOrderByUserId(Integer userId);
 }

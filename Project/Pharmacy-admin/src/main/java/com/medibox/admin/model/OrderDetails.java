@@ -23,7 +23,7 @@ public class OrderDetails implements Serializable {
 
 	private float medicnePrice;
 
-	private int medicineDiscount;
+	private float medicineDiscount;
 
 	@ManyToOne
 	private MedicineMaster medicineMaster;
@@ -55,11 +55,11 @@ public class OrderDetails implements Serializable {
 		this.medicnePrice = medicnePrice;
 	}
 
-	public int getMedicineDiscount() {
+	public float getMedicineDiscount() {
 		return medicineDiscount;
 	}
 
-	public void setMedicineDiscount(int medicineDiscount) {
+	public void setMedicineDiscount(float medicineDiscount) {
 		this.medicineDiscount = medicineDiscount;
 	}
 

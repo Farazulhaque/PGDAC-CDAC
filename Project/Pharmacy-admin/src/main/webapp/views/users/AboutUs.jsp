@@ -5,7 +5,7 @@
 
 <head>
   <meta charset="ISO-8859-1">
-  <title>Insert title here</title>
+  <title>Abou Us</title>
 </head>
 
 <body>

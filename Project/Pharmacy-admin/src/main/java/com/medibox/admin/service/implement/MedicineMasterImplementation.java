@@ -69,4 +69,9 @@ public class MedicineMasterImplementation implements MedicineMasterService {
 		return medicineMasterRepro.findMedicinebyPageable(pageable);
 	}
 
+	@Override
+	public float getMedicineMrp(int mid) {
+		return medicineMasterRepro.getMedicineMrp(mid);
+	}
+
 }

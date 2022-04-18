@@ -24,7 +24,7 @@ public class OrderMaster {
 	private float orderAmount;
 
 	@Column(nullable = false)
-	private int discount;
+	private float discount;
 
 	@Column(nullable = false)
 	private float netAmount;
@@ -33,14 +33,6 @@ public class OrderMaster {
 	private String shipingDate;
 
 	private String paytmentType;
-
-	public String getPaytmentType() {
-		return paytmentType;
-	}
-
-	public void setPaytmentType(String paytmentType) {
-		this.paytmentType = paytmentType;
-	}
 
 	@ManyToOne
 	private User user;
@@ -57,6 +49,15 @@ public class OrderMaster {
 	@OneToMany(mappedBy = "orderMaster", cascade = CascadeType.ALL)
 	private List<OrderDetails> orderDetails;
 
+	public String getPaytmentType() {
+		return paytmentType;
+	}
+
+	public void setPaytmentType(String paytmentType) {
+		this.paytmentType = paytmentType;
+	}
+
+	
 	public List<OrderDetails> getOrderDetails() {
 		return orderDetails;
 	}
@@ -89,11 +90,11 @@ public class OrderMaster {
 		this.orderAmount = orderAmount;
 	}
 
-	public int getDiscount() {
+	public float getDiscount() {
 		return discount;
 	}
 
-	public void setDiscount(int discount) {
+	public void setDiscount(float discount) {
 		this.discount = discount;
 	}
 

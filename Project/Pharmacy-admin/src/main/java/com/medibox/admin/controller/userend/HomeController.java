@@ -50,6 +50,12 @@ public class HomeController {
 		return "users/ContactUs";
 	}
 
+	@RequestMapping("/myorders")
+	public String myOrders() {
+		System.out.println("Order page called");
+		return "users/Order";
+	}
+
 	@GetMapping("/search")
 	public String processQuery(@RequestParam("query") String query, Model model) {
 		System.out.println("process query called");

@@ -156,7 +156,7 @@ public class CheckoutController {
 			sMMhashMap.put("smm", null);
 		} else {
 			sMMhashMap.put("smm", sellerMedicneManager);
-			System.out.println(sellerMedicneManager.getSellerDiscount());
+			//System.out.println(sellerMedicneManager.getSellerDiscount());
 		}
 		return sMMhashMap;
 

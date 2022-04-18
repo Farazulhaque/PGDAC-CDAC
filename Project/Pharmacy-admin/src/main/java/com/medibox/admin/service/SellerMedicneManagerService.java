@@ -23,4 +23,5 @@ public interface SellerMedicneManagerService {
 
 	SellerMedicneManager getSellerMedicineData(int sid, int mid);
 
+	SellerMedicneManager findManagerByMedicineIdAndSellerIdForQuantityUpdate(int mid, int sid);
 }

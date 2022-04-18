@@ -58,4 +58,8 @@ public class OrderMasterServiceImplementation implements OrderMasterService {
 		return oMasterRepository.pendingListOfOrderMaster();
 	}
 
+	@Override
+	public List<OrderMaster> findOrderByUserId(Integer userId) {
+		return oMasterRepository.findOrderByUserId(userId);
+	}
 }

@@ -22,4 +22,5 @@ public interface OrderMasterService {
 
 	List<OrderMaster> pendingListOfOrderMaster();
 
+	List<OrderMaster> findOrderByUserId(Integer sellerId);
 }
