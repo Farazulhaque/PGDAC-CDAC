@@ -3,6 +3,7 @@
 
 <%@page isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,8 +52,12 @@
 				</div>
 
 				<div class="MrpOPriceDiscount text-center">
-					<b class="ourPrice"><strong>&#x20b9;99</strong></b> <strike>&#x20b9;${item.mrp}</strike>
-					<b class=" Discount"><strong>14% off</strong></b>
+					<strong class="ourPrice" style="font-size: 20px;">&#x20b9;<span>
+							<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2"
+								value="${ item.mrp - (item.mrp/100)*5 } " />
+						</span></strong>
+					<strike>&#x20b9;${item.mrp}</strike>
+					<strong class=" Discount"><span>5% off</span></strong>
 				</div>
 
 				<div class="cartbtn text-center">

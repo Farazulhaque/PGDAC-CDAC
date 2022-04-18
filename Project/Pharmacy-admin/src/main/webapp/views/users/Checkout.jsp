@@ -94,7 +94,7 @@
 							<div class="  col-9">
 								<c:if test="${!editAddForm}">
 									<input type="submit" class="save-address-btn btn btn-primary float-right"
-										value="submit">
+										value="Submit">
 								</c:if>
 								<c:if test="${editAddForm}">
 									<button type="submit" formaction="/updateUserAddressCheckout"
@@ -151,6 +151,8 @@
 								<i class="fas fa-shipping-fast"></i>Delivery Address: <span
 									id="delivery-address"></span>
 							</p>
+							<p style="color: rgba(82, 0, 0, 0.8); font-weight: 500;">Payment Mode: Cash On Delivery
+							</p>
 
 						</div>
 						<div class="col-6">
@@ -192,23 +194,26 @@
 									<div class="col-4 offset-1 p-2">
 										<br>
 										<span> MRP &emsp;&emsp;&emsp; : &#x20b9; <span class="product-mrp"
+												style="position: absolute; right: 0;"
 												id="product-mrp${medicine.medicineId}">
 												${medicine.mrp}</span>
 										</span>
 										<br>
 										<span>Seller Offer &nbsp;: &#x20b9; -<span class="product-discount"
-												style="text-align: right;"
+												style="position: absolute; right: 0;"
 												id="seller-discount${medicine.medicineId}">0.00
 											</span>
 										</span>
 										<br>
 										<span>Our Offer &emsp;: &#x20b9; -<span class="our-discount"
-												style="text-align: right;" id="our-discount${medicine.medicineId}">0.00
+												style="position: absolute; right: 0;"
+												id="our-discount${medicine.medicineId}">0.00
 											</span>
 										</span>
 
 										<hr>
 										<span> Total Price&nbsp;&nbsp; : &#x20b9; &nbsp;<span class="product-price"
+												style="position: absolute; right: 0;"
 												id="product-price${medicine.medicineId}">${medicine.mrp}</span>
 										</span>
 									</div>
@@ -240,7 +245,7 @@
 			<input type="hidden" name="mQty" value="" id="mQty">
 			<input type="hidden" name="mDiscount" id="mDiscount">
 
-			<input type="submit" class="btn btn-outline-primary" id="cash_on_delivery_btn" value="Cash On Delivery" />
+			<input type="submit" class="btn btn-outline-primary" id="cash_on_delivery_btn" value="Place Order" />
 
 		</form>
 	</div>
@@ -312,10 +317,16 @@
 					document.getElementById("seller-address").innerHTML = "Shop Address: " +
 						result["seller"]["shopAddress"];
 					var mids = document.getElementsByClassName("mid");
+					document.getElementById("grand-total-price").innerHTML = 0;
 					for (let i = 0; i < mids.length; i++) {
 						var url2 = "getSellerMedicineData?sid=" + result["seller"]["sellerId"] +
 							"&mid=" + mids[i].value;
 						checkMedicineDataAtSeller(url2, mids[i].value);
+
+						document.getElementById("grand-total-price").innerHTML =
+							(parseFloat(document.getElementById("grand-total-price").innerHTML) +
+								parseFloat(document.getElementById("product-price" + mids[i].value).innerHTML)).
+						toFixed(0);
 					}
 
 				}
@@ -358,8 +369,9 @@
 					window.medicineId = window.medicineId + mid + "-";
 
 					mQty = mQty + qtyy + "-";
-					document.getElementById("product-mrp" + mid).innerHTML = parseFloat(document.getElementById(
-						"product-mrp" + mid).innerHTML) * qtyy;
+					document.getElementById("product-mrp" + mid).innerHTML = (parseFloat(document.getElementById(
+						"product-mrp" + mid).innerHTML) * qtyy).toFixed(2);
+
 					var product_price = parseFloat(document.getElementById("product-mrp" + mid).innerHTML);
 
 					var discount_percent = parseFloat(result2["smm"]["sellerDiscount"]);
@@ -380,8 +392,8 @@
 
 					document.getElementById("product-price" + mid).innerHTML = total_price.toFixed(2);
 
-					document.getElementById("grand-total-price").innerHTML = (parseFloat(document.getElementById(
-						"grand-total-price").innerHTML) + total_price).toFixed(0);
+					// document.getElementById("grand-total-price").innerHTML = (parseFloat(document.getElementById(
+					// 	"grand-total-price").innerHTML) + total_price).toFixed(0);
 				}
 			}
 		}
@@ -401,11 +413,6 @@
 	cYear = currentDate.getFullYear();
 	today = cDay + "-" + cMonth + "-" + cYear;
 	document.getElementById("delivery-date").innerHTML = today;
-
-
-
-
-	function placeOrder() {}
 </script>
 
 </html>
