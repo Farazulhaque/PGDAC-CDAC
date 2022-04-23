@@ -2,7 +2,6 @@ package com.medibox.admin.service.implement;
 
 import java.util.List;
 
-import org.hibernate.sql.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

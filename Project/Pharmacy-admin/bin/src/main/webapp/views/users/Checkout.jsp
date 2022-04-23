@@ -94,7 +94,7 @@
 							<div class="  col-9">
 								<c:if test="${!editAddForm}">
 									<input type="submit" class="save-address-btn btn btn-primary float-right"
-										value="submit">
+										value="Submit">
 								</c:if>
 								<c:if test="${editAddForm}">
 									<button type="submit" formaction="/updateUserAddressCheckout"
@@ -106,26 +106,28 @@
 					<c:forEach var="address" items="${userdetails.userAddresses }">
 						<div class="user-address-section row justify-content-center   mt-3 ml-3 mb-2 mr-3 ">
 							<div id=" radio address-radio col-2 ">
-								<input type="radio" class="m-1" value="current" name="address-sel" id="address-sel"
-									checked>
+								<input type="radio" class="m-1 addresses" value="${address.pincode}" name="address-sel"
+									id="address-sel"
+									onchange="myfunc('${address.userAddressId}' ,'${address.name}', '${address.localityAreaStreet} ${address.landmark}',' ${address.city} ${address.state} - ${address.pincode}')">
 							</div>
-							<div class="px-4 py-1 addressprint col-8 ">
-								<span class="">${address.name}</span> &nbsp;<br> <span
-									class="">${address.mobileNumber}</span> <br> <span
-									class="">${address.localityAreaStreet}</span>
-								<br> <span class="">${address.landmark}</span> <br> <span
-									class="">${address.city}</span>, <span class="">${address.state}</span>
-								-<span class="">${address.pincode}</span> &nbsp;
-
+							<div class="px-4 py-1 addressprint col-8 " id="${address.userAddressId}">
+								<span style="font-weight: 500;">${address.name}</span><br>
+								<span class="">${address.mobileNumber}</span><br>
+								<span class="">${address.localityAreaStreet} </span>
+								<span class="">${address.landmark} </span>
+								<br> <span class="">${address.city}, </span>
+								<span class="">${address.state} - </span>
+								<span class="">${address.pincode}</span>
 							</div>
 							<div class="edit-btn col-3">
-
-								<a class="float-right "
-									href="/editUserAddressCheckout?userAId=${address.userAddressId}	"><i
-										class='fas fa-pencil-alt'></i>&nbsp;</a>
-
+								<a class="float-right" href="/editUserAddressCheckout?userAId=${address.userAddressId}">
+									<i class='fas fa-pencil-alt'></i>&nbsp;
+								</a>
 							</div>
 
+							<div class="text-danger font-weight-bold availability_message " id="${address.pincode}">
+								<hr>
+							</div>
 						</div>
 					</c:forEach>
 				</div>
@@ -140,80 +142,89 @@
 
 			<aside Id="myorderCheckoutpage-orderlist" class=" col-md-7  col-lg-7  col-12">
 				<div class="bg-white p-5 mt-5  orderlist-details" data-toggle="collapse" data-target="#order-details">
-					<h3>Order List</h3>
+
 					<div class="row orderrow">
 						<div class="col-6">
-							<h6>
-								Order Id: <span id="orderid">ABC123456</span>
-							</h6>
-							<h6 id="customer-name" style="display: inline;">Reciver Name</h6>
+
+							<h6 id="customer-name">Reciver Name</h6>
 							<p>
-								<i class="fas fa-shipping-fast"></i>Delivery Address: <span id="delivery-address">Lorem
-									ipsum dolor sit amet
-									consectetur adipisicing elit. Aliquid ea harum debitis,
-									pariatur voluptatem illum!</span>
+								<i class="fas fa-shipping-fast"></i>Delivery Address: <span
+									id="delivery-address"></span>
+							</p>
+							<p style="color: rgba(82, 0, 0, 0.8); font-weight: 500;">Payment Mode: Cash On Delivery
 							</p>
 
 						</div>
 						<div class="col-6">
 							<h6>
-								Total Price &emsp;: <span id="grand-total-price">
-									&#x20b9;5999</span>
+								Total Price &emsp;: &#x20b9; <span id="grand-total-price">
+									0000<span>
 							</h6>
-							<p>
-								Order Date &emsp;: <span id="order-date">29-03-2022</span>
-							</p>
-							<p>
-								Delivery Date : <span id="order-date">30-03-2022</span>
-							</p>
+							<span>
+								Order Date &emsp;: <span id="order-date">DD-MM-YYYY</span>
+							</span>
+							<br>
+							<span>
+								Delivery Date : <span id="delivery-date">DD-MM-YYYY</span>
+							</span>
 
 
 						</div>
-						<div class="row collapse" id="order-details">
+						<div class="row collapse" id="order-details" style="font-size: 16px;">
 
 							<c:set var="count" value="1" scope="session" />
 
-							<c:forEach var="medicine" items='${sessionScope["arr"]}'>
+							<c:forEach var="medicine" items='${sessionScope["medicines"]}'>
 
-
-								<div class="container-fluid row ml-1 order-item">
+								<div class="container-fluid row ml-1 order-item" id="${medicine.medicineId}">
 									<div class="col-6 col-md-6 p-2">
-										<h6 id="product-name">${count}.${medicine.medicineName}</h6>
+										<input type="hidden" class="mid" value="${medicine.medicineId}">
+										<h6 id="product-name" style="font-size: 18px;">${count}.
+											${medicine.medicineName}</h6>
 
+										<span id="product-description">${medicine.typeOfSell}</span> <br>
+										<span id="product-description">Manufaturer:
+											${medicine.manufacture.manufactureName}</span> <br>
+										Quantity: <span
+											id="quantity${medicine.medicineId}">${sessionScope["quantity"][count-1]}
+										</span> <br>
+										<span id="controller-message${medicine.medicineId}"></span>
 										<c:set var="count" value="${count+1}" scope="session" />
-
-										<p id="product-description">${medicine.typeOfSell}</p>
-										<p id="product-description">Salt&emsp;:${medicine.salt}</p>
-										<p id="product-description">${medicine.manufacture.manufactureName}</p>
-										<br>
-
 									</div>
 									<div class="col-4 offset-1 p-2">
 										<br>
-										<p>
-											MRP &emsp;&emsp;&nbsp; : <span class="${medicine.mrp}">&#x20b9;
-												1099</span>
-										</p>
-										<p>
-											Discount&emsp;: <span class="product-discount">&#x20b9;
-												100</span>
-										</p>
+										<span> MRP &emsp;&emsp;&emsp; : &#x20b9; <span class="product-mrp"
+												style="position: absolute; right: 0;"
+												id="product-mrp${medicine.medicineId}">
+												${medicine.mrp}</span>
+										</span>
+										<br>
+										<span>Seller Offer &nbsp;: &#x20b9; -<span class="product-discount"
+												style="position: absolute; right: 0;"
+												id="seller-discount${medicine.medicineId}">0.00
+											</span>
+										</span>
+										<br>
+										<span>Our Offer &emsp;: &#x20b9; -<span class="our-discount"
+												style="position: absolute; right: 0;"
+												id="our-discount${medicine.medicineId}">0.00
+											</span>
+										</span>
+
 										<hr>
-										<p>
-											Total Price&nbsp; : <span class="product-price">&#x20b9;
-												999</span>
-										</p>
+										<span> Total Price&nbsp;&nbsp; : &#x20b9; &nbsp;<span class="product-price"
+												style="position: absolute; right: 0;"
+												id="product-price${medicine.medicineId}">${medicine.mrp}</span>
+										</span>
 									</div>
 								</div>
+
 								<hr>
 							</c:forEach>
+							<c:set var="count" value="1" scope="session" />
 							<div class="row ml-1">
 								<div class="col-12 p-2 seller-details">
-									<span id="seller-name">Seller Name</span>
-									<p>
-										Seller Address: <span id="seller-address: ">Lorem ipsum
-											dolor sit amet consectetur adipisicing elit. Minus, expedita.</span>
-									</p>
+									<span id="seller-name"></span> <br> <span id="seller-address"></span>
 								</div>
 
 							</div>
@@ -226,22 +237,192 @@
 
 
 	</section>
-	<div class="row deliver-btn my-2  ">
-		<button class="btn btn-outline-primary float-right col-2 offset-8 py-2 ">Cash
-			on delivery</button>
+	<div class="row mx-0 deliver-btn my-2 " id="order-btn-section">
+		<form method="get" action="placeOrder" class="float-right col-2 offset-8 py-2">
+			<input type="hidden" name="uAId" id="uAId">
+			<input type="hidden" name="sId" value="" id="sId">
+			<input type="hidden" name="mId" value="" id="mid">
+			<input type="hidden" name="mQty" value="" id="mQty">
+			<input type="hidden" name="mDiscount" id="mDiscount">
 
+			<input type="submit" class="btn btn-outline-primary" id="cash_on_delivery_btn" value="Place Order" />
+
+		</form>
 	</div>
-	<div class="row deliver-btn my-2  ">
-
-		<button class="btn btn-outline-primary float-right col-2 offset-8 py-2 ">Online
+	<!-- <div class="row mx-0 deliver-btn my-2  ">
+		<button class="btn btn-outline-primary float-right col-2 offset-8 py-2 " id="online_payment_btn">Online
 			Payment</button>
-	</div>
-
-
+	</div> -->
 
 
 	<!-- footer -->
 	<%@include file="Footer.jsp"%>
 </body>
+<script>
+	// disable buttons on load
+	// window.onload = () => {
+	// 	document.getElementById("cash_on_delivery_btn").style.backgroundColor = "#2e9af8";
+	// 	document.getElementById("cash_on_delivery_btn").style.color = "white";
+	// 	document.getElementById("cash_on_delivery_btn").disabled = true;
+
+	// 	document.getElementById("online_payment_btn").style.backgroundColor = "#2e9af8";
+	// 	document.getElementById("online_payment_btn").style.color = "white";
+	// 	document.getElementById("online_payment_btn").disabled = true;
+
+	// 	var all_medicines_available = true;
+	// }
+	var medicineId = "";
+	var mQty = "";
+	var mDiscount = "";
+
+	function myfunc(uAId, name, address, city_state) {
+
+		document.getElementById("customer-name").innerHTML = name;
+		document.getElementById("delivery-address").innerHTML = address + "<br>" + city_state;
+
+		var sellerid;
+		var addresses = document.getElementsByClassName("addresses");
+		var delivery_pincode;
+		for (let i = 0; i < addresses.length; i++) {
+			if (addresses[i].checked) {
+				delivery_pincode = addresses[i].value;
+				// setting value of user address id to send to controller
+				document.getElementById("uAId").value = uAId;
+			}
+		}
+
+		// removing message
+		var availability_message = document
+			.getElementsByClassName("availability_message");
+		for (let i = 0; i < availability_message.length; i++) {
+			availability_message[i].innerHTML = "";
+		}
+
+		var ajax = new XMLHttpRequest();
+		var url = "findSeller?pincode=" + delivery_pincode;
+		ajax.onreadystatechange = function () {
+			if (ajax.readyState == 4) {
+				let res = ajax.responseText
+				let result = JSON.parse(res);
+				if (result["seller"] == null) {
+					document.getElementById(delivery_pincode).innerHTML = "Seller not available at this location";
+				} else {
+					sellerid = result["seller"]["sellerId"];
+
+					// setting value of seller id to send to controller
+					document.getElementById("sId").value = sellerid;
+
+					document.getElementById("seller-name").innerHTML = "Shop Name: " +
+						result["seller"]["shopName"];
+					document.getElementById("seller-address").innerHTML = "Shop Address: " +
+						result["seller"]["shopAddress"];
+					var mids = document.getElementsByClassName("mid");
+					document.getElementById("grand-total-price").innerHTML = 0;
+					for (let i = 0; i < mids.length; i++) {
+						var url2 = "getSellerMedicineData?sid=" + result["seller"]["sellerId"] +
+							"&mid=" + mids[i].value;
+						checkMedicineDataAtSeller(url2, mids[i].value);
+
+						document.getElementById("grand-total-price").innerHTML =
+							(parseFloat(document.getElementById("grand-total-price").innerHTML) +
+								parseFloat(document.getElementById("product-price" + mids[i].value).innerHTML)).
+						toFixed(0);
+					}
+
+				}
+			}
+		}
+		ajax.open("GET", url, true);
+		ajax.send(null);
+	}
+
+	function checkMedicineDataAtSeller(url2, mid) {
+
+		var ajax2 = new XMLHttpRequest();
+		ajax2.onreadystatechange = function () {
+			if (ajax2.readyState == 4) {
+
+				let res2 = ajax2.responseText
+				let result2 = JSON.parse(res2);
+				var qtyy = parseInt(document.getElementById("quantity" + mid).innerHTML);
+				// check if product is available or not at seller
+				if (result2["smm"] == null) {
+					document.getElementById("seller-discount" + mid).innerHTML = "0.00";
+					document.getElementById(mid).style.border = "2px solid red";
+					document.getElementById("controller-message" + mid).innerHTML =
+						"<br>Product Not Available at seller";
+					document.getElementById("controller-message" + mid).style.color = "red";
+					document.getElementById("controller-message" + mid).style.fontWeight = "500";
+
+				}
+				// Check if the sufficient quantity is available or not
+				else if (result2["smm"]["qunatity"] < qtyy) {
+					document.getElementById(mid).style.border = "2px solid red";
+					document.getElementById("controller-message" + mid).innerHTML = "<br>Product Out Of Stock";
+					document.getElementById("controller-message" + mid).style.color = "red";
+					document.getElementById("controller-message" + mid).style.fontWeight = "500";
+
+				}
+				// if product is also available and quantity is also sufficient
+				else {
+
+					window.medicineId = window.medicineId + mid + "-";
+
+					mQty = mQty + qtyy + "-";
+					document.getElementById("product-mrp" + mid).innerHTML = (parseFloat(document.getElementById(
+						"product-mrp" + mid).innerHTML) * qtyy).toFixed(2);
+
+					var product_price = parseFloat(document.getElementById("product-mrp" + mid).innerHTML);
+
+					var discount_percent = parseFloat(result2["smm"]["sellerDiscount"]);
+					var discount = (product_price / 100) * discount_percent;
+					var our_discount = (product_price / 100) * 5;
+					var total_discount = (discount + our_discount).toFixed(2);
+					mDiscount = mDiscount + total_discount + "-";
+
+					// setting input field to send data to controller
+					document.getElementById("mid").value = window.medicineId;
+					document.getElementById("mQty").value = window.mQty;
+					document.getElementById("mDiscount").value = window.mDiscount;
+
+					document.getElementById("seller-discount" + mid).innerHTML = discount.toFixed(2);
+					document.getElementById("our-discount" + mid).innerHTML = our_discount.toFixed(2);
+
+					var total_price = product_price - discount - our_discount;
+
+					document.getElementById("product-price" + mid).innerHTML = total_price.toFixed(2);
+
+					// document.getElementById("grand-total-price").innerHTML = (parseFloat(document.getElementById(
+					// 	"grand-total-price").innerHTML) + total_price).toFixed(0);
+				}
+			}
+		}
+		ajax2.open("GET", url2, true);
+		ajax2.send(null);
+
+	}
+	let currentDate = new Date();
+	let cDay = currentDate.getDate();
+	let cMonth = currentDate.getMonth() + 1;
+	let cYear = currentDate.getFullYear();
+	let today = cDay + "-" + cMonth + "-" + cYear;
+	document.getElementById("order-date").innerHTML = today;
+	currentDate.setDate(new Date().getDate() + 1);
+	cDay = currentDate.getDate();
+	cMonth = currentDate.getMonth() + 1;
+	cYear = currentDate.getFullYear();
+	today = cDay + "-" + cMonth + "-" + cYear;
+	document.getElementById("delivery-date").innerHTML = today;
+</script>
 
 </html>
+
+
+
+
+<!-- 
+	userId
+sellerId
+userAddressId
+medicine[medicineId, quantity, discount]
+ -->

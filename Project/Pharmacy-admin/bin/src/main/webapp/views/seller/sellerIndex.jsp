@@ -2,10 +2,30 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta charset="ISO-8859-1" />
-	<title>Insert title here</title>
+<meta charset="ISO-8859-1" />
+<title>Seller-Dashboard</title>
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Seller-SignUp</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+	integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+	crossorigin="anonymous" />
+<link rel="stylesheet" href="/css/mystyleadmin.css" />
+<script src="/js/myjScriptadmin.js"></script>
+
 </head>
 
 <body>
@@ -61,8 +81,8 @@
 						<table class="table table-striped">
 							<thead class="thead-dark">
 								<tr>
-									<th>OrderID</th>
-									<th>ShopName</th>
+									<th>Order ID</th>
+									<th>Order Date</th>
 									<th>Delivery Address</th>
 									<th>Estimated Delivery Date</th>
 									<th>Status</th>
@@ -70,17 +90,26 @@
 								</tr>
 							</thead>
 							<tbody>
+								<c:forEach var="list" items="${pendingOrderList}">
 								<tr>
-									<td>1</td>
-									<td>dwa</td>
-									<td>800014</td>
-									<td>12-10-24</td>
+									<td>${list.orderId}</td>
+									<td>${list.orderDate}</td>
+									<td><b>${list.userAddress.name}</b>,
+										${list.userAddress.localityAreaStreet},
+										${list.userAddress.landmark},
+										${list.userAddress.city},
+										${list.userAddress.city},
+										${list.userAddress.state},
+										${list.userAddress.pincode}, 
+										<b>Mobile no:${list.userAddress.mobileNumber} </b>	
+									</td>
+									<td>${list.shipingDate}</td>
 									<td>pending</td>
-									<td><a href="orderpage.html" class="btn btn-secondary">
+									<td><a href="/sellerpendingOrderDetails" class="btn btn-secondary">
 											<i class="fas fa-angle-double-right"></i> Details
-										</a></td>
+									</a></td>
 								</tr>
-
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
@@ -90,9 +119,9 @@
 						<div class="card-body">
 							<h3>PendingOrder</h3>
 							<h4 class="display-4">
-								<i class="fas fa-folder"></i> 4
+								<i class="fas fa-folder"></i>${pendingOrdercount}
 							</h4>
-							<a href="./orderpage.html" class="btn btn-outline-light btn-sm">View</a>
+							<a href="/sellerpendingOrderDetails" class="btn btn-outline-light btn-sm">View</a>
 						</div>
 					</div>
 				</div>
@@ -108,5 +137,4 @@
 
 	<%@include file="../templates/sellerFooter.jsp"%>
 </body>
-
 </html>

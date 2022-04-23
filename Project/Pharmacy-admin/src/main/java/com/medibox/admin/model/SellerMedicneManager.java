@@ -20,7 +20,7 @@ public class SellerMedicneManager {
 	private int qunatity;
 
 	@Column(nullable = false)
-	private int sellerDiscount;
+	private float sellerDiscount;
 
 	@ManyToOne
 	@JsonIgnore
@@ -46,11 +46,11 @@ public class SellerMedicneManager {
 		this.qunatity = qunatity;
 	}
 
-	public int getSellerDiscount() {
+	public float getSellerDiscount() {
 		return sellerDiscount;
 	}
 
-	public void setSellerDiscount(int sellerDiscount) {
+	public void setSellerDiscount(float sellerDiscount) {
 		this.sellerDiscount = sellerDiscount;
 	}
 
@@ -70,11 +70,6 @@ public class SellerMedicneManager {
 		this.medicineMaster = medicineMaster;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "SellerMedicneManager [sellerMediManagerId=" + sellerMediManagerId + ", qunatity=" + qunatity
-//				+ ", sellerDiscount=" + sellerDiscount + ", seller=" + seller + ", medicineMaster=" + medicineMaster
-//				+ "]";
-//	}
+	
 
 }

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 
@@ -18,12 +20,13 @@
 			<div class="col-md-6 ">
 				<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
 					<div class="carousel-inner ml-0 mt-4">
-						<div class="carousel-item active ml-0">
-							<img src="/image/imgpng/smp1.png" class="d-block w-100 productpageimage-main"
+						
+						<div class="carousel-item ml-0">
+							<img src="image/imgpng/medicine.png" class="d-block w-100 productpageimage-main"
 								alt="First Slide" />
 						</div>
-						<div class="carousel-item ml-0">
-							<img src="image/imgpng/smp1.png" class="d-block w-100 productpageimage-main"
+						<div class="carousel-item active ml-0">
+							<img src="/image/imgpng/medwhit.png" class="d-block w-100 productpageimage-main"
 								alt="Second Slide" />
 						</div>
 					</div>
@@ -31,6 +34,7 @@
 			</div>
 
 			<div class="col-md-5 offset-1 mt-4">
+				<input type="hidden" id="medId" value="${medicine.medicineId}">
 				<div class="row">
 					<h4>${medicine.medicineName }</h4>
 				</div>
@@ -41,13 +45,16 @@
 					<h6>${medicine.typeOfSell }</h6>
 				</div>
 				<div class="row">
-					<h4>&#x20b9; 106.60</h4>
+					<h4>&#x20b9;
+						<fmt:formatNumber type="number" minFractionDigits="2" maxFractionDigits="2"
+							value="${ medicine.mrp - (medicine.mrp/100)*5 } " />
+					</h4>
 					&nbsp; &nbsp;
 					<h5>
 						<del>&#x20b9;${medicine.mrp }</del>
 					</h5>
 					&nbsp; &nbsp;
-					<h4 class="text-success">15% off</h4>
+					<h4 class="text-success">5% off</h4>
 				</div>
 				<div class="row">
 					<p>Inclusive of all taxes</p>
@@ -59,14 +66,14 @@
 						<i class="fa fa-map-marker" aria-hidden="true"></i>
 					</h3>
 					<input class="pincode ml-2" type="text" placeholder="Enter Delivery Pincode" pattern="^[0-9]{6}$"
-						title="Enter valid PinCode"> <a href="#" class="btn pincode-btn ml-2"><span>Click here to
-							check</span></a>
-					<h6>Enter pincode to check the availability of medicine in
-						your area</h6>
+						title="Enter valid PinCode" id="pincode"> <button class="btn pincode-btn ml-2"
+						onclick="checkPincode()">Check</button>
+					<h6>Check the availability of medicine in your area</h6>
+					<p id="seller-message" style="font-weight: 500;"></p>
 				</div>
-
+				<br><br>
 				<!-- ************ Add Quantity Button ************* -->
-				<div class="quantity buttons_added mb-3">
+				<!-- <div class="quantity buttons_added mb-3">
 					<select required>
 						<option value="">--Select the Quantity--</option>
 						<option>1</option>
@@ -75,7 +82,7 @@
 						<option>4</option>
 						<option>5</option>
 					</select>
-				</div>
+				</div> -->
 
 				<!-- ************ Add to wishlist/cart button ************* -->
 				<div class="row">
@@ -110,9 +117,11 @@
 			<%-- <c:if test="${item.medicineId } != ${medicine.medicineId }"> --%>
 			<div class="productpage-similar">
 				<div class="product-image">
-					<img src="../image/imgpng/smp1.png" alt="First Similar Product" />
+					<img src="../image/imgpng/tablet3.png" alt="First Similar Product" />
 				</div>
+				<br>
 				<a href="/product?mid=${item.medicineId}">${item.medicineName }</a>
+				
 				<br> <span>${item.typeOfSell}</span><br> <span>${item.manufacture.manufactureName}</span><br>
 				<strong><span>&#x20b9;${item.mrp}</span></strong><br>
 			</div>
@@ -226,5 +235,54 @@
 	<!-- footer -->
 	<%@include file="Footer.jsp"%>
 </body>
+<script>
+	function checkPincode() {
+		var pincode = document.getElementById("pincode").value;
+		var ajax = new XMLHttpRequest();
+		var url = "findSeller?pincode=" + pincode;
+		ajax.onreadystatechange = function () {
+			if (ajax.readyState == 4) {
+				let res = ajax.responseText
+				let result = JSON.parse(res);
+				if (result["seller"] == null) {
+					document.getElementById("seller-message").innerHTML = "Seller not available at this location";
+					document.getElementById("seller-message").style.color = "red";
+				} else {
+					var mid = document.getElementById("medId").value;
+					var url2 = "getSellerMedicineData?sid=" + result["seller"]["sellerId"] +
+						"&mid=" + mid;
+					checkMedicineDataAtSeller(url2, mid);
+
+
+				}
+			}
+		}
+		ajax.open("GET", url, true);
+		ajax.send(null);
+	}
+
+	function checkMedicineDataAtSeller(url2, mid) {
+		var ajax2 = new XMLHttpRequest();
+		ajax2.onreadystatechange = function () {
+			if (ajax2.readyState == 4) {
+
+				let res2 = ajax2.responseText
+				let result2 = JSON.parse(res2);
+				// check if product is available or not at seller
+				if (result2["smm"] == null) {
+					document.getElementById("seller-message").innerHTML =
+						"Seller available but Medicine out of stock";
+					document.getElementById("seller-message").style.color = "red";
+				} else {
+					document.getElementById("seller-message").innerHTML =
+						"Seller and Medicine available at this location";
+					document.getElementById("seller-message").style.color = "green";
+				}
+			}
+		}
+		ajax2.open("GET", url2, true);
+		ajax2.send(null);
+	}
+</script>
 
 </html>

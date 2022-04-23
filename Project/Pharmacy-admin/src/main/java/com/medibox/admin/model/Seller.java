@@ -1,11 +1,9 @@
 package com.medibox.admin.model;
 
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,13 +21,13 @@ public class Seller {
 	@Column(nullable = false)
 	private String fullName;
 
-	@Column(nullable = false)
+	@Column(nullable = false,unique = true)
 	private String emailId;
 
 	@Column(nullable = false)
 	private String password;
 
-	@Column(columnDefinition = "integer default 0")
+	@Column(columnDefinition = "integer default 0") 
 	private int status;
 
 	@Column(nullable = false)
@@ -44,7 +42,7 @@ public class Seller {
 	@Column(nullable = false, length = 500)
 	private String shopAddress;
 
-	@Column(nullable = false)
+	@Column(nullable = false,unique = true)
 	private int shopPincode;
 
 	// @Column(nullable = false)
@@ -162,13 +160,9 @@ public class Seller {
 		this.orderMaster = orderMaster;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Seller [sellerId=" + sellerId + ", fullName=" + fullName + ", emailId=" + emailId + ", password="
-//				+ password + ", status=" + status + ", shopName=" + shopName + ", shopeRegNo=" + shopeRegNo
-//				+ ", shopContactNo=" + shopContactNo + ", shopAddress=" + shopAddress + ", shopPincode=" + shopPincode
-//				+ ", documentUrl=" + documentUrl + ", sellerMedicneManager=" + sellerMedicneManager + ", orderMaster="
-//				+ orderMaster + "]";
-//	}
+	
+	
+	
+	
 
 }

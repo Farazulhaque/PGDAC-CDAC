@@ -3,7 +3,6 @@ package com.medibox.admin.service;
 import java.util.List;
 
 import com.medibox.admin.model.ChemicalClass;
-import com.medibox.admin.model.ManufactureMaster;
 
 public interface ChemicalClassService {
 	

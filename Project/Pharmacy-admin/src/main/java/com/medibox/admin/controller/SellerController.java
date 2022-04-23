@@ -1,7 +1,5 @@
 package com.medibox.admin.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.medibox.admin.model.Seller;
-import com.medibox.admin.reprository.SellerReprository;
 import com.medibox.admin.service.SellerService;
 
 @Controller
@@ -19,8 +16,6 @@ public class SellerController {
 
 	@Autowired
 	private SellerService sellerService;
-	@Autowired
-	private SellerReprository sellerReprository;
 
 	@RequestMapping("/seller")
 	public String Seller(Model m) {

@@ -2,7 +2,6 @@ package com.medibox.admin.controller.userend;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,8 +21,6 @@ import com.medibox.admin.model.Seller;
 import com.medibox.admin.model.SellerMedicneManager;
 import com.medibox.admin.model.User;
 import com.medibox.admin.model.UserAddress;
-import com.medibox.admin.reprository.SellerMedicneManagerReporository;
-import com.medibox.admin.reprository.SellerReprository;
 import com.medibox.admin.service.SellerMedicneManagerService;
 import com.medibox.admin.service.SellerService;
 import com.medibox.admin.service.UserAddressService;
@@ -102,30 +99,40 @@ public class CheckoutController {
 
 	@RequestMapping("/checkout")
 	public String checkout(HttpServletRequest request) {
-
-		return "users/Checkout";
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("logedInUser");
+		if (user != null) {
+			return "users/Checkout";
+		}
+		return "redirect:/userloginpage";
 	}
 
 	@GetMapping("/cartItems")
 	public String cartItems(@RequestParam("mid") String mid, @RequestParam("mqty") String mqty, Model m,
 			HttpServletRequest request) {
-
-		String[] midStr = mid.split("_");
-		String[] mqtyStrings = mqty.split("_");
-		ArrayList<MedicineMaster> arr = new ArrayList<MedicineMaster>();
-		for (int i = 0; i < midStr.length; i++) {
-			Integer midInteger = Integer.parseInt(midStr[i]);
-			MedicineMaster medicineMaster = medicineMasterImp.findByMedicineId(midInteger);
-			arr.add(medicineMaster);
-
-		}
-
 		HttpSession session = request.getSession();
-		session.setAttribute("medicines", arr);
-		session.setAttribute("quantity", mqtyStrings);
-		return "users/Checkout";
+		User user = (User) session.getAttribute("logedInUser");
+		if (user != null) {
+
+			String[] midStr = mid.split("_");
+			String[] mqtyStrings = mqty.split("_");
+			ArrayList<MedicineMaster> arr = new ArrayList<MedicineMaster>();
+			for (int i = 0; i < midStr.length; i++) {
+				Integer midInteger = Integer.parseInt(midStr[i]);
+				MedicineMaster medicineMaster = medicineMasterImp.findByMedicineId(midInteger);
+				arr.add(medicineMaster);
+
+			}
+
+			// HttpSession session = request.getSession();
+			session.setAttribute("medicines", arr);
+			session.setAttribute("quantity", mqtyStrings);
+			return "users/Checkout";
+		}
+		return "redirect:/userloginpage";
 	}
 
+	
 	@GetMapping("/findSeller")
 	@ResponseBody
 	public HashMap<String, Seller> findseller(@RequestParam("pincode") String pin) {
@@ -145,6 +152,8 @@ public class CheckoutController {
 		return sellerMap;
 	}
 
+	
+	
 	@GetMapping("/getSellerMedicineData")
 	@ResponseBody
 	public HashMap<String, SellerMedicneManager> getDiscount(@RequestParam("sid") int sid,
@@ -156,7 +165,7 @@ public class CheckoutController {
 			sMMhashMap.put("smm", null);
 		} else {
 			sMMhashMap.put("smm", sellerMedicneManager);
-			//System.out.println(sellerMedicneManager.getSellerDiscount());
+			System.out.println(sellerMedicneManager.getSellerDiscount());
 		}
 		return sMMhashMap;
 

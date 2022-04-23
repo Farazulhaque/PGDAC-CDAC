@@ -4,8 +4,8 @@
 <html>
 
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Insert title here</title>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
 </head>
 
 <body>
@@ -21,7 +21,7 @@
 			<div id="Copyrightsection" class="col">
 				<div class="">
 					<p>
-						<b>Copyright &copy; <span id="footeryear"></span> 'G3'<br />
+						<b>Copyright &copy; <span id="footeryear"></span><br />
 							All Rights Reserved.
 						</b>
 					</p>
@@ -40,21 +40,23 @@
 
 				<div class="d-flex justify-content-center socialmediatag">
 					<div class="p-1">
-						<a href="http://facebook.com"> <img src="./image/imgpng/facebook.png" alt="@fb" width="30px" />
+						<a href="http://facebook.com"> <img
+							src="./image/imgpng/facebook.png" alt="@fb" width="30px" />
 						</a>
 					</div>
 					<div class="p-1">
-						<a href="http://twitter.com"> <img src="./image/imgpng/twitter.png" alt="@tw" width="35px" />
+						<a href="http://twitter.com"> <img
+							src="./image/imgpng/twitter.png" alt="@tw" width="35px" />
 						</a>
 					</div>
 					<div class="p-1">
-						<a href="http://instagram.com"> <img src="./image/imgpng/instagram.png" alt="@inst"
-								width="30px" />
+						<a href="http://instagram.com"> <img
+							src="./image/imgpng/instagram.png" alt="@inst" width="30px" />
 						</a>
 					</div>
 					<div class="p-1">
-						<a href="http://www.whatsapp.com"> <img src="./image/imgpng/WhatsApp-logo.png  " alt="@wapp"
-								width="30px" />
+						<a href="http://www.whatsapp.com"> <img
+							src="./image/imgpng/WhatsApp-logo.png  " alt="@wapp" width="30px" />
 						</a>
 					</div>
 				</div>

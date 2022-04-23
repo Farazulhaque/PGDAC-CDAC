@@ -103,15 +103,14 @@ public class SellerMedicineManagerController {
 		return "redirect:/sellerlogin";
 	}
 
-	// @RequestMapping(value = "/AjaxFormedicineFind", method = RequestMethod.POST)
-	// @ResponseBody
-	// public ModelAndView search(@RequestParam("Mname") String value) {
-	// ModelAndView mv = new ModelAndView();;
-	// mv.setViewName("seller/sellerMedicineManager");
-	// List<MedicineMaster> medciList =
-	// medicineMasterImp.findMedicineByNameLike(value);
-	// mv.addObject("med", medciList);
-	// return mv;
-	// }
+//	@RequestMapping(value = "/AjaxFormedicineFind", method = RequestMethod.POST)
+//	@ResponseBody
+//	public ModelAndView search(@RequestParam("Mname") String value) {
+//		ModelAndView mv = new ModelAndView();;
+//		mv.setViewName("seller/sellerMedicineManager");
+//		List<MedicineMaster> medciList = medicineMasterImp.findMedicineByNameLike(value);
+//		mv.addObject("med", medciList);
+//		return mv;
+//	}
 
 }

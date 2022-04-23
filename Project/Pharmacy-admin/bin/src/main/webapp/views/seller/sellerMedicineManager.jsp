@@ -2,51 +2,39 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta charset="ISO-8859-1" />
-	<title>Insert title here</title>
+<meta charset="ISO-8859-1" />
+<title>Seller-Medi-mgr</title>
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Seller-SignUp</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+	integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+	crossorigin="anonymous" />
+<link rel="stylesheet" href="/css/mystyleadmin.css" />
+<script src="/js/myjScriptadmin.js"></script>
+
+
+
 </head>
-<script>
-	/*  function search() {
-      var ajax = new XMLHttpRequest();
-      var inpname = document.getElementById("name").value;
-      var url = "/AjaxFormedicineFind?Mname="+inpname;
 
-      ajax.onreadystatechange = function () {
-        if (ajax.readyState == 4) {
-        	//let res = ajax.responseText
-			//let result = JSON.parse(res);
-          document.getElementById("search-result").innerText=ajax.responseText;
-        }
-      };
-      ajax.open("Post", url, true);
-      ajax.send(null);
-    } */
-</script>
-
+   
 <body>
 	<%@include file="../templates/sellerHeader.jsp"%>
 
-	<!-- search button and text box -->
-	<!-- search -->
-	<!-- <div class="container mx-auto row my-4">
-      <form class="d-flex input-group">
-        <input
-          class="form-control me-2"
-          type="text"
-          id="name"
-          onkeyup="search()"
-          placeholder="Search"
-          aria-label="Search"
-        />
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </form>
-    </div> -->
+	
 
 	<!-- Form -->
 	<section class="container-fluid" id="UpdateSection">
@@ -63,15 +51,14 @@
 					<tr>
 						<th scope="col">
 							<div class="form-group">
-								<label for="Name">Medicine Name</label> <select class="form-control"
-									name="medicineMaster" id="MName" onchange="MedecineData()">
+								<label for="Name">Medicine Name</label> <select
+									class="form-control" name="medicineMaster" id="MName"
+									onchange="MedecineData()">
 									<c:if test="${singleMedicine!=null }">
-										<option value="${singleMedicine.medicineId}">${singleMedicine.medicineName}
-										</option>
+										<option value="${singleMedicine.medicineId}">${singleMedicine.medicineName}</option>
 									</c:if>
 									<c:if test="${updateMedicine!=null }">
-										<option value="${updateMedicine.medicineMaster.medicineId}">
-											${updateMedicine.medicineMaster.medicineName}</option>
+										<option value="${updateMedicine.medicineMaster.medicineId}">${updateMedicine.medicineMaster.medicineName}</option>
 									</c:if>
 
 
@@ -86,16 +73,18 @@
 						</th>
 						<th scope="col">
 							<div class="form-group">
-								<label for="Quantity">Quantity</label> <input type="number" class="form-control"
-									name="qunatity" value="${updateMedicine.qunatity }" id="Quantity"
+								<label for="Quantity">Quantity</label> <input type="number"
+									class="form-control" name="qunatity"
+									value="${updateMedicine.qunatity }" id="Quantity"
 									placeholder="10" />
 							</div>
 						</th>
 						<th scope="col">
 							<div class="form-group">
-								<label for="Discount">Your Extra Discount</label> <input type="number"
-									class="form-control" name="sellerDiscount" value="${updateMedicine.sellerDiscount}"
-									id="Quantity" placeholder="5%" />
+								<label for="Discount">Your Extra Discount</label> <input
+									type="number" class="form-control" name="sellerDiscount"
+									value="${updateMedicine.sellerDiscount}" id="Quantity"
+									placeholder="5%" />
 							</div>
 						</th>
 						<th scope="col">
@@ -112,8 +101,8 @@
 
 	<!-- list of medicine  -->
 
-	<button class="btn btn-success btn-block my-5" data-toggle="collapse" data-target="#medicine-details">Show Medicine
-		List</button>
+	<button class="btn btn-success btn-block my-5" data-toggle="collapse"
+		data-target="#medicine-details">Show Medicine List</button>
 
 	<div class="collapse" id="medicine-details">
 		<table class="table">
@@ -143,9 +132,9 @@
 						<td>${listM.qunatity}</td>
 						<td>${listM.sellerDiscount}</td>
 						<td><a class="btn btn-success float-left"
-								href="/updateMfrmLst?medId=${listM.sellerMediManagerId}">Update</a>
+							href="/updateMfrmLst?medId=${listM.sellerMediManagerId}">Update</a>
 							<a class="btn btn-danger float-left"
-								href="/deleteMfrmLst?medId=${listM.sellerMediManagerId}">Delete</a>
+							href="/deleteMfrmLst?medId=${listM.sellerMediManagerId}">Delete</a>
 						</td>
 
 					</tr>
@@ -156,5 +145,4 @@
 
 	<%@include file="../templates/sellerFooter.jsp"%>
 </body>
-
 </html>

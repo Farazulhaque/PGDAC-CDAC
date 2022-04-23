@@ -142,3 +142,142 @@ input[type=number] {
     width: 100%;
     margin: auto;
 }
+
+
+
+/* =====================orders page================================ */
+#myorderpage {
+    background-color: rgb(255, 255, 255);
+    margin-top: 10px;
+    align-items: center;
+    border: 2px solid rgb(194, 187, 187);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+#myorderpage h3 {
+    height: 50px;
+    width: 80%;
+    margin: auto;
+    line-height: 50px;
+    background-color: rgb(190, 231, 231);
+    padding-left: 1%;
+}
+
+#myorderpage p {
+    padding: 0;
+    margin: 0;
+}
+
+#myorderpage .orderrow {
+    width: 80%;
+    /* min-height: 175px; */
+    margin: auto;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    background-color: #fcfcfc;
+    border: 1px dotted grey;
+    border-radius: 6px;
+    padding: 2%;
+}
+
+#myorderpage .orderrow:hover {
+    transition: box-shadow .1s linear;
+    box-shadow: 0 0 5px 2px rgb(187, 185, 185);
+    cursor: pointer;
+}
+
+#order-details {
+    margin: 1% 1% 0 1%;
+    padding: 0;
+    border-top: 2px solid grey;
+}
+
+#cancel-order {
+    margin-top: 5%;
+    border: none;
+    padding: 1%;
+    width: 100px;
+    border-radius: 2px;
+}
+
+.order-item {
+    border-bottom: 1px dotted grey;
+}
+
+
+
+#seller-name {
+    font-weight: 600;
+}
+
+@media only screen and (max-width: 750px) {
+    #myorderpage {
+        /* background-color: ; */
+        border: none;
+        padding: 5px;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    #myorderpage h3,
+    #myorderpage .orderrow {
+        width: 100%;
+    }
+
+    #myorderpage .orderrow {
+        padding: 5px 0 5px 0;
+    }
+
+}
+
+
+
+#deliveredCanceledbackground{
+    position:absolute;
+    z-index:0;
+}
+
+#Canceled-bg-text
+{
+    color:red;
+    font-size:30px;
+    transform:rotate(300deg);
+    -webkit-transform:rotate(322deg);
+}
+
+#delivered-bg-text
+{
+    color:rgb(0, 255, 0);
+    font-size:30px;
+    transform:rotate(300deg);
+    -webkit-transform:rotate(322deg);
+}
+
+
+
+
+
+
+
+/* =====================orders page================================ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

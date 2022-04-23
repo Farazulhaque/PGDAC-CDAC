@@ -2,7 +2,6 @@ package com.medibox.admin.service;
 
 import java.util.List;
 
-import com.medibox.admin.model.ManufactureMaster;
 import com.medibox.admin.model.TherapeuticClass;
 
 public interface TherapeuticClassService {

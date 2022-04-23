@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,14 +16,17 @@ import org.springframework.web.multipart.*;
 
 import com.medibox.admin.FileUploadUtils;
 import com.medibox.admin.model.Seller;
+import com.medibox.admin.service.OrderMasterService;
 import com.medibox.admin.service.SellerService;
-import com.medibox.admin.service.implement.SellerServiceImplemention;
 
 @Controller
 public class SellerSignUpController {
 
 	@Autowired
 	private SellerService sellerService;
+	
+	@Autowired
+	private OrderMasterService orderMasterService;
 
 	@RequestMapping("/sellerSignUp")
 	public String RegistrationForm() {
@@ -32,13 +34,13 @@ public class SellerSignUpController {
 		return "seller/sellerSignUp";
 	}
 
-	// @PostMapping("/addSeller")
-	// public String Registration(Seller s,Model m) {
-	// sellerService.addSeller(s);
-	// m.addAttribute("sellerReg",true);
-	// System.out.println("seller Registration");
-	// return "sellerSignUp";
-	// }
+	//	@PostMapping("/addSeller")
+	//	public String Registration(Seller s,Model m) {
+	//		sellerService.addSeller(s);
+	//		m.addAttribute("sellerReg",true);
+	//		System.out.println("seller Registration");
+	//		return "sellerSignUp";
+	//	}
 
 	// signup -process
 	@PostMapping("/addSeller")
@@ -85,6 +87,8 @@ public class SellerSignUpController {
 			} else {
 				HttpSession session = request.getSession();
 				session.setAttribute("logedinSeller", seller);
+				m.addAttribute("pendingOrdercount",orderMasterService.PendingOrderOfSellerCount(seller.getSellerId()));
+				m.addAttribute("pendingOrderList",orderMasterService.findOrderBySellerPendingOrder(seller.getSellerId()));
 				return "seller/sellerIndex";
 			}
 		}

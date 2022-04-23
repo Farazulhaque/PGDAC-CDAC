@@ -3,15 +3,11 @@ package com.medibox.admin.controller;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +18,6 @@ import com.medibox.admin.model.ChemicalClass;
 import com.medibox.admin.model.ManufactureMaster;
 import com.medibox.admin.model.MedicineMaster;
 import com.medibox.admin.model.TherapeuticClass;
-import com.medibox.admin.reprository.TherapeuticClassReprository;
 import com.medibox.admin.service.implement.ChemicalClassImplemention;
 import com.medibox.admin.service.implement.ManufactureMasterImplemention;
 import com.medibox.admin.service.implement.MedicineMasterImplementation;
@@ -55,7 +50,6 @@ public class MedicineMasterController {
 		return "admin/medicineMaster";
 	}
 
-	///////////////////////////////////////////////////////////////////////////////////////
 
 	// addtherapeuticclass in db
 	@PostMapping("/addtherapeuticclass")
@@ -95,7 +89,6 @@ public class MedicineMasterController {
 		return "medicineMaster";
 	}
 
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// adding manufacture class in db
 	@PostMapping("/addmanufacture")
@@ -134,7 +127,6 @@ public class MedicineMasterController {
 		return "admin/medicineMaster";
 	}
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// adding chemical class in db
 	@PostMapping("/addchemicalclass")
 	public String addChemicalClass(ChemicalClass chemicalClass) {
@@ -173,7 +165,6 @@ public class MedicineMasterController {
 		return "admin/medicineMaster";
 	}
 
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// medicine add form opening
 	@RequestMapping("/collapseADDMedicineData")
@@ -242,19 +233,18 @@ public class MedicineMasterController {
 		return "admin/medicineMaster";
 	}
 
-	// @GetMapping("/medicinepageMaster/{page}")
-	// public String showContacts(@PathVariable("page") Integer page, Model m) {
-	//
-	// Pageable pageable = PageRequest.of(page, 2);
-	//
-	// Page<MedicineMaster> medicineMaster =
-	// this.medicineMasterImp.listOfMedicineByPage(pageable);
-	//
-	// m.addAttribute("medlistd", medicineMaster);
-	// m.addAttribute("currentPage", page);
-	// m.addAttribute("totalPages", medicineMaster.getTotalPages());
-	//
-	// return "admin/medicineMaster";
-	// }
+//	@GetMapping("/medicinepageMaster/{page}")
+//	public String showContacts(@PathVariable("page") Integer page, Model m) {
+//		
+//		Pageable pageable = PageRequest.of(page, 2);
+//
+//		Page<MedicineMaster> medicineMaster = this.medicineMasterImp.listOfMedicineByPage(pageable);
+//
+//		m.addAttribute("medlistd", medicineMaster);
+//		m.addAttribute("currentPage", page);
+//		m.addAttribute("totalPages", medicineMaster.getTotalPages());
+//
+//		return "admin/medicineMaster";
+//	}
 
 }

@@ -28,34 +28,38 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String index() {
-		System.out.println("Index page called");
+		
 		return "users/index";
 	}
 
 	@RequestMapping("/home")
 	public String home() {
-		System.out.println("Index page called");
+		
 		return "users/index";
 	}
 
 	@RequestMapping("/aboutus")
 	public String aboutUs() {
-		System.out.println("AboutUs page called");
+	
 		return "users/AboutUs";
 	}
 
 	@RequestMapping("/contactus")
 	public String contactUs() {
-		System.out.println("ContactUs page called");
+		
 		return "users/ContactUs";
 	}
 
-	@RequestMapping("/myorders")
-	public String myOrders() {
-		System.out.println("Order page called");
-		return "users/Order";
+	
+	@RequestMapping("/ProductListPage")
+	public String ProductListPage() {
+		
+		return "users/ProductList";
 	}
-
+	
+	
+	
+	
 	@GetMapping("/search")
 	public String processQuery(@RequestParam("query") String query, Model model) {
 		System.out.println("process query called");
@@ -71,6 +75,7 @@ public class HomeController {
 		return "users/Search";
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping("/processAJAX")
 	@ResponseBody
 	public ArrayList processAJAX(@RequestParam("query") String query, Model model) {

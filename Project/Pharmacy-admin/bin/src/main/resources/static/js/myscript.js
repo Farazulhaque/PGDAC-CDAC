@@ -44,8 +44,8 @@ $(document).ready(function () {
 //usersignup page 
 function checkFullName() {
 	var name = document.getElementById("fullName").value;
-	var alphExp = /^[a-zA-Z]+$/;
-	if ((name.length < 4) && (name.match(alphExp))) {
+	var alphExp = /^[a-zA-Z ]+$/;
+	if ((name.length < 4) || (!name.match(alphExp))) {
 		document.getElementById("fullname-error").innerText = "Name must have more than 4 chars and not numric value";
 	} else {
 		document.getElementById("fullname-error").innerText = "";
@@ -156,11 +156,9 @@ window.onload = function updateCart() {
 		let parentDiv = document.getElementById("cart-item")
 		let totalPrice = 0;
 		// create a separate div for all items
-		let mids = new Array();
 		cart.map((item) => {
 			productPrice = parseFloat(item.productPrice);
 			totalPrice += productPrice;
-			mids.push(`${item.productId}`);
 			let itemdiv =
 				`
 				<div class="item-info">
@@ -198,10 +196,7 @@ window.onload = function updateCart() {
 
 		})
 
-		sessionStorage.setItem("medicineIds", mids);
-		// for (let i = 0; i < mids.length; i++) {
-		// 	console.log(mids[i]);
-		// }
+
 		total.price = totalPrice
 		document.getElementById("total").innerHTML = "&#x20b9; " + totalPrice.toFixed(2);
 

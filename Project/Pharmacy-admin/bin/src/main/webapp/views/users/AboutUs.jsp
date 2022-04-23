@@ -74,9 +74,9 @@
         autem at atque asperiores ratione aliquam, corrupti commodi porro?</p>
     </div>
   </div>
-
-  <!-- footer -->
-  <%@include file="Footer.jsp"%>
+	
+	<!-- footer -->
+	<%@include file="Footer.jsp"%>
 </body>
 
 </html>

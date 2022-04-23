@@ -4,12 +4,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Insert title here</title>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
 </head>
-
 <body>
 	<!-- Header -->
 	<%@include file="Header.jsp"%>
@@ -21,8 +19,8 @@
 
 
 
-	<section Id="myorderpage" class="container container-fluid py-4" data-toggle="collapse"
-		data-target="#order-details">
+	<section Id="myorderpage" class="container container-fluid py-4"
+		data-toggle="collapse" data-target="#order-details">
 		<h3>Order List</h3>
 		<c:forEach var="orders" items="${orderlist}">
 			<div class="row orderrow">
@@ -43,7 +41,18 @@
 						</div>
 					</c:if>
 
+
+
+
 					<h6 id="customer-name" style="display: inline;">${orders.userAddress.name}</h6>
+
+
+
+
+
+
+
+
 
 					<p>
 						Delivery Address: <span id="delivery-address">${orders.userAddress.localityAreaStreet},
@@ -67,21 +76,23 @@
 						Delivery Date : <span id="order-date">${orders.shipingDate}</span>
 					</p>
 					<p>
-						Status &nbsp;&emsp;&emsp;&emsp;: <span id="order-status">
-							<c:if test="${orders.status.statusType == 0}">Pending</c:if>
-							<c:if test="${orders.status.statusType == 1}">Confirmed</c:if>
-							<c:if test="${orders.status.statusType == 2}">Shipped</c:if>
-							<c:if test="${orders.status.statusType == 3}">Delivered</c:if>
+						Status &nbsp;&emsp;&emsp;&emsp;: <span id="order-status"> <c:if
+								test="${orders.status.statusType == 0}">Pending</c:if> <c:if
+								test="${orders.status.statusType == 1}">Confirmed</c:if> <c:if
+								test="${orders.status.statusType == 2}">Shipped</c:if> <c:if
+								test="${orders.status.statusType == 3}">Delivered</c:if>
 						</span>
 					</p>
 					<c:if
 						test="${(orders.status.statusType != 2) && (orders.status.statusType !=3) && (orders.status.isCanceled!=1)}">
 						<form action="/userorderCancel" method="post" id="cancel-order">
-							<input type="hidden" name="orderId" value="${orders.orderId}"> <input type="hidden"
+							<input type="hidden" name="orderId"
+								value="${orders.orderId}"> <input type="hidden"
 								name="statusId" value="${orders.status.statusId}">
-							<input type="hidden" name="statusType" value="${orders.status.statusType}"> <input
-								type="hidden" name="isCanceled" value="1"> <input type="submit" class="btn-danger"
-								value="cancel">
+							<input type="hidden" name="statusType"
+								value="${orders.status.statusType}"> <input
+								type="hidden" name="isCanceled" value="1"> <input
+								type="submit" class="btn-danger" value="cancel">
 						</form>
 					</c:if>
 				</div>
@@ -110,9 +121,7 @@
 								</p>
 								<hr>
 								<p>
-									Total Price&nbsp; : <span
-										class="product-price">&#x20b9;${orderMed.medicineMaster.mrp -
-										orderMed.medicineDiscount}</span>
+									Total Price&nbsp; : <span class="product-price">&#x20b9;${orderMed.medicineMaster.mrp  -  orderMed.medicineDiscount}</span>
 								</p>
 							</div>
 						</div>
@@ -122,8 +131,7 @@
 						<div class="col-12 p-2 seller-details">
 							<span id="seller-name">${orders.seller.fullName}</span>
 							<p>
-								Seller Address: <span
-									id="seller-address: ">${orders.seller.shopName}${orders.seller.shopAddress}</span>
+								Seller Address: <span id="seller-address: ">${orders.seller.shopName}${orders.seller.shopAddress}</span>
 							</p>
 						</div>
 
@@ -134,10 +142,6 @@
 	</section>
 </body>
 
-<!-- footer -->
-<%@include file="Footer.jsp"%>
-
-
 
 <script>
 	if (document.getElementById("order-status").innerHTML == "Delivered") {
@@ -146,6 +150,20 @@
 </script>
 
 
-</body>
 
+
+
+
+
+
+
+
+
+
+
+<!-- footer -->
+<%@include file="Footer.jsp"%>
+
+</body>
 </html>
+>

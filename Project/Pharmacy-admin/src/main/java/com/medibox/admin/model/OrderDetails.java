@@ -8,8 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import org.springframework.data.jpa.repository.Query;
-
 @Entity
 public class OrderDetails implements Serializable {
 

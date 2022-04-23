@@ -5,7 +5,7 @@
 
 <head>
   <meta charset="ISO-8859-1">
-  <title>Abou Us</title>
+  <title>Insert title here</title>
 </head>
 
 <body>
@@ -74,9 +74,9 @@
         autem at atque asperiores ratione aliquam, corrupti commodi porro?</p>
     </div>
   </div>
-
-  <!-- footer -->
-  <%@include file="Footer.jsp"%>
+	
+	<!-- footer -->
+	<%@include file="Footer.jsp"%>
 </body>
 
 </html>

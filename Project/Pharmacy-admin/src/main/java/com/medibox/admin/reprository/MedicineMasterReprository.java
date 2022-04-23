@@ -25,7 +25,10 @@ public interface MedicineMasterReprository extends JpaRepository<MedicineMaster,
 	@Query("Select u from MedicineMaster u")
 	public Page<MedicineMaster> findMedicinebyPageable(Pageable pePageable);
 
+	
 	@Query("select m.mrp from MedicineMaster m where m.medicineId=?1")
 	public float getMedicineMrp(int mid);
+	
+	
 }
-// @Query("select mm from MedicineMaster mm where mm.medicineName like %?1%")
+//@Query("select mm from MedicineMaster mm where mm.medicineName like %?1%")

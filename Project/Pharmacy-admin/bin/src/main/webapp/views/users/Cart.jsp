@@ -56,17 +56,22 @@
 <script>
 	function checkout() {
 		var mid_string = "";
+		var mqty_string = "";
 		var mids = document.getElementsByClassName("mid");
 		for (let i = 0; i < mids.length; i++) {
-			const element = mids[i].value;
-			mid_string += element + "_";
-			console.log(element);
+			let mId = mids[i].value;
+			let mQty = parseInt(document.getElementById(mId).value);
+			mid_string += mId + "_";
+			mqty_string += mQty + "_";
 		}
 		mid_string = mid_string.slice(0, mid_string.length - 1)
+		mqty_string = mqty_string.slice(0, mqty_string.length - 1)
 		console.log(mid_string);
+		console.log(mqty_string)
 		var ajax = new XMLHttpRequest();
 
-		var url = "cartItems?mid=" + mid_string;
+		var url = "cartItems?mid=" + mid_string + "&mqty=" + mqty_string;
+		console.log(url)
 
 		ajax.open("GET", url, true);
 		ajax.send(null);

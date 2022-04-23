@@ -20,12 +20,13 @@
 			<div class="col-md-6 ">
 				<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
 					<div class="carousel-inner ml-0 mt-4">
-						<div class="carousel-item active ml-0">
-							<img src="/image/imgpng/smp1.png" class="d-block w-100 productpageimage-main"
+						
+						<div class="carousel-item ml-0">
+							<img src="image/imgpng/medicine.png" class="d-block w-100 productpageimage-main"
 								alt="First Slide" />
 						</div>
-						<div class="carousel-item ml-0">
-							<img src="image/imgpng/smp1.png" class="d-block w-100 productpageimage-main"
+						<div class="carousel-item active ml-0">
+							<img src="/image/imgpng/medwhit.png" class="d-block w-100 productpageimage-main"
 								alt="Second Slide" />
 						</div>
 					</div>
@@ -116,9 +117,11 @@
 			<%-- <c:if test="${item.medicineId } != ${medicine.medicineId }"> --%>
 			<div class="productpage-similar">
 				<div class="product-image">
-					<img src="../image/imgpng/smp1.png" alt="First Similar Product" />
+					<img src="../image/imgpng/tablet3.png" alt="First Similar Product" />
 				</div>
+				<br>
 				<a href="/product?mid=${item.medicineId}">${item.medicineName }</a>
+				
 				<br> <span>${item.typeOfSell}</span><br> <span>${item.manufacture.manufactureName}</span><br>
 				<strong><span>&#x20b9;${item.mrp}</span></strong><br>
 			</div>

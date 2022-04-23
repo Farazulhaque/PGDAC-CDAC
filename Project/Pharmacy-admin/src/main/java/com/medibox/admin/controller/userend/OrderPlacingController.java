@@ -2,7 +2,6 @@ package com.medibox.admin.controller.userend;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,13 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.medibox.admin.model.MedicineMaster;
 import com.medibox.admin.model.OrderDetails;
 import com.medibox.admin.model.OrderMaster;
 import com.medibox.admin.model.OrderStatus;
 import com.medibox.admin.model.SellerMedicneManager;
 import com.medibox.admin.model.User;
-import com.medibox.admin.reprository.OrderStatusRepository;
 import com.medibox.admin.service.MedicineMasterService;
 import com.medibox.admin.service.OrderDetailsService;
 import com.medibox.admin.service.OrderMasterService;
@@ -52,6 +49,7 @@ public class OrderPlacingController {
 	@Autowired
 	OrderDetailsService orderDetailsService;
 
+	@SuppressWarnings("deprecation")
 	@GetMapping("placeOrder")
 	public String placeOrder(@RequestParam("uAId") Integer uAId, @RequestParam("sId") Integer sId,
 			@RequestParam("mId") String mIds, @RequestParam("mQty") String mQtys,

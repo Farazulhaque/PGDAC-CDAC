@@ -71,6 +71,7 @@ public class MedicineMasterImplementation implements MedicineMasterService {
 
 	@Override
 	public float getMedicineMrp(int mid) {
+		
 		return medicineMasterRepro.getMedicineMrp(mid);
 	}
 

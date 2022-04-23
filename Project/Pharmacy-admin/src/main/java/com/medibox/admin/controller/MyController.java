@@ -6,7 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.medibox.admin.reprository.SellerReprository;
+import com.medibox.admin.service.OrderMasterService;
 import com.medibox.admin.service.implement.SellerServiceImplemention;
 import com.medibox.admin.service.implement.UserServiceImplemention;
 
@@ -18,13 +18,16 @@ public class MyController {
 
 	@Autowired
 	private SellerServiceImplemention seImplemention;
+	
+	@Autowired
+	private OrderMasterService orderMasterService ;
 
 	@ModelAttribute
 	public void commonDataSendforModal(Model m) {
 		m.addAttribute("userCount", userServiceImplemention.countUser());
 		m.addAttribute("sellerCount", seImplemention.countSeller());
 		m.addAttribute("pendingSeller", seImplemention.pendingListOfSeller());
-
+		m.addAttribute("pendingOrdercount", orderMasterService.PendingOrderCount());
 	}
 
 	@RequestMapping("/admin")
@@ -39,10 +42,10 @@ public class MyController {
 		return "admin/index";
 	}
 
+	
 	@RequestMapping("/settings")
 	public String settings() {
 		System.out.println("settings is excuted");
 		return "admin/settings";
 	}
-
 }

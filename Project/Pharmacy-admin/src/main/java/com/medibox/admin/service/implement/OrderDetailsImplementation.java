@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.medibox.admin.model.OrderDetails;
 import com.medibox.admin.reprository.OrderDetailsRepository;
-import com.medibox.admin.reprository.OrderStatusRepository;
 import com.medibox.admin.service.OrderDetailsService;
 
 @Service

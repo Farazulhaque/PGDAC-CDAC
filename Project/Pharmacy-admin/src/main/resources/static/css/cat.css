@@ -1,0 +1,49 @@
+@charset "ISO-8859-1";
+
+#categories{
+    width: 270px;float: left;
+    height: 100%;
+}
+.card-title{
+    color: blue;
+}
+@media only screen and (max-width:700px) {
+    #categories{
+     display:none;
+    }
+  }
+
+.card-img-top{
+    height: 200px;
+}
+#del{
+    color: rgb(155, 146, 146);
+}
+.price {
+    color: rgb(3, 3, 3);
+    font-weight: bold;
+}
+#del{
+    margin-bottom: 0%;
+}
+
+@media only screen and (max-width:600px) {
+    #product-div{
+            width: 50%;
+            height:fit-content;
+            padding: 0%;
+            
+        }
+        #product-des{
+            font-size: x-small;
+        }
+        .mt-3, .my-3{
+            margin-top:0px !important;
+        }
+        .card-img-top{
+            height: 150px;
+        }
+        
+        
+    
+}

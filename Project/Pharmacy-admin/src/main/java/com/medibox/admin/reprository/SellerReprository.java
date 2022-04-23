@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.medibox.admin.model.Seller;
-import com.medibox.admin.model.User;
 
 public interface SellerReprository extends JpaRepository<Seller, Integer> {
 
@@ -19,9 +18,8 @@ public interface SellerReprository extends JpaRepository<Seller, Integer> {
 	@Query("select s from Seller s where s.status=?1")
 	List<Seller> findPendingList(Integer a);
 
-	// @Query("select s from Seller s where s.emailId=?1 and s.password=?2 and
-	// s.status=1")
-	// Seller findBySellerEmailAndPasswordStatusIsActive(String email, String pass);
+//	@Query("select s from Seller s where s.emailId=?1 and s.password=?2  and s.status=1")
+//	Seller findBySellerEmailAndPasswordStatusIsActive(String email, String pass);
 
 	@Query("select s from Seller s where s.emailId=?1 and s.password=?2")
 	Seller findBySellerEmailAndPasswordStatusIsActive(String email, String pass);

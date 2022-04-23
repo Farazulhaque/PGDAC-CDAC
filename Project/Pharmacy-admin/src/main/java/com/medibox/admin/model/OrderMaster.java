@@ -1,5 +1,6 @@
 package com.medibox.admin.model;
 
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -31,8 +32,16 @@ public class OrderMaster {
 
 	@Column(nullable = false)
 	private String shipingDate;
-
+	
 	private String paytmentType;
+
+	public String getPaytmentType() {
+		return paytmentType;
+	}
+
+	public void setPaytmentType(String paytmentType) {
+		this.paytmentType = paytmentType;
+	}
 
 	@ManyToOne
 	private User user;
@@ -49,15 +58,6 @@ public class OrderMaster {
 	@OneToMany(mappedBy = "orderMaster", cascade = CascadeType.ALL)
 	private List<OrderDetails> orderDetails;
 
-	public String getPaytmentType() {
-		return paytmentType;
-	}
-
-	public void setPaytmentType(String paytmentType) {
-		this.paytmentType = paytmentType;
-	}
-
-	
 	public List<OrderDetails> getOrderDetails() {
 		return orderDetails;
 	}

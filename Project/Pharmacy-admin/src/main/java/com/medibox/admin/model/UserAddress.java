@@ -2,7 +2,6 @@ package com.medibox.admin.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +23,7 @@ public class UserAddress {
 	@ManyToOne
 	private User user;
 
-	@OneToMany(mappedBy = "userAddress", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "userAddress")
 	private List<OrderMaster> orderMasters;
 
 	@Column(nullable = false)
